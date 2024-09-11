@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Web Debug;Web Release;Native Debug;Native Release</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Native Debug'">$(DefineConstants);DEBUG</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Web Release'">$(DefineConstants);EGGSHELL_PLATFORM_IS_WEB</DefineConstants>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="**/*.fsproj" />
+    <Content Include="**/*.render" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Core" Version="4.3.0" />
+    <PackageReference Include="Fable.React" Version="9.4.0" />
+    <PackageReference Include="Fable.Promise" Version="3.2.0" />
+    <PackageReference Include="Thoth.Json" Version="10.2.0" />
+    <PackageReference Include="Fable.Date" Version="1.0.0" />
+    <PackageReference Include="Fable.Browser.IndexedDB" Version="2.2.0" />
+
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibLifeCycleTypes/src/LibLifeCycleTypes.fsproj" />
+    <ProjectReference Include="../../Meta/FablePlugins/FablePlugins.fsproj" />
+    <Compile Include="Disposables.fs" />
+
+    <Compile Include="Documentational.fs" />
+    <Compile Include="Memoize.fs" />
+    <Compile Include="JsInterop.fs" />
+    <Compile Include="UniDirectionalDataFlow.fs" />
+    <Compile Include="Output.fs" />
+    <Compile Include="ThirdParty.fs" />
+    <Compile Include="Base64.fs" />
+    <Compile Include="Json.fs" />
+    <Compile Include="MessageTemplates.fs" />
+    <Compile Include="Logging.fs" />
+    <Compile Include="Telemetry.fs" />
+    <Compile Include="ColorModule.fs" />
+    <Compile Include="ColorScheme.fs" />
+    <Compile Include="ApplicationInsights.fs" />
+    <Compile Include="AsyncDataModule.fs" />
+    <Compile Include="AsyncHelpers.fs" />
+    <Compile Include="AsyncSerialExecutor.fs" />
+    <Compile Include="EventBus.fs" />
+    <Compile Include="NetworkState.fs" />
+    <Compile Include="Services/Subscription.fs" />
+    <Compile Include="Services/EntityService/EntityService.fs" />
+    <Compile Include="Services/HttpService/ReactXPHttp.fs" />
+    <Compile Include="Services/HttpService/TypeExtensions.fs" />
+    <Compile Include="Services/HttpService/Types.fs" />
+    <Compile Include="Services/HttpService/HttpService.fs" />
+    <Compile Include="Services/HttpService/ThothEncodedHttpService.fs" />
+    <Compile Include="Services/HttpService/RequestCompression.fs" />
+    <Compile Include="Services/DateService/DateService.fs" />
+    <Compile Include="Services/IndexedDB/IndexedDBService.fs" />
+
+    <Compile Include="ReactXP/Types.fs" />
+    <Compile Include="ReactXP/NetInfo.fs" />
+    <Compile Include="ReactXP/ReactXPBindings.fs" />
+
+    <Compile Include="Services/PageTitleService/PageTitleService.fs" />
+    <Compile Include="Services/ImageService/ImageService.fs" />
+    <Compile Include="Seq.fs" />
+    <Compile Include="LocalImages.fs" />
+
+    <Compile Include="ServiceInstances.fs" />
+
+    <Compile Include="ReactXP/Styles/Types.fs" />
+    <Compile Include="ReactXP/Styles/Animation.fs" />
+
+    <Compile Include="ReactXP/Styles/Legacy/Types.fs" />
+    <Compile Include="ReactXP/Styles/Legacy/Designtime.fs" />
+    <Compile Include="ReactXP/Styles/Legacy/RulesBasic.fs" />
+    <Compile Include="ReactXP/Styles/Legacy/RulesAdditional.fs" />
+    <Compile Include="ReactXP/Styles/Legacy/Runtime.fs" />
+
+    <Compile Include="ReactXP/Styles/New/Types.fs" />
+    <Compile Include="ReactXP/Styles/New/RulesBasic.fs" />
+    <Compile Include="ReactXP/Styles/New/RulesAdditional.fs" />
+    <Compile Include="ReactXP/Styles/New/FSharpDialect.fs" />
+
+    <Compile Include="ReactXP/Styles/Css.fs" />
+    <Compile Include="ReactXP/SVG.fs" />
+
+
+    <Compile Include="Polyfill/abortController.fs" />
+    <Compile Include="Polyfill/globalSelf.fs" />
+
+    <Compile Include="Services/StorageService/StorageService.fs" />
+    <Compile Include="Services/LocalStorageService/LocalStorageService.fs" />
+    <Compile Include="Services/ComponentSettingsService/ComponentSettingsService.fs" />
+    <Compile Include="Services/AudioService/AudioService.fs" />
+
+    <Compile Include="Icons.fs" />
+    <Compile Include="Chars.fs" />
+    <Compile Include="Styles.fs" />
+
+    <Compile Include="ComponentRegistry.fs" />
+
+    <Compile Include="EggShellReact.fs" />
+
+    <Compile Include="Input.fs" />
+    <Compile Include="ReactXP/Styles/Legacy/Theme.fs" />
+
+    <Compile Include="ReactXP/ComponentsHierarchy.fs" />
+
+    <Compile Include="ReactXP/Components/Button/Button.fs" />
+    <Compile Include="ReactXP/Components/Text/Text.fs" />
+    <Compile Include="ReactXP/Components/UiText/UiText.typext.fs" />
+    <Compile Include="ReactXP/Components/Image/Image.fs" />
+    <Compile Include="ReactXP/Components/ActivityIndicator/ActivityIndicator.fs" />
+    <Compile Include="ReactXP/Components/Link/Link.fs" />
+    <Compile Include="ReactXP/Components/TextInput/TextInput.fs" />
+    <Compile Include="ReactXP/Components/Picker/Picker.fs" />
+    <Compile Include="ReactXP/Components/View/View.fs" />
+    <Compile Include="ReactXP/Components/ScrollView/ScrollView.fs" />
+    <Compile Include="ReactXP/Components/VirtualListView/VirtualListView.fs" />
+    <Compile Include="ReactXP/Components/WebView/WebView.fs" />
+    <Compile Include="ReactXP/Components/GestureView/GestureView.fs" />
+
+    <Compile Include="LegacyTextWrapping.fs" />
+    <Compile Include="AdditionalAutoOpens.fs" />
+    <Compile Include="Responsive.fs" />
+    <Compile Include="Components/TapCaptureDebugVisibility.fs" />
+    <Compile Include="Dialogs.fs" />
+    <Compile Include="ContextMenuTypes.fs" />
+
+    <Compile Include="ComponentDataSubscription.fs" />
+
+    <Compile Include="ComponentsHierarchy.fs" />
+
+    <Compile Include="RenderHelpers.fs" />
+    <Compile Include="ReactXP/Components/AnimatableImage.fs" />
+    <Compile Include="ReactXP/Components/AnimatableText.fs" />
+    <Compile Include="ReactXP/Components/AnimatableTextInput.fs" />
+    <Compile Include="ReactXP/Components/AnimatableView.fs" />
+
+    <Compile Include="Components/Text/Text.fs" />
+    <Compile Include="Components/Text/LegacyText.fs" />
+    <Compile Include="Components/Text/Helpers.fs" />
+
+    <Compile Include="Components/UiText/UiText.fs" />
+    <Compile Include="Components/UiText/LegacyUiText.fs" />
+    <Compile Include="Components/UiText/Helpers.fs" />
+
+    <Compile Include="Components/ReactHelpers.fs" />
+    <Compile Include="Components/Layout.fs" />
+    <Compile Include="Components/AsyncData.fs" />
+    <Compile Include="Components/ErrorBoundary.fs" />
+    <Compile Include="Components/InProgress.fs" />
+
+    <Compile Include="Components/ScrollView/ScrollView.typext.fs" />
+    <Compile Include="Components/ScrollView/ScrollView.styles.fs" />
+    <Compile Include="_autogenerated_/Components/ScrollView/ScrollView.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/ScrollView/ScrollView.Render.fs" />
+
+    <Compile Include="Components/VirtualListView/VirtualListView.typext.fs" />
+    <Compile Include="Components/VirtualListView/VirtualListView.styles.fs" />
+    <Compile Include="_autogenerated_/Components/VirtualListView/VirtualListView.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/VirtualListView/VirtualListView.Render.fs" />
+
+    <Compile Include="Components/Icon.fs" />
+    <Compile Include="Components/Pointer/State.fs" />
+    <Compile Include="Components/TapCapture.fs" />
+
+    <Compile Include="Components/Stencil.fs" />
+
+    <Compile Include="Components/InfoMessage/InfoMessage.typext.fs" />
+    <Compile Include="Components/InfoMessage/InfoMessage.styles.fs" />
+    <Compile Include="_autogenerated_/Components/InfoMessage/InfoMessage.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/InfoMessage/InfoMessage.Render.fs" />
+
+    <Compile Include="Components/FlexFiller.fs" />
+    <Compile Include="Components/Money.fs" />
+
+    <Compile Include="Components/With/Context.fs" />
+    <Compile Include="Components/With/GlobalExecutor.fs" />
+    <Compile Include="Components/With/ScreenSize.fs" />
+
+    <Compile Include="Components/Responsive.fs" />
+    <Compile Include="Components/ForceContext.fs" />
+
+    <Compile Include="Components/Buttons.fs" />
+    <Compile Include="Components/ItemList.fs" />
+    <Compile Include="Components/TheBomb.fs" />
+
+<!--    <Compile Include="Components/VirtualListView.fs" />-->
+
+    <Compile Include="Components/With/Geolocation.fs" />
+    <Compile Include="Components/With/Layout.fs" />
+    <Compile Include="Components/With/Now.fs" />
+    <Compile Include="Components/With/RefDom.fs" />
+    <Compile Include="Components/With/Ref.fs" />
+    <Compile Include="Components/With/SortAndFIlter.fs" />
+
+    <Compile Include="Components/TimeSpan.fs" />
+
+    <Compile Include="Components/PaginatedScrollView.fs" />
+    <Compile Include="Components/PaginatedVirtualListView.fs" />
+
+
+    <Compile Include="Components/LabelledFormField/LabelledFormField.typext.fs" />
+    <Compile Include="Components/LabelledFormField/LabelledFormField.styles.fs" />
+    <Compile Include="_autogenerated_/Components/LabelledFormField/LabelledFormField.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/LabelledFormField/LabelledFormField.Render.fs" />
+
+    <Compile Include="Components/FormFieldsDivider.fs" />
+
+    <Compile Include="Components/Timestamp.fs" />
+
+    <Compile Include="Components/Popup/Popup.typext.fs" />
+    <Compile Include="Components/Popup/Popup.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Popup/Popup.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Popup/Popup.Render.fs" />
+
+    <Compile Include="Components/Input/ChoiceList/ChoiceList.typext.fs" />
+    <Compile Include="Components/Input/ChoiceList/ChoiceList.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ChoiceList/ChoiceList.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ChoiceList/ChoiceList.Render.fs" />
+
+    <Compile Include="Components/Input/Checkbox/Checkbox.typext.fs" />
+    <Compile Include="Components/Input/Checkbox/Checkbox.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Checkbox/Checkbox.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Checkbox/Checkbox.Render.fs" />
+
+    <Compile Include="Components/Input/ChoiceListItem/ChoiceListItem.typext.fs" />
+    <Compile Include="Components/Input/ChoiceListItem/ChoiceListItem.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ChoiceListItem/ChoiceListItem.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ChoiceListItem/ChoiceListItem.Render.fs" />
+
+    <Compile Include="Components/ImageCard/ImageCard.typext.fs" />
+    <Compile Include="Components/ImageCard/ImageCard.styles.fs" />
+    <Compile Include="_autogenerated_/Components/ImageCard/ImageCard.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/ImageCard/ImageCard.Render.fs" />
+
+    <Compile Include="Components/Heading/Heading.typext.fs" />
+    <Compile Include="Components/Heading/Heading.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Heading/Heading.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Heading/Heading.Render.fs" />
+
+    <Compile Include="Components/Badge/Badge.typext.fs" />
+    <Compile Include="Components/Badge/Badge.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Badge/Badge.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Badge/Badge.Render.fs" />
+
+    <Compile Include="Components/Button/Button.typext.fs" />
+    <Compile Include="Components/Button/Button.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Button/Button.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Button/Button.Render.fs" />
+
+    <Compile Include="Components/ToggleButtons.fs" />
+    <Compile Include="Components/ToggleButton.fs" />
+    <Compile Include="Components/TouchableOpacity.fs" />
+
+    <Compile Include="Components/FloatingActionButton/FloatingActionButton.typext.fs" />
+    <Compile Include="Components/FloatingActionButton/FloatingActionButton.styles.fs" />
+    <Compile Include="_autogenerated_/Components/FloatingActionButton/FloatingActionButton.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/FloatingActionButton/FloatingActionButton.Render.fs" />
+    <Compile Include="Components/IconButton.fs" />
+
+    <Compile Include="Components/TextButton.fs" />
+    <Compile Include="Components/With/DataFlowControl.fs" />
+
+    <Compile Include="Components/AppleAppStoreButton.fs" />
+    <Compile Include="Components/GooglePlayStoreButton.fs" />
+    <Compile Include="Components/Tab.fs" />
+
+     <Compile Include="Components/Tabs/Tabs.typext.fs" />
+     <Compile Include="Components/Tabs/Tabs.styles.fs" />
+     <Compile Include="_autogenerated_/Components/Tabs/Tabs.TypeExtensions.fs" />
+     <Compile Include="_autogenerated_/Components/Tabs/Tabs.Render.fs" />
+
+    <Compile Include="Components/Draggable/Draggable.typext.fs" />
+    <Compile Include="Components/Draggable/Draggable.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Draggable/Draggable.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Draggable/Draggable.Render.fs" />
+
+    <Compile Include="Components/Scrim.fs" />
+
+    <Compile Include="Components/Input/Text/Text.typext.fs" />
+    <Compile Include="Components/Input/Text/Text.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Text/Text.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Text/Text.Render.fs" />
+    <Compile Include="Components/With/GlobalDataFlowControl/Shared.fs" />
+    <Compile Include="Components/With/GlobalDataFlowControl/Context.fs" />
+    <Compile Include="Components/With/GlobalDataFlowControl/Get.fs" />
+
+    <Compile Include="Components/Legacy/TopNav/Filler/Filler.typext.fs" />
+    <Compile Include="Components/Legacy/TopNav/Filler/Filler.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/Filler/Filler.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/Filler/Filler.Render.fs" />
+
+    <Compile Include="Components/Legacy/TopNav/Base/Base.typext.fs" />
+    <Compile Include="Components/Legacy/TopNav/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Legacy/TopNav/IconButton.fs" />
+
+    <Compile Include="Components/Nav/Top/Base/Base.typext.fs" />
+    <Compile Include="Components/Nav/Top/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Nav/Bottom/Base/Base.typext.fs" />
+    <Compile Include="Components/Nav/Bottom/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Base/Base.Render.fs" />
+
+    <Compile Include="Components/IconWithBadge/IconWithBadge.typext.fs" />
+    <Compile Include="Components/IconWithBadge/IconWithBadge.styles.fs" />
+    <Compile Include="_autogenerated_/Components/IconWithBadge/IconWithBadge.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/IconWithBadge/IconWithBadge.Render.fs" />
+
+    <Compile Include="Components/Nav/Top/Item/Item.typext.fs" />
+    <Compile Include="Components/Nav/Top/Item/Item.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Item/Item.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Item/Item.Render.fs" />
+
+    <Compile Include="Components/Nav/Top/Heading/Heading.typext.fs" />
+    <Compile Include="Components/Nav/Top/Heading/Heading.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Heading/Heading.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/Heading/Heading.Render.fs" />
+    <Compile Include="Components/Nav/Top/Image.fs" />
+
+    <Compile Include="Components/Nav/Top/Filler.fs" />
+
+    <Compile Include="Components/Nav/Bottom/Item/Item.typext.fs" />
+    <Compile Include="Components/Nav/Bottom/Item/Item.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Item/Item.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Item/Item.Render.fs" />
+
+    <Compile Include="Components/Nav/Bottom/Filler.fs" />
+
+    <Compile Include="Components/Nav/Bottom/Button/Button.typext.fs" />
+    <Compile Include="Components/Nav/Bottom/Button/Button.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Button/Button.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Bottom/Button/Button.Render.fs" />
+
+    <Compile Include="Components/Dialog/Base/Base.typext.fs" />
+    <Compile Include="Components/Dialog/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Raw/Raw.typext.fs" />
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Raw/Raw.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Raw/Raw.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Raw/Raw.Render.fs" />
+
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Base/Base.typext.fs" />
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Standard/Standard.typext.fs" />
+    <Compile Include="Components/Dialog/Shell/WhiteRounded/Standard/Standard.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Standard/Standard.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/WhiteRounded/Standard/Standard.Render.fs" />
+
+    <Compile Include="Components/Dialog/Shell/FullScreen/FullScreen.typext.fs" />
+    <Compile Include="Components/Dialog/Shell/FullScreen/FullScreen.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/FullScreen/FullScreen.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Shell/FullScreen/FullScreen.Render.fs" />
+
+    <Compile Include="Components/Dialog/Shell/FromBottom.fs" />
+
+    <Compile Include="Components\Dialog\Shell\FromRight.fs" />
+
+    <Compile Include="Components/Dialog/Confirm/Confirm.typext.fs" />
+    <Compile Include="Components/Dialog/Confirm/Confirm.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Confirm/Confirm.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Confirm/Confirm.Render.fs" />
+
+    <Compile Include="Actions.fs" />
+
+    <Compile Include="Components/Executor/Shared.fs" />
+    <Compile Include="Components/Executor/DisplayErrorsManually.fs" />
+    <Compile Include="Components/Executor/AlertErrors.fs" />
+    <Compile Include="Components/With/Executor.fs" />
+
+    <Compile Include="Components/AppShell/Context/Context.typext.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/Context/Context.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/Context/Context.Render.fs" />
+
+    <Compile Include="Components/AppGlobalStatus.fs" />
+
+    <Compile Include="Components/AppShell/Content/Content.typext.fs" />
+    <Compile Include="Components/AppShell/Content/Content.styles.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/Content/Content.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/Content/Content.Render.fs" />
+
+    <Compile Include="Components/Legacy/TopNav/ShowSidebarButton/ShowSidebarButton.typext.fs" />
+    <Compile Include="Components/Legacy/TopNav/ShowSidebarButton/ShowSidebarButton.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/ShowSidebarButton/ShowSidebarButton.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/TopNav/ShowSidebarButton/ShowSidebarButton.Render.fs" />
+
+    <Compile Include="Components/Nav/Top/ShowSidebarButton/ShowSidebarButton.typext.fs" />
+    <Compile Include="Components/Nav/Top/ShowSidebarButton/ShowSidebarButton.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/ShowSidebarButton/ShowSidebarButton.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Nav/Top/ShowSidebarButton/ShowSidebarButton.Render.fs" />
+    <Folder Include="_autogenerated_/Components/Nav/Bottom/ShowSidebarButton" />
+
+    <Compile Include="Components/Pre.fs" />
+    <Compile Include="Components/Async/Resolve.fs" />
+
+    <Compile Include="Components/Legacy/Card/Card.typext.fs" />
+    <Compile Include="Components/Legacy/Card/Card.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Card/Card.Render.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Card/Card.TypeExtensions.fs" />
+
+    <Compile Include="Components/Card.fs" />
+
+    <Compile Include="Components/HandheldListItem/HandheldListItem.typext.fs" />
+    <Compile Include="Components/HandheldListItem/HandheldListItem.styles.fs" />
+    <Compile Include="_autogenerated_/Components/HandheldListItem/HandheldListItem.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/HandheldListItem/HandheldListItem.Render.fs" />
+
+    <Compile Include="Components/ContextMenu/Dialog/Dialog.typext.fs" />
+    <Compile Include="Components/ContextMenu/Dialog/Dialog.styles.fs" />
+    <Compile Include="_autogenerated_/Components/ContextMenu/Dialog/Dialog.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/ContextMenu/Dialog/Dialog.Render.fs" />
+
+    <Compile Include="Components/ContextMenu/Popup/Popup.typext.fs" />
+    <Compile Include="Components/ContextMenu/Popup/Popup.styles.fs" />
+    <Compile Include="_autogenerated_/Components/ContextMenu/Popup/Popup.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/ContextMenu/Popup/Popup.Render.fs" />
+
+    <Compile Include="Components/Input/Picker/Model.fs" />
+
+    <Compile Include="Components/Input/PickerInternals/Dialog/Dialog.typext.fs" />
+    <Compile Include="Components/Input/PickerInternals/Dialog/Dialog.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Dialog/Dialog.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Dialog/Dialog.Render.fs" />
+
+    <Compile Include="Components/Input/PickerInternals/Popup/Popup.typext.fs" />
+    <Compile Include="Components/Input/PickerInternals/Popup/Popup.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Popup/Popup.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Popup/Popup.Render.fs" />
+
+    <Compile Include="Components/Input/PickerInternals/Field/Field.typext.fs" />
+    <Compile Include="Components/Input/PickerInternals/Field/Field.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Field/Field.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Field/Field.Render.fs" />
+
+    <Compile Include="Components/Input/PickerInternals/Base/Base.typext.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PickerInternals/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Input/Picker/Picker.typext.fs" />
+    <Compile Include="Components/Input/Picker/Picker.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Picker/Picker.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Picker/Picker.Render.fs" />
+
+    <Compile Include="Components/TriStateful/Abstract/Abstract.typext.fs" />
+    <Compile Include="Components/TriStateful/Abstract/Abstract.styles.fs" />
+    <Compile Include="_autogenerated_/Components/TriStateful/Abstract/Abstract.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/TriStateful/Abstract/Abstract.Render.fs" />
+
+    <Compile Include="Components/TriStateful/Simple/Simple.typext.fs" />
+    <Compile Include="Components/TriStateful/Simple/Simple.styles.fs" />
+    <Compile Include="_autogenerated_/Components/TriStateful/Simple/Simple.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/TriStateful/Simple/Simple.Render.fs" />
+
+    <Compile Include="Components/QuadStateful.fs" />
+    <Compile Include="Components/Input/ParsedText/ParsedText.typext.fs" />
+    <Compile Include="Components/Input/ParsedText/ParsedText.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ParsedText/ParsedText.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/ParsedText/ParsedText.Render.fs" />
+    
+    <Compile Include="Components/Input/EmailAddress.fs" />
+    <Compile Include="Components\Input\PhoneNumber.fs" />
+
+    <Compile Include="Components/Input/Decimal/Decimal.typext.fs" />
+    <Compile Include="Components/Input/Decimal/Decimal.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Decimal/Decimal.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Decimal/Decimal.Render.fs" />
+
+    <Compile Include="Components/Input/UnsignedDecimal/UnsignedDecimal.typext.fs" />
+    <Compile Include="Components/Input/UnsignedDecimal/UnsignedDecimal.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/UnsignedDecimal/UnsignedDecimal.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/UnsignedDecimal/UnsignedDecimal.Render.fs" />
+
+    <Compile Include="Components/Input/PositiveInteger/PositiveInteger.typext.fs" />
+    <Compile Include="Components/Input/PositiveInteger/PositiveInteger.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PositiveInteger/PositiveInteger.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PositiveInteger/PositiveInteger.Render.fs" />
+
+    <Compile Include="Components/Legacy/Input/PositiveInteger/PositiveInteger.typext.fs" />
+    <Compile Include="Components/Legacy/Input/PositiveInteger/PositiveInteger.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Input/PositiveInteger/PositiveInteger.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Input/PositiveInteger/PositiveInteger.Render.fs" />
+
+    <Compile Include="Components/Input/UnsignedInteger/UnsignedInteger.typext.fs" />
+    <Compile Include="Components/Input/UnsignedInteger/UnsignedInteger.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/UnsignedInteger/UnsignedInteger.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/UnsignedInteger/UnsignedInteger.Render.fs" />
+
+    <Compile Include="Components/Input/PositiveDecimal/PositiveDecimal.typext.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PositiveDecimal/PositiveDecimal.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/PositiveDecimal/PositiveDecimal.Render.fs" />
+
+    <Compile Include="Components/LabelledValue/LabelledValue.typext.fs" />
+    <Compile Include="Components/LabelledValue/LabelledValue.styles.fs" />
+    <Compile Include="_autogenerated_/Components/LabelledValue/LabelledValue.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/LabelledValue/LabelledValue.Render.fs" />
+
+    <Compile Include="Components/TwoWayScrollable.fs" />
+    <Compile Include="Components/HeaderCell.fs" />
+
+    <Compile Include="Components/Input/DayOfTheWeek/DayOfTheWeek.typext.fs" />
+    <Compile Include="Components/Input/DayOfTheWeek/DayOfTheWeek.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/DayOfTheWeek/DayOfTheWeek.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/DayOfTheWeek/DayOfTheWeek.Render.fs" />
+
+    <Compile Include="Components/Input/WeeklyCalendar/WeeklyCalendar.typext.fs" />
+    <Compile Include="Components/Input/WeeklyCalendar/WeeklyCalendar.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/WeeklyCalendar/WeeklyCalendar.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/WeeklyCalendar/WeeklyCalendar.Render.fs" />
+
+    <Compile Include="Components/TextInputWithIcon.fs" />
+
+    <Compile Include="Components/Input/File/File.typext.fs" />
+    <Compile Include="Components/Input/File/File.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/File/File.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/File/File.Render.fs" />
+
+    <Compile Include="Components/Input/NamedFile/NamedFile.typext.fs" />
+    <Compile Include="Components/Input/NamedFile/NamedFile.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/NamedFile/NamedFile.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/NamedFile/NamedFile.Render.fs" />
+
+    <Compile Include="Components/Thumb.fs" />
+    <Compile Include="Components/Thumbs.fs" />
+
+    <Compile Include="Components/ThumbCard.fs" />
+
+    <Compile Include="Components/Input/Image/Image.typext.fs" />
+    <Compile Include="Components/Input/Image/Image.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Image/Image.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Image/Image.Render.fs" />
+
+    <Compile Include="Components/VerticallyScrollable/VerticallyScrollable.typext.fs" />
+    <Compile Include="Components/VerticallyScrollable/VerticallyScrollable.styles.fs" />
+    <Compile Include="_autogenerated_/Components/VerticallyScrollable/VerticallyScrollable.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/VerticallyScrollable/VerticallyScrollable.Render.fs" />
+
+    <Compile Include="Components/Sidebar/WithClose/WithClose.typext.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/WithClose/WithClose.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/WithClose/WithClose.Render.fs" />
+
+    <Compile Include="Components/Sidebar/Base/Base.typext.fs" />
+    <Compile Include="Components/Sidebar/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Sidebar/Heading/Heading.typext.fs" />
+    <Compile Include="Components/Sidebar/Heading/Heading.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Heading/Heading.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Heading/Heading.Render.fs" />
+
+    <Compile Include="Components/Sidebar/Divider/Divider.typext.fs" />
+    <Compile Include="Components/Sidebar/Divider/Divider.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Divider/Divider.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Divider/Divider.Render.fs" />
+
+    <Compile Include="Components/Sidebar/Item/Item.typext.fs" />
+    <Compile Include="Components/Sidebar/Item/Item.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Item/Item.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Sidebar/Item/Item.Render.fs" />
+
+    <Compile Include="Components/Legacy/Sidebar/Filler/Filler.typext.fs" />
+    <Compile Include="Components/Legacy/Sidebar/Filler/Filler.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Sidebar/Filler/Filler.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Sidebar/Filler/Filler.Render.fs" />
+
+    <Compile Include="Components/Legacy/Sidebar/Item/Item.typext.fs" />
+    <Compile Include="Components/Legacy/Sidebar/Item/Item.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Sidebar/Item/Item.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Sidebar/Item/Item.Render.fs" />
+
+    <Compile Include="Components/Legacy/Sidebar/Theme.fs" />
+
+    <Compile Include="Components/Carousel.fs" />
+    <Compile Include="Components/Stars.fs" />
+    <Compile Include="Components/Tags.fs" />
+    <Compile Include="Components/Tag.fs" />
+    <Compile Include="Components/DueDateTag.fs" />
+    <Compile Include="Components/Avatar.fs" />
+
+    <Compile Include="Components/Form/Base/Base.typext.fs" />
+    <Compile Include="Components/Form/Base/Base.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Form/Base/Base.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Form/Base/Base.Render.fs" />
+
+    <Compile Include="Components/Section/Padded/Padded.typext.fs" />
+    <Compile Include="Components/Section/Padded/Padded.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Section/Padded/Padded.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Section/Padded/Padded.Render.fs" />
+
+    <Compile Include="Components/Subscribe/Subscribe.typext.fs" />
+    <Compile Include="_autogenerated_/Components/Subscribe/Subscribe.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Subscribe/Subscribe.Render.fs" />
+
+    <Compile Include="Components/Dialog/ImageViewer.fs" />
+    <Compile Include="Components/Dialog/Prompt/Prompt.typext.fs" />
+    <Compile Include="Components/Dialog/Prompt/Prompt.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Prompt/Prompt.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Dialog/Prompt/Prompt.Render.fs" />
+
+    <Compile Include="Components/AppShell/TopLevelErrorMessage/TopLevelErrorMessage.typext.fs" />
+    <Compile Include="Components/AppShell/TopLevelErrorMessage/TopLevelErrorMessage.styles.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/TopLevelErrorMessage/TopLevelErrorMessage.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/TopLevelErrorMessage/TopLevelErrorMessage.Render.fs" />
+
+    <Compile Include="Components/AppShell/NetworkFailureMessage/NetworkFailureMessage.typext.fs" />
+    <Compile Include="Components/AppShell/NetworkFailureMessage/NetworkFailureMessage.styles.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/NetworkFailureMessage/NetworkFailureMessage.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/AppShell/NetworkFailureMessage/NetworkFailureMessage.Render.fs" />
+
+    <Compile Include="Components/SetPageMetadata.fs" />
+
+    <Compile Include="ContextMenus.fs" />
+    <Compile Include="SystemDialogs.fs" />
+
+    <Compile Include="Components/Legacy/Input/Picker/Picker.typext.fs" />
+    <Compile Include="Components/Legacy/Input/Picker/Picker.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Input/Picker/Picker.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Legacy/Input/Picker/Picker.Render.fs" />
+
+    <Compile Include="Components/DateSelector/DateSelector.typext.fs" />
+    <Compile Include="Components/DateSelector/DateSelector.styles.fs" />
+    <Compile Include="_autogenerated_/Components/DateSelector/DateSelector.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/DateSelector/DateSelector.Render.fs" />
+
+    <Compile Include="Components/Input/LocalTime/LocalTime.typext.fs" />
+    <Compile Include="Components/Input/LocalTime/LocalTime.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/LocalTime/LocalTime.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/LocalTime/LocalTime.Render.fs" />
+
+    <Compile Include="Components/Input/Duration/Duration.typext.fs" />
+    <Compile Include="Components/Input/Duration/Duration.styles.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Duration/Duration.TypeExtensions.fs" />
+    <Compile Include="_autogenerated_/Components/Input/Duration/Duration.Render.fs" />
+
+    <Compile Include="Components/Input/Date.fs" />
+
+
+    <Compile Include="Components/Input/Guid.fs" />
+    <Compile Include="Components/Input/Quantity.fs" />
+
+    <Compile Include="ComponentRegistration.fs" />
+    <Compile Include="DefaultComponentsTheme.fs" />
+    <Compile Include="initialize.fs" />
+    <Compile Include="restart.fs" />
+    <Compile Include="ReactNative/ComponentsHierarchy.fs" />
+    <Compile Include="ReactNative/ReactNativeBindings.fs" />
+    <Compile Include="ReactNative/TouchableWithoutFeedback.fs" />
+    <Compile Include="ReactNative/KeyboardAvoidingView.fs" />
+    <Compile Include="ReactNative/StatusBar.fs" />
+  </ItemGroup>
+</Project>

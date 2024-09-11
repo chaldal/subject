@@ -1,0 +1,120 @@
+<rt-root rt-type-parameters="'Item" rt-open='LibClient.Components.Input.PickerModel'>
+    <!-- onLayout='ignore' hack. Check LibClient/src/Components/TapCapture/TapCapture.render -->
+    <!-- we now use a real onLayout callback because we needed, but if it's ever to be removed,
+         it HAS to be replaced with ignore because of the above comment -->
+    <div class='view {TopLevelBlockClass}' onLayout='actions.OnLayout' rt-new-styles='props.styles'>
+        <div class='border' rt-class='border-invalid := props.Validity.IsInvalid; border-focused := estate.IsFocused'>
+            <div class='picker-actions'>
+                <div>
+                    <rt-match what='props.Value'>
+                        <rt-case is='AtMostOne (maybeSelectedValues, _)'>
+                            <rt-block rt-if='maybeSelectedValues &lt;&gt; None'>
+                                <LC.Icon Icon='Icon.X' class='icon'/>
+                                <LC.TapCapture rt-fs='true' OnPress='actions.Clear'/>
+                            </rt-block>
+                        </rt-case>
+                        <rt-case is='Any (maybeSelectedValues, _)'>
+                            <rt-block rt-mapo='selectedValues := maybeSelectedValues'>
+                                <rt-block rt-if='not selectedValues.IsEmpty'>
+                                    <LC.Icon Icon='Icon.X' class='icon'/>
+                                    <LC.TapCapture rt-fs='true' OnPress='actions.Clear'/>
+                                </rt-block>
+                            </rt-block>
+                        </rt-case>
+                        <rt-case is='_'> </rt-case>
+                    </rt-match>
+                </div>
+                <div>
+                    <LC.Icon Icon='Icon.ChevronDown' class='icon'/>
+                    <LC.TapCapture rt-fs='true' styles='[| FieldStyles.Styles.tapCapture |]' OnPress='actions.ShowItemSelector'/>
+                </div>
+            </div>
+            <LC.Responsive>
+                <rt-prop name='Desktop(_)'>
+                    <RX.TextInput
+                     class='text-input'
+                     ref='actions.RefTextInput'
+                     value='estate.MaybeQuery |> NonemptyString.optionToString'
+                     placeholder='match (props.Value.IsEmpty, props.Placeholder) with (true, Some value) -> value | _ -> ""'
+                     placeholderTextColor='(extractPlaceholderColor __mergedStyles).ToReactXPString'
+                     onFocus='actions.OnFocus'
+                     onBlur='actions.OnBlur'
+                     onChangeText='NonemptyString.ofString >> actions.OnChangeQuery'
+                     onKeyPress='actions.OnKeyPress'/>
+                </rt-prop>
+                <rt-prop name='Handheld(_)'>
+                    <div class='handheld-full-width-tap-area'>
+                        <RX.TextInput
+                            class='text-input'
+                            rt-mapo='value := if estate.ModelState.Value.IsEmpty then props.Placeholder else None'
+                            editable='false'
+                            placeholder='value'
+                            placeholderTextColor='(extractPlaceholderColor __mergedStyles).ToReactXPString' />
+                        <LC.TapCapture rt-fs='true' styles='[| FieldStyles.Styles.tapCapture |]' OnPress='actions.ShowItemSelector'/>
+                    </div>
+                </rt-prop>
+            </LC.Responsive>
+
+            <div class='picker-values' rt-if='actions.ShouldShowSelectedValue()'>
+                <rt-match what='props.Value'>
+                    <rt-case is='AtMostOne (maybeSelectedValue, _)'>
+                        <rt-block rt-mapo='item := maybeSelectedValue'>
+                            <rt-match what='props.ItemView'>
+                                <rt-case is='PickerItemView.Default toItemInfo'>
+                                    <uitext class='selected-item'>{(toItemInfo item).Label}</uitext>
+                                </rt-case>
+                                <rt-case is='PickerItemView.Custom renderItem'>
+                                    {=renderItem item}
+                                </rt-case>
+                            </rt-match>
+                        </rt-block>
+                    </rt-case>
+
+                    <rt-case is='ExactlyOne (maybeSelectedValue, _)'>
+                        <rt-block rt-mapo='item := maybeSelectedValue'>
+                            <rt-match what='props.ItemView'>
+                                <rt-case is='PickerItemView.Default toItemInfo'>
+                                    <uitext class='selected-item' EllipsizeMode='EllipsizeMode.Tail' NumberOfLines='1'> {(toItemInfo item).Label}</uitext>
+                                </rt-case>
+                                <rt-case is='PickerItemView.Custom renderItem'>
+                                    {=renderItem item}
+                                </rt-case>
+                            </rt-match>
+                        </rt-block>
+                    </rt-case>
+
+                    <rt-case is='AtLeastOne (maybeSelectedValues, _) | Any (maybeSelectedValues, _)'>
+                        <rt-block rt-mapo='selectedValues := maybeSelectedValues'>
+                            <div class='tag' rt-map='item := selectedValues.ToSeq'
+                                 rt-class='highlighted := estate.ModelState.DeleteState = DeleteState.Selected item'>
+
+                                <rt-match what='props.ItemView'>
+                                    <rt-case is='PickerItemView.Default toItemInfo'>
+                                        <uitext class='selected-item tag-text'>{(toItemInfo item).Label}</uitext>
+                                    </rt-case>
+                                    <rt-case is='PickerItemView.Custom renderItem'>
+                                        {=renderItem item}
+                                    </rt-case>
+                                </rt-match>
+
+                                <div rt-if='selectedValues.Count > 1 || (match props.Value with | Any _ -> true | _ -> false)'>
+                                    <LC.Icon Icon='Icon.X' class='icon'/>
+                                    <LC.TapCapture rt-fs='true' OnPress='actions.Unselect item'/>
+                                </div>
+                            </div>
+                        </rt-block>
+                    </rt-case>
+                </rt-match>
+                <LC.TapCapture rt-fs='true' OnPress='actions.RequestFocus'/>
+            </div>
+        </div>
+        <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+        <div
+         class='label'
+         rt-mapo='label := props.Label'>
+            <uitext class='label-text' rt-class='invalid := props.Validity.IsInvalid; focused := estate.IsFocused;'>
+                {label}
+            </uitext>
+        </div>
+    </div>
+</rt-root>

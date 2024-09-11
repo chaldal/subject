@@ -1,0 +1,24 @@
+{
+	"name": "LibRouter",
+	"alias": "LR",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+			"LibClient",
+			"LibClient.RenderHelpers"
+		],
+		"componentLibraryAliases": [
+			["default", "LibRouter.Components"],
+			["LR",      "LibRouter.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["ReactXP.Components", "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",  "RX.View"],
+			["text", "LC.LegacyText"]
+		]
+	}
+}

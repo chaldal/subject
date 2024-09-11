@@ -1,0 +1,315 @@
+<ComponentContent DisplayName='"Input.Picker"' IsResponsive='true' rt-open='LibClient' Props='~ForFullyQualifiedName "LibClient.Components.Input.Picker"'>
+    <rt-prop name='Notes'>
+        <Code Language='~Fsharp' Heading='"Relevant setup code"'><![CDATA[
+            type Fruit =
+            | Apple
+            | Mango
+            | Banana
+            | Pear
+            with
+                member this.GetName : NonemptyString =
+                    NonemptyString.ofLiteral (unionCaseName this)
+
+            let fruits: OrderedSet<Fruit> =
+                [Apple; Mango; Banana; Pear]
+                |> OrderedSet.ofList
+
+            let fruitItemVisuals (fruit: Fruit) : PickerItemVisuals = {|
+                Label = fruit.GetName.Value
+            |}
+
+            let fruitToFilterString (fruit: Fruit): string =
+                fruit.GetName.Value
+
+            type Estate = {
+                MaybeSelectedFruits: Option<OrderedSet<Fruit>>
+            }
+
+            override _.GetInitialEstate(_: Props) : Estate = {
+                MaybeSelectedFruits = None
+            }
+
+            member _.SetMaybeSelectedFruits (value: OrderedSet<Fruit>) : unit =
+                this.SetEstate(fun estate _ -> { estate with MaybeSelectedFruits = Some value })
+        ]]></Code>
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Custom Rendering"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Custom render'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'>
+                        <rt-outer-let name='render(item: Fruit)'>
+                            <text>{item.GetName.Value.ToUpper()}</text>
+                            <text>{item.GetName.Value.ToLower()}</text>
+                        </rt-outer-let>
+                    </LC.Input.Picker>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Custom render'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'>
+                        <rt-outer-let name='render(item: Fruit)'>
+                            <text>{item.GetName.Value.ToUpper()}</text>
+                            <text>{item.GetName.Value.ToLower()}</text>
+                        </rt-outer-let>
+                    </LC.Input.Picker>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Async items"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Notes'>
+                    When the async returns ALL items when no query is entered
+                </rt-prop>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Async fetchFruitsAllOnNoQuery'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Fsharp'><![CDATA[
+                        let fetchFruitsAllOnNoQuery (maybeQuery: Option<NonemptyString>) : Async<OrderedSet<Fruit>> =
+                            async {
+                                // imitate backend delay
+                                do! Async.Sleep (TimeSpan.FromMilliseconds 3000)
+                                let filteredFruit =
+                                    match maybeQuery with
+                                    | None -> fruits
+                                    | Some query ->
+                                        let queryLower = query.Value.ToLower()
+                                        fruits |> OrderedSet.filter (fun fruit -> fruit.GetName.Value.ToLower().Contains queryLower)
+                                return filteredFruit
+                            }
+                    ]]></Code>
+                    <Code Language='~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Async fetchFruitsAllOnNoQuery'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Notes'>
+                    When the async returns NO items when no query is entered
+                </rt-prop>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Async fetchFruitsEmptyOnNoQuery'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Fsharp'><![CDATA[
+                        let fetchFruitsEmptyOnNoQuery (maybeQuery: Option<NonemptyString>) : Async<OrderedSet<Fruit>> =
+                            async {
+                                // imitate backend delay
+                                do! Async.Sleep (TimeSpan.FromMilliseconds 3000)
+                                let filteredFruit =
+                                    match maybeQuery with
+                                    | None -> OrderedSet.empty
+                                    | Some query ->
+                                        let queryLower = query.Value.ToLower()
+                                        fruits |> OrderedSet.filter (fun fruit -> fruit.GetName.Value.ToLower().Contains queryLower)
+                                return filteredFruit
+                            }
+                    ]]></Code>
+                    <Code Language='~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Async fetchFruitsEmptyOnNoQuery'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'/>
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"With additional search text"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterStringWithAdditionalText)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~AtLeastOne (estate.MaybeSelectedFruitsWithSearchText, actions.SetSelectedFruitsWithSearchText)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Fsharp'><![CDATA[
+                        let fruitToFilterStringWithAdditionalText (fruit: Fruit) : string =
+                            [(Apple, "apel"); (Mango, "aam"); (Banana, "kola"); (Pear, "nashpati")]
+                            |> List.find (fun (item, _) -> item = fruit)
+                            |> fun (fruit: Fruit, searchText: string) -> sprintf "%s %s" fruit.GetName.Value searchText
+                    ]]></Code>
+                    <Code Language='~Render'><![CDATA[
+                        <LC.Input.Picker
+                         Label='"Fruit"'
+                         Items='~Static (fruits, fruitToFilterStringWithAdditionalText)'
+                         ItemView='~Default fruitItemVisuals'
+                         Value='~AtLeastOne (estate.MaybeSelectedFruitsWithSearchText, actions.SetSelectedFruitsWithSearchText)'
+                         Validity='Valid'/>
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Many choices"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Many Choices"'
+                     Items='~Static (manyItems, identity)'
+                     ItemView='~Default stringItemVisuals'
+                     Value='~Any (estate.MaybeSelectedItems, actions.SetMaybeSelectedItems)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Many Choices"'
+                     Items='~Static (manyItems, identity)'
+                     ItemView='~Default stringItemVisuals'
+                     Value='~Any (estate.MaybeSelectedItems, actions.SetMaybeSelectedItems)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Missing'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Missing'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Invalid "Not a fruit"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Picker
+                     Label='"Fruit"'
+                     Items='~Static (fruits, fruitToFilterString)'
+                     ItemView='~Default fruitItemVisuals'
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Invalid "Not a fruit"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

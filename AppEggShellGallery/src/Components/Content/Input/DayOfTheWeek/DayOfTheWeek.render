@@ -1,0 +1,110 @@
+<ComponentContent DisplayName='"Input.DayOfTheWeek"' Props='~ForFullyQualifiedName "LibClient.Components.Input.DayOfTheWeek"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Modes"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select at most one day"'
+                     Mode='~MaybeOne (estate.MaybeOne, actions.SetValue)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select at most one day"'
+                     Mode='~MaybeOne (estate.MaybeOne, actions.SetValue)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select exactly one day"'
+                     Mode='~One (estate.One, actions.SetValue)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select exactly one day"'
+                     Mode='~One (estate.One, actions.SetValue)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Mode='~Set (estate.Set, actions.SetValue)'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Mode='~Set (estate.Set, actions.SetValue)'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Validity='Missing'
+                     Mode='~Set (Set.empty, ignore)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Validity='Missing'
+                     Mode='~Set (Set.empty, ignore)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Validity='Missing'
+                     Mode='~Set (Set.empty, ignore)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <!-- NO LABEL CASE -->
+                    <LC.Input.DayOfTheWeek
+                     Validity='Missing'
+                     Mode='~Set (Set.empty, ignore)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Validity='Invalid "You chose poorly!"'
+                     Mode='~Set (Set.empty, ignore)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.DayOfTheWeek
+                     Label='"Select some days"'
+                     Validity='Invalid "You chose poorly!"'
+                     Mode='~Set (Set.empty, ignore)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.DayOfTheWeek
+                     Validity='Invalid "You chose poorly!"'
+                     Mode='~Set (Set.empty, ignore)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <!-- NO LABEL CASE -->
+                    <LC.Input.DayOfTheWeek
+                     Validity='Invalid "You chose poorly!"'
+                     Mode='~Set (Set.empty, ignore)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

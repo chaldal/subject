@@ -1,0 +1,11 @@
+global.eggshell = global.eggshell || {};
+global.eggshell.<%= appName %> = {}
+global.eggshell.<%= appName %>.configSourceOverrides = {}
+
+eggshell.<%= appName %>.configSourceOverrides.AppUrlBase                                = "http://localhost:8100";
+eggshell.<%= appName %>.configSourceOverrides.BackendUrl                                = "http://localhost:5000";
+global.eggshell.<%= appName %>.configSourceOverrides.OtpResendTimeoutSeconds            = "30";
+global.eggshell.<%= appName %>.configSourceOverrides.InitializeReactXPInDevMode         = "true";
+global.eggshell.<%= appName %>.configSourceOverrides.InitializeReactXPInDebugMode       = "true";
+global.eggshell.<%= appName %>.configSourceOverrides.MaybeAppInsightsInstrumentationKey = null;
+global.eggshell.<%= appName %>.configSourceOverrides.MaybeAppInsightsCloudRole          = "Example.App.Native";

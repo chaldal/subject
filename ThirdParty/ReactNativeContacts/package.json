@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-native-contacts": "^7.0.8",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

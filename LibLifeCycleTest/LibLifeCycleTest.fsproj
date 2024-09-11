@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="FsUnit.xUnit" Version="6.0.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.TestingHost" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="3.7.2" PrivateAssets="All" />
+    <PackageReference Include="FsCheck.Xunit" Version="2.16.6" />
+    <PackageReference Include="ShellProgressBar" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../LibLifeCycleHostBuild/LibLifeCycleHostBuild.csproj" />
+    <ProjectReference Include="../LibLangFsharp/src/LibLangFsharp.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Operators.fs" />
+    <Compile Include="AssertExtensions.fs" />
+    <Compile Include="UnionCaseTests.fs" />
+    <Compile Include="TypeTests.fs" />
+    <Compile Include="CertificateTests.fs" />
+    <Compile Include="ClientGrainCallContextCodecTests.fs" />
+    <Compile Include="IndexQueryOptimizerTests.fs" />
+    <Compile Include="CookieDomainTests.fs" />
+    <Compile Include="Gen\Common.fs" />
+    <Compile Include="Gen\GenExtensions.fs" />
+    <Compile Include="Gen\Strings.fs" />
+    <Compile Include="Gen\PhoneNumber.fs" />
+    <Compile Include="Gen\Date.fs" />
+    <Compile Include="ClockSimulation.fs" />
+    <Compile Include="SideEffectTracking.fs" />
+    <Compile Include="Cluster.fs" />
+    <Compile Include="TestApplicationInsights.fs" />
+    <Compile Include="TestCluster.fs" />
+    <Compile Include="Random.fs" />
+    <Compile Include="Attributes.fs" />
+    <Compile Include="SimulationBuilder.fs" />
+    <Compile Include="DataSeeding/SimulationDiscovery.fs" />
+    <Compile Include="DataSeeding/SimulationExecution.fs" />
+    <Compile Include="DataSeeding/EntryPoint.fs" />
+    <Compile Include="TestRunner.fs" />
+    <Compile Include="Ecosystem.fs" />
+    <Compile Include="LibLangFsharp/OrderedSetTests.fs" />
+    <Compile Include="LibLangFsharp\EncodedPolylineTests.fs" />
+    <Content Include="..\LibLifeCycleHost\src\Host\Development\appsettings.json" Link="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

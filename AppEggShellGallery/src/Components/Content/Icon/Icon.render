@@ -1,0 +1,43 @@
+<ComponentContent DisplayName='"Icon"' Props='~ForFullyQualifiedName "LibClient.Components.Icon"'>
+    <rt-prop name='Notes'>
+        By default, setting colors on icons is done directly though a parameter to the SVG, which
+        makes icon colors the only visual aspect of the app outside of the styles system.
+        This component allows us to overcome this limitation, and unify all styling.
+    </rt-prop>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Icon rt-fs='true' Icon='Icon.Megaphone'/>
+                <LC.Icon Icon='Icon.Send' class='a'/>
+                <LC.Icon Icon='Icon.Home' class='b'/>
+                {=LC.Icon (icon = Icon.Send, styles = [| Styles.c |])}
+                {=LC.Icon (icon = Icon.Home, styles = [| Styles.c |])}
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Icon rt-fs='true' Icon='Icon.Megaphone'/>
+                    <LC.Icon Icon='Icon.Send' class='a'/>
+                    <LC.Icon Icon='Icon.Home' class='b'/>
+                    {=LC.Icon (icon = Icon.Send, styles = [| Styles.c |])}
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "a" => [
+                        color    (Color.Hex "#fa6e1b")
+                        fontSize 50
+                    ]
+
+                    "b" => [
+                        color (Color.Hex "#9b48db")
+                    ]
+
+
+                    type Styles =
+                        static member c = makeTextStyles {
+                            fontSize 60
+                            color Color.DevPink
+                        }
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

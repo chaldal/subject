@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DefineConstants>FAKE_BUILD_FSPROJ</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--
+      NOTE: these are only used for building using this file
+      Whose primary purpose is simply to collect all fsx files in one place
+      to make refactors easy.
+
+      Adding nugets here will allow the IDE's intellisense to work, and will allow
+      dotnet build to succeed, but it is not sufficient for running via Fake.
+
+      So in addition to adding PackageReference here, you must also add them to PackageReferences.fsx
+    -->
+
+    <PackageReference Include="Fake.IO.FileSystem" Version="6.0.0" />
+    <PackageReference Include="Fake.DotNet.Cli" Version="6.0.0" />
+    <PackageReference Include="Fake.Core.Target" Version="6.0.0" />
+    <PackageReference Include="Fake.JavaScript.Npm" Version="6.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="5.0.0" />
+    <PackageReference Include="MSBuild.StructuredLogger" Version="2.2.240" />
+    <PackageReference Include="CryptHash.Net" Version="3.6.1" />
+    <PackageReference Include="NuGet.Packaging" Version="6.9.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.20.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PackageReferences.fsx" />
+    <Compile Include="FileSystemHelper.fsx" />
+    <Compile Include="Constants.fsx" />
+    <Compile Include="Operators.fsx" />
+    <Compile Include="BuildFile.fsx" />
+    <Compile Include="NodeNpm.fsx" />
+    <Compile Include="DotNetEx.fsx" />
+    <Compile Include="TypeScript.fsx" />
+    <Compile Include="EggShellCli.fsx" />
+    <Compile Include="Git.fsx" />
+    <Compile Include="Fantomas.fsx" />
+    <Compile Include="Includes.fsx" />
+    <Compile Include="build-Fake.fsx" />
+    <Compile Include="DownloadAzureArtefact.fsx" />
+    <Compile Include="..\Meta\AppRenderDslCompiler\compiler\build-compiler.fsx" />
+    <Compile Include="..\Meta\AppRenderDslCompiler\build-AppRenderDslCompiler.fsx" />
+    <Compile Include="..\LibLangTypeScript\build-LibLangTypeScript.fsx" />
+    <Compile Include="..\LibNode\build-LibNode.fsx" />
+    <Compile Include="..\Meta\LibEggshell\build-LibEggshell.fsx" />
+    <Compile Include="..\Meta\LibFablePlus\build-LibFablePlus.fsx" />
+    <Compile Include="..\Meta\LibScaffolding\build-LibScaffolding.fsx" />
+    <Compile Include="..\Meta\LibRtCompilerFileSystemBindings\build-LibRtCompilerFileSystemBindings.fsx" />
+    <Compile Include="..\Meta\AppEggshellCli\build-AppEggshellCli.fsx" />
+    <Compile Include="..\LibClient\build-LibClient.fsx" />
+    <Compile Include="..\LibRouter\build-LibRouter.fsx" />
+    <Compile Include="..\LibUiIdentityAuth\build-LibUiIdentityAuth.fsx" />
+    <Compile Include="..\LibUiAdmin\build-LibUiAdmin.fsx" />
+    <Compile Include="..\LibUiSubject\build-LibUiSubject.fsx" />
+    <Compile Include="..\LibUiSubjectAdmin\build-LibUiSubjectAdmin.fsx" />
+    <Compile Include="..\ThirdParty\SyntaxHighlighter\build-SyntaxHighlighter.fsx" />
+    <Compile Include="..\ThirdParty\Showdown\build-Showdown.fsx" />
+    <Compile Include="..\ThirdParty\BackgroundGeolocation\build-BackgroundGeolocation.fsx" />
+    <Compile Include="..\ThirdParty\FacebookPixel\build-FacebookPixel.fsx" />
+    <Compile Include="..\ThirdParty\Map\build-Map.fsx" />
+    <Compile Include="..\ThirdParty\ImagePicker\build-ImagePicker.fsx" />
+    <Compile Include="..\ThirdParty\GoogleAnalytics\build-GoogleAnalytics.fsx" />
+    <Compile Include="..\ThirdParty\QRCode\build-QRCode.fsx" />
+    <Compile Include="..\ThirdParty\ReCaptcha\build-ReCaptcha.fsx" />
+    <Compile Include="..\ThirdParty\ReactNativeContacts/build-ReactNativeContacts.fsx" />
+    <Compile Include="..\ThirdParty\ReactNativeCodePush\build-ReactNativeCodePush.fsx" />
+    <Compile Include="..\ThirdParty\ReactNativeDeviceInfo\build-ReactNativeDeviceInfo.fsx" />
+    <Compile Include="..\ThirdParty\Recharts\build-Recharts.fsx" />
+    <Compile Include="..\ThirdParty\SunmiPrint\build-SunmiPrint.fsx" />
+    <Compile Include="..\LibPushNotification\client\build-PushNotificationClient.fsx" />
+    <Compile Include="..\ThirdParty\build-ThirdParty.fsx" />
+    <Compile Include="..\build-AllLibraries.fsx" />
+    <Compile Include="..\AppEggShellGallery\build-AppEggShellGallery.fsx" />
+    <Compile Include="..\AppEggShellGallery\Fabric\build-EggShellFabric.fsx" />
+    <Compile Include="..\SuitePerformancePlayground\AppPerformancePlayground\build-AppSample.fsx " />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>

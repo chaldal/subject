@@ -1,0 +1,90 @@
+<ComponentContent rt-open='LibClient.ContextMenus' DisplayName='"Context Menu"' IsResponsive='true'>
+    <rt-prop name='Notes'>
+        We support buttons, cautionary buttons, dividers, and headings.
+        You can add items conditionally or using a match statement.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     Label='"Handheld Context Menu"'
+                     State='^LowLevel (~Actionable (fun e -> ContextMenu.Open menuItems ScreenSize.Handheld e.MaybeSource NoopFn e))'
+                     rt-let='
+                         menuItems := [
+                             Heading (sprintf "Shopping Cart (%i)" cart.ItemCount)
+                             match politenessLevel with
+                             | Polite   -> ContextMenuItem.Button ("Continue shopping, please", ignore )
+                             | Impolite -> ContextMenuItem.Button ("Continue shopping",         ignore )
+                             | Mean     -> ContextMenuItem.Button ("Buy more dammit!",          ignore )
+                             ContextMenuItem.Button ("Save Cart", ignore )
+                             if not cart.IsEmpty then ContextMenuItem.Button ("Checkout", ignore )
+                             Divider
+                             ButtonCautionary ("Empty Cart", ignore )
+                         ]
+                     '/>
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Handheld Context Menu"'
+                     State='^LowLevel (~Actionable (fun e -> ContextMenu.Open menuItems ScreenSize.Handheld e.MaybeSource NoopFn e))'
+                     rt-let='
+                         menuItems := [
+                             Heading (sprintf "Shopping Cart (%i)" cart.ItemCount)
+                             match politenessLevel with
+                             | Polite   -> ContextMenuItem.Button ("Continue shopping, please", ignore )
+                             | Impolite -> ContextMenuItem.Button ("Continue shopping",         ignore )
+                             | Mean     -> ContextMenuItem.Button ("Buy more dammit!",          ignore )
+                             ContextMenuItem.Button ("Save Cart", ignore )
+                             if not cart.IsEmpty then ContextMenuItem.Button ("Checkout", ignore )
+                             Divider
+                             ButtonCautionary ("Empty Cart", ignore )
+                         ]
+                     '/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     Label='"Desktop Context Menu"'
+                     State='^LowLevel (~Actionable (fun e -> ContextMenu.Open menuItems ScreenSize.Desktop e.MaybeSource NoopFn e))'
+                     rt-let='
+                         menuItems := [
+                             Heading (sprintf "Shopping Cart (%i)" cart.ItemCount)
+                             match politenessLevel with
+                             | Polite   -> ContextMenuItem.Button ("Continue shopping, please", ignore )
+                             | Impolite -> ContextMenuItem.Button ("Continue shopping",         ignore )
+                             | Mean     -> ContextMenuItem.Button ("Buy more dammit!",          ignore )
+                             ContextMenuItem.Button ("Save Cart", ignore )
+                             if not cart.IsEmpty then ContextMenuItem.Button ("Checkout", ignore )
+                             Divider
+                             ButtonCautionary ("Empty Cart", ignore )
+                         ]
+                     '/>
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Desktop Context Menu"'
+                     State='^LowLevel (~Actionable (fun e -> ContextMenu.Open menuItems ScreenSize.Desktop e.MaybeSource NoopFn e))'
+                     rt-let='
+                         menuItems := [
+                             Heading (sprintf "Shopping Cart (%i)" cart.ItemCount)
+                             match politenessLevel with
+                             | Polite   -> ContextMenuItem.Button ("Continue shopping, please", ignore )
+                             | Impolite -> ContextMenuItem.Button ("Continue shopping",         ignore )
+                             | Mean     -> ContextMenuItem.Button ("Buy more dammit!",          ignore )
+                             ContextMenuItem.Button ("Save Cart", ignore )
+                             if not cart.IsEmpty then ContextMenuItem.Button ("Checkout", ignore )
+                             Divider
+                             ButtonCautionary ("Empty Cart", ignore )
+                         ]
+                     '/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

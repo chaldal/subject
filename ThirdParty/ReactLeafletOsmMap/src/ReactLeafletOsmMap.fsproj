@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Configurations>Web Debug;Web Release;Native Debug;Native Release</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Native Debug'">$(DefineConstants);DEBUG</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Web Release'">$(DefineConstants);EGGSHELL_PLATFORM_IS_WEB</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentsHierarchy.fs" />
+    <Content Include="**/*.fsproj" />
+    <Content Include="**/*.render" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.0" />
+
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibClient/src/LibClient.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Components\Types.fs" />
+    <Compile Include="Components\Pane.fs" />
+    <Compile Include="Components\EditControl.fs" />
+    <Compile Include="Components\FeatureGroup.fs" />
+    <Compile Include="Components\Popup.fs" />
+    <Compile Include="Components\Tooltip.fs" />
+    <Compile Include="Components\FullscreenControl.fs" />
+    <Compile Include="Components\Polyline.fs" />
+    <Compile Include="Components\Polygon.fs" />
+    <Compile Include="Components\Marker.fs" />
+    <Compile Include="Components\CircleMarker.fs" />
+    <Compile Include="Components\TileLayer.fs" />
+    <Compile Include="Components\MapContainer.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentRegistration.fs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+# Android build tool for react-native
+android/.gradle
+
+# contains secrets like API keys and the like, only template included in the repo
+configSourceOverrides.native.js
+
+# CocoaPods
+/ios/Pods/

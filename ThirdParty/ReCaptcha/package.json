@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler",
+    "recaptcha-v3": "^1.10.0"
+  },
+  "devDependencies": {
+    "jetifier": "^2.0.0"
+  }
+}

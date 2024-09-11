@@ -1,0 +1,18 @@
+{
+  "solution": {
+    "path": ".\\SuiteT__EC__T.sln",
+    "projects": [
+      "..\\LibLangFsharp\\src\\LibLangFsharp.fsproj",
+      "..\\LibLifeCycleHostBuild\\LibLifeCycleHostBuild.csproj",
+      "..\\LibLifeCycleHost\\src\\LibLifeCycleHost.fsproj",
+      "..\\LibLifeCycleCore\\src\\LibLifeCycleCore.fsproj",
+      "..\\LibLifeCycleTest\\LibLifeCycleTest.fsproj",
+      "..\\LibLifeCycleTypes\\src\\LibLifeCycleTypes.fsproj",
+      "..\\LibLifeCycle\\src\\LibLifeCycle.fsproj",
+      "Ecosystem\\LifeCycles\\LifeCycles.fsproj",
+      "Ecosystem\\Tests\\Tests.fsproj",
+      "Ecosystem\\T__EC__T.Types\\T__EC__T.Types.fsproj",
+      "Launchers\\Dev\\DevelopmentHost\\src\\DevelopmentHost.fsproj"
+    ]
+  }
+}

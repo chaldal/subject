@@ -1,0 +1,26 @@
+{
+	"name": "ThirdParty.QRCode",
+	"alias": "QRCode",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+		],
+		"componentLibraryAliases": [
+			["default", "ThirdParty.QRCode.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",       "RX.View"],
+			["anidiv",    "RX.AniView"],
+			["text",      "LC.Text"],
+			["anitext",   "RX.AniText"],
+			["uitext",    "LC.UiText"],
+			["aniuitext", "RX.AniUiText"]
+		]
+	}
+}

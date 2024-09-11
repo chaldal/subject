@@ -1,0 +1,19 @@
+module <%= projectName %>.Components.<%= componentName %>
+
+open LibClient
+
+type Props<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = (* GenerateMakeFunction *) {
+    key: string option // defaultWithAutoWrap JsUndefined
+}
+
+type <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_initialProps) =
+    inherit PureStatelessComponent<Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>>("<%= projectName %>.Components.<%= componentName %>", _initialProps, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, hasStyles = <%= hasStyles %>)
+
+and Actions<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_this: <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>) =
+    class end
+
+let Make = makeConstructor<<%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, _, _>
+
+// Unfortunately necessary boilerplate
+type Estate<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = NoEstate<% if (typeParameters) { %><%= numberOfParameters %><<%= typeParameters.WithoutConstraints %>><% } %>
+type Pstate = NoPstate

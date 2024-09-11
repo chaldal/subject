@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <RootNamespace>rt_compiler</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="3.1.1" />
+
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibRenderDSL/src/LibRenderDSL.fsproj" />
+    <ProjectReference Include="../../../SuiteDsl/LibDsl/src/LibDsl.fsproj" />
+
+    <Compile Include="Code.fs" />
+
+    <Compile Include="Render/Types.fs" />
+    <Compile Include="Render/Parsing.fs" />
+    <Compile Include="Render/CodeGeneration.fs" />
+    <Compile Include="Render/CodeGenerationConvert.fs" />
+    <Compile Include="Render/Compiler.fs" />
+    <Compile Include="Render/Main.fs" />
+
+    <Compile Include="RecordsWithDefaults/Compiler.fs" />
+    <Compile Include="RecordsWithDefaults/Main.fs" />
+
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,49 @@
+<ComponentContent DisplayName='"Input.File"' Props='~ForFullyQualifiedName "LibClient.Components.Input.File"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Input.File
+                 OnChange='actions.OnChange'
+                 Value='estate.MaybeFile |> Result.recover (fun _ -> [])'
+                 Validity='estate.MaybeFile |> Result.map (fun _ -> Valid) |> Result.recover (fun m -> Invalid m)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Input.File OnChange='actions.OnChange'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Input.File
+                 OnChange='actions.OnChange'
+                 Value='estate.MaybeFile |> Result.recover (fun _ -> [])'
+                 Validity='estate.MaybeFile |> Result.map (fun _ -> Valid) |> Result.recover (fun m -> Invalid m)'
+                 MaxFileCount='Positive.PositiveInteger.ofLiteral 1'
+                 MaxFileSize='LibLifeCycleTypes.File.mBToKB 5&lt;LibLifeCycleTypes.File.MB&gt;'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Input.File
+                 OnChange='actions.OnChange'
+                 MaxFileCount='PositiveInteger.ofLiteral 1'
+                 MaxFileSize='mBToKB 5<MB>'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Input.File
+                 OnChange='actions.OnChange'
+                 Value='estate.MaybeFile |> Result.recover (fun _ -> [])'
+                 Validity='estate.MaybeFile |> Result.map (fun _ -> Valid) |> Result.recover (fun m -> Invalid m)'
+                 MaxFileCount='Positive.PositiveInteger.ofLiteral 4'
+                 MaxFileSize='LibLifeCycleTypes.File.mBToKB 5&lt;LibLifeCycleTypes.File.MB&gt;'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Input.File
+                 OnChange='actions.OnChange'
+                 MaxFileCount='PositiveInteger.ofLiteral 4'
+                 MaxFileSize='mBToKB 5<MB>'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

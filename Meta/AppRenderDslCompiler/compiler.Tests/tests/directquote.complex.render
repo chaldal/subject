@@ -1,0 +1,7 @@
+<dom.div class='main-area'>
+    <dom.div class='items-area'>
+        {=props.Items}
+        {=props.FiltersPanel}
+    </dom.div>
+    {=props.TopBar}
+</dom.div>

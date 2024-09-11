@@ -1,0 +1,65 @@
+<With.Navigation rt-with='nav'>
+    <ComponentContent DisplayName='"Dialogs"'>
+        <rt-prop name='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Button
+                     Label='"Alert"'
+                     State='^Go (Alert (None, "Something happened and you should probably do something about it."), nav)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Alert"'
+                     State='^Go (Alert (None, "Something happened and you should probably do something about it."), nav)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Button
+                     Label='"Confirm"'
+                     State='^Go (Confirm ((Some "Confirm"), "Okay to delete all the things?", "No", "Yes", ignore), nav)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Confirm"'
+                     State='^Go (Confirm ((Some "Confirm"), "Okay to delete all the things?", "No", "Yes", ignore), nav)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Button
+                     Label='"Custom Confirm"'
+                     State='^Go (ConfirmCustom ((Some "Confirm"), "Send the dark forest deterrence broadcast?", [LibClient.Components.Dialog.Confirm.Cancel ("No", LibClient.Components.Button.Level.Primary, ignore); LibClient.Components.Dialog.Confirm.Confirm ("Yes", LibClient.Components.Button.Secondary, ignore)]), nav)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Confirm"'
+                     State='^Go (ConfirmCustom ((Some "Confirm"), "Send the dark forest deterrence broadcast?", [LibClient.Components.Dialog.Confirm.Cancel ("No", LibClient.Components.Button.Level.Primary, ignore); LibClient.Components.Dialog.Confirm.Confirm ("Yes", LibClient.Components.Button.Secondary, ignore)]), nav)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Button
+                     Label='"Image Viewer"'
+                     State='^Go (ImageViewer (imageSources, 0u), nav)'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Button
+                     Label='"Carousel"'
+                     State='^Go (ImageViewer (imageSources, 0u), nav)'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    TODO add contents about WhiteRounded, WhiteRoundedStandard, FullScreen and other dialogs here
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                ]]></rt-prop>
+            </ComponentSample>
+        </rt-prop>
+    </ComponentContent>
+</With.Navigation>

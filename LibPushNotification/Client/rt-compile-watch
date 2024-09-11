@@ -1,0 +1,2 @@
+node_modules/.bin/gulp rt-rebuild-then-watch
+

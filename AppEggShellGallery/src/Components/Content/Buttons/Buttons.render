@@ -1,0 +1,82 @@
+<ComponentContent DisplayName='"Buttons"' Props='~ForFullyQualifiedName "LibClient.Components.Buttons"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true' Align='~Left'>
+                    <LC.Button
+                     Icon='~Left Icon.Home'
+                     Label='"Home"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                     Icon='~Left Icon.Submit'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Buttons rt-fs='true' Align='~Left'>
+                    <LC.Button
+                        Icon='~Left Icon.Home'
+                        Label='"Home"'
+                        State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                        Icon='~Left Icon.Submit'
+                        Label='"Submit"'
+                        State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     Icon='~Left Icon.Home'
+                     Label='"Home"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                     Icon='~Left Icon.Submit'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     Icon='~Left Icon.Home'
+                     Label='"Home"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                     Icon='~Left Icon.Submit'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true' Align='~Right'>
+                    <LC.Button
+                     Icon='~Left Icon.Home'
+                     Label='"Home"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                     Icon='~Left Icon.Submit'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Buttons rt-fs='true' Align='~Right'>
+                    <LC.Button
+                     Icon='~Left Icon.Home'
+                     Label='"Home"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                    <LC.Button
+                     Icon='~Left Icon.Submit'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)' />
+                </LC.Buttons>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

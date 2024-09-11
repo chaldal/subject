@@ -1,0 +1,5 @@
+<Notification>
+    Text {4 + 3} before
+    {=props.children}
+    Text after {14 - 1}
+</Notification>

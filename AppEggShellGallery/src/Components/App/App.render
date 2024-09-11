@@ -1,0 +1,49 @@
+<LR.With.Route Spec='routesSpec()' rt-with='maybeNavigationFrame' rt-open='LibRouter.RoutesSpec'>
+    <LR.LogRouteTransitions/>
+    <With.Navigation rt-with='nav'>
+        {=registerGlobalMarkdownLinkHandler nav}
+    </With.Navigation>
+    <LC.AppShell.Content DesktopSidebarStyle='~Fixed' rt-let='maybeRoute := maybeNavigationFrame |> Option.map NavigationFrame.route'>
+        <rt-prop name='OnError(error, retry)'>
+            <LC.AppShell.TopLevelErrorMessage Error='error' Retry='retry'/>
+        </rt-prop>
+        <rt-prop name='Dialogs'>
+            <With.Navigation rt-with='nav'>
+                <LR.Dialogs Dialogs='maybeNavigationFrame |> Option.map NavigationFrame.dialogs |> Option.getOrElse []' DialogsState='navigationState.DialogsState' Nav='nav'>
+                    <rt-prop name='MakeResultless(resultlessDialog, close)'>
+                        <rt-match what='resultlessDialog'>
+                            <rt-case is='ResultlessDialog.Sentinel'>{=noElement}</rt-case>
+                        </rt-match>
+                    </rt-prop>
+                    <rt-prop name='MakeResultful(resultfulDialog, close)'>
+                        <rt-match what='resultfulDialog'>
+                            <rt-case is='ResultfulDialog.Sentinel'>{=noElement}</rt-case>
+                        </rt-match>
+                    </rt-prop>
+                </LR.Dialogs>
+            </With.Navigation>
+        </rt-prop>
+        <rt-prop name='Sidebar'><Sidebar MaybeRoute='maybeRoute'/></rt-prop>
+        <rt-prop name='TopNav'><TopNav MaybeRoute='maybeRoute'/></rt-prop>
+        <rt-prop name='Content'>
+            <rt-match what='maybeRoute'>
+                <rt-case is='Some { SampleVisualsScreenSize = sampleVisualsScreenSize; ActualRoute = route }'>
+                    <rt-match what='route'>
+                        <rt-case is='Home'              ><Route.Home       PstoreKey='props.PstoreKey + "-Route-Home"'                                                                          /></rt-case>
+                        <rt-case is='Docs       url'    ><Route.Docs       PstoreKey='props.PstoreKey + "-Route-Docs"'       MarkdownUrl='url'                                                  /></rt-case>
+                        <rt-case is='Components content'><Route.Components PstoreKey='props.PstoreKey + "-Route-Components"' SampleVisualsScreenSize='sampleVisualsScreenSize' Content='content'/></rt-case>
+                        <rt-case is='Tools      url'    ><Route.Tools      PstoreKey='props.PstoreKey + "-Route-Tools"'      MarkdownUrl='url'                                                  /></rt-case>
+                        <rt-case is='HowTo      item'   ><Route.HowTo      PstoreKey='props.PstoreKey + "-Route-HowTo"'      Item='item'                                                        /></rt-case>
+                        <rt-case is='Subject    url'    ><Route.Subject    PstoreKey='props.PstoreKey + "-Route-Subject"'    MarkdownUrl='url'                                                  /></rt-case>
+                        <rt-case is='Design     item'   ><Route.Design     PstoreKey='props.PstoreKey + "-Route-Design"'     Item='item'                                                        /></rt-case>
+                        <rt-case is='Legacy     item'   ><Route.Legacy     PstoreKey='props.PstoreKey + "-Route-Legacy"'     Item='item'                                                        /></rt-case>
+                        <rt-case is='TinyGuid'          ><Route.TinyGuid rt-fs='true'/></rt-case>
+                    </rt-match>
+                </rt-case>
+                <rt-case is='None'>
+                    <LC.InfoMessage Level='~Attention' Message='"Route Not Found"'/>
+                </rt-case>
+            </rt-match>
+        </rt-prop>
+    </LC.AppShell.Content>
+</LR.With.Route>

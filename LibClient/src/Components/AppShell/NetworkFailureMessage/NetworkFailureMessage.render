@@ -1,0 +1,4 @@
+<div class='view'>
+    <LC.Heading>Network Unreachable!</LC.Heading>
+    <div class='second-line'>It seems like you may have lost network connectivity, please check and try again.</div>
+</div>

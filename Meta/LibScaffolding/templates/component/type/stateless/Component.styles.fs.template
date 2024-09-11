@@ -1,0 +1,6 @@
+module <%= projectName %>.Components.<%= componentName %>Styles
+
+open ReactXP.Styles
+open ReactXP.Styles.Legacy
+
+let styles = lazy RuntimeStyles.None

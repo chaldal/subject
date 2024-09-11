@@ -1,0 +1,7 @@
+﻿CREATE OR ALTER FUNCTION [___SCHEMA_NAME___].[encode] (@str nvarchar(max))
+RETURNS VARBINARY(MAX)
+AS
+BEGIN
+    DECLARE @strUtf8 VARCHAR(MAX) = CAST(@str COLLATE Latin1_General_100_CS_AS_KS_WS_SC_UTF8 as varchar(MAX));
+    RETURN COMPRESS(@strUtf8)
+END

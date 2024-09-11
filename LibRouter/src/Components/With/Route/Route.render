@@ -1,0 +1,3 @@
+<rt-root rt-type-parameters="'Route, 'ResultlessDialog, 'ResultfulDialog">
+    {=props.With (decodeLocation props.Spec (LibRouter.Components.Router.useLocation()))}
+</rt-root>

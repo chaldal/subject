@@ -1,0 +1,8 @@
+global.eggshell = global.eggshell || {};
+global.eggshell.<%= appName %> = {}
+global.eggshell.<%= appName %>.configSourceOverrides = {}
+
+global.eggshell.<%= appName %>.configSourceOverrides.AppUrlBase                   = "http://localhost:8080";
+global.eggshell.<%= appName %>.configSourceOverrides.BackendUrl                   = "http://10.0.2.2:5000";
+global.eggshell.<%= appName %>.configSourceOverrides.InitializeReactXPInDevMode   = "true";
+global.eggshell.<%= appName %>.configSourceOverrides.InitializeReactXPInDebugMode = "true";

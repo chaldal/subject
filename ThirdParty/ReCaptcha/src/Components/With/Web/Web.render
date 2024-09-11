@@ -1,0 +1,3 @@
+<rt-block>
+    {=props.With (actions.getToken)}
+</rt-block>

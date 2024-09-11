@@ -1,0 +1,253 @@
+<ComponentContent DisplayName='"Recharts"'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"CartesianGrid"'       FullyQualifiedName='"ThirdParty.Recharts.Components.CartesianGrid"'/>
+        <ScrapedComponentProps Heading='"Cell"'                FullyQualifiedName='"ThirdParty.Recharts.Components.Cell"'/>
+        <ScrapedComponentProps Heading='"Legend"'              FullyQualifiedName='"ThirdParty.Recharts.Components.Legend"'/>
+        <ScrapedComponentProps Heading='"Line"'                FullyQualifiedName='"ThirdParty.Recharts.Components.Line"'/>
+        <ScrapedComponentProps Heading='"LineChart"'           FullyQualifiedName='"ThirdParty.Recharts.Components.LineChart"'/>
+        <ScrapedComponentProps Heading='"Pie"'                 FullyQualifiedName='"ThirdParty.Recharts.Components.Pie"'/>
+        <ScrapedComponentProps Heading='"PieChart"'            FullyQualifiedName='"ThirdParty.Recharts.Components.PieChart"'/>
+        <ScrapedComponentProps Heading='"ResponsiveContainer"' FullyQualifiedName='"ThirdParty.Recharts.Components.ResponsiveContainer"'/>
+        <ScrapedComponentProps Heading='"Tooltip"'             FullyQualifiedName='"ThirdParty.Recharts.Components.Tooltip"'/>
+        <ScrapedComponentProps Heading='"XAxis"'               FullyQualifiedName='"ThirdParty.Recharts.Components.XAxis"'/>
+        <ScrapedComponentProps Heading='"YAxis"'               FullyQualifiedName='"ThirdParty.Recharts.Components.YAxis"'/>
+    </rt-prop>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Line Charts"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.LineChart Data='estate.DataSet1 |> Array.map box'>
+                                <Recharts.Line DataKey='"Value1"'/>
+                            </Recharts.LineChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <![CDATA[
+                <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                    <Recharts.LineChart Data='estate.DataSet1 |> Array.map box'>
+                        <Recharts.Line DataKey='"Value1"'/>
+                    </Recharts.LineChart>
+                </Recharts.ResponsiveContainer>
+            ]]>
+                </rt-prop>
+            </ComponentSample>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.LineChart Data='estate.DataSet1 |> Array.map box'>
+                                <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                                <Recharts.XAxis DataKey='"Name"'/>
+                                <Recharts.YAxis/>
+                                <Recharts.Tooltip/>
+                                <Recharts.Legend/>
+                                <Recharts.Line Type='~Type.Monotone' DataKey='"Value1"' Stroke='~InternalString "#8884d8"'/>
+                                <Recharts.Line Type='~Type.Monotone' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"'/>
+                            </Recharts.LineChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                    <Recharts.LineChart Data='estate.DataSet1 |> Array.map box'>
+                        <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                        <Recharts.XAxis DataKey='"Name"'/>
+                        <Recharts.YAxis/>
+                        <Recharts.Tooltip/>
+                        <Recharts.Legend/>
+                        <Recharts.Line Type='~Monotone' DataKey='"Value1"' Stroke='~InternalString "#8884d8"'/>
+                        <Recharts.Line Type='~Monotone' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"'/>
+                    </Recharts.LineChart>
+                </Recharts.ResponsiveContainer>
+            ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Area Charts"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                                <Recharts.Area DataKey='"Value1"'/>
+                            </Recharts.AreaChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                    <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                        <Recharts.Area DataKey='"Value1"'/>
+                    </Recharts.AreaChart>
+                </Recharts.ResponsiveContainer>
+            ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                                <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                                <Recharts.XAxis DataKey='"Name"'/>
+                                <Recharts.YAxis/>
+                                <Recharts.Tooltip/>
+                                <Recharts.Legend/>
+                                <Recharts.Area Type='~Type.Monotone' DataKey='"Value1"' Stroke='~InternalString "#8884d8"' Fill='~InternalString "#8884d8"'/>
+                                <Recharts.Area Type='~Type.Monotone' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"' Fill='~InternalString "#82ca9d"'/>
+                            </Recharts.AreaChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                    <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                        <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                        <Recharts.XAxis DataKey='"Name"'/>
+                        <Recharts.YAxis/>
+                        <Recharts.Tooltip/>
+                        <Recharts.Legend/>
+                        <Recharts.Area Type='~Type.Monotone' DataKey='"Value1"' Stroke='~InternalString "#8884d8"' Fill='~InternalString "#8884d8"'/>
+                        <Recharts.Area Type='~Type.Monotone' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"' Fill='~InternalString "#82ca9d"'/>
+                    </Recharts.AreaChart>
+                </Recharts.ResponsiveContainer>
+            ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                                <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                                <Recharts.XAxis DataKey='"Name"'/>
+                                <Recharts.YAxis/>
+                                <Recharts.Tooltip/>
+                                <Recharts.Legend/>
+                                <Recharts.Area Type='~Type.StepAfter' StackId='~Number 1' DataKey='"Value1"' Stroke='~InternalString "#8884d8"' Fill='~InternalString "#8884d8"'/>
+                                <Recharts.Area Type='~Type.StepAfter' StackId='~Number 1' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"' Fill='~InternalString "#82ca9d"'/>
+                            </Recharts.AreaChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                    <Recharts.AreaChart Data='estate.DataSet1 |> Array.map box'>
+                        <Recharts.CartesianGrid StrokeDashArray='[| 3.; 3. |]'/>
+                        <Recharts.XAxis DataKey='"Name"'/>
+                        <Recharts.YAxis/>
+                        <Recharts.Tooltip/>
+                        <Recharts.Legend/>
+                        <Recharts.Area Type='~Type.Monotone' DataKey='"Value1"' Stroke='~InternalString "#8884d8"' Fill='~InternalString "#8884d8"'/>
+                        <Recharts.Area Type='~Type.Monotone' DataKey='"Value2"' Stroke='~InternalString "#82ca9d"' Fill='~InternalString "#82ca9d"'/>
+                    </Recharts.AreaChart>
+                </Recharts.ResponsiveContainer>
+            ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Pie Charts"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.PieChart>
+                                <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"'/>
+                            </Recharts.PieChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <![CDATA[
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.PieChart>
+                                <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"'/>
+                            </Recharts.PieChart>
+                        </Recharts.ResponsiveContainer>
+                        ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.PieChart>
+                                <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"'>
+                                    <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill'/>
+                                </Recharts.Pie>
+                            </Recharts.PieChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                    <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                        <Recharts.PieChart>
+                            <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"'>
+                                <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill'/>
+                            </Recharts.Pie>
+                        </Recharts.PieChart>
+                    </Recharts.ResponsiveContainer>
+                ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                        <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                            <Recharts.PieChart>
+                                <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"' Cx='~Offset.Percentage 50.' Cy='~Offset.Percentage 50.' InnerRadius='~Radius.Number 30' OuterRadius='~Radius.Number 50'>
+                                    <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill' Stroke='Color.White'/>
+                                </Recharts.Pie>
+                                <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value2"' Cx='~Offset.Percentage 50.' Cy='~Offset.Percentage 50.' InnerRadius='~Radius.Number 60' OuterRadius='~Radius.Number 80'>
+                                    <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill' Stroke='Color.White'/>
+                                </Recharts.Pie>
+                                <Recharts.Tooltip IsAnimationActive='true' AnimationEasing='~EaseInOut'/>
+                                <Recharts.Legend/>
+                            </Recharts.PieChart>
+                        </Recharts.ResponsiveContainer>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <![CDATA[
+                    <Recharts.ResponsiveContainer MinWidth='minChartWidth' MinHeight='minChartHeight'>
+                        <Recharts.PieChart>
+                            <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value1"' Cx='~Offset.Percentage 50.' Cy='~Offset.Percentage 50.' InnerRadius='~Radius.Number 30' OuterRadius='~Radius.Number 50'>
+                                <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill' Stroke='Color.White'/>
+                            </Recharts.Pie>
+                            <Recharts.Pie Data='estate.DataSet1 |> Array.map box' NameKey='"Name"' DataKey='"Value2"' Cx='~Offset.Percentage 50.' Cy='~Offset.Percentage 50.' InnerRadius='~Radius.Number 60' OuterRadius='~Radius.Number 80'>
+                                <Recharts.Cell rt-map='data := estate.DataSet1' Fill='data.Fill' Stroke='Color.White'/>
+                            </Recharts.Pie>
+                            <Recharts.Tooltip IsAnimationActive='true' AnimationEasing='~EaseInOut'/>
+                            <Recharts.Legend/>
+                        </Recharts.PieChart>
+                    </Recharts.ResponsiveContainer>
+                ]]>
+                    <rt-sharp value='endif'/>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

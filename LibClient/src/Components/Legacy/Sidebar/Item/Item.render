@@ -1,0 +1,25 @@
+<div
+ class='item {unionCaseName props.Value} {TopLevelBlockClass}'
+ rt-class='selected := props.IsSelected'
+ onPress='actions.OnPress'>
+    <div class='content'>
+        <rt-match what='props.Value'>
+            <rt-case is='Primary (label, maybeIcon, right)'>
+                <div class='icon icon-left' rt-mapo='icon := maybeIcon'>{=icon 22}</div>
+                <uitext class='text {unionCaseName props.Value}'>{label}</uitext>
+                <rt-match what='right'>
+                    <rt-case is='Some (Right.Count count)'>
+                        <div class='count'><uitext class='count-text'>{count}</uitext></div>
+                    </rt-case>
+                    <rt-case is='Some (Right.Icon icon)'>
+                        <div class='icon icon-right'>{=icon 22}</div>
+                    </rt-case>
+                    <rt-case is='None'/>
+                </rt-match>
+            </rt-case>
+            <rt-case is='Secondary label'>
+                <uitext class='text'>{label}</uitext>
+            </rt-case>
+        </rt-match>
+    </div>
+</div>

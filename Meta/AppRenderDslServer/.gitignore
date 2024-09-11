@@ -1,0 +1,14 @@
+# we want vscode to be included here, because it contains launch/debug configurations
+!.vscode/
+
+bin/
+obj/
+out/
+packages/
+node_modules/
+.idea/
+build.vsix
+Scratch.fsx
+Scratch.ts
+
+.ionide/

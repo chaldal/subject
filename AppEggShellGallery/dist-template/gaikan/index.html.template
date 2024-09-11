@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>EggShell Gallery</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  <link rel="shortcut icon" href="#{root.urlFavicon}"/>
+  <link rel="stylesheet" href="#{root.urlStylesheetApp}">
+  <link rel="stylesheet" href="#{root.urlStylesheetDocco}">
+  <link rel="stylesheet" href="#{root.urlStylesheetHljs}">
+</head>
+<body class="page page--basic">
+    <div class="app-container"></div>
+    <script>
+      eggshell = window.eggshell || {};
+      eggshell.AppEggShellGallery = {};
+      eggshell.AppEggShellGallery.configSourceOverrides = {};
+    </script>
+    <script data-if="root.eggshellConfigOverrides">
+        eggshell.AppEggShellGallery.configSourceOverrides = #{root.eggshellConfigOverrides};
+        eggshell.AppEggShellGallery.configSourceOverrides.MaybeInBundleResourceUrlHashedDirectoryPrefix = "/<%= resourcesPath %>";
+    </script>
+    <script src="#{root.urlBundle}"></script>
+</body>
+</html>

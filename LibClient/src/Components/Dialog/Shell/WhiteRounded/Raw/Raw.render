@@ -1,0 +1,23 @@
+<rt-root rt-open='LibClient'>
+    <LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+        <LC.Dialog.Base
+         rt-let='onPress := if ReactXP.Runtime.isNative() then Undefined else (fun (e: Browser.Types.PointerEvent) -> e.stopPropagation())'
+         ContentPosition='match screenSize with ScreenSize.Desktop -> ~Center | ScreenSize.Handheld -> ~Free'
+         CanClose='props.CanClose'>
+            <div class='max-size-limiter position-{props.Position}'>
+                <div class='white-rounded-base {screenSize.Class}' onPress='onPress'>
+                    <div class='content' children='children'/>
+                    <div class='in-progress' rt-if='props.InProgress'>
+                        <RX.ActivityIndicator color='(Color.Grey "cc").ToReactXPString'/>
+                    </div>
+                    <LC.IconButton
+                     rt-fs='true' rt-if='props.CanClose.ShouldShowCloseButton'
+                     styles='[| RawStyles.Styles.closeButton |]'
+                     theme='RawStyles.Styles.closeButtonTheme'
+                     Icon='Icon.X'
+                     State='^LowLevel(LC.IconButton.Actionable props.CanClose.OnClose)'/>
+                </div>
+            </div>
+        </LC.Dialog.Base>
+    </LC.With.ScreenSize>
+</rt-root>

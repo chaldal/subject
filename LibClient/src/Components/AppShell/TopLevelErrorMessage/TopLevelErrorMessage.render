@@ -1,0 +1,71 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize' rt-open='ReactXP.LegacyStyles; LibClient'>
+	<rt-let name='genericError'>
+		<LC.Icon Icon='Icon.Error' class='icon {screenSize.Class}'/>
+
+		<LC.Heading class='error-heading'>Oops!</LC.Heading>
+		<LC.Heading Level='~Secondary' class='error-title'>Something went wrong</LC.Heading>
+		<LC.Heading Level='~Tertiary' class='error-subtitle'>Please try again later.</LC.Heading>
+	</rt-let>
+	<LC.With.Layout rt-fs='true' rt-with='_, maybeLayout'>
+		<div class='view' rt-style='maybeLayout |> Option.map (fun l -> [minHeight l.Height]) |> Option.getOrElse [height 0]'>
+				<RX.ScrollView Vertical='true'>
+					<div class='center'>
+						<rt-match what='props.Error'>
+							<rt-case is='AsyncDataException AsyncDataFailure.NetworkFailure'>
+								<LC.Icon Icon='Icon.NoNetwork' class='icon {screenSize.Class}'/>
+
+								<LC.Heading class='error-heading'>Internet Problem</LC.Heading>
+								<LC.Heading Level='~Secondary' class='error-title'>Unable to connect to the internet.</LC.Heading>
+								<LC.Heading Level='~Tertiary' class='error-subtitle'>Please make sure you are connected to the internet and reload.</LC.Heading>
+							</rt-case>
+							<rt-case is='AsyncDataException (AsyncDataFailure.RequestFailure requestFailure)'>
+								<rt-match what='requestFailure'>
+									<rt-case is='RequestFailure.ClientError (statusCode, response)'>
+										<LC.Icon Icon='Icon.ServerError' class='icon {screenSize.Class}'/>
+
+										<LC.Heading class='error-heading'>Request Failed</LC.Heading>
+										<LC.Heading Level='~Secondary' class='error-title'>App request failed!</LC.Heading>
+										<LC.Heading Level='~Tertiary' class='error-subtitle'>Please try to reload. If the problem remains, please update the app to latest version.</LC.Heading>
+										<LC.InfoMessage Message='statusCode.ToString() + " - " + response.ToString()'/>
+									</rt-case>
+									<rt-case is='RequestFailure.ServerError (statusCode, response)'>
+										<LC.Icon Icon='Icon.ServerError' class='icon {screenSize.Class}'/>
+
+										<LC.Heading class='error-heading'>Server Error</LC.Heading>
+										<LC.Heading Level='~Secondary' class='error-title'>There seems to be problem with our server!</LC.Heading>
+										<LC.Heading Level='~Tertiary' class='error-subtitle'>Please try to reload. If the problem remains contact support</LC.Heading>
+										<LC.InfoMessage Message='statusCode.ToString() + " - " + response.ToString()'/>
+									</rt-case>
+									<rt-case is='RequestFailure.Unknown (statusCode, response)'>
+										<LC.Icon Icon='Icon.ServerError' class='icon {screenSize.Class}'/>
+
+										<LC.Heading class='error-heading'>Unknown Server Error</LC.Heading>
+										<LC.Heading Level='~Secondary' class='error-title'>There seems to be problem with our server!</LC.Heading>
+										<LC.Heading Level='~Tertiary' class='error-subtitle'>Please try to reload. If the problem remains contact support</LC.Heading>
+										<LC.InfoMessage Message='statusCode.ToString() + " - " + response.ToString()'/>
+									</rt-case>
+								</rt-match>
+							</rt-case>
+							<rt-case is='AsyncDataException (AsyncDataFailure.UserReadableFailure message)'>
+								<LC.Icon Icon='Icon.Error' class='icon {screenSize.Class}'/>
+
+								<LC.Heading Level='~Secondary' class='error-title'>{message}</LC.Heading>
+							</rt-case>
+							<rt-case is='AsyncDataException (AsyncDataFailure.UnknownFailure _)'>
+								{=genericError}
+							</rt-case>
+							<rt-case is='_'>
+								{=genericError}
+							</rt-case>
+						</rt-match>
+
+						<LC.Button
+							class='button'
+							Label='"Reload"'
+							Level='~Secondary'
+							State='^LowLevel (~Actionable actions.reload)'/>
+					</div>
+				</RX.ScrollView>
+			</div>
+	</LC.With.Layout>
+</LC.With.ScreenSize>

@@ -1,0 +1,11 @@
+<rt-block rt-open='Fable.Core.JsInterop; LibClient.EggShellReact'>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+        <With.Web SiteKey='props.SiteKey' rt-with="reCaptchaTokenGetter">
+            {=props.With reCaptchaTokenGetter}
+        </With.Web>
+    <rt-sharp value='else'/>
+        <With.Native SiteKey='props.SiteKey' BaseUrl='props.BaseUrl' rt-with="reCaptchaTokenGetter">
+            {=props.With reCaptchaTokenGetter}
+        </With.Native>
+    <rt-sharp value='endif'/>
+</rt-block>

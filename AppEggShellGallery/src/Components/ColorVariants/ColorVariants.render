@@ -1,0 +1,12 @@
+<div class='view {TopLevelBlockClass}' rt-let='value := props.Value; main := value.Main'>
+    <ColorVariant.Base Name='"900"' Color='value.B900' IsMain='value.B900 = main'/>
+    <ColorVariant.Base Name='"800"' Color='value.B800' IsMain='value.B800 = main'/>
+    <ColorVariant.Base Name='"700"' Color='value.B700' IsMain='value.B700 = main'/>
+    <ColorVariant.Base Name='"600"' Color='value.B600' IsMain='value.B600 = main'/>
+    <ColorVariant.Base Name='"500"' Color='value.B500' IsMain='value.B500 = main'/>
+    <ColorVariant.Base Name='"400"' Color='value.B400' IsMain='value.B400 = main'/>
+    <ColorVariant.Base Name='"300"' Color='value.B300' IsMain='value.B300 = main'/>
+    <ColorVariant.Base Name='"200"' Color='value.B200' IsMain='value.B200 = main'/>
+    <ColorVariant.Base Name='"100"' Color='value.B100' IsMain='value.B100 = main'/>
+    <ColorVariant.Base Name='"050"' Color='value.B050' IsMain='value.B050 = main'/>
+</div>

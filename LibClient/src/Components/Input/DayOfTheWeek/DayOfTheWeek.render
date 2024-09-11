@@ -1,0 +1,22 @@
+<div class='view {TopLevelBlockClass}'>
+    <rt-match what='props.Label'>
+        <rt-case is='Some label'>
+            <div class='label'><text class='label-text' rt-class='invalid := props.Validity.IsInvalid'>{label}</text></div>
+        </rt-case>
+        <rt-case is='None'>
+            <div rt-if='props.Validity = Missing' class='label invalid'><text class='label-text invalid'>Required</text></div>
+        </rt-case>
+    </rt-match>
+    <RX.ScrollView horizontal='true'>
+        <div class='days'>
+            <div
+             rt-map='day := days'
+             class='day'
+             rt-class='selected := props.Mode.IsSelected day'>
+                <text class='day-label' rt-class='selected := props.Mode.IsSelected day'>{day.ToString().Substring(0, 3)}</text>
+                <LC.TapCapture rt-fs='true' OnPress='props.Mode.OnPress day'/>
+            </div>
+        </div>
+    </RX.ScrollView>
+    <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+</div>

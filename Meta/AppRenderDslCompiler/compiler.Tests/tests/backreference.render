@@ -1,0 +1,4 @@
+<rt-block>
+    <Notification level='~Warning'>~f~o~o~</Notification>
+    <Stateful rt-prop-children='Content(mode: ~Mode)'>stuff here</Stateful>
+</rt-block>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="Egg.T__EC__T.FabricType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <!-- Application Manifest Configuration -->
+    <Parameter Name="Egg.T__EC__T.Api_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="Egg.T__EC__T.SubjectHost_InstanceCount" DefaultValue="-1" />
+    <!-- Application Configuration -->
+    <Parameter Name="Storage.SqlServer:ConnectionString" DefaultValue="" />
+    <Parameter Name="Auth:CookieName" DefaultValue="" />
+    <Parameter Name="Orleans.Clustering:MembershipConnectionString" DefaultValue="" />
+    <Parameter Name="Orleans.Clustering:ShouldInitializeForLocal1NodeEnvironment" DefaultValue="False" />
+    <Parameter Name="Endpoints:Egg.T__EC__T.Api" DefaultValue="https://T__EC__T-api.dev.subject.app" />
+    <Parameter Name="Certificate:UseDevelopmentCertificate" DefaultValue="False" />
+    <Parameter Name="AppInsights:InstrumentationKey" DefaultValue="" />
+  </Parameters>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="Egg.T__EC__T.ApiPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Storage.SqlServer">
+            <Parameter Name="ConnectionString" Value="[Storage.SqlServer:ConnectionString]" />
+          </Section>
+          <Section Name="Certificate">
+            <Parameter Name="UseDevelopmentCertificate" Value="[Certificate:UseDevelopmentCertificate]" />
+          </Section>
+          <Section Name="AppInsights">
+            <Parameter Name="InstrumentationKey" Value="[AppInsights:InstrumentationKey]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="Egg.T__EC__T.SubjectHostPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Storage.SqlServer">
+            <Parameter Name="ConnectionString" Value="[Storage.SqlServer:ConnectionString]" />
+          </Section>
+          <Section Name="Orleans.Clustering">
+            <Parameter Name="ShouldInitializeForLocal1NodeEnvironment" Value="[Orleans.Clustering:ShouldInitializeForLocal1NodeEnvironment]" />
+          </Section>
+          <Section Name="Certificate">
+            <Parameter Name="UseDevelopmentCertificate" Value="[Certificate:UseDevelopmentCertificate]" />
+          </Section>
+          <Section Name="AppInsights">
+            <Parameter Name="InstrumentationKey" Value="[AppInsights:InstrumentationKey]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this
+         application type is created. You can also create one or more instances of service type using the
+         ServiceFabric PowerShell module.
+
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="Egg.T__EC__T.Api">
+      <StatelessService ServiceTypeName="Egg.T__EC__T.ApiType" InstanceCount="[Egg.T__EC__T.Api_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="Egg.T__EC__T.SubjectHost">
+      <StatelessService ServiceTypeName="Egg.T__EC__T.SubjectHostType" InstanceCount="[Egg.T__EC__T.SubjectHost_InstanceCount]" InstanceCloseDelayDurationSeconds="15">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </DefaultServices>
+  <Principals>
+    <Users>
+      <User Name="ServiceAccount" AccountType="NetworkService" />
+    </Users>
+  </Principals>
+  <Policies>
+    <DefaultRunAsPolicy UserRef="ServiceAccount" />
+  </Policies>
+  <Certificates>
+    <SecretsCertificate X509FindType="FindBySubjectName" X509FindValue="T__EC__T.subject.dev.secrets" Name="Secrets" />
+  </Certificates>
+</ApplicationManifest>

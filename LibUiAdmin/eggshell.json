@@ -1,0 +1,26 @@
+{
+	"name": "LibUiAdmin",
+	"alias": "UiAdmin",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+			"LibClient",
+			"LibClient.RenderHelpers",
+			"LibClient.Chars"
+		],
+		"componentLibraryAliases": [
+			["default", "LibUiAdmin.Components"],
+			["UiAdmin", "LibUiAdmin.Components"],
+			["LC",      "LibClient.Components"],
+            ["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",    "RX.View"],
+			["uitext", "LC.LegacyUiText"]
+		]
+	}
+}

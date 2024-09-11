@@ -1,0 +1,6 @@
+<rt-block rt-if='true'>
+    <dom.div>{obj.field}</dom.div>
+    <dom.div>{42}</dom.div>
+    <dom.div>{"lalala"}</dom.div>
+    <dom.div>lalala</dom.div>
+</rt-block>

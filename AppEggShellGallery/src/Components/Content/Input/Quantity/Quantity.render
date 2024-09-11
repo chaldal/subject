@@ -1,0 +1,93 @@
+<ComponentContent DisplayName='"Input.Quantity"' rt-open='LibClient' Props='~ForFullyQualifiedName "LibClient.Components.Input.Quantity"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Quantity
+                     rt-fs='true' Value='estate.Values.Item "A"'
+                     OnChange='LC.Input.QuantityTypes.CanRemove (actions.OnChangeOption "A")'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Quantity
+                     Value='estate.Values.Item "A"'
+                     OnChange='~CanRemove (actions.OnChangeOption "A")'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Quantity
+                     rt-fs='true' Value='estate.Values.Item "B"'
+                     OnChange='LC.Input.QuantityTypes.CannotRemove (actions.OnChange "B")'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Quantity
+                     Value='estate.Values.Item "B"'
+                     OnChange='~CannotRemove (actions.OnChange "B")'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Quantity
+                     rt-fs='true' Value='estate.Values.Item "C"'
+                     Max='5 |> PositiveInteger.ofLiteral'
+                     OnChange='LC.Input.QuantityTypes.CannotRemove (actions.OnChange "C")'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Quantity
+                     Value='estate.Values.Item "C"'
+                     Max='5 |> PositiveInteger.ofLiteral'
+                     OnChange='~CannotRemove (actions.OnChange "C")'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+                <rt-prop name='Notes'>
+                    The Max prop can only enforce that the plus button is not visible
+                    and that OnChange is never called with a value greater than Max,
+                    but it cannot prevent Value from containing a value greater
+                    than Max, since that is managed externally. So external validation
+                    is necessary.
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Quantity
+                     rt-fs='true' Value='estate.Values.Item "D"'
+                     Validity='Missing'
+                     OnChange='LC.Input.QuantityTypes.CanRemove (actions.OnChangeOption "D")'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Quantity
+                     Value='estate.Values.Item "D"'
+                     Validity='Missing'
+                     OnChange='~CanRemove (actions.OnChangeOption "D")'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Quantity
+                     rt-fs='true' Value='estate.Values.Item "E"'
+                     Validity='Invalid "Not allowed so many"'
+                     Max='5 |> PositiveInteger.ofLiteral'
+                     OnChange='LC.Input.QuantityTypes.CanRemove (actions.OnChangeOption "E")'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Quantity
+                     Value='estate.Values.Item "E"'
+                     Validity='Invalid "Not allowed so many"'
+                     Max='5 |> PositiveInteger.ofLiteral'
+                     OnChange='~CanRemove (actions.OnChangeOption "E")'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

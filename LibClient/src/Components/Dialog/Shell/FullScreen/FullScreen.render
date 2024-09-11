@@ -1,0 +1,54 @@
+<LC.Dialog.Base
+ rt-open='ReactXP.LegacyStyles'
+ ContentPosition='~Free'
+ CanClose='~Never'>
+    <div class='wrapper'>
+        <!-- Reversed to make drop shadow of TopNav work -->
+        <rt-block rt-mapo='bottomSection := props.BottomSection'>
+            {=bottomSection}
+        </rt-block>
+        <LC.With.Layout rt-fs='true' rt-with='onLayoutOption, maybeLayout'>
+            <RX.ScrollView
+             rt-if-not='props.Scroll = NoScroll'
+             onLayoutOption='onLayoutOption'
+             horizontal='props.Scroll = Both || props.Scroll = Horizontal'
+             vertical='props.Scroll = Both || props.Scroll = Vertical'>
+                 <div
+                  class='scroll-view-children'
+                  rt-style='maybeLayout |> Option.map (fun l -> [minHeight l.Height]) |> Option.getOrElse [height 0]'
+                  children='children'/>
+            </RX.ScrollView>
+        </LC.With.Layout>
+        <div class='children' rt-if='props.Scroll = NoScroll'>
+            {=castAsElement children}
+        </div>
+        <LC.Legacy.TopNav.Base
+         class='top-nav'
+         Center='~Heading (props.Heading |> Option.getOrElse "")'
+         rt-if='props.Heading.IsSome || (match props.BackButton with | Yes _ -> true | _ -> false)'>
+            <rt-prop name='Left'>
+                <rt-match what='props.BackButton.OnPressOption'>
+                    <rt-case is='None'>
+                        <LC.Legacy.TopNav.Filler/>
+                    </rt-case>
+                    <rt-case is='Some onPress'>
+                        <LC.Legacy.TopNav.IconButton
+                         rt-fs='true' theme='FullScreenStyles.Styles.iconButtonTheme'
+                         Icon='Icon.Back'
+                         State='LC.Legacy.TopNav.IconButtonTypes.Actionable onPress'/>
+                    </rt-case>
+                </rt-match>
+            </rt-prop>
+            <rt-prop name='Right'>
+                <rt-match what='props.HeaderRight'>
+                    <rt-case is='Some headerRight'>
+                        {=headerRight}
+                    </rt-case>
+                    <rt-case is='None'>
+                        <LC.Legacy.TopNav.Filler/>
+                    </rt-case>
+                </rt-match>
+            </rt-prop>
+        </LC.Legacy.TopNav.Base>
+    </div>
+</LC.Dialog.Base>

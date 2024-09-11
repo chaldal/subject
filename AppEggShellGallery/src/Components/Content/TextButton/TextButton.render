@@ -1,0 +1,61 @@
+<ComponentContent DisplayName='"TextButton"' Props='~ForFullyQualifiedName "LibClient.Components.TextButton"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^LowLevel(LC.TextButton.Actionable Actions.demoPointerEventAction)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^LowLevel(LC.TextButton.Actionable Actions.demoPointerEventAction)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^LowLevel(LC.TextButton.InProgress)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^LowLevel(LC.TextButton.InProgress)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^Disabled'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.TextButton rt-fs='true'
+                 Label='"Add to Cart"'
+                 State='^Disabled'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TextButton rt-fs='true'
+                 theme='fun theme -> { theme with Primary = { theme.Primary with Actionable = { theme.Primary.Actionable with TextColor = Color.DevOrange } } }'
+                 Label='"Special Add to Cart"'
+                 State='^LowLevel(LC.TextButton.Actionable Actions.demoPointerEventAction)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                <LC.TextButton rt-fs='true'
+                 theme='fun theme -> { theme with Primary = { theme.Primary with Actionable = { theme.Primary.Actionable with TextColor = Color.DevOrange } } }'
+                 Label='"Special Add to Cart"'
+                 State='^LowLevel(LC.TextButton.Actionable Actions.demoPointerEventAction)'/>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

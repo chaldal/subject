@@ -1,0 +1,35 @@
+module Components.TestRender
+
+module FRH = Fable.React.Helpers
+module FRP = Fable.React.Props
+module FRS = Fable.React.Standard
+
+open LibClient.RenderResultModule
+
+open Components
+
+
+
+open Components.Test
+
+
+
+let render(props: Components.Test.Props, estate: Components.Test.Estate, pstate: Components.Test.Pstate, actions: Components.Test.Actions, __componentStyles: ReactXP.Styles.RuntimeStyles) : Fable.React.ReactElement =
+    let __class = (ReactXP.Helpers.extractProp "ClassName" props) |> Option.defaultValue ""
+    let __mergedStyles = ReactXP.Styles.Runtime.mergeComponentAndPropsStyles __componentStyles props
+    let __parentFQN = None
+    (
+        let __list = [
+            (
+                FRS.input
+                    [(FRP.Type (("file")))]
+            ) |> RenderResult.Make
+            (
+                FRS.img
+                    [(FRP.src (("something.png")))]
+            ) |> RenderResult.Make
+        ]
+        __list |> RenderResult.ToLeaves
+    )
+    |> RenderResult.Make
+    |> RenderResult.ToRawElementsSingle __parentFQN |> RenderResult.ToSingleElement

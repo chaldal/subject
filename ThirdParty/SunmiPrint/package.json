@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@heasy/react-native-sunmi-printer": "^1.8.1",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

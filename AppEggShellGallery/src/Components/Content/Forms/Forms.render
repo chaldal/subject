@@ -1,0 +1,169 @@
+<ComponentContent DisplayName='"Forms"' Props='~ForFullyQualifiedName "LibClient.Components.Form.Base"'>
+    <rt-prop name='Notes'>
+        <div>
+            We think of forms as a chunk of UI whose job is to produce a value of type 'T.
+            The main building block for a form is the accumulator, shortened to Acc in all of our code.
+            The job of the accumulator is to hold on to the partially filled form's data, as well as
+            provide the Validate function, which produces either an Ok 'T, or an Error ValidationErrors.
+            To help bind validation errors to concrete fields, each form needs a Fields discriminated
+            union type defined.
+        </div>
+
+        <div>
+            Form elements are regular input elements wrapped to bind them to the form's validation
+            functionality. Currently we have Text, PositiveInteger, UnsignedDecimal, and Picker wrapped.
+            Additional components should be wrapped as and when necessary.
+        </div>
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample VerticalAlignment='~VerticalAlignment.Top'>
+            <rt-prop name='Visuals'>
+                <LC.Form.Base
+                 Accumulator='~ManageInternallyInitializingWith Acc.Initial'
+                 Submit='actions.Submit'
+                 rt-prop-children='Content(form: ~FormHandle&lt;Field, Acc, Profile&gt;)'>
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Validity='form.FieldValidity Field.Name'
+                     Value='form.Acc.Name'
+                     OnEnterKeyPress='ReactEvent.Action.Make >> form.TrySubmitLowLevel'
+                     OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Name = value })'/>
+
+                    <LC.Input.PositiveInteger
+                     Label='"Age"'
+                     Validity='form.FieldValidity Field.Age'
+                     Value='form.Acc.Age'
+                     OnEnterKeyPress='ReactEvent.Action.Make >> form.TrySubmitLowLevel'
+                     OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Age = value })'/>
+
+                    <LC.Legacy.Input.Picker
+                     Label='"Gender"'
+                     Validity='form.FieldValidity Field.Gender'
+                     Items='form.Acc.GenderChoices'
+                     Value='form.Acc.Gender |> Option.map ~ByItem'
+                     OnChange='~CannotUnselect (fun (_, value) -> form.UpdateAcc (fun acc -> { acc with Gender = Some value }))'/>
+
+                    <LC.Input.Checkbox
+                     Label='~String "Subscribe to email"'
+                     Value='Some form.Acc.WantsSpam'
+                     OnChange='fun value -> form.UpdateAcc ( fun acc -> { acc with WantsSpam = value})'
+                     Validity='form.FieldValidity Field.WantsSpam'/>
+
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         State='^ form.TrySubmit'/>
+                    </LC.Buttons>
+                </LC.Form.Base>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp'><![CDATA[
+type Gender =
+| Male
+| Female
+| Other
+| Undisclosed
+
+type Profile = {
+    Name:      NonemptyString
+    Age:       PositiveInteger
+    Gender:    Gender
+    WantsSpam: bool
+}
+
+
+open LibClient.Components.Form.Base.Types
+type PickerItem<'T> = LibClient.Components.Form.Legacy.Input.Picker.PickerItem<'T>
+
+[<RequireQualifiedAccess>]
+type Field = Name | Age | Gender | WantsSpam
+
+type Acc = {
+    // This is how you can provide choices to a Picker. It's also possible
+    // to have just a simple `let choices = ...` binding in the .typext.fs
+    // file for that, but often you'll want the picker choices to be based
+    // other partially filled fields, so in general putting them in the Acc
+    // solves a wide array of use cases.
+    GenderChoices: List<PickerItem<Gender>>
+    Name:          Option<NonemptyString>
+    Age:           LibClient.Components.Input.PositiveInteger.Value
+    Gender:        Option<Gender>
+    WantsSpam:     bool
+} with
+    static member Initial : Acc =
+        {
+            GenderChoices = [Male; Female; Other; Undisclosed] |> List.map (fun g -> { Item = g; Label = g.ToString() })
+            Name          = None
+            Age           = LibClient.Components.Input.PositiveInteger.empty
+            Gender        = None
+            WantsSpam     = true
+        }
+
+    interface AbstractAcc<Field, Profile> with
+        member this.Validate () : Result<Profile, ValidationErrors<Field>> = validateForm {
+            // using and! and not let! for successive fields is important, it lets you
+            // collect all errors in one go, as opposed to one at a time which would lead
+            // the the poor user experience of fix-one-error-get-notified-of-the-next-one.
+            let! name   = Forms.GetFieldValue2 this.Name       Field.Name
+            and! age    = Forms.GetFieldValue2 this.Age.Result Field.Age
+            and! gender = Forms.GetFieldValue2 this.Gender     Field.Gender
+
+            return {
+                Name      = name
+                Age       = age
+                Gender    = gender
+                WantsSpam = this.WantsSpam // if no validation is necessary, we just assign the value
+            }
+        }
+
+
+// Typically you'll be submitting the form over the wire, which is an async, potentially
+// errorful operation, so the submit function's is required to reflect that.
+member _.Submit (profile: Profile) () : UDActionResult = async {
+    Action.alert "A profile record successfully input!"
+    return Ok ()
+}
+            ]]></Code>
+                <Code Language='~Render'><![CDATA[
+                <LC.Form.Base
+                 Accumulator='~ManageInternallyInitializingWith Acc.Initial'
+                 Submit='actions.Submit'
+                 rt-prop-children='Content(form: ~FormHandle&lt;Field, Acc, Profile&gt;)'>
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Validity='form.FieldValidity Field.Name'
+                     Value='form.Acc.Name'
+                     OnEnterKeyPress='ReactEvent.Action.Make >> form.TrySubmitLowLevel'
+                     OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Name = value })'/>
+
+                    <LC.Input.PositiveInteger
+                     Label='"Age"'
+                     Validity='form.FieldValidity Field.Age'
+                     Value='form.Acc.Age'
+                     OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Age = value })'/>
+
+                    <LC.Legacy.Input.Picker
+                     Label='"Gender"'
+                     Validity='form.FieldValidity Field.Gender'
+                     Items='form.Acc.GenderChoices'
+                     Value='form.Acc.Gender |> Option.map ~ByItem'
+                     OnChange='~CannotUnselect (fun (_, value) -> form.UpdateAcc (fun acc -> { acc with Gender = Some value }))'/>
+
+                    <LC.Input.Checkbox
+                     Label='~String "Subscribe to email"'
+                     Value='Some form.Acc.WantsSpam'
+                     OnChange='fun value -> form.UpdateAcc ( fun acc -> { acc with WantsSpam = value})'
+                     Validity='form.FieldValidity Field.WantsSpam'/>
+
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         State='^ form.TrySubmit'/>
+                    </LC.Buttons>
+                </LC.Form.Base>
+            ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

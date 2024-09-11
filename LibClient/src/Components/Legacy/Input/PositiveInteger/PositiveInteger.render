@@ -1,0 +1,7 @@
+<div class='view'>
+    <RX.TextInput
+     ref='actions.Bound.RefTextInput'
+     value='estate.CurrInput'
+     onChangeText='actions.OnChange'
+     onKeyPressOption='props.OnKeyPress'/>
+</div>

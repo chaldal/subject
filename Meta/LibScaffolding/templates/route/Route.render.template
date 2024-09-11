@@ -1,0 +1,7 @@
+<LR.Route Scroll='~Vertical'>
+ZAP<% if (hasParameters) { %>
+    <LC.InfoMessage Level='~Info' Message='"Welcome to <%= componentName %>" + props.SomeParam.ToString()'/>
+ZAP<% } else { %>
+    <LC.InfoMessage Level='~Info' Message='"Welcome to <%= componentName %>"'/>
+ZAP<% } %>
+</LR.Route>

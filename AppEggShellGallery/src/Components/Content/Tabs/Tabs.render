@@ -1,0 +1,66 @@
+<ComponentContent DisplayName='"Tabs"'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"Tabs"' FullyQualifiedName='"LibClient.Components.Tabs"'/>
+        <ScrapedComponentProps Heading='"Tab"'  FullyQualifiedName='"LibClient.Components.Tab"' />
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tabs
+                 class='tabs'
+                 rt-let='tabState := fun tab -> if estate.SelectedTab = tab then ~Selected else (~Unselected (actions.SelectTab tab))'>
+                    <LC.Tab rt-fs='true' Label='"Home"'    State='tabState Home   '/>
+                    <LC.Tab rt-fs='true' Label='"Profile"' State='tabState Profile'/>
+                    <LC.Tab rt-fs='true' Label='"Contact"' State='tabState Contact'/>
+                </LC.Tabs>
+                <rt-match what='estate.SelectedTab'>
+                    <rt-case is='TabItem.Home   '><div>This is the HOME tab</div></rt-case>
+                    <rt-case is='TabItem.Profile'><div>This is the PROFILE tab</div></rt-case>
+                    <rt-case is='TabItem.Contact'><div>This is the CONTACT tab</div></rt-case>
+                </rt-match>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp'><![CDATA[
+                    type TabItem =
+                    | Home
+                    | Profile
+                    | Contact
+
+                    type Estate = {
+                        SelectedTab: TabItem
+                    }
+
+                    type Tabs(_initialProps) =
+                        inherit EstatefulComponent<Props, Estate, Actions, Tabs>("AppEggShellGallery.Components.Content.Tabs", _initialProps, Actions, hasStyles = true)
+
+                        // Initialize Estate with default selected tab
+                        override _.GetInitialEstate(_initialProps: Props) : Estate = {
+                            SelectedTab = Home
+                        }
+
+                    and Actions(this: Tabs) =
+
+                        // Update selected tab in estate when a new tab is selected
+                        member _.SelectTab (tab: TabItem) (_e: ReactEvent.Pointer) : unit =
+                            this.SetEstate (fun estate _ -> { estate with SelectedTab = tab })
+                ]]></Code>
+
+                <Code Language='~Render'><![CDATA[
+                    <LC.Tabs
+                    class='tabs'
+                    rt-let='tabState := fun tab -> if estate.SelectedTab = tab then ~Selected else (~Unselected (actions.SelectTab tab))'>
+                        <LC.Tab rt-fs='true' Label='"Home"'    State='tabState Home   '/>
+                        <LC.Tab rt-fs='true' Label='"Profile"' State='tabState Profile'/>
+                        <LC.Tab rt-fs='true' Label='"Contact"' State='tabState Contact'/>
+                    </LC.Tabs>
+                    <rt-match what='estate.SelectedTab'>
+                        <rt-case is='TabItem.Home   '><div>This is the HOME tab</div></rt-case>
+                        <rt-case is='TabItem.Profile'><div>This is the PROFILE tab</div></rt-case>
+                        <rt-case is='TabItem.Contact'><div>This is the CONTACT tab</div></rt-case>
+                    </rt-match>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

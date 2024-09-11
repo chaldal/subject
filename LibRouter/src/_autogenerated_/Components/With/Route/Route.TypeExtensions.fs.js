@@ -1,0 +1,8 @@
+import { map, defaultArg } from "../../../../../../AppSample2/src/fable_modules/fable-library.3.7.6/Option.js";
+import { JsUndefined } from "../../../../../../LibClient/src/AdditionalAutoOpens.fs.js";
+import { Props$3 } from "../../../../Components/With/Route/Route.typext.fs.js";
+
+export function LibRouter_Components_TypeExtensions_TEs__TEs_MakeWith_RouteProps_Static_Z271514DA(pSpec, pDialogsState, pWith, pkey, pkeyOption) {
+    return new Props$3(pSpec, pDialogsState, pWith, defaultArg(pkeyOption, defaultArg(map((arg0) => arg0, pkey), JsUndefined())));
+}
+

@@ -1,0 +1,7 @@
+{
+  "ignoreFiles": [
+    "ReactXP/",
+    "EggShellReact.fs",
+    "Services/HttpService/ReactXPHttp.typext.fs"
+  ]
+}

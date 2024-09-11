@@ -1,0 +1,4 @@
+<div class='view {TopLevelBlockClass}'>
+    <ColorVariant.ColorBlock IsMain='props.IsMain' Color='props.Color'/>
+    <uitext>{props.Name}</uitext>
+</div>

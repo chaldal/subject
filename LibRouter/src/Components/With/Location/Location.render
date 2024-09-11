@@ -1,0 +1,3 @@
+<rt-root>
+    {=props.With (LibRouter.Components.Router.useLocation())}
+</rt-root>

@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../LibClient"
+		},
+		{
+			"path": "../LibLangFsharp"
+		},
+		{
+			"path": "../LibRouter"
+		},
+		{
+			"path": "../LibUiAdmin"
+		},
+		{
+			"path": "../ThirdParty/SyntaxHighlighter"
+		},
+		{
+			"path": "../ThirdParty/Showdown"
+		},
+		{
+			"path": "../ThirdParty/Map"
+		}
+	],
+	"settings": {
+		"FSharp.suggestGitignore": false,
+		"FSharp.suggestSdkScripts": false,
+		"files.exclude": {
+			"**/obj/": true,
+			"**/bin/": true,
+			".idea": true,
+			".ionide": true,
+			".build": true,
+			".npm-packages": true
+		}
+	}
+}

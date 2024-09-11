@@ -1,0 +1,6 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <text
+     class='text level-{props.Level} {screenSize.Class} {TopLevelBlockClass}'
+     stylesOption='props.styles'
+     children='children'/>
+</LC.With.ScreenSize>

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <RuntimeIdentifiers>win10-x64;osx.10.11-x64;linux-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibRenderDSL/src/LibRenderDSL.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Files.fs" />
+    <Compile Include="XML.fs" />
+    <Compile Include="EggshellConfig.fs" />
+    <Compile Include="Session.fs" />
+    <Compile Include="StringFormatting.fs" />
+    <Compile Include="Hovers.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LSP\LSP.fsproj" />
+  </ItemGroup>
+</Project>

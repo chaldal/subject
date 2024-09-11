@@ -1,0 +1,35 @@
+<rt-root rt-open='LibClient; LibClient.ContextMenus.Types'>
+    <LC.Dialog.Base
+     ContentPosition='~Free'
+     CanClose='~When ([~OnEscape; ~OnBackground], actions.TryCancel)'>
+        <div onPress='fun e -> (e.stopPropagation(); actions.TryCancel (ReactEvent.Action.OfBrowserEvent e))' class='dialog-contents'>
+            <RX.ScrollView class='scroll-view' vertical='true'>
+                <rt-block rt-map='item := props.Parameters.Items'>
+                    <rt-match what='item'>
+                        <rt-case is='Divider'>
+                            <div class='divider'/>
+                        </rt-case>
+                        <rt-case is='Heading text'>
+                            <div><text class='heading'>{text}</text></div>
+                        </rt-case>
+                        <rt-case is='InternalButton (label, isSelected, onPress)'>
+                            <LC.Button
+                             class='button button-normal'
+                             rt-class='selected := isSelected'
+                             Level='~Primary'
+                             Label='label'
+                             State='^LowLevel (~Actionable (fun e -> (actions.TryCancel e; onPress e)))'/>
+                        </rt-case>
+                        <rt-case is='ButtonCautionary (label, onPress)'>
+                            <LC.Button
+                             class='button button-cautionary'
+                             Level='~Cautionary'
+                             Label='label'
+                             State='^LowLevel (~Actionable (fun e -> (actions.TryCancel e; onPress e)))'/>
+                        </rt-case>
+                    </rt-match>
+                </rt-block>
+            </RX.ScrollView>
+        </div>
+    </LC.Dialog.Base>
+</rt-root>

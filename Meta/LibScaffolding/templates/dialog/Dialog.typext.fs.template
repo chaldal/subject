@@ -1,0 +1,44 @@
+module <%= appName %>.Components.Dialog.<%= dialogName %>
+
+open LibLang
+open LibClient
+open LibClient.Dialogs
+
+type Parameters = {
+    SomeParam: int
+}
+
+type Props = DialogProps<Parameters, unit>
+
+type Estate = EmptyRecordType
+type Pstate = EmptyRecordType
+
+type <%= dialogName %>(initialProps) =
+    inherit DialogComponent<Parameters, unit, Estate, Pstate, Actions, <%= dialogName %>>("<%= appName %>.Components.Dialog.<%= dialogName %>", initialProps.PstoreKey, initialProps, Actions, hasStyles = true)
+
+    override _.GetDefaultPstate(_initialProps: Props) = EmptyRecord
+
+    override _.GetInitialEstate(_initialProps: Props) = EmptyRecord
+
+    override _.CanCancel() : Async<bool> = async {
+        return true
+    }
+
+and Actions(this: <%= dialogName %>) =
+    member _.TryCancel (e: ReactEvent.Action) : unit =
+        this.TryCancel DialogCloseMethod.HistoryBack e
+
+
+let Make = makeConstructor<<%= dialogName %>,_,_>
+
+// NOTE we can't take Parameters here because of circular dependency with DialogsInterface/DialogsImplementation
+let Open (someParam: int) (close: DialogCloseMethod -> ReactEvent.Action -> unit) : ReactElement =
+    doOpen
+        "<%= dialogName %>"
+        { SomeParam = someParam }
+        Make
+        {
+            OnResult      = NoopFn
+            MaybeOnCancel = None
+        }
+        close

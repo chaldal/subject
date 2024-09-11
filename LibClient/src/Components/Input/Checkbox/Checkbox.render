@@ -1,0 +1,39 @@
+<div class='{TopLevelBlockClass} top-level-div' rt-new-styles='props.styles'>
+    <div class='div'>
+        <rt-match what='props.Value'>
+            <rt-case is='Some true' >
+                <LC.Icon
+                 class='icon'
+                 rt-class='
+                     checkbox-invalid :=     props.Validity.IsInvalid;
+                     checked          := not props.Validity.IsInvalid;
+                 '
+                 Icon='Icon.CheckboxChecked'/>
+            </rt-case>
+            <rt-case is='Some false'>
+                <LC.Icon
+                 class='icon'
+                 rt-class='
+                     checkbox-invalid :=     props.Validity.IsInvalid;
+                     unchecked        := not props.Validity.IsInvalid;
+                 '
+                 Icon='Icon.CheckboxEmpty'/>
+            </rt-case>
+            <rt-case is='None'>
+                <LC.Icon
+                 class='icon'
+                 rt-class='
+                     checkbox-invalid :=     props.Validity.IsInvalid;
+                     unchecked        := not props.Validity.IsInvalid;
+                 '
+                 Icon='Icon.CheckboxUnknown'/>
+            </rt-case>
+        </rt-match>
+        <rt-match what='props.Label'>
+            <rt-case is='Children'>{=castAsElement children}</rt-case>
+            <rt-case is='String label'><uitext class='label'>{label}</uitext></rt-case>
+        </rt-match>
+        <LC.TapCapture rt-fs='true' styles='[| CheckboxStyles.Styles.tapCapture |]' OnPress='actions.OnPress'/>
+    </div>
+    <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+</div>

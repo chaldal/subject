@@ -1,0 +1,88 @@
+<rt-root>
+    <LC.SetPageMetadata rt-fs='true' Title='"Components"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded>
+            <rt-match what='props.Content'>
+                <rt-case is='Index'>
+                    <Showdown.MarkdownViewer
+                     Source='~Url ("/docs/components/index.md" |> services().Http.PrepareInBundleResourceUrl)'
+                     GlobalLinkHandler='"globalMarkdownLinkHandler"'
+                     ShowdownConverter='showdownConverterWithSyntaxHighlighting'/>
+                </rt-case>
+                <rt-case is='Avatar'                      ><Content.Avatar                /></rt-case>
+                <rt-case is='AsyncData'                   ><Content.AsyncData             /></rt-case>
+                <rt-case is='ComponentItem.Button'        ><Content.Button                /></rt-case>
+                <rt-case is='ComponentItem.Buttons'       ><Content.Buttons               /></rt-case>
+                <rt-case is='Card'                        ><Content.Card                  /></rt-case>
+                <rt-case is='Carousel'                    ><Content.Carousel              /></rt-case>
+                <rt-case is='ComponentItem.ContextMenu'   ><Content.ContextMenu           /></rt-case>
+                <rt-case is='DateSelector'                ><Content.DateSelector          /></rt-case>
+                <rt-case is='Dialogs'                     ><Content.Dialogs               /></rt-case>
+                <rt-case is='Draggable'                   ><Content.Draggable             /></rt-case>
+                <rt-case is='ErrorBoundary'               ><Content.ErrorBoundary         /></rt-case>
+                <rt-case is='FloatingActionButton'        ><Content.FloatingActionButton  /></rt-case>
+                <rt-case is='Forms'                       ><Content.Forms                 /></rt-case>
+                <rt-case is='Grid'                        ><Content.Grid                  /></rt-case>
+                <rt-case is='ComponentItem.Heading'       ><Content.Heading               /></rt-case>
+                <rt-case is='Icon'                        ><Content.Icon                  /></rt-case>
+                <rt-case is='IconButton'                  ><Content.IconButton            /></rt-case>
+                <rt-case is='IconWithBadge'               ><Content.IconWithBadge         /></rt-case>
+                <rt-case is='ImageCard'                   ><Content.ImageCard             /></rt-case>
+                <rt-case is='InfoMessage'                 ><Content.InfoMessage           /></rt-case>
+                <rt-case is='Input_Checkbox'              ><Content.Input.Checkbox        /></rt-case>
+                <rt-case is='Input_ChoiceList'            ><Content.Input.ChoiceList      /></rt-case>
+                <rt-case is='Input_Date'                  ><Content.Input.Date            /></rt-case>
+                <rt-case is='Input_DayOfTheWeek'          ><Content.Input.DayOfTheWeek    /></rt-case>
+                <rt-case is='Input_Decimal'               ><Content.Input.Decimal         /></rt-case>
+                <rt-case is='Input_Duration'              ><Content.Input.Duration        /></rt-case>
+                <rt-case is='Input_EmailAddress'          ><Content.Input.EmailAddress    /></rt-case>
+                <rt-case is='Input_LocalTime'             ><Content.Input.LocalTime       /></rt-case>
+                <rt-case is='Input_File'                  ><Content.Input.File            /></rt-case>
+                <rt-case is='Input_Image'                 ><Content.Input.Image           /></rt-case>
+                <rt-case is='Input_Quantity'              ><Content.Input.Quantity        /></rt-case>
+                <rt-case is='Input_PhoneNumber'           ><Content.Input.PhoneNumber     /></rt-case>
+                <rt-case is='Input_PositiveInteger'       ><Content.Input.PositiveInteger /></rt-case>
+                <rt-case is='Input_PositiveDecimal'       ><Content.Input.PositiveDecimal /></rt-case>
+                <rt-case is='Input_UnsignedInteger'       ><Content.Input.UnsignedInteger /></rt-case>
+                <rt-case is='Input_UnsignedDecimal'       ><Content.Input.UnsignedDecimal /></rt-case>
+                <rt-case is='Input_Text'                  ><Content.Input.Text            /></rt-case>
+                <rt-case is='ItemList'                    ><Content.ItemList              /></rt-case>
+                <rt-case is='Input_Picker'                ><Content.Input.Picker          /></rt-case>
+                <rt-case is='InProgress'                  ><XmlDocsContent.LC.InProgress  rt-fs='true'/></rt-case>
+                <rt-case is='Layout_Row'                  ><XmlDocsContent.LC.Row         rt-fs='true'/></rt-case>
+                <rt-case is='Layout_Column'               ><XmlDocsContent.LC.Column      rt-fs='true'/></rt-case>
+                <rt-case is='Layout_Sized'                ><XmlDocsContent.LC.Sized       rt-fs='true'/></rt-case>
+                <rt-case is='Layout_Constrained'          ><XmlDocsContent.LC.Constrained rt-fs='true'/></rt-case>
+                <rt-case is='Nav_Top'                     ><Content.Nav.Top               rt-fs='true'/></rt-case>
+                <rt-case is='Nav_Bottom'                  ><Content.Nav.Bottom            /></rt-case>
+                <rt-case is='Pre'                         ><Content.Pre                   /></rt-case>
+                <rt-case is='QueryGrid'                   ><Content.QueryGrid             /></rt-case>
+                <rt-case is='Section_Padded'              ><Content.Section.Padded        /></rt-case>
+                <rt-case is='Stars'                       ><Content.Stars                 /></rt-case>
+                <rt-case is='Scrim'                       ><Content.Scrim                 /></rt-case>
+                <rt-case is='Sidebar'                     ><Content.Sidebar               /></rt-case>
+                <rt-case is='Tabs'                        ><Content.Tabs                  /></rt-case>
+                <rt-case is='Tag'                         ><Content.Tag                   /></rt-case>
+                <rt-case is='TextButton'                  ><Content.TextButton            /></rt-case>
+                <rt-case is='TimeSpan'                    ><Content.TimeSpan              /></rt-case>
+                <rt-case is='Timestamp'                   ><Content.Timestamp             /></rt-case>
+                <rt-case is='ThirdParty_Map'              ><Content.ThirdParty.Map        /></rt-case>
+                <rt-case is='ThirdParty_Recharts'         ><Content.ThirdParty.Recharts   /></rt-case>
+                <rt-case is='Thumb'                       ><Content.Thumb                 /></rt-case>
+                <rt-case is='Thumbs'                      ><Content.Thumbs                /></rt-case>
+                <rt-case is='ToggleButtons'               ><Content.ToggleButtons         /></rt-case>
+                <rt-case is='WithDataFlowControl'         ><Content.With.DataFlowControl  rt-fs='true'/></rt-case>
+                <rt-case is='WithExecutor'                ><XmlDocsContent.LC.With_Executor rt-fs='true'/></rt-case>
+                <rt-case is='WithSortAndFilter'           ><Content.WithSortAndFilter     /></rt-case>
+                <rt-case is='Executor_AlertErrors'        ><Content.Executor.AlertErrors  rt-fs='true'/></rt-case>
+                <rt-case is='AnimatableImage'             ><Content.AnimatableImage rt-fs='true' /></rt-case>
+                <rt-case is='AnimatableText'              ><Content.AnimatableText rt-fs='true' /></rt-case>
+                <rt-case is='AnimatableTextInput'         ><Content.AnimatableTextInput rt-fs='true' /></rt-case>
+                <rt-case is='AnimatableView'              ><Content.AnimatableView rt-fs='true' /></rt-case>
+                <rt-case is='TouchableOpacity'            ><Content.TouchableOpacity rt-fs='true' /></rt-case>
+                <rt-case is='_'>Docs not available yet — why don't you add it?</rt-case>
+            </rt-match>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

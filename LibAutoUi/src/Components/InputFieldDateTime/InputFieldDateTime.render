@@ -1,0 +1,4 @@
+<LC.DateField
+ rt-open='LibAutoUi.Types'
+ MaybeSelected='match props.MaybeValue with | Some (DateTimeValue dto) -> Some dto | _ -> None'
+ OnChange='fun value -> props.OnChange (DateTimeValue value)'/>

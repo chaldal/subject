@@ -1,0 +1,202 @@
+<ComponentContent DisplayName='"Input.Text"' rt-open='LibClient' Props='~ForFullyQualifiedName "LibClient.Components.Input.Text"'>
+    <rt-prop name='Notes'>
+        This component is a work in progress. If there's a feature that's not already
+        supported, check if RX.TextInput supports it, and if so, plumb it through.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "A"'
+                     Validity='Valid'
+                     RequestFocusOnMount='true'
+                     OnChange='actions.OnChange "A"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "A"'
+                     Validity='Valid'
+                     RequestFocusOnMount='true'
+                     OnChange='actions.OnChange "A"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Fruit"'
+                     Value='estate.Values.Item "B"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "B"'
+                     Multiline='true'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Fruit"'
+                     Value='estate.Values.Item "B"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "B"'
+                     Multiline='true'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Title"'
+                     Value='estate.Values.Item "C"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "C"'
+                     Placeholder='"e.g. Kafka on the Shore"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Title"'
+                     Value='estate.Values.Item "C"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "C"'
+                     Placeholder='"e.g. Kafka on the Shore"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Prefix"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Price"'
+                     Prefix='"$"'
+                     Value='estate.Values.Item "F1"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "F1"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Price"'
+                     Prefix='"$"'
+                     Value='estate.Values.Item "F1"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "F1"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Price"'
+                     Prefix='"$"'
+                     Value='estate.Values.Item "F2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "F2"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Price"'
+                     Prefix='"$"'
+                     Value='estate.Values.Item "F2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "F2"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Suffix"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ "Persons"'
+                     Value='estate.Values.Item "G1"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G1"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ "Persons"'
+                     Value='estate.Values.Item "G1"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G1"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ "Persons"'
+                     Value='estate.Values.Item "G2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G2"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ "Persons"'
+                     Value='estate.Values.Item "G2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G2"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ Icon.MagnifyingGlass'
+                     Value='estate.Values.Item "G2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G2"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Portion Size"'
+                     Suffix='^ Icon.MagnifyingGlass'
+                     Value='estate.Values.Item "G2"'
+                     Validity='Valid'
+                     OnChange='actions.OnChange "G2"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "D"'
+                     Validity='Missing'
+                     OnChange='actions.OnChange "D"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "D"'
+                     Validity='Missing'
+                     OnChange='actions.OnChange "D"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "E"'
+                     Validity='Invalid "Something is wrong with this value"'
+                     OnChange='actions.OnChange "D"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Text
+                     Label='"Name"'
+                     Value='estate.Values.Item "E"'
+                     Validity='Invalid "Something is wrong with this value"'
+                     OnChange='actions.OnChange "D"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

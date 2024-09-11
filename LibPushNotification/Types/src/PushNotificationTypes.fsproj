@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>7.0</LangVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <Configurations>Debug;Release;Fable Debug;Fable Release</Configurations>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Fable Debug' Or '$(Configuration)'=='Fable Release'">
+        <DefineConstants>FABLE_COMPILER</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- IMPORTANT: projects with Subject types must keep AssemblyName stable and AssemblyVersion at 1.0.0.0
+          while we use Orleans 3.7, changing those can break biosphere communication and affect reminders -->
+        <AssemblyName>PushNotificationTypes</AssemblyName>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <!-- nuget package version & metadata (can change) -->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Egg.PushNotificationTypes</PackageId>
+        <Version>1.0.0</Version>
+        <Description>PushNotification lib types</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="Types.fs" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<rt-root rt-type-parameters="'T">
+    <div class='{TopLevelBlockClass}' rt-new-styles='props.styles'>
+        {=props.Items estate.Group}
+    </div>
+    <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+</rt-root>

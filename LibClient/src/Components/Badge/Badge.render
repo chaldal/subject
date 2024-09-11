@@ -1,0 +1,15 @@
+<rt-match what='props.Badge'>
+    <rt-case is='Badge.Count count'>
+        <div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+            <uitext class='text'>{count}</uitext>
+        </div>
+    </rt-case>
+    <rt-case is='Badge.Text text'>
+        <div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+            <uitext class='text' numberOfLines='1'>{text}</uitext>
+        </div>
+    </rt-case>
+    <rt-case is='Badge.NoContent'>
+        <div class='no-content {TopLevelBlockClass}' rt-new-styles='props.styles'/>
+    </rt-case>
+</rt-match>

@@ -1,0 +1,260 @@
+<ComponentContent DisplayName='"AsyncData"' Props='~ForFullyQualifiedName "LibClient.Components.AsyncData"'>
+    <rt-prop name='Notes'>
+        An AsyncData component is typically used in conjunction with a component that provides data asynchronously, such
+        as With.Subject or QueryGrid. Such components will typically handle the async life cycle on your behalf, automatically
+        transitioning between different AsyncData&lt;'T&gt; values. For the sake of simplicity, the examples below provide
+        AsyncData&lt;'T&gt; values to the AsyncData component directly.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Uninitialized'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Uninitialized'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Unavailable'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Unavailable'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'> 
+                    <LC.AsyncData rt-fs='true'
+                     Data='AccessDenied'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='AccessDenied'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='WillStartFetchingSoonHack'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='WillStartFetchingSoonHack'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching None'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching None'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching (Some "Jekyll")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching (Some "Jekyll")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'> 
+                    <LC.AsyncData rt-fs='true'
+                     Data='Available "Hyde"'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Available "Hyde"'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Customization"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'> 
+                    <LC.AsyncData rt-fs='true'
+                     Data='Uninitialized'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                        <rt-prop name='WhenUninitialized(_)'>
+                            A custom uninitialized message.
+                        </rt-prop>
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Uninitialized'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                        <rt-prop name='WhenUninitialized(_)'>
+                            A custom uninitialized message.
+                        </rt-prop>
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'> 
+                    <LC.AsyncData rt-fs='true'
+                     Data='Unavailable'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                        <rt-prop name='WhenElse(_)'>
+                            An alternative way to customize for all states other than Available.
+                        </rt-prop>
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Unavailable'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+                        <rt-prop name='WhenElse(_)'>
+                            An alternative way to customize for all states other than Available.
+                        </rt-prop>
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching (Some "Jekyll")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+
+                        <rt-prop name='WhenFetching(maybePrevName)'>
+                            Updating name (previously {maybePrevName |> Option.getOrElse "unknown"}), please wait.
+                        </rt-prop>
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Fetching (Some "Jekyll")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+
+                        <rt-prop name='WhenFetching(maybePrevName)'>
+                            Updating name (previously {maybePrevName |> Option.getOrElse "unknown"}), please wait.
+                        </rt-prop>
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Failures"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ErrorBoundary rt-fs='true' rt-prop-children='Try'>
+                        <LC.AsyncData rt-fs='true'
+                         Data='Failed (UserReadableFailure "someone sent us a bomb")'
+                         rt-prop-children='WhenAvailable(name)'>
+                            The name is {name}.
+                        </LC.AsyncData>
+
+                        <rt-prop name='Catch(_, _)'>
+                            Caught an error (catching here lest the error propagates all the way to the top of the app)
+                        </rt-prop>
+                    </LC.ErrorBoundary>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ErrorBoundary rt-fs='true' rt-prop-children='Try'>
+                        <LC.AsyncData rt-fs='true'
+                         Data='Failed (UserReadableFailure "someone sent us a bomb")'
+                         rt-prop-children='WhenAvailable(name)'>
+                            The name is {name}.
+                        </LC.AsyncData>
+
+                        <rt-prop name='Catch(_, _)'>
+                            Caught an error (catching here lest the error propagates all the way to the top of the app)
+                        </rt-prop>
+                    </LC.ErrorBoundary>
+                ]]></rt-prop>
+            </ComponentSample>
+            
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.AsyncData rt-fs='true'
+                     Data='Failed (UserReadableFailure "someone sent us a bomb")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+
+                        <rt-prop name='WhenFailed(_error)'>
+                            Something went wrong - we couldn't retrieve the name.
+                        </rt-prop>
+                    </LC.AsyncData>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.AsyncData rt-fs='true'
+                     Data='Failed (UserReadableFailure "someone sent us a bomb")'
+                     rt-prop-children='WhenAvailable(name)'>
+                        The name is {name}.
+
+                        <rt-prop name='WhenFailed(_error)'>
+                            Something went wrong - we couldn't retrieve the name.
+                        </rt-prop>
+                    </LC.AsyncData>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

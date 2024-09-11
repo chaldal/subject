@@ -1,0 +1,9 @@
+<rt-root rt-type-parameters="'EndpointParams, 'Entry">
+<div class='view'>
+	<UiAdmin.Grid Input='~Paginated (estate.CurrentPage, (snd props.HeadersAndFields), props.HandheldRow)'>
+        <rt-prop name='Headers'>
+            {= props.HeadersAndFields |> fst}
+        </rt-prop>
+    </UiAdmin.Grid>
+</div>
+</rt-root>

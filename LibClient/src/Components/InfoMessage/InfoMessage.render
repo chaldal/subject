@@ -1,0 +1,3 @@
+<div class='view'>
+    <text class='text {props.Level}' StylesOption='props.styles'>{props.Message}</text>
+</div>

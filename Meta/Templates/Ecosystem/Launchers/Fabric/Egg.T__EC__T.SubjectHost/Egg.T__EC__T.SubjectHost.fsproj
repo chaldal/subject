@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../Ecosystem/LifeCycles/LifeCycles.fsproj" />
+    <ProjectReference Include="../../../../LibLifeCycleHostBuild/LibLifeCycleHostBuild.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\LibLifeCycleHost\src\Host\Fabric\Config\Settings.xml" Link="PackageRoot\Config\Settings.xml" />
+    <Content Include="PackageRoot\ServiceManifest.xml" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PackageRoot\Config\" />
+  </ItemGroup>
+
+</Project>

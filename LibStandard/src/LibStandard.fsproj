@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibClient/src/LibClient.fsproj" />
+    <ProjectReference Include="../../LibRouter/src/LibRouter.fsproj" />
+    <ProjectReference Include="../../LibPushNotification/Client/src/PushNotificationClient.fsproj" />
+    <!-- F# compiles about some inlined values in Fable.SignalR when generating the assembly so we skip these projects -->
+    <!-- <ProjectReference Include="../../LibUiSubject/src/LibUiSubject.fsproj" /> -->
+    <!-- <ProjectReference Include="../../LibUiSubjectAdmin/src/LibUiSubjectAdmin.fsproj" /> -->
+    <!-- <ProjectReference Include="../../LibUiAdmin/src/LibUiAdmin.fsproj" /> -->
+    <!-- <ProjectReference Include="../../ThirdParty/Map/src/Map.fsproj" />
+    <ProjectReference Include="../../ThirdParty/ReactNativeCodePush/src/ReactNativeCodePush.fsproj" />
+    <ProjectReference Include="../../ThirdParty/ImagePicker/src/ImagePicker.fsproj" />
+    <ProjectReference Include="../../ThirdParty/ReactNativeDeviceInfo/src/ReactNativeDeviceInfo.fsproj" /> -->
+  </ItemGroup>
+</Project>

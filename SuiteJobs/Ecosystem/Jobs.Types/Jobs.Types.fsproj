@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configurations>Debug;Release;Fable Debug;Fable Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Fable Debug' Or '$(Configuration)'=='Fable Release'">
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- IMPORTANT: projects with Subject types must keep AssemblyName stable and AssemblyVersion at 1.0.0.0
+      while we use Orleans 3.7, changing those can break biosphere communication and affect reminders -->
+    <AssemblyName>Jobs.Types</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <!-- nuget package version & metadata (can change) -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.Jobs.Types</PackageId>
+    <Version>6.2.0</Version>
+    <Description>Jobs ecosystem types</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\LibLangFsharp\src\LibLangFsharp.fsproj" />
+    <ProjectReference Include="..\..\..\LibLifeCycleTypes\src\LibLifeCycleTypes.fsproj" />
+  </ItemGroup>
+  <ItemGroup Label="Subject">
+    <Compile Include="Common.fs" />
+    <Compile Include="Job.fs" />
+    <Compile Include="Dispatcher.fs" />
+    <Compile Include="Batch.fs" />
+    <Compile Include="RecurringJob.fs" />
+    <Compile Include="RecurringJobsManifest.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EcosystemDef.fs" />
+    <Compile Include="BatchedJobsHelper.fs" />
+  </ItemGroup>
+</Project>

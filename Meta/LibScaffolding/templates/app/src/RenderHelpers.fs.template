@@ -1,0 +1,7 @@
+[<AutoOpen>]
+module <%= appName %>.RenderHelpers
+
+open LibClient.Chars
+
+// This is where you put type extensions for your model types,
+// e.g. the member this.DisplayString for type UserName, etc.

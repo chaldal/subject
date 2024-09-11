@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "react-syntax-highlighter": "15.3.0"
+  }
+}

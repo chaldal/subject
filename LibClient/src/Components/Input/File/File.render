@@ -1,0 +1,40 @@
+<div class='view {TopLevelBlockClass}' rt-open='LibLifeCycleTypes.File'>
+    <LC.With.RefDom rt-fs='true' OnInitialize='actions.OnDropZoneInitialize' rt-with='bindDivRef, _'>
+        <dom.div Ref='bindDivRef'>
+            <LC.With.RefDom rt-fs='true' OnInitialize='actions.OnInputInitialize' rt-with='bindRef, input'>
+                <dom.input Type='"file"' Ref='bindRef' Hidden='true' Multiple='true' Accept='props.AcceptedTypes |> Set.map (fun item -> item.Value) |> String.concat ", "'/>
+                <LC.Button Label='"Select File"' State='^LowLevel (~Actionable (actions.OnSelectPress input))'/>
+            </LC.With.RefDom>
+            <div class='drag-and-drop-message'>
+                <text class='text-center'>
+                    <rt-match what='props.MaxFileCount'>
+                        <rt-case is='Some maxFileCount when maxFileCount.Value = 1'>or drag and drop file here</rt-case>
+                        <rt-case is='_'>or drag and drop files here</rt-case>
+                    </rt-match>
+                </text>
+            </div>
+            <div class='constrain-message'>
+                <text class='text-center'>
+                    <rt-match what='(props.MaxFileCount, props.MaxFileSize)'>
+                        <rt-case is='(Some maxFileCount, Some maxFileSize) when maxFileCount.Value > 1'>Maximum {maxFileCount.Value} files each below {kBToMB maxFileSize} MB</rt-case>
+                        <rt-case is='(Some maxFileCount, None            ) when maxFileCount.Value > 1'>Maximum {maxFileCount.Value} files                                   </rt-case>
+                        <rt-case is='(_,                 Some maxFileSize)                            '>Size below {kBToMB maxFileSize} MB                                   </rt-case>
+                        <rt-case is='_'>{=noElement}</rt-case>
+                    </rt-match>
+                </text>
+            </div>
+            <div class='message-container'>
+                <div>
+                    <text class='text-center info-message' rt-if='props.Value.Length = 1'>{props.Value.Length} file selected</text>
+                    <text class='text-center info-message' rt-if='props.Value.Length > 1'>{props.Value.Length} files selected</text>
+                </div>
+                <div rt-mapo='reason := if estate.InternalValidity.InvalidReason.IsSome then estate.InternalValidity.InvalidReason else props.Validity.InvalidReason'>
+                    <text class='invalid-reason'>{reason}</text>
+                </div>
+                <div rt-if='props.Validity = InputValidity.Missing'>
+                    <text class='invalid-reason'>This field is required</text>
+                </div>
+            </div>
+        </dom.div>
+    </LC.With.RefDom>
+</div>

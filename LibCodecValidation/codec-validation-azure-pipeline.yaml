@@ -1,0 +1,83 @@
+trigger: none
+
+parameters:
+- name: suiteName
+  type: string
+  displayName: 'Suite Name'
+  default: 'QQQ'
+  values:
+  - 'Example'
+
+- name: fromBranch
+  type: string
+  displayName: 'From Branch'
+  default: 'master'
+- name: toBranch
+  type: string
+  displayName: 'To Branch'
+  default: 'QQQ'
+
+pool:
+  name: Default
+  demands:
+    - eggmason
+
+steps:
+- checkout: self
+  clean: true
+  fetchDepth: 0
+  persistCredentials: true
+
+- bash: |
+    echo "Running git fetch"
+    git clean -ffdx
+    git reset --hard HEAD
+    git fetch 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    git checkout ${{ parameters.fromBranch }} 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    echo "Current state of ${{ parameters.fromBranch }} branch:"
+    git show --no-patch ${{ parameters.fromBranch }}
+    git reset --hard origin/${{ parameters.fromBranch }}
+    echo "Updated state of ${{ parameters.fromBranch }} branch:"
+    git show --no-patch ${{ parameters.fromBranch }}
+  displayName: 'Checkout -> Fetch -> Reset origin branch ${{ parameters.fromBranch }}'
+  failOnStderr: true
+
+- bash: |
+    echo "Running git fetch"
+    git clean -ffdx
+    git reset --hard HEAD
+    git fetch 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    git checkout ${{ parameters.toBranch }} 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    echo "Current state of ${{ parameters.toBranch }} branch:"
+    git show --no-patch ${{ parameters.toBranch }}
+    git reset --hard origin/${{ parameters.toBranch }}
+    echo "Updated state of ${{ parameters.toBranch }} branch:"
+    git show --no-patch ${{ parameters.toBranch }}
+  displayName: 'Checkout -> Fetch -> Reset origin branch ${{ parameters.toBranch }}'
+  failOnStderr: true
+
+- bash: |
+    echo "Running git fetch"
+    git clean -ffdx
+    git reset --hard HEAD
+    git fetch 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    git checkout master 2> >(while read line; do echo -e "\e[31m$line\e[0m" >&1; done)
+    echo "Current state of master branch:"
+    git show --no-patch master
+    git reset --hard origin/master
+    echo "Updated state of master branch:"
+    git show --no-patch master
+  displayName: 'Checkout -> Fetch -> Reset origin branch master'
+  failOnStderr: true
+
+- bash: rm -rf ./CodecValidationWorkSpace
+  displayName: 'Clean workspace'
+  failOnStderr: true
+
+- task: NuGetAuthenticate@1
+  inputs:
+    forceReinstallCredentialProvider: true
+
+- script: ~/bin/eggmason bash ./validate-codec.sh --suite ${{ parameters.suiteName }} --fromcodec ${{ parameters.fromBranch }} --tocodec ${{ parameters.toBranch }}
+  displayName: 'Generate json schema and validate evolution'
+  # failOnStderr: true # git clone and git checkout were writing into stderr, so commenting it for now

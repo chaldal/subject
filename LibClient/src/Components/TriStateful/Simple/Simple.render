@@ -1,0 +1,23 @@
+<LC.TriStateful.Abstract
+ rt-open='LibClient'
+ rt-prop-children='Content(mode, runAction, reset)'>
+    {=props.Content runAction}
+    <rt-match what='mode'>
+        <rt-case is='Mode.Initial'><!-- nothing --></rt-case>
+
+        <rt-case is='Mode.InProgress'>
+            <div class='shield'>
+                <RX.ActivityIndicator color='"#aaaaaa"' size='~Size.Small'/>
+            </div>
+        </rt-case>
+
+        <rt-case is='Mode.Error message'>
+            <div class='shield error'>
+                <text class='message'>{message}</text>
+                <LC.Button
+                 Label='"Ok"'
+                 State='^LowLevel (~Actionable reset)'/>
+            </div>
+        </rt-case>
+    </rt-match>
+</LC.TriStateful.Abstract>

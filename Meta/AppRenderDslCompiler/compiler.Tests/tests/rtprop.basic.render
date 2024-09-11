@@ -1,0 +1,6 @@
+<Notification bar='"the bar"'>
+    <rt-prop name='foo'>
+        <dom.div>Some stuff</dom.div>
+    </rt-prop>
+    And other children
+</Notification>

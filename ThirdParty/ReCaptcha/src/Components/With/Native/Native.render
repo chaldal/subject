@@ -1,0 +1,8 @@
+<rt-block rt-open='ReactXP.Components.WebView'>
+    <RX.WebView
+     javaScriptEnabled='true'
+     ref='actions.Bound.RefWebview'
+     source='{ html = actions.source (props.SiteKey); baseUrl = Some props.BaseUrl }'
+     onMessage='actions.onMessageHandler' />
+     {=props.With (actions.getToken)}
+</rt-block>

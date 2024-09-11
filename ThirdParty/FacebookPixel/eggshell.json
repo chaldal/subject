@@ -1,0 +1,26 @@
+{
+	"name": "ThirdParty.FacebookPixel",
+	"alias": "FacebookPixel",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+			"LibClient"
+		],
+		"componentLibraryAliases": [
+			["default", "ThirdParty.FacebookPixel.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",       "RX.View"],
+			["anidiv",    "RX.AnimatableView"],
+			["text",      "LC.LegacyText"],
+			["anitext",   "RX.AnimatableText"],
+			["uitext",    "LC.LegacyUiText"]
+		]
+	}
+}

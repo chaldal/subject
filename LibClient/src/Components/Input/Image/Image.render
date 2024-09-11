@@ -1,0 +1,24 @@
+<div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+    <LC.Thumbs
+     rt-fs='true'
+     rt-if='props.ShowPreview'
+     styles='[| ImageStyles.Styles.imageThumbs |]'
+     Selected='estate.SelectedFiles'
+     For='^(props.Value |> List.map (fun file -> file.ToDataUri |> LibClient.Services.ImageService.ImageSource.ofUrl))'
+     OnPress='fun _ index _ -> actions.ToggleSelectedFilesForRemoval index'/>
+
+    <LC.TextButton rt-fs='true'
+     rt-if='estate.SelectedIndicesForRemoval.IsNonempty'
+     Label='"Remove Selected"'
+     State='^LowLevel (LC.TextButton.Actionable actions.RemoveSelected)'/>
+
+    <LC.Input.File
+     class='image-input'
+     Value='props.Value'
+     Validity='props.Validity'
+     MaxFileCountOption='props.MaxFileCount'
+     MaxFileSizeOption='props.MaxFileSize'
+     AcceptedTypes='[ ~AnyImageFile ] |> Set.ofSeq'
+     SelectionMode='props.SelectionMode'
+     OnChange='props.OnChange'/>
+</div>

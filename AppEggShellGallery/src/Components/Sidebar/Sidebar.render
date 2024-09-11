@@ -1,0 +1,326 @@
+<LR.With.CurrentRoute rt-fs='true' spec='routesSpec()' rt-prop-children='fn(maybeCurrentRoute)'>
+    <rt-match what='maybeCurrentRoute'>
+        <rt-case is='Some { SampleVisualsScreenSize = _; ActualRoute = currentRoute }'>
+            <LC.Sidebar.WithClose rt-with='close'>
+                <rt-let name='maybeFixedTop'>
+                    <LC.Responsive
+                     rt-let='
+                         show      := fun (route: ActualRoute) e -> nav.Go (maybeCurrentRoute, route) e; close e;
+                         itemState := fun route -> if route = currentRoute then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show route);
+                     '>
+                        <rt-prop name='Handheld(_screenSize)'>
+                            <LC.Sidebar.Item Label='"Docs"'       State='itemState (Docs "index.md")                               '/>
+                            <LC.Sidebar.Item Label='"Tools"'      State='itemState (Tools "tools/index.md")                        '/>
+                            <LC.Sidebar.Item Label='"Components"' State='itemState (Components Index)                              '/>
+                            <LC.Sidebar.Item Label='"How To"'     State='itemState (HowTo (HowToItem.Markdown "how-to/index.md"))  '/>
+                            <LC.Sidebar.Item Label='"Design"'     State='itemState (Design (DesignItem.Markdown "design/index.md"))'/>
+                        </rt-prop>
+                        <rt-prop name='Desktop(_screenSize)'>{=noElement}</rt-prop>
+                    </LC.Responsive>
+                </rt-let>
+
+                <rt-match what='currentRoute'>
+                    <rt-case is='Home | TinyGuid'>
+                        <LC.Responsive>
+                            <rt-prop name='Handheld(_screenSize)'>
+                                <LC.Sidebar.Base>
+                                    <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                                </LC.Sidebar.Base>
+                            </rt-prop>
+                            <rt-prop name='Desktop(_screenSize)'>{=noElement}</rt-prop>
+                        </LC.Responsive>
+                    </rt-case>
+
+                    <rt-case is='Docs url'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun url e -> nav.Go (maybeCurrentRoute, Docs url) e; close e;
+                             itemState := fun itemUrl -> if url = itemUrl then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show itemUrl);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"EggShell Introduction"' State='itemState "index.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"Getting Started"'       State='itemState "basics/getting-started.md"'/>
+                                <LC.Sidebar.Item Label='"Dev Experience"'        State='itemState "basics/dev-experience.md"'/>
+                                <LC.Sidebar.Item Label='"Components"'            State='itemState "fsharp/component.md"'/>
+                                <LC.Sidebar.Item Label='"Styling"'               State='itemState "fsharp/styling.md"'/>
+                                <LC.Sidebar.Item Label='"Themeing"'              State='itemState "fsharp/themeing.md"'/>
+                                <LC.Sidebar.Item Label='"Legacy Interop"'        State='itemState "fsharp/legacy.md"'/>
+
+                                <LC.Sidebar.Item Label='"Libraries"'             State='itemState "basics/libraries.md"'/>
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Native"'/>
+                                <LC.Sidebar.Item Label='"Getting Started"'       State='itemState "native/getting-started.md"'/>
+                                <LC.Sidebar.Item Label='"Dev Experience"'        State='itemState "native/dev-experience.md"'/>
+                                <LC.Sidebar.Item Label='"Link Native Libray"'    State='itemState "native/link-native-library.md"'/>
+                                <LC.Sidebar.Item Label='"Release Native App"'    State='itemState "native/release-app.md"'/>
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Housekeeping"'/>
+                                <LC.Sidebar.Item Label='"Changelog"'              State='itemState "basics/changelog.md"'/>
+                                <LC.Sidebar.Item Label='"Roadmap"'                State='itemState "basics/roadmap.md"'/>
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Unsorted"'/>
+                                <LC.Sidebar.Item Label='"Background"'                                 State='itemState "unsorted/background.md"'/>
+                                <LC.Sidebar.Item Label='"Icons infra"'                                State='itemState "unsorted/icons.md"'/>
+                                <LC.Sidebar.Item Label='"Component types"'                            State='itemState "unsorted/component-design.md"'/>
+                                <LC.Sidebar.Item Label='"EggShell-specific F# Good Coding Practices"' State='itemState "unsorted/eggshell-specific-fsharp-good-practices.md"'/>
+                                <LC.Sidebar.Item Label='"Directory structure"'                        State='itemState "unsorted/directory-structure.md"'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='Tools url'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun url e -> nav.Go (maybeCurrentRoute, Tools url) e; close e;
+                             itemState := fun itemUrl -> if url = itemUrl then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show itemUrl);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"Tools Introduction"' State='itemState "tools/index.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"eggshell CLI"'       State='itemState "tools/cli.md"'/>
+                                <LC.Sidebar.Item Label='"Snippets"'           State='itemState "tools/snippets.md"'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='HowTo currItem'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show              := fun item e -> nav.Go (maybeCurrentRoute, HowTo item) e; close e;
+                             itemState         := fun item -> if item = currItem then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show item);
+                             itemStateMarkdown := fun url -> itemState (HowToItem.Markdown url);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"How To Introduction"'       State='itemStateMarkdown "how-to/index.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"FAQ"'                       State='itemStateMarkdown "how-to/faq.md"'/>
+                                <LC.Sidebar.Item Label='"Where to find examples"'    State='itemStateMarkdown "how-to/projects.md"'/>
+                                <LC.Sidebar.Item Label='"Taps, Clicks, Hovers, etc"' State='itemStateMarkdown "how-to/tap-capture.md"'/>
+                                <LC.Sidebar.Item Label='"Executors"'                 State='itemStateMarkdown "how-to/executors.md"'/>
+                                <LC.Sidebar.Item Label='"Responsive Components"'     State='itemStateMarkdown "how-to/responsive.md"'/>
+                                <LC.Sidebar.Item Label='"Scrolling in ReactXP"'      State='itemStateMarkdown "how-to/scrolling.md"'/>
+                                <LC.Sidebar.Item Label='"React Refs"'                State='itemStateMarkdown "how-to/refs.md"'/>
+                                <LC.Sidebar.Item Label='"Dealing with Spinners"'     State='itemStateMarkdown "how-to/spinners.md"'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='Subject url'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun url e -> nav.Go (maybeCurrentRoute, Subject url) e; close e;
+                             itemState := fun itemUrl -> if url = itemUrl then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show itemUrl);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"Introduction"' State='itemState "subject/index.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"Actions and transitions"'        State='itemState "subject/actions-and-transitions.md"'/>
+                                <LC.Sidebar.Item Label='"Events and subscriptions"'       State='itemState "subject/events-and-subscriptions.md"'/>
+                                <LC.Sidebar.Item Label='"Construction and id generation"' State='itemState "subject/construction-and-id-generation.md"'/>
+                                <LC.Sidebar.Item Label='"Indexing and querying"'          State='itemState "subject/indexing-and-querying.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"Testing"'                        State='itemState "subject/testing.md"'/>
+                                <LC.Sidebar.Item Label='"Dev Host Simulations"'           State='itemState "subject/dev-host-simulator.md"'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"Views"'                          State='itemState "subject/views.md"'/>
+                                <LC.Sidebar.Item Label='"Access control"'                 State='itemState "subject/access-control.md"'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='Design currItem'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun item e -> nav.Go (maybeCurrentRoute, Design item) e; close e;
+                             itemState := fun item -> if currItem = item then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show item);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"Design Introduction"' State='itemState (DesignItem.Markdown "design/index.md")'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Item Label='"Colors"' State='itemState DesignItem.ColorVariants'/>
+                                <LC.Sidebar.Item Label='"Icons"'  State='itemState DesignItem.Icons'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='Legacy currItem'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun item e -> nav.Go (maybeCurrentRoute, Legacy item) e; close e;
+                             itemState := fun item -> if currItem = item then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show item);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"Legacy Introduction"' State='itemState (LegacyItem.Markdown "design/index.md")'/>
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Render DSL"'/>
+                                <LC.Sidebar.Item Label='"Language Description"' State='itemState (LegacyItem.Markdown "renderDsl/index.md")'/>
+                                <LC.Sidebar.Item Label='"Style Guide"'          State='itemState (LegacyItem.Markdown "renderDsl/style-guide.md")'/>
+                                <LC.Sidebar.Item Label='"Sunsetting"'           State='itemState (LegacyItem.Markdown "fsharp/background.md")'/>
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Styles DSL"'/>
+                                <LC.Sidebar.Item Label='"Language Description"' State='itemState (LegacyItem.Markdown "stylesDsl/index.md")'/>
+                                <LC.Sidebar.Item Label='"Style Guide"'          State='itemState (LegacyItem.Markdown "stylesDsl/style-guide.md")'/>
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+
+                    <rt-case is='Components content'>
+                        <LC.Sidebar.Base
+                         rt-let='
+                             show      := fun content e -> nav.Go (maybeCurrentRoute, Components content) e; close e;
+                             itemState := fun itemContent -> if content = itemContent then LibClient.Components.Sidebar.Item.Selected else LibClient.Components.Sidebar.Item.Actionable (show itemContent);
+                         '>
+                            <rt-prop name='FixedTop'>{=maybeFixedTop}</rt-prop>
+                            <rt-prop name='ScrollableMiddle'>
+                                <LC.Sidebar.Item Label='"Components Introduction"'     State='itemState Index'                      />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Layout"'/>
+                                <LC.Sidebar.Item Label='"Row"'         State='itemState Layout_Row'/>
+                                <LC.Sidebar.Item Label='"Column"'      State='itemState Layout_Column'/>
+                                <LC.Sidebar.Item Label='"Sized"'       State='itemState Layout_Sized'/>
+                                <LC.Sidebar.Item Label='"Constrained"' State='itemState Layout_Constrained'/>
+                                <LC.Sidebar.Divider/>
+
+                                <LC.Sidebar.Heading Text='"Buttons"'/>
+                                <LC.Sidebar.Item Label='"Buttons"'                     Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.Buttons'      />
+                                <LC.Sidebar.Item Label='"Button"'                      Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.Button'       />
+                                <LC.Sidebar.Item Label='"IconButton"'                  Right='~Right.Icon Icon.EggShell' State='itemState IconButton'                 />
+                                <LC.Sidebar.Item Label='"FloatingActionButton"'        Right='~Right.Icon Icon.EggShell' State='itemState FloatingActionButton'       />
+                                <LC.Sidebar.Item Label='"TextButton"'                  Right='~Right.Icon Icon.EggShell' State='itemState TextButton'                 />
+                                <LC.Sidebar.Item Label='"ToggleButtons"'               Right='~Right.Icon Icon.EggShell' State='itemState ToggleButtons'              />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Input"'/>
+                                <LC.Sidebar.Item Label='"Forms"'                       Right='~Right.Icon Icon.EggShell' State='itemState Forms'                      />
+                                <LC.Sidebar.Item Label='"Input.Checkbox"'              Right='~Right.Icon Icon.EggShell' State='itemState Input_Checkbox'             />
+                                <LC.Sidebar.Item Label='"Input.ChoiceList"'            Right='~Right.Icon Icon.EggShell' State='itemState Input_ChoiceList'           />
+                                <LC.Sidebar.Item Label='"Input.Date"'                  Right='~Right.Icon Icon.EggShell' State='itemState Input_Date'                 />
+                                <LC.Sidebar.Item Label='"Input.DayOfTheWeek"'          Right='~Right.Icon Icon.EggShell' State='itemState Input_DayOfTheWeek'         />
+                                <LC.Sidebar.Item Label='"Input.Decimal"'               Right='~Right.Icon Icon.EggShell' State='itemState Input_Decimal'              />
+                                <LC.Sidebar.Item Label='"Input.Duration"'              Right='~Right.Icon Icon.EggShell' State='itemState Input_Duration'             />
+                                <LC.Sidebar.Item Label='"Input.EmailAddress"'          Right='~Right.Icon Icon.EggShell' State='itemState Input_EmailAddress'         />
+                                <LC.Sidebar.Item Label='"Input.LocalTime"'             Right='~Right.Icon Icon.EggShell' State='itemState Input_LocalTime'            />
+                                <LC.Sidebar.Item Label='"Input.File"'                  Right='~Right.Icon Icon.EggShell' State='itemState Input_File'                 />
+                                <LC.Sidebar.Item Label='"Input.Image"'                 Right='~Right.Icon Icon.EggShell' State='itemState Input_Image'                />
+                                <LC.Sidebar.Item Label='"Input.Picker"'                Right='~Right.Icon Icon.EggShell' State='itemState Input_Picker'               />
+                                <LC.Sidebar.Item Label='"Input.PhoneNumber"'           Right='~Right.Icon Icon.EggShell' State='itemState Input_PhoneNumber'          />
+                                <LC.Sidebar.Item Label='"Input.PositiveInteger"'       Right='~Right.Icon Icon.EggShell' State='itemState Input_PositiveInteger'      />
+                                <LC.Sidebar.Item Label='"Input.PositiveDecimal"'       Right='~Right.Icon Icon.EggShell' State='itemState Input_PositiveDecimal'      />
+                                <LC.Sidebar.Item Label='"Input.Quantity"'              Right='~Right.Icon Icon.EggShell' State='itemState Input_Quantity'             />
+                                <LC.Sidebar.Item Label='"Input.Text"'                  Right='~Right.Icon Icon.EggShell' State='itemState Input_Text'                 />
+                                <LC.Sidebar.Item Label='"Input.UnsignedInteger"'       Right='~Right.Icon Icon.EggShell' State='itemState Input_UnsignedInteger'      />
+                                <LC.Sidebar.Item Label='"Input.UnsignedDecimal"'       Right='~Right.Icon Icon.EggShell' State='itemState Input_UnsignedDecimal'      />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Content Blocks"'/>
+                                <LC.Sidebar.Item Label='"Card"'                        Right='~Right.Icon Icon.EggShell' State='itemState Card'                       />
+                                <LC.Sidebar.Item Label='"Carousel"'                    Right='~Right.Icon Icon.EggShell' State='itemState Carousel'                   />
+                                <LC.Sidebar.Item Label='"Dialogs"'                     Right='~Right.Icon Icon.EggShell' State='itemState Dialogs'                    />
+                                <LC.Sidebar.Item Label='"Draggable"'                   Right='~Right.Icon Icon.EggShell' State='itemState Draggable'                  />
+                                <LC.Sidebar.Item Label='"ImageCard"'                   Right='~Right.Icon Icon.EggShell' State='itemState ImageCard'                  />
+                                <LC.Sidebar.Item Label='"InfoMessage"'                 Right='~Right.Icon Icon.EggShell' State='itemState InfoMessage'                />
+                                <LC.Sidebar.Item Label='"ItemList"'                    Right='~Right.Icon Icon.EggShell' State='itemState ItemList'                   />
+                                <LC.Sidebar.Item Label='"Section.Padded"'              Right='~Right.Icon Icon.EggShell' State='itemState Section_Padded'             />
+                                <LC.Sidebar.Item Label='"Tabs"'                        Right='~Right.Icon Icon.EggShell' State='itemState Tabs'                       />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Animation"'/>
+                                <LC.Sidebar.Item Label='"AnimatableImage"'             Right='~Right.Icon Icon.EggShell' State='itemState AnimatableImage'            />
+                                <LC.Sidebar.Item Label='"AnimatableText"'              Right='~Right.Icon Icon.EggShell' State='itemState AnimatableText'             />
+                                <LC.Sidebar.Item Label='"AnimatableTextInput"'         Right='~Right.Icon Icon.EggShell' State='itemState AnimatableTextInput'        />
+                                <LC.Sidebar.Item Label='"AnimatableView"'              Right='~Right.Icon Icon.EggShell' State='itemState AnimatableView'             />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Admin Panels"'/>
+                                <LC.Sidebar.Item Label='"Grid"'                        Right='~Right.Icon Icon.EggShell' State='itemState Grid'                       />
+                                <LC.Sidebar.Item Label='"QueryGrid"'                   Right='~Right.Icon Icon.EggShell' State='itemState QueryGrid'                  />
+                                <LC.Sidebar.Item Label='"WithSortAndFilter"'           Right='~Right.Icon Icon.EggShell' State='~Disabled'                            />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Text &amp; Formatting"'/>
+                                <LC.Sidebar.Item Label='"Heading"'                     Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.Heading'      />
+                                <LC.Sidebar.Item Label='"Pre"'                         Right='~Right.Icon Icon.EggShell' State='itemState Pre'                        />
+                                <LC.Sidebar.Item Label='"Tag"'                         Right='~Right.Icon Icon.EggShell' State='itemState Tag'                        />
+                                <LC.Sidebar.Item Label='"TimeSpan"'                    Right='~Right.Icon Icon.EggShell' State='itemState TimeSpan'                   />
+                                <LC.Sidebar.Item Label='"Timestamp"'                   Right='~Right.Icon Icon.EggShell' State='itemState Timestamp'                  />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Graphic"'/>
+                                <LC.Sidebar.Item Label='"Avatar"'                      Right='~Right.Icon Icon.EggShell' State='itemState Avatar'                     />
+                                <LC.Sidebar.Item Label='"Icon"'                        Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.Icon'         />
+                                <LC.Sidebar.Item Label='"IconWithBadge"'               Right='~Right.Icon Icon.EggShell' State='itemState IconWithBadge'              />
+                                <LC.Sidebar.Item Label='"Thumb"'                       Right='~Right.Icon Icon.EggShell' State='itemState Thumb'                      />
+                                <LC.Sidebar.Item Label='"Thumbs"'                      Right='~Right.Icon Icon.EggShell' State='itemState Thumbs'                     />
+                                <LC.Sidebar.Item Label='"Scrim"'                       Right='~Right.Icon Icon.EggShell' State='itemState Scrim'                      />
+                                <LC.Sidebar.Item Label='"Stars"'                       Right='~Right.Icon Icon.EggShell' State='itemState Stars'                      />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Navigation"'/>
+                                <LC.Sidebar.Item Label='"Context Menu"'                Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.ContextMenu'    />
+                                <LC.Sidebar.Item Label='"Sidebar"'                     Right='~Right.Icon Icon.EggShell' State='itemState ComponentItem.Sidebar'        />
+                                <LC.Sidebar.Item Label='"Nav.Top"'                     Right='~Right.Icon Icon.EggShell' State='itemState Nav_Top'                      />
+                                <LC.Sidebar.Item Label='"Nav.Bottom"'                  Right='~Right.Icon Icon.EggShell' State='itemState Nav_Bottom'                   />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Higher Order Components"'/>
+                                <LC.Sidebar.Item Label='"ErrorBoundary"'                      State='itemState ErrorBoundary'         />
+                                <LC.Sidebar.Item Label='"AlertErrors"'                        State='itemState Executor_AlertErrors'  />
+                                <LC.Sidebar.Item Label='"AsyncData"'                          State='itemState AsyncData'             />
+                                <LC.Sidebar.Item Label='"WithDataFlowControl"'                State='itemState WithContext'           />
+                                <LC.Sidebar.Item Label='"TriStateful"'                        State='itemState TriStateful'           />
+                                <LC.Sidebar.Item Label='"QuadStateful"'                       State='itemState QuadStateful'          />
+                                <LC.Sidebar.Item Label='"Responsive"'                         State='itemState Responsive'            />
+                                <LC.Sidebar.Item Label='"InProgress"'                         State='itemState InProgress'            />
+                                <LC.Sidebar.Item Label='"With.Executor"'                      State='itemState WithExecutor'          />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"With"'/>
+                                <LC.Sidebar.Item Label='"WithContext"'                        State='itemState WithContext'           />
+                                <LC.Sidebar.Item Label='"DataFlowControl"'                    State='itemState WithDataFlowControl'   />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Third Party"'/>
+                                <LC.Sidebar.Item Label='"Map"'                                Right='~Right.Icon Icon.EggShell' State='itemState ThirdParty_Map'        />
+                                <LC.Sidebar.Item Label='"Recharts"'                           Right='~Right.Icon Icon.EggShell' State='itemState ThirdParty_Recharts'   />
+
+                                <LC.Sidebar.Divider/>
+                                <LC.Sidebar.Heading Text='"Unsorted"'/>
+                                <LC.Sidebar.Item Label='"DateSelector"'                       Right='~Right.Icon Icon.EggShell' State='itemState DateSelector'          />
+                                <LC.Sidebar.Item Label='"TouchableOpacity"'                   Right='~Right.Icon Icon.EggShell' State='itemState TouchableOpacity'      />
+                                <LC.Sidebar.Item Label='"Dialog.Confirm"'                     Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Dialog.Shell.WhiteRounded.Base"'     Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Dialog.Shell.WhiteRounded.Standard"' Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Dialog.Shell.FullScren"'             Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Dialog.Shell.FromBottom"'            Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"DueDateTag"'                         Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"FormFieldsDivider"'                  Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"HandheldListItem"'                   Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"HeaderCell"'                         Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"LabelledFormField"'                  Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"LabelledValue"'                      Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Popup"'                              Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"Route"'                              Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                                <LC.Sidebar.Item Label='"TwoWayScrollable"'                   Right='~Right.Icon Icon.EggShell' State='~Disabled'                       />
+                            </rt-prop>
+                        </LC.Sidebar.Base>
+                    </rt-case>
+                </rt-match>
+            </LC.Sidebar.WithClose>
+        </rt-case>
+        <rt-case is='None'>
+            no sidebar
+        </rt-case>
+    </rt-match>
+</LR.With.CurrentRoute>

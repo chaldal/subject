@@ -1,0 +1,4 @@
+<div class='labelled-value'>
+    <div class='label'>{props.Label}</div>
+    <div class='value' children='children'/>
+</div>

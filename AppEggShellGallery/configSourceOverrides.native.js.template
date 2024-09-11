@@ -1,0 +1,5 @@
+global.eggshell = global.eggshell || {};
+global.eggshell.AppEggShellGallery = {}
+global.eggshell.AppEggShellGallery.configSourceOverrides = {}
+
+global.eggshell.AppEggShellGallery.configSourceOverrides.AppUrlBase = "http://localhost:8080";

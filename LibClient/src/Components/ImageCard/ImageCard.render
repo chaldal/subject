@@ -1,0 +1,24 @@
+<LC.With.Layout rt-fs='true' InitialOnly='true' rt-with='onLayoutOption, maybeLayout'>
+    <div
+     class='view corners-{props.Corners} style-{props.Style} {TopLevelBlockClass}'
+     onLayoutOption='onLayoutOption'
+     rt-new-styles='props.styles'>
+        <RX.Image
+         class='image'
+         Source='props.Source'
+         ResizeMode='~Cover'
+         Size='~FromParentLayout maybeLayout'/>
+        <div class='label-block' rt-mapo='label := props.Label'>
+            <div class='scrim' rt-if='label.UseScrim'/>
+            <rt-match what='label'>
+                <rt-case is='Text (text, _)'>
+                    <div class='label-text-wrapper'><uitext class='label-text' stylesOption='props.labelStyles'>{text}</uitext></div>
+                </rt-case>
+                <rt-case is='Children _'>
+                    {=castAsElement children}
+                </rt-case>
+            </rt-match>
+        </div>
+        <LC.TapCapture rt-fs='true' rt-mapo='onPress := props.OnPress' OnPress='onPress'/>
+    </div>
+</LC.With.Layout>

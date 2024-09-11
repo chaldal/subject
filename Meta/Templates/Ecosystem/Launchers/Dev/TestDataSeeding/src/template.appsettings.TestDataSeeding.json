@@ -1,0 +1,10 @@
+﻿{
+  // Welcome, Developers! Glad you found this file.
+  //
+  // Address ALL QQQs, and then copy this to appsettings.Development.json
+  //
+  "TestDataSeeding.SqlServer.ConnectionStrings": {
+    // Configure connection string per ecosystem name. There can be more than one if your test simulation affects wider biosphere
+    "T__EC__T": "QQQ"
+  }
+}

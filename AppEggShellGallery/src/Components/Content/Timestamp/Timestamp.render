@@ -1,0 +1,36 @@
+<ComponentContent DisplayName='"Timestamp"' Props='~ForFullyQualifiedName "LibClient.Components.Timestamp"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Timestamp rt-fs='true' Value='^(System.DateTimeOffset.Now)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Timestamp rt-fs='true' Value='^(System.DateTimeOffset.Now)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Timestamp rt-fs='true' Value='^(1603261700701L)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Timestamp rt-fs='true' Value='^(1603261700701L)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Timestamp rt-fs='true' Value='^("2011-03-15")' Format='"dddd, MMMM dd, yyyy"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Timestamp rt-fs='true' Value='^("2011-03-15")' Format='"dddd, MMMM dd, yyyy"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Timestamp rt-fs='true' Value='^(System.DateTimeOffset.Now)' Format='"dddd, MMMM dd, yyyy"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Timestamp rt-fs='true' Value='^(System.DateTimeOffset.Now)' Format='"dddd, MMMM dd, yyyy"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

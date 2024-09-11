@@ -1,0 +1,32 @@
+<rt-root rt-open='LibClient.ContextMenus.Types'>
+    <RX.ScrollView vertical='true' class='scroll-view'>
+        <div class='view'>
+            <rt-block rt-mapi='index item := props.Items'>
+                <rt-match what='item'>
+                    <rt-case is='Divider'>
+                        <div class='divider'/>
+                    </rt-case>
+                    <rt-case is='Heading text'>
+                        <div class='heading'><text>{text}</text></div>
+                    </rt-case>
+                    <rt-case is='InternalButton (label, isSelected, onPress)'>
+                        <div
+                        class='button'
+                        rt-class='first := index = 0; selected := isSelected'>
+                            <uitext class='button-text' rt-class='selected := isSelected'>{label}</uitext>
+                            <LC.TapCapture rt-fs='true' OnPress='fun _ -> props.Hide(); onPress props.OpeningEvent'/>
+                        </div>
+                    </rt-case>
+                    <rt-case is='ButtonCautionary (label, onPress)'>
+                        <div
+                        class='button button-cautionary'
+                        rt-class='first := index = 0'>
+                            <uitext class='button-text button-cautionary'>{label}</uitext>
+                            <LC.TapCapture rt-fs='true' OnPress='fun _ -> props.Hide(); onPress props.OpeningEvent'/>
+                        </div>
+                    </rt-case>
+                </rt-match>
+            </rt-block>
+        </div>
+    </RX.ScrollView>
+</rt-root>

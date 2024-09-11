@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configurations>Debug;Release;Fable Debug;Fable Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Fable Debug' Or '$(Configuration)'=='Fable Release'">
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.LibLangFsharp</PackageId>
+    <Version>1.5.4</Version>
+    <Description>Subject stack general purpose types</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="CodecLib.fs" />
+    <Compile Include="FableHacks.fs" />
+    <Compile Include="Documentational.fs" />
+    <Compile Include="AssemblyExtensions.fs" />
+    <Compile Include="Operators.fs" />
+    <Compile Include="Or.fs" />
+    <Compile Include="NotImplemented.fs" />
+    <Compile Include="Compression.fs" />
+    <Compile Include="BitArrayExtensions.fs" />
+    <Compile Include="ResultExtensions.fs" />
+    <Compile Include="GuidExtensions.fs" />
+    <Compile Include="TaskExtensions.fs" />
+    <Compile Include="ResultCE.fs" />
+    <Compile Include="AsyncResultCE.fs" />
+    <Compile Include="OptionExtensions.fs" />
+    <Compile Include="ArrayExtensions.fs" />
+    <Compile Include="ListExtensions.fs" />
+    <Compile Include="SeqExtensions.fs" />
+    <Compile Include="MapExtensions.fs" />
+    <Compile Include="SetExtensions.fs" />
+    <Compile Include="SetBipartition.fs" />
+    <Compile Include="RandomExtensions.fs" />
+    <Compile Include="DictionaryExtensions.fs" />
+    <Compile Include="PrimitivesExtensions.fs" />
+    <Compile Include="EmptyRecord.fs" />
+    <Compile Include="RecordEqualityComparison.fs" />
+    <Compile Include="AsyncExtensions.fs" />
+    <Compile Include="ReflectionHelpers.fs" />
+    <Compile Include="BloomFilter.fs" />
+    <Compile Include="SafeMailboxProcessor.fs" />
+    <Compile Include="Deferred.fs" />
+    <Compile Include="DateTimeExtensions.fs" />
+    <Compile Include="Positive.fs" />
+    <Compile Include="Unsigned.fs" />
+    <Compile Include="Percentage.fs" />
+    <Compile Include="OrderedSet.fs" />
+    <Compile Include="KeyedSet.fs" />
+    <Compile Include="OrderedKeyedSet.fs" />
+    <Compile Include="NonemptyList.fs" />
+    <Compile Include="NonemptySet.fs" />
+    <Compile Include="NonemptyMap.fs" />
+    <Compile Include="NonemptyOrderedSet.fs" />
+    <Compile Include="NonemptyKeyedSet.fs" />
+    <Compile Include="NonemptyOrderedKeyedSet.fs" />
+    <Compile Include="MoreMeasures.fs" />
+    <Compile Include="NonemptyString.fs" />
+    <Compile Include="TupleEx.fs" />
+    <Compile Include="PhoneNumber.fs" />
+    <Compile Include="EmailAddress.fs" />
+    <Compile Include="MimeType.fs" />
+    <Compile Include="Url.fs" />
+    <Compile Include="GeoLocation.fs" />
+    <Compile Include="EncodedPolyline.fs" />
+    <Compile Include="MaxLengthReadStream.fs" />
+    <Compile Include="PlatformCertificateStore.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    <PackageReference Include="Fleece.SystemTextJson" Version="0.10.0" />
+    <!-- Fleece 0.10.0 above pulls FSharpPlus 1.2.4 which is not liked by Fable 4 -->
+    <PackageReference Include="FSharpPlus" Version="1.6.1" />
+ </ItemGroup>
+</Project>

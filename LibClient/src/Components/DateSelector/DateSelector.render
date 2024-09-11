@@ -1,0 +1,43 @@
+<div class='view {TopLevelBlockClass}'>
+    <div class='header'>
+        <rt-match what='props.MaybeSelected'>
+            <rt-case is='Some selectedDate'>
+                <LC.Timestamp rt-fs='true' styles='[| DateSelectorStyles.Styles.headerText |]' Value='~UniDateTime.Of selectedDate' Format='"ddd, MMM dd"' Offset='DateTimeExtensions.bdTzOffset'/>
+            </rt-case>
+            <rt-case is='None'>
+                <uitext class='header-text'>Select Day</uitext>
+            </rt-case>
+        </rt-match>
+    </div>
+    <div class='navigation-controls'>
+        <LC.Timestamp rt-fs='true' styles='[| DateSelectorStyles.Styles.navigationControlsText |]' Value='~UniDateTime.Of estate.CurrentMonthFirstDay' Format='"MMMM yyyy"' Offset='DateTimeExtensions.bdTzOffset'/>
+        <div class='arrow-container'>
+            <LC.IconButton theme='DateSelectorStyles.Styles.iconButtonTheme' Icon='Icon.ChevronLeft'  State='^LowLevel (if isPreviousMonthOutsideSelectableRange estate.CurrentMonthFirstDay props.MinDate then LC.IconButton.Disabled else LC.IconButton.Actionable actions.PrevMonth)'/>
+            <LC.IconButton theme='DateSelectorStyles.Styles.iconButtonTheme' Icon='Icon.ChevronRight' State='^LowLevel (if isNextMonthOutsideSelectableRange estate.CurrentMonthFirstDay props.MaxDate then LC.IconButton.Disabled else LC.IconButton.Actionable actions.NextMonth)'/>
+        </div>
+    </div>
+    <div class='weekday-headers-row'>
+        <div class='weekday-header' rt-map='day := ["S"; "M"; "T"; "W"; "T"; "F"; "S"]'>
+            <uitext class='weekday-header-text'>{day}</uitext>
+        </div>
+    </div>
+    <div class='row' rt-map='row := estate.Rows'>
+        <rt-block rt-map='day := row' rt-let='isOtherMonth := not (day.Month = estate.CurrentMonthFirstDay.Month)'>
+            <div
+             class='day'
+             rt-let='canSelect := not (isOutsideSelectableRange day props.MinDate props.MaxDate) &amp;&amp; canSelectDate day props.CanSelectDate'
+             rt-class='selected := Some day = props.MaybeSelected'
+             rt-if='not isOtherMonth'
+             onPress='fun _ -> if canSelect then props.OnChange day else Noop'>
+                <uitext
+                 class='day-text'
+                 rt-class='
+                     today    := day = estate.CurrentDate;
+                     disabled := not canSelect'>
+                    {day.Day}
+                </uitext>
+            </div>
+            <div class='day other-month' rt-if='isOtherMonth'></div>
+        </rt-block>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<ComponentContent DisplayName='"IconWithBadge"' Props='~ForFullyQualifiedName "LibClient.Components.IconWithBadge"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconWithBadge
+                 Icon='Icon.ShoppingCart'
+                 Badge='~Count 4'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.IconWithBadge
+                 Icon='Icon.ShoppingCart'
+                 Badge='~Count 4'/>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconWithBadge
+                 Icon='Icon.Home'
+                 Badge='~Text "Summer Sale!"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.IconWithBadge
+                 Icon='Icon.Home'
+                 Badge='~Text "Summer Sale!"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconWithBadge
+                 class='icon-with-badge'
+                 Icon='Icon.ShoppingCart'
+                 Badge='~Count 9'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.IconWithBadge
+                     class='icon-with-badge'
+                     Icon='Icon.ShoppingCart'
+                     Badge='~Count 9'/>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "icon-with-badge" ==> LibClient.Components.IconWithBadgeStyles.Theme.All (theIconColor = Color.Black, theIconSize = 26, theTextColor = Color.Black, theFontSize = 22)
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

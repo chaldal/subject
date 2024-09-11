@@ -1,0 +1,1 @@
+<dom.div rt-let='{ Field = f; OtherField = g } := someRecord'>Hello, {g}</dom.div>

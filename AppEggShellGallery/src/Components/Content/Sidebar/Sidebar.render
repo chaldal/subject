@@ -1,0 +1,98 @@
+<ComponentContent DisplayName='"Sidebar"'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"Sidebar.Base"'    FullyQualifiedName='"LibClient.Components.Sidebar.Base"'/>
+        <ScrapedComponentProps Heading='"Sidebar.Item"'    FullyQualifiedName='"LibClient.Components.Sidebar.Item"'/>
+        <ScrapedComponentProps Heading='"Sidebar.Heading"' FullyQualifiedName='"LibClient.Components.Sidebar.Heading"'/>
+        <ScrapedComponentProps Heading='"Sidebar.Divider"' FullyQualifiedName='"LibClient.Components.Sidebar.Divider"'/>
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Sidebar.Base class='sidebar'>
+                    <rt-prop name='FixedTop'>
+                        <div class='profile'>
+                            <LC.Avatar rt-fs='true' Source='localImage "/images/tifa.jpg"'/>
+                            <uitext class='name'>Tifa Lockhart</uitext>
+                            <uitext class='email'>tifa@ffvii.world</uitext>
+                        </div>
+                    </rt-prop>
+
+                    <rt-prop name='ScrollableMiddle'>
+                        <LC.Sidebar.Heading Text='"With Left Icons"'/>
+                        <LC.Sidebar.Item Label='"Inbox"'    LeftIcon='Icon.TwoSheets' State='~Actionable ignore'/>
+                        <LC.Sidebar.Item Label='"Calendar"' LeftIcon='Icon.Calendar'  State='~Actionable ignore'/>
+                        <LC.Sidebar.Item Label='"Starred"'  LeftIcon='Icon.Star'      State='~Actionable ignore'/>
+                        <LC.Sidebar.Item Label='"Tags"'     LeftIcon='Icon.Tags'      State='~Actionable ignore'/>
+
+                        <LC.Sidebar.Divider/>
+                        <LC.Sidebar.Heading Text='"Without Left Icons"'/>
+                        <LC.Sidebar.Item Label='"Settings &amp; Account"' State='~Actionable ignore'/>
+                        <LC.Sidebar.Item Label='"Help &amp; Feedback"'    State='~Actionable ignore'/>
+
+                        <LC.Sidebar.Divider/>
+                        <LC.Sidebar.Heading Text='"Right Icon/Badge"'/>
+                        <LC.Sidebar.Item Label='"Notifications"' Right='~Right.Badge (PositiveInteger.ofLiteral 3)' State='~Actionable ignore'/>
+                        <LC.Sidebar.Item Label='"Orders"'        Right='~Right.Icon Icon.Bell'                      State='~Actionable ignore'/>
+
+                        <LC.Sidebar.Divider/>
+                        <LC.Sidebar.Heading Text='"States"'/>
+                        <LC.Sidebar.Item Label='"Disabled"'    State='~Disabled'/>
+                        <LC.Sidebar.Item Label='"Selected"'    State='~Selected'/>
+                        <LC.Sidebar.Item Label='"In Progress"' State='~InProgress'/>
+                    </rt-prop>
+
+                    <rt-prop name='FixedBottom'>
+                        <LC.Sidebar.Item Label='"Log Out"' LeftIcon='Icon.Power' State='~Actionable ignore'/>
+                    </rt-prop>
+                </LC.Sidebar.Base>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Sidebar.Base class='sidebar'>
+                        <rt-prop name='FixedTop'>
+                            <div class='profile'>
+                                <LC.Avatar rt-fs='true' Source='localImage "/images/tifa.jpg"'/>
+                                <uitext class='name'>Tifa Lockhart</uitext>
+                                <uitext class='email'>tifa@ffvii.world</uitext>
+                            </div>
+                        </rt-prop>
+
+                        <rt-prop name='ScrollableMiddle'>
+                            <LC.Sidebar.Heading Text='"With Left Icons"'/>
+                            <LC.Sidebar.Item Label='"Inbox"'    LeftIcon='Icon.TwoSheets' State='~Actionable ignore'/>
+                            <LC.Sidebar.Item Label='"Calendar"' LeftIcon='Icon.Calendar'  State='~Actionable ignore'/>
+                            <LC.Sidebar.Item Label='"Starred"'  LeftIcon='Icon.Star'      State='~Actionable ignore'/>
+                            <LC.Sidebar.Item Label='"Tags"'     LeftIcon='Icon.Tags'      State='~Actionable ignore'/>
+
+                            <LC.Sidebar.Divider/>
+                            <LC.Sidebar.Heading Text='"Without Left Icons"'/>
+                            <LC.Sidebar.Item Label='"Settings &amp; Account"' State='~Actionable ignore'/>
+                            <LC.Sidebar.Item Label='"Help &amp; Feedback"'    State='~Actionable ignore'/>
+
+                            <LC.Sidebar.Divider/>
+                            <LC.Sidebar.Heading Text='"Right Icon/Badge"'/>
+                            <LC.Sidebar.Item Label='"Notifications"' Right='~Right.Badge (PositiveInteger.ofLiteral 3)' State='~Actionable ignore'/>
+                            <LC.Sidebar.Item Label='"Orders"'        Right='~Right.Icon Icon.Bell'                      State='~Actionable ignore'/>
+
+                            <LC.Sidebar.Divider/>
+                            <LC.Sidebar.Heading Text='"States"'/>
+                            <LC.Sidebar.Item Label='"Disabled"'    State='~Disabled'/>
+                            <LC.Sidebar.Item Label='"Selected"'    State='~Selected'/>
+                            <LC.Sidebar.Item Label='"In Progress"' State='~InProgress'/>
+                        </rt-prop>
+
+                        <rt-prop name='FixedBottom'>
+                            <LC.Sidebar.Item Label='"Log Out"' LeftIcon='Icon.Power' State='~Actionable ignore'/>
+                        </rt-prop>
+                    </LC.Sidebar.Base>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "sidebar" => [
+                        height 600
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

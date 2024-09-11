@@ -1,0 +1,49 @@
+<div class='view' rt-open='LibRenderDSL.Types'>
+    <LC.Heading class='heading' Level='~Tertiary' rt-mapo='heading := props.Heading'>{heading}</LC.Heading>
+
+    <div class='content' rt-class='indented := props.Heading.IsSome'>
+        <div rt-mapo='errors := props.Data.MaybeScrapeErrors'>
+            <div class='error' rt-map='error := NonemptyList.toList errors'><text class='error-text'>{error}</text></div>
+        </div>
+
+        <rt-match what='props.Data.FieldsWithoutKey'>
+            <rt-case is='Ok []'>
+                <div><text class='meta-content'>No props</text></div>
+            </rt-case>
+            <rt-case is='Ok fields'>
+                <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                    <dom.table class='aesg-ComponentProps-table dom-user-select-text'>
+                        <dom.thead>
+                            <dom.tr>
+                                <dom.th>Name</dom.th>
+                                <dom.th>Type</dom.th>
+                                <dom.th/>
+                                <dom.th>Default</dom.th>
+                                <dom.th>Description</dom.th>
+                            </dom.tr>
+                        </dom.thead>
+                        <dom.tbody>
+                            <dom.tr rt-mapi='i field := fields' key='i'>
+                                <dom.td class='name'>{field.Name}</dom.td>
+                                <dom.td class='type'>{field.Type}</dom.td>
+                                <dom.td/>
+                                <dom.td class='value'>{field.Default |> Option.getOrElse ""}</dom.td>
+                                <dom.td class='description'>{field.Description |> Option.getOrElse ""}</dom.td>
+                            </dom.tr>
+                        </dom.tbody>
+                    </dom.table>
+                <rt-sharp value='else'/>
+                    <div class='props' rt-mapi='i field := fields' key='i.ToString()'>
+                        <div>Name: {field.Name}</div>
+                        <div>Type: {field.Type}</div>
+                        <div>Default: {field.Default |> Option.getOrElse ""}</div>
+                        <div>Description: {field.Description |> Option.getOrElse ""}</div>
+                    </div>
+                <rt-sharp value='endif'/>
+            </rt-case>
+            <rt-case is='Error error'>
+                <div class='error'><text class='error-text'>{error}</text></div>
+            </rt-case>
+        </rt-match>
+    </div>
+</div>

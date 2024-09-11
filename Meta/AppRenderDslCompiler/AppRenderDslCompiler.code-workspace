@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../LibLangFsharp"
+		},
+		{
+			"path": "../LibRenderDSL"
+		},
+		{
+			"path": "../../SuiteDsl/LibDsl"
+		},
+	],
+	"settings": {
+		"FSharp.suggestGitignore": false,
+		"FSharp.suggestSdkScripts": false
+	}
+}

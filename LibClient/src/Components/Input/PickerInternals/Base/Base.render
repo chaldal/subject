@@ -1,0 +1,12 @@
+<rt-root rt-type-parameters="'Item">
+	<LC.Input.PickerInternals.Field
+	 rt-new-styles='props.styles'
+     class='{TopLevelBlockClass}'
+     stylesOption='props.styles'
+     Model='actions.GetModel ()'
+     LabelOption='props.Label'
+     PlaceholderOption='props.Placeholder'
+     Value='props.Value'
+     Validity='props.Validity'
+     ItemView='props.ItemView'/>
+</rt-root>

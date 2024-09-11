@@ -1,0 +1,26 @@
+module <%= projectName %>.Components.<%= componentName %>
+
+open LibClient
+
+type Props<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = (* GenerateMakeFunction *) {
+    key: string option // defaultWithAutoWrap JsUndefined
+}
+
+type Estate<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = {
+    SomeEphemeralValue: int
+}
+
+type <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_initialProps) =
+    inherit EstatefulComponent<Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, Estate<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>>("<%= projectName %>.Components.<%= componentName %>", _initialProps, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, hasStyles = <%= hasStyles %>)
+
+    override _.GetInitialEstate(initialProps: Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>) : Estate<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %> = {
+        SomeEphemeralValue = 42
+    }
+
+and Actions<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_this: <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>) =
+    class end
+
+let Make = makeConstructor<<%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, _, _>
+
+// Unfortunately necessary boilerplate
+type Pstate = NoPstate

@@ -1,0 +1,8 @@
+[<AutoOpen>]
+module <%= appName %>.Components.With_Subjects
+
+open LibClient
+open LibClient.Components
+
+open <%= appName %>.AppServices
+open LibUiSubject

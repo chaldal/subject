@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler",
+    "recharts": "2.1.6"
+  },
+  "devDependencies": {
+    "react-syntax-highlighter": "15.3.0"
+  }
+}

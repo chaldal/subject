@@ -1,0 +1,135 @@
+<ComponentContent DisplayName='"Nav.Bottom"' IsResponsive='true'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"Nav.Bottom.Base"'              FullyQualifiedName='"LibClient.Components.Nav.Bottom.Base"'             />
+        <ScrapedComponentProps Heading='"Nav.Bottom.Item"'              FullyQualifiedName='"LibClient.Components.Nav.Bottom.Item"'             />
+        <ScrapedComponentProps Heading='"Nav.Bottom.Button"'            FullyQualifiedName='"LibClient.Components.Nav.Bottom.Button"'           />
+        <ScrapedComponentProps Heading='"Nav.Bottom.Filler"'            FullyQualifiedName='"LibClient.Components.Nav.Bottom.Filler"'           />
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample Layout='~CodeBelowSamples'>
+                <rt-prop name='Visuals'>
+                    <LC.With.Context Context='AppEggShellGallery.SampleVisualsScreenSize.sampleVisualsScreenSizeContext' rt-with='sampleVisualsScreenSize: ScreenSize'>
+                        <LC.ForceContext rt-fs='true' Context='screenSizeContext' Value='sampleVisualsScreenSize'>
+                            <LC.Nav.Bottom.Base>
+                                <rt-prop name='Desktop(_)'>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Design"'                                                     State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Components"'                                                 State='~Selected'         />
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Develop"'                                                    State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                    <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Button Icon='~Icon.Left Icon.ShoppingCart' Label='"Cart"' Badge='~Count 3' State='^LowLevel (~Actionable Actions.greet)' />
+                                </rt-prop>
+                                <rt-prop name='Handheld(_)'>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Design"'                                                     State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Components"'                                                 State='~Selected'         />
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Develop"'                                                    State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                    <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Button Icon='~Icon.Left Icon.ShoppingCart' Label='"Cart"' Badge='~Count 3' State='^LowLevel (~Actionable Actions.greet)' />
+                                </rt-prop>
+                            </LC.Nav.Bottom.Base>
+                        </LC.ForceContext>
+                    </LC.With.Context>
+                </rt-prop>
+
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Render'><![CDATA[
+                        <LC.Nav.Bottom.Base>
+                            <rt-prop name='Desktop(_)'>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Design"'                                                     State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Components"'                                                 State='~Selected'         />
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Develop"'                                                    State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Button Icon='~Icon.Left Icon.ShoppingCart' Label='"Cart"' Badge='~Count 3' State='^LowLevel (~Actionable Actions.greet)' />
+                                <!-- There is also SelectedActionable for cases when an item represents a group of
+                                subpages, and even though it's selected, you still want to give the user to navigate
+                                to the top subpage for the group, or perhaps to force a refresh (like in an email inbox). -->
+                            </rt-prop>
+                            <rt-prop name='Handheld(_)'>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Design"'                                                     State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Components"'                                                 State='~Selected'         />
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Develop"'                                                    State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Button Icon='~Icon.Left Icon.ShoppingCart' Label='"Cart"' Badge='~Count 3' State='^LowLevel (~Actionable Actions.greet)' />
+                            </rt-prop>
+                        </LC.Nav.Bottom.Base>
+                    ]]></Code>
+                    <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                        "image" => [
+                            height       32
+                            width        32
+                            borderRadius 16
+                            marginRight  10
+                        ]
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Style Sample"' rt-prop-children='Samples'>
+            <ComponentSample Layout='~CodeBelowSamples'>
+                <rt-prop name='Visuals'>
+                    <LC.With.Context Context='AppEggShellGallery.SampleVisualsScreenSize.sampleVisualsScreenSizeContext' rt-with='sampleVisualsScreenSize: ScreenSize'>
+                        <LC.ForceContext rt-fs='true' Context='screenSizeContext' Value='sampleVisualsScreenSize'>
+                            <LC.Nav.Bottom.Base>
+                                <rt-prop name='Desktop(_)'>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Store", badge = ~Text "Summer Sale")'               State='~Actionable ignore'                    />
+                                    <LC.Nav.Bottom.Item Style='~Style.With(icon  = Icon.Bell, badge = ~Count 2)'                        State='~Actionable ignore'                    />
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'                             />
+                                    <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'                    />
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'                    />
+                                    <LC.Nav.Bottom.Item Style='~iconOnly Icon.X'                                                        State='~Actionable ignore' class='adjust-icon'/>
+                                </rt-prop>
+                                <rt-prop name='Handheld(_)'>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Store", badge = ~Text "Summer Sale")'               State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(icon  = Icon.Bell, badge = ~Count 2)'                        State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                    <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                    <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                                </rt-prop>
+                            </LC.Nav.Bottom.Base>
+                        </LC.ForceContext>
+                    </LC.With.Context>
+                </rt-prop>
+
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Render'><![CDATA[
+                        <LC.Nav.Bottom.Base>
+                            <rt-prop name='Desktop(_)'>
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Store", badge = ~Text "Summer Sale")'               State='~Actionable ignore'                    />
+                                <LC.Nav.Bottom.Item Style='~Style.With(icon  = Icon.Bell, badge = ~Count 2)'                        State='~Actionable ignore'                    />
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'                             />
+                                <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'                    />
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'                    />
+                                <LC.Nav.Bottom.Item Style='~iconOnly Icon.X'                                                        State='~Actionable ignore' class='adjust-icon'/>
+                            </rt-prop>
+                            <rt-prop name='Handheld(_)'>
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Store", badge = ~Text "Summer Sale")'               State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~Style.With(icon  = Icon.Bell, badge = ~Count 2)'                        State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~labelOnly "Blog"'                                                       State='~Disabled'         />
+                                <LC.Nav.Bottom.Item Style='~iconOnly  Icon.MagnifyingGlass'                                         State='~Actionable ignore'/>
+                                <LC.Nav.Bottom.Item Style='~Style.With(label = "Cart", icon = Icon.ShoppingCart, badge = ~Count 3)' State='~Actionable ignore'/>
+                            </rt-prop>
+                        </LC.Nav.Bottom.Base>
+                    ]]></Code>
+                    <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                        // sometimes specific icon glyphs are not well positioned with respect to the baseline,
+                        // either absolutely, or in terms of perception (e.g. a visually top-heavy icon). In these
+                        // cases it's necessary to tweak their vertical positioning to make them appear to be
+                        // vertically aligned with the rest of the icons.
+
+                        "adjust-icon" ==> LibClient.Components.Nav.Bottom.ItemStyles.Theme.IconVerticalPositionAdjustment 10
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

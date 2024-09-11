@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Web Debug;Web Release;Native Debug;Native Release</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Native Debug'">$(DefineConstants);DEBUG</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Web Release'">$(DefineConstants);EGGSHELL_PLATFORM_IS_WEB</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibRouter/src/LibRouter.fsproj" />
+    <ProjectReference Include="../../LibClient/src/LibClient.fsproj" />
+    <ProjectReference Include="..\..\ThirdParty\ReactNativeCodePush\src\ReactNativeCodePush.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="icons.fs" />
+    <Compile Include="CodePushUpdateManager.fs" />
+    <Compile Include="App.fs" />
+  </ItemGroup>
+
+</Project>

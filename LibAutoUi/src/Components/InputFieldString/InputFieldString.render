@@ -1,0 +1,18 @@
+<rt-root rt-open='LibAutoUi.Types'>
+    <rt-match what='props.MaybeValue'>
+        <rt-case is='Some (StringValue value)'>
+            <RX.TextInput
+             class='text-input'
+             onChangeText='fun value -> props.OnChange (StringValue value)'
+             value='value'/>
+        </rt-case>
+        <rt-case is='None'>
+            <RX.TextInput
+             class='text-input'
+             onChangeText='fun value -> props.OnChange (StringValue value)'/>
+        </rt-case>
+        <rt-case is='other'>
+            <text>XXX not a string value! {other}</text>
+        </rt-case>
+    </rt-match>
+</rt-root>

@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  },
+  "devDependencies": {
+    "glob": "^7.1.3",
+    "gulp": "^4.0.0"
+  }
+}

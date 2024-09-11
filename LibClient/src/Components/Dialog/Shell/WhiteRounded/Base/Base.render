@@ -1,0 +1,6 @@
+<LC.Dialog.Shell.WhiteRounded.Raw
+ class='dialog-raw'
+ CanClose='props.CanClose'
+ InProgress='props.InProgress'>
+    <RX.ScrollView class='scroll-view' vertical='true' children='children'/>
+</LC.Dialog.Shell.WhiteRounded.Raw>

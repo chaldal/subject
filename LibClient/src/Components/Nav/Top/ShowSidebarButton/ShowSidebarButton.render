@@ -1,0 +1,13 @@
+<rt-block rt-let='menuIcon := match props.MenuIcon with Some icon -> icon | None -> Icon.Menu'>
+    <rt-match what='props.Badge'>
+        <rt-case is='Some badge'>
+            <LC.Nav.Top.Item
+             class='topnav-item'
+             Style='~Style.With(icon = menuIcon, badge = badge)'
+             State='~Actionable (LibClient.Components.AppShell.Content.toggleSidebarVisibility)'/>
+        </rt-case>
+        <rt-case is='None'>
+            <LC.Nav.Top.Item class='topnav-item' Style='~iconOnly menuIcon' State='~Actionable (LibClient.Components.AppShell.Content.setSidebarVisibility true)'/>
+        </rt-case>
+    </rt-match>
+</rt-block>

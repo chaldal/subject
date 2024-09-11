@@ -1,0 +1,4 @@
+<div class='icon-with-count {TopLevelBlockClass}'>
+    <LC.Icon class='icon' Icon='props.Icon'/>
+    <Badge class='badge' Badge='props.Badge'/>
+</div>

@@ -1,0 +1,248 @@
+{
+    "rt-match": {
+        "prefix": "rtm",
+        "body": [
+            "<rt-match what='$1'>",
+            "    <rt-case is='$2'>",
+            "        ${0:QQQ}",
+            "    </rt-case>",
+            "</rt-match>"
+        ],
+        "description": "The RenderDsl `<rt-match>` is the eqiuvalent of the F# `match`, the workhorse of consuming F# types.",
+        "scope": "renderdsl"
+    },
+
+    "rt-case": {
+        "prefix": "rtc",
+        "body": [
+            "<rt-case is='$1'>",
+            "    ${0:QQQ}",
+            "</rt-case>"
+        ],
+        "description": "An `<rt-case>` block.",
+        "scope": "renderdsl"
+    },
+
+    "form-acc": {
+        "prefix": "formacc",
+        "body": [
+            "// TODO move to the file top opens block",
+            "open LibClient.Components.Form.Base.Types",
+            "",
+            "[<RequireQualifiedAccess>]",
+            "type Field = Name | Age",
+            "",
+            "// this you probably already have defined",
+            "type AccResult = {",
+            "    Name: NonemptyString",
+            "    Age:  PositiveInteger",
+            "}",
+            "",
+            "type Acc = {",
+            "    Name: Option<NonemptyString>",
+            "    Age:  LibClient.Components.Input.PositiveInteger.Value",
+            "} with",
+            "    static member Initial : Acc =",
+            "        {",
+            "            Name = None",
+            "            Age  = LibClient.Components.Input.PositiveInteger.empty",
+            "        }",
+            "",
+            "    interface AbstractAcc<Field, AccResult> with",
+            "        member this.Validate () : Result<AccResult, ValidationErrors<Field>> = validateForm {",
+            "            let! name = Forms.GetFieldValue2 this.Name Field.Name",
+            "            and! age  = Forms.GetFieldValue2 this.Age.Result Field.Age",
+            "",
+            "            return {",
+            "                Name = name",
+            "                Age  = age",
+            "            }",
+            "        }"
+        ],
+        "description": "Forms in EggShell are backed by a `Field` union type, and an `Accumulator` which holds the data that the user has input so far, and provides a validation function that either reports errors into the form's UI components, or produces a valid value. This snippet scaffolds this structure.",
+        "scope": "fsharp"
+    },
+
+    "form": {
+        "prefix": "form",
+        "body": [
+            "<LC.Form.Base",
+            " Accumulator='~ManageInternallyInitializingWith Acc.Initial'",
+            " Submit='actions.Submit'",
+            " rt-prop-children='Content(form)'>",
+            "    <LC.Input.Text",
+            "     Label='\"Name\"'",
+            "     Validity='form.FieldValidity Field.Name'",
+            "     Value='form.Acc.Name'",
+            "     OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Name = value })'/>",
+            "",
+            "    <LC.Buttons>",
+            "        <LC.Button",
+            "         Label='\"Submit\"'",
+            "         State='^LowLevel (if form.IsSubmitInProgress then ~InProgress else ~Actionable form.TrySubmitLowLevel)'/>",
+            "    </LC.Buttons>",
+            "</LC.Form.Base>"
+        ],
+        "description": "A form with a sample field and a submit button. Meant to be used together with the `Field` and `Acc` defined by the `form-acc` F# scoped snippet.",
+        "scope": "renderdsl"
+    },
+
+    "input-picker": {
+        "prefix": "inpick",
+        "body": [
+            "<LC.Input.Picker class='input'",
+            " Label='\"${1:QQQ}\"'",
+            " Items='~Static ([] |> OrderedSet.ofList, fun item -> item.ToString())'",
+            " ItemView='~Default (fun item -> {| Label = item.ToString() |})'",
+            " Value='~SelectableValue.ExactlyOne (form.Acc.${2:QQQ}, fun value -> form.UpdateAcc (fun acc -> { acc with ${2:QQQ} = Some value }))'",
+            " Validity='form.FieldValidity Field.${3:QQQ}'/>",
+        ],
+        "description": "LC.Input.Picker bound to the current form, with update functions etc.",
+        "scope": "renderdsl"
+    },
+
+    "input-text": {
+        "prefix": "intext",
+        "body": [
+            "<LC.Input.Text",
+            " Label='\"${1:QQQ}\"'",
+            " Value='form.Acc.${2:QQQ}'",
+            " Validity='form.FieldValidity Field.${3:QQQ}'",
+            " OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with ${4:QQQ} = value })'/>",
+        ],
+        "description": "LC.Input.Text bound to the current form, with update functions etc.",
+        "scope": "renderdsl"
+    },
+
+    "input-positive-integer": {
+        "prefix": "inpint",
+        "body": [
+            "<LC.Input.PositiveInteger",
+            " Label='\"${1:QQQ}\"'",
+            " Validity='form.FieldValidity Field.${2:QQQ}'",
+            " Value='form.Acc.${3:QQQ}'",
+            " OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with ${4:QQQ} = value })'/>",
+        ],
+        "description": "LC.Input.PositiveInteger bound to the current form, with update functions etc.",
+        "scope": "renderdsl"
+    },
+
+    "input-unsigned-decimal": {
+        "prefix": "inudec",
+        "body": [
+            "<LC.Input.UnsignedDecimal",
+            " Label='\"${1:QQQ}\"'",
+            " Validity='form.FieldValidity Field.${2:QQQ}'",
+            " Value='form.Acc.${3:QQQ}'",
+            " OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with ${4:QQQ} = value })'/>",
+        ],
+        "description": "LC.Input.UnsignedDecimal bound to the current form, with update functions etc.",
+        "scope": "renderdsl"
+    },
+
+    "with-navigation": {
+        "prefix": "withnav",
+        "body": [
+            "<With.Navigation rt-with='nav'>",
+        ],
+        "description": "Add an opening With.Navigation tag",
+        "scope": "renderdsl"
+    },
+
+    "with-global-executor": {
+        "prefix": "withgex",
+        "body": [
+            "<LC.With.GlobalExecutor rt-with='makeExecutor'>",
+        ],
+        "description": "Add an opening With.GlobalExecutor tag",
+        "scope": "renderdsl"
+    },
+
+    "style-responsive": {
+        "prefix": "sr",
+        "body": [
+            "] && [",
+            "    ScreenSize.Desktop.Class => [",
+            "    ]",
+            "    ScreenSize.Handheld.Class => [",
+            "    ]",
+        ],
+        "description": "Add responsive classes to the end of the current selector",
+        "scope": "fsharp"
+    },
+
+    "screen-size-class": {
+        "prefix": "ssc",
+        "body": [
+            "screenSize.Class",
+        ],
+        "description": "screenSize.Class",
+        "scope": "renderdsl"
+    },
+
+    "react-ref": {
+        "prefix": "reactref",
+        "body": [
+            "// TODO change LibClient.Components.InputPositiveInteger.InputPositiveIntegerRef to whatever ref type you need",
+            "// TODO change Whatever to the actual component name",
+            "// NOTE use multiline editing for these changes",
+            "let mutable maybeRefWhatever: Option<LibClient.Components.InputPositiveInteger.InputPositiveIntegerRef> = None",
+            "member _.MaybeRefWhatever",
+            "    with get () = maybeRefWhatever",
+            "    and  set (value: Option<LibClient.Components.InputPositiveInteger.InputPositiveIntegerRef>) : unit =",
+            "         match (maybeRefWhatever, value) with",
+            "         | (None, Some input) ->",
+            "             // TODO this is where you get the ref for the first time,",
+            "             // and can do things like input.SelectAll() or input.RequestFocus()",
+            "             // or just delete this match block alltogether if you don't need it",
+            "         | _ -> Noop",
+            "",
+            "         maybeRefWhatever <- value",
+            "// TODO put this as the first thing in the body of Actions",
+            "let bound = {|",
+            "    RefWhatever = fun (nullableInstance: LibClient.JsInterop.JsNullable<LibClient.Components.InputPositiveInteger.InputPositiveIntegerRef>) ->",
+            "        this.MaybeRefWhatever <- nullableInstance.ToOption",
+            "|}",
+            "member _.Bound = bound",
+            "// TODO at the call site in the .render file you can now say ref='actions.Bound.RefWhatever'",
+        ],
+        "description": "Bindings to use in your component to allow working with React refs (see [docs](./how-to/refs.md) for full details)",
+        "scope": "fsharp"
+    },
+
+    "theme": {
+        "prefix": "theme",
+        "body": [
+            "let private baseStyles = asBlocks [",
+            "   \"view\" => []",
+            "]",
+            "",
+            "type (* class to enable named parameters *) Theme() =",
+            "    static let customize = makeCustomize(\"${0:COMPONENT'S_FULLY_QUALIFIED_NAME}\", baseStyles)",
+            "",
+            "    static member All (${1:exampleParameter}: int) : unit =",
+            "        customize [",
+            "            Theme.Rules(${1:exampleParameter})",
+            "        ]",
+            "",
+            "    static member One (${1:exampleParameter}: int) : Styles =",
+            "        Theme.Rules(${1:exampleParameter}) |> makeSheet",
+            "",
+            "    static member Rules (${1:exampleParameter}: int) : List<ISheetBuildingBlock> = [",
+            "        \"view\" => [",
+            "            fontSize ${1:exampleParameter}",
+            "         ]",
+            "    ]",
+            "",
+            "let styles = compile (List.concat [",
+            "    baseStyles",
+            "    Theme.Rules (",
+            "        ${1:exampleParameter} = 1",
+            "    )",
+            "])"
+        ],
+        "description": "Component styles theme",
+        "scope": "fsharp"
+    },
+}
+

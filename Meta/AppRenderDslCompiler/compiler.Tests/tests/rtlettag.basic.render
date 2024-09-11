@@ -1,0 +1,14 @@
+<div>
+    <div rt-map='i := [1;2;3]'>
+        <rt-let name='foo'>
+            <div>The Foo</div>
+        </rt-let>
+        <rt-let name='bar'>
+            <div>The Bar</div>
+        </rt-let>
+        <div>
+            <div>{=foo}</div>
+            {=bar}
+        </div>
+    </div>
+</div>

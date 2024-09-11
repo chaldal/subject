@@ -1,0 +1,1 @@
+<dom.div rt-let='name := state.user.name; age := state.user.age'>Hello, {name}</dom.div>

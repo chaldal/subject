@@ -1,0 +1,58 @@
+<ComponentContent DisplayName='"Input.Duration"' Props='~ForFullyQualifiedName "LibClient.Components.Input.Duration"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Modes"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='LibClient.Components.Input.Duration.empty'
+                     OnChange='ignore'
+                     Validity='Missing'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='LibClient.Components.Input.Duration.empty'
+                     OnChange='ignore'
+                     Validity='Missing'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='LibClient.Components.Input.Duration.empty'
+                     OnChange='ignore'
+                     Validity='Invalid "That is just a bad duration"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Duration
+                     Label='"Duration"'
+                     Value='LibClient.Components.Input.Duration.empty'
+                     OnChange='ignore'
+                     Validity='Invalid "That is just a bad duration"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

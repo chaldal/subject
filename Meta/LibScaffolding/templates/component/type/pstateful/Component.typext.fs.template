@@ -1,0 +1,38 @@
+module <%= projectName %>.Components.<%= componentName %>
+
+open LibLang
+open LibClient
+
+type Props<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = (* GenerateMakeFunction *) {
+    PstoreKey: string
+
+    key: string option // defaultWithAutoWrap JsUndefined
+}
+
+ZAP<% if (typeParameters) { %>
+type Estate<<%= typeParameters.WithConstraints %>> = NoEstate<%= numberOfParameters %><<%= typeParameters.WithoutConstraints %>>
+ZAP<% } else { %>
+type Estate = EmptyRecord
+ZAP<% } %>
+
+type Pstate = {
+    SomePersistentValue: int
+}
+
+type <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_initialProps) =
+    inherit PstatefulComponent<Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, Estate<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, Pstate, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>>("<%= projectName %>.Components.<%= componentName %>", _initialProps.PstoreKey, _initialProps, Actions<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, hasStyles = <%= hasStyles %>)
+
+ZAP<% if (typeParameters) { %>
+    override _.GetInitialEstate(initialProps: Props<<%= typeParameters.WithoutConstraints %>>) : Estate<<%= typeParameters.WithoutConstraints %>> = NoEstate<%= numberOfParameters %> ()
+ZAP<% } else { %>
+    override _.GetInitialEstate(initialProps: Props) : Estate = EmptyRecord
+ZAP<% } %>
+
+    override _.GetDefaultPstate(initialProps: Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>) : Pstate = {
+        SomePersistentValue = 17
+    }
+
+and Actions<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %>(_this: <%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>) =
+    class end
+
+let Make = makeConstructor<<%= componentNameLeaf %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>, _, _>

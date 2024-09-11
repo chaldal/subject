@@ -1,0 +1,143 @@
+<ComponentContent DisplayName='"Input.ChoiceList"'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"ChoiceList"'     FullyQualifiedName='"LibClient.Components.Input.ChoiceList"'/>
+        <ScrapedComponentProps Heading='"ChoiceListItem"' FullyQualifiedName='"LibClient.Components.Input.ChoiceListItem"'/>
+    </rt-prop>
+    <rt-prop name='Notes'>
+        For 'AtMostOne' and 'ExactlyOne', Radio Button is rendered, and for 'AtLeastOne' and 'Any' we render checkboxes.
+    </rt-prop>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.ChoiceList
+                     Value='~AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.ChoiceList
+                     Value='~AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.ChoiceList
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.ChoiceList
+                     Value='~Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.ChoiceList
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.ChoiceList
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Children Based Label"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.ChoiceList
+                     Value='~ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Mango'>
+                            <uitext>Mango</uitext>
+                        </LC.Input.ChoiceListItem>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Peach'>
+                            <uitext>Peach</uitext>
+                        </LC.Input.ChoiceListItem>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Banana'>
+                            <uitext>Banana</uitext>
+                        </LC.Input.ChoiceListItem>
+                    </LC.Input.ChoiceList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.ChoiceList
+                     Value='~ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     Validity='Valid'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Mango'>
+                            <uitext>Mango</uitext>
+                        </LC.Input.ChoiceListItem>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Peach'>
+                            <uitext>Peach</uitext>
+                        </LC.Input.ChoiceListItem>
+                        <LC.Input.ChoiceListItem Group='group' Value='Fruit.Banana'>
+                            <uitext>Banana</uitext>
+                        </LC.Input.ChoiceListItem>
+                    </LC.Input.ChoiceList>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (Hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.ChoiceList
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Invalid "Not a fruit"'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.ChoiceList
+                     Value='~AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     Validity='Invalid "Not a fruit"'
+                     rt-prop-children='Items(group)'>
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Mango"'  Value='Fruit.Mango' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Peach"'  Value='Fruit.Peach' />
+                        <LC.Input.ChoiceListItem Group='group' Label='~String "Banana"' Value='Fruit.Banana'/>
+                    </LC.Input.ChoiceList>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

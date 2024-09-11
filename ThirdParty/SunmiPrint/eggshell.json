@@ -1,0 +1,25 @@
+{
+	"name": "ThirdParty.SunmiPrint",
+	"alias": "SunmiPrint",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+		],
+		"componentLibraryAliases": [
+			["default", "ThirdParty.SunmiPrint.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",       "RX.View"],
+			["anidiv",    "RX.AnimatableView"],
+			["text",      "LC.LegacyText"],
+			["anitext",   "RX.AnimatableText"],
+			["uitext",    "LC.LegacyUiText"]
+		]
+	}
+}

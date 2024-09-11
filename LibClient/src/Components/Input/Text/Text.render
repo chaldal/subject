@@ -1,0 +1,64 @@
+<div
+ rt-open='LibClient.Input'
+ class='view {TopLevelBlockClass}'
+ rt-new-styles='props.styles'
+ rt-class='withLabel := props.Label.IsSome'
+ rt-let='isLabelSmall := props.Value.IsSome || estate.IsFocused || props.Placeholder.IsSome'>
+    <div class='border' rt-class='border-invalid := props.Validity.IsInvalid; border-focused := estate.IsFocused; border-noneditable := not props.Editable'>
+        <!-- switching between 1 element and multiple elements is treated by either React or
+             our layers on top of react as a fundamental change, resulting in reconstruction
+             (i.e. not just re-rendering) of components, and loss of focus in the input field.
+             So we keep things as always multiple by having sentinel elements -->
+        <rt-match what='(isLabelSmall, props.Prefix)'>
+            <rt-case is='(true, Some prefix)'><uitext class='prefix'>{prefix}</uitext></rt-case>
+            <rt-case is='_'><div class='focus-preserving-sentinel'/></rt-case>
+        </rt-match>
+        <RX.TextInput
+         class='text-input defaults'
+         rt-class='noneditable := not props.Editable; single-line := not props.Multiline'
+         value='props.Value |> NonemptyString.optionToString'
+         onChangeText='NonemptyString.ofString >> props.OnChange'
+         onKeyPressOption='actions.OnKeyPressOption'
+         onFocus='actions.OnFocus'
+         onBlur='actions.OnBlur'
+         multiline='props.Multiline'
+         autoFocus='props.RequestFocusOnMount'
+         editable='props.Editable'
+         blurOnSubmit='props.BlurOnSubmit'
+         placeholder='props.Placeholder |> Option.getOrElse ""'
+         placeholderTextColor='(extractPlaceholderColor __mergedStyles).ToReactXPString'
+         maxLengthOption='props.MaxLength |> Option.map float'
+         ref='actions.RefTextInput'
+         secureTextEntry='props.SecureTextEntry'
+         tabIndexOption='props.TabIndex'
+         keyboardType='props.KeyboardType'
+         returnKeyType='props.ReturnKeyType'
+         autoCapitalize='props.AutoCapitalize'/>
+        <rt-match what='(isLabelSmall, props.Suffix)'>
+            <rt-case is='(true, Some (InputSuffix.Text text))'><text class='suffix-text'>{text}</text></rt-case>
+            <rt-case is='(true, Some (InputSuffix.Icon icon))'><Icon class='suffix-icon' Icon='icon'/></rt-case>
+            <rt-case is='(true, Some (InputSuffix.Element element))'>{=element}</rt-case>
+            <rt-case is='_'><div class='focus-preserving-sentinel'/></rt-case>
+        </rt-match>
+    </div>
+    <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+    <rt-match what='props.Label'>
+        <rt-case is='Some label'>
+            <div class='label' rt-class='small := isLabelSmall'>
+                <uitext
+                 class='label-text'
+                 rt-class='
+                    invalid := props.Validity.IsInvalid;
+                    focused := estate.IsFocused;
+                    small   := isLabelSmall
+                 '>
+                    {label}
+                </uitext>
+                <LC.TapCapture rt-fs='true' OnPress='actions.Focus' />
+            </div>
+        </rt-case>
+        <rt-case is='None'>
+            <div class='focus-preserving-sentinel'/>
+        </rt-case>
+    </rt-match>
+</div>

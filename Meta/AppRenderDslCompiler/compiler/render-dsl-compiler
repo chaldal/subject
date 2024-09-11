@@ -1,0 +1,2 @@
+my_dir="$(dirname "$0")"
+dotnet "$my_dir/bin/Release/net7.0/AppRenderDslCompiler.dll" $1 $2 $3 $4 $5 $6

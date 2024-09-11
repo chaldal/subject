@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-native-camera": "^4.2.1",
+    "react-native-qrcode-scanner": "^1.5.5",
+    "react-qr-code": "^2.0.12",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

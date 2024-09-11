@@ -1,0 +1,4 @@
+<rt-block>
+    <dom.input Type='"file"'/>
+    <dom.img src='"something.png"'/>
+</rt-block>

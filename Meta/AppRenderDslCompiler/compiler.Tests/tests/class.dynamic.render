@@ -1,0 +1,15 @@
+<Foo rt-class='disabled := props.disabled; hyphe-nated := true; `button-{someValue}` := someCondition'>
+	<Bar
+	 rt-class='
+	    foo         := false;
+	    in-progress := match state with InProgress -> true | _ -> false;
+	    bar         := true;
+	 '/>
+	<Bar
+	 rt-class='
+	    foo := false;
+	    bar := true
+	 '/>
+	<Bar rt-class='foo := false; bar := true;'/>
+	<Bar rt-class='foo := false; bar := true'/>
+</Foo>

@@ -1,0 +1,23 @@
+[<AutoOpen>]
+module <%= appName %>.Components.AppContext
+
+open Fable.React
+open LibClient
+open LibClient.Components
+open LibRouter.Components
+open <%= appName %>.Navigation
+
+type Ui with
+    [<Component>]
+    static member AppContext(children: ReactChildrenProp) =
+        LR.NavigationRouter (
+            spec = routesSpec(),
+            navigationState = navigationState,
+            queue = navigationQueue,
+            child = element {
+                #if !EGGSHELL_PLATFORM_IS_WEB
+                LR.NativeBackButton(nav.GoBack)
+                #endif
+                LC.AppShell.Context children
+            }
+        )

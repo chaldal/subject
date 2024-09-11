@@ -1,0 +1,27 @@
+<rt-root rt-type-parameters="'T">
+    <rt-let name='icon'>
+        <rt-match what='props.Group.IsSelected props.Value'>
+            <rt-case is='true' >
+                <LC.Icon
+                 class='icon checked'
+                 Icon='match props.Group.Value with AtLeastOne _ | Any _ -> Icon.CheckboxChecked | AtMostOne _ | ExactlyOne _ -> Icon.RadioButtonFilled'/>
+            </rt-case>
+
+            <rt-case is='false'>
+                <LC.Icon
+                 class='icon unchecked'
+                 Icon='match props.Group.Value with AtLeastOne _ | Any _ -> Icon.CheckboxEmpty | AtMostOne _ | ExactlyOne _ -> Icon.RadioButtonEmpty'/>
+            </rt-case>
+        </rt-match>
+    </rt-let>
+
+    <div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+        <rt-block rt-if='props.IconPosition = IconPosition.Left'>{=icon}</rt-block>
+        <rt-match what='props.Label'>
+            <rt-case is='Children'><div class='label icon-position-{props.IconPosition}' children='children'/></rt-case>
+            <rt-case is='String label'><uitext class='label icon-position-{props.IconPosition}'>{label}</uitext></rt-case>
+        </rt-match>
+        <rt-block rt-if='props.IconPosition = IconPosition.Right'>{=icon}</rt-block>
+        <TapCapture OnPress='props.Group.Toggle props.Value' />
+    </div>
+</rt-root>

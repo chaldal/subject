@@ -1,0 +1,74 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <LC.Pointer.State rt-fs='true' rt-prop-children='Content(pointerState: LC.Pointer.State.PointerState)'>
+        <rt-block
+         rt-let='
+            stateClass     := "state-" + props.State.Name;
+            isSelected     := match props.State with Selected | SelectedActionable _ -> true | _ -> false;
+            selectedClass  := if isSelected then "selected" else "";
+            hoveredClass   := if pointerState.IsHovered &amp;&amp; (not pointerState.IsDepressed) then "hovered" else "";
+            depressedClass := if pointerState.IsDepressed then "depressed" else "";
+            sharedClassSet := sprintf "%s %s %s %s" stateClass selectedClass hoveredClass depressedClass;
+        '>
+            <div class='item {sharedClassSet} {TopLevelBlockClass} {screenSize.Class}' rt-new-styles='props.styles'>
+                <rt-match what='props.Style'>
+                    <rt-case is='Style.Internal (Some label, Some icon, labelPosition, Some badge)'>
+                        <div class='item-content-container item-content-container-with-badge {labelPosition}'>
+                            <div class='adjust-icon-vertical-position'>
+                                <LC.Icon Icon='icon' class='icon {sharedClassSet} {screenSize.Class}'/>
+                            </div>
+                            <LC.Badge Badge='badge' class='badge {screenSize.Class}'/>
+                            <div class='label-content label-content-with-icon-badge'>
+                                <uitext class='{sharedClassSet} {screenSize.Class} label'>{label}</uitext>
+                            </div>
+                        </div>
+                    </rt-case>
+                    <rt-case is='Style.Internal (Some label, Some icon, labelPosition, None)'>
+                        <div class='item-content-container {labelPosition}'>
+                            <div class='adjust-icon-vertical-position'>
+                                <LC.Icon Icon='icon' class='icon {sharedClassSet} {screenSize.Class}'/>
+                            </div>
+                            <div class='label-content'>
+                                <uitext class='{sharedClassSet} {screenSize.Class} label'>{label}</uitext>
+                            </div>
+                        </div>
+                    </rt-case>
+                    <rt-case is='Style.Internal (None, Some icon, _, Some badge)'>
+                        <div class='item-content-container item-content-container-with-badge'>
+                            <div class='adjust-icon-vertical-position'>
+                                <LC.Icon Icon='icon' class='icon {sharedClassSet} {screenSize.Class}'/>
+                            </div>
+                            <LC.Badge Badge='badge' class='badge {screenSize.Class}'/>
+                        </div>
+                    </rt-case>
+                    <rt-case is='Style.Internal (Some label, None, _, Some badge)'>
+                        <div class='item-content-container item-content-container-with-badge'>
+                            <div class='label-content'>
+                                <uitext class='{sharedClassSet} {screenSize.Class} label'>{label}</uitext>
+                            </div>
+                            <LC.Badge Badge='badge' class='badge {screenSize.Class}'/>
+                        </div>
+                    </rt-case>
+                    <rt-case is='Style.Internal (Some label, None, _, None)'>
+                        <div class='item-content-container'>
+                            <div class='label-content'>
+                                <uitext class='{sharedClassSet} {screenSize.Class} label'>{label}</uitext>
+                            </div>
+                        </div>
+                    </rt-case>
+                    <rt-case is='Style.Internal (None, Some icon, _, None)'>
+                        <div class='item-content-container'>
+                            <div class='adjust-icon-vertical-position'>
+                                <LC.Icon Icon='icon' class='icon {sharedClassSet} {screenSize.Class}'/>
+                            </div>
+                        </div>
+                    </rt-case>
+                    <rt-case is='_'><uitext>combination not supported</uitext></rt-case>
+                </rt-match>
+                <LC.TapCapture rt-fs='true'
+                 rt-mapo='onPress := match props.State with | State.Actionable onPress | State.SelectedActionable onPress -> Some onPress | _ -> None'
+                 OnPress='onPress'
+                 PointerState='pointerState'/>
+            </div>
+        </rt-block>
+    </LC.Pointer.State>
+</LC.With.ScreenSize>

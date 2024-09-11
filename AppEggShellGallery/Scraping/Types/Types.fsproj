@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <PackageId>Scraping.Types</PackageId>
+
+    <!--
+      WARNING If this is removed, there's an error in Scrape.fs for the `open Scraping.Types` expression saying,
+      no namespace/module named Scraping found.
+
+      Related error message:
+      ```
+      Scraping/Scrape.fs(82,27): error FS0039: The value, namespace, type or module 'ScrapeResult' is not defined.
+      ```
+
+      Making Scrape.fs a module doesn't help.
+      Tried reproducing this in a new clean dotnet project, but failed.
+    -->
+    <AssemblyName>Scraping.Types</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../Meta/LibRenderDSL/src/Types/Types.fsproj"/>
+    <Compile Include="Types.fs" />
+  </ItemGroup>
+</Project>

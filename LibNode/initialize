@@ -1,0 +1,3 @@
+npm install
+npm link
+npm link eggshell-lib-lang-typescript

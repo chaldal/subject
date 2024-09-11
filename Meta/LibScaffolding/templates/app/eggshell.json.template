@@ -1,0 +1,21 @@
+{
+	"name": "<%= appName %>",
+	"alias": "Ui",
+	"type": "app",
+	"renderDependencies": [
+		"../../LibClient",
+		"../../LibRouter",
+		"../../LibUiAdmin",
+		"../../LibUiSubject",
+		"../../LibUiSubjectAdmin",
+		"../../ThirdParty/ReactNativeCodePush"
+	],
+	"build": {
+		"copyStaticFiles": [
+			[ "public-dev/app.css", "public/[resources]/app.css" ],
+			[ "images/**/*", "public/[resources]/images/" ],
+			["public-dev/fonts/Montserrat.ttf",      "public/[resources]/fonts/Montserrat.ttf"],
+			["public-dev/fonts/Montserrat_bold.ttf", "public/[resources]/fonts/Montserrat_bold.ttf"]
+		]
+	}
+}

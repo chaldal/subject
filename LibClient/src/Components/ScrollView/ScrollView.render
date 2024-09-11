@@ -1,0 +1,18 @@
+<RX.ScrollView
+ horizontal='props.Scroll = Both || props.Scroll = Horizontal'
+ vertical='props.Scroll = Both || props.Scroll = Vertical'
+ onLayoutOption='props.OnLayout'
+ onScrollOption='match props.RestoreScroll with No -> props.OnScroll | _ -> Some actions.OnScroll'
+ showsHorizontalScrollIndicator='props.ShowsHorizontalScrollIndicatorOnNative'
+ showsVerticalScrollIndicator='props.ShowsVerticalScrollIndicatorOnNative'
+ ref='actions.RefScrollView'>
+    <!-- Note, onContentSizeChange on the ScrollView doesn't actually work as
+         expected, it's called once, and does not get called again when async
+         content is loaded and the content height changes. So we instead use
+         a wrapping div with onLayout, which works as expected. -->
+    <div
+     class='inner-div'
+     rt-new-styles='props.styles'
+     onLayout='actions.OnContentLayout'
+     children='children'/>
+</RX.ScrollView>

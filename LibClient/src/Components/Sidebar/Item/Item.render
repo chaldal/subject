@@ -1,0 +1,49 @@
+<LC.Pointer.State rt-fs='true' rt-prop-children='Content(pointerState: LC.Pointer.State.PointerState)'>
+    <rt-block
+     rt-let='
+        stateClass     := "state-" + props.State.Name;
+        isSelected     := match props.State with | Selected -> true | _ -> false;
+        selectedClass  := if isSelected then "selected" else "";
+        hoveredClass   := if pointerState.IsHovered &amp;&amp; (not pointerState.IsDepressed) then "hovered" else "";
+        depressedClass := if pointerState.IsDepressed then "depressed" else "";
+        sharedClassSet := sprintf "%s %s %s %s" stateClass selectedClass hoveredClass depressedClass;
+    '>
+        <div class='item {sharedClassSet} {TopLevelBlockClass}' rt-new-styles='props.styles'>
+            <div class='left' rt-mapo='icon := props.LeftIcon'>
+                <LC.Icon class='icon-left {sharedClassSet}' Icon='icon'/>
+            </div>
+            <div class='middle'>
+                <uitext selectable='true' class='label {sharedClassSet}'>{props.Label}</uitext>
+            </div>
+            <rt-match what='props.State'>
+                <rt-case is='InProgress'>
+                    <div class='right'>
+                        <RX.ActivityIndicator color='"#aaaaaa"' size='~Small'/>
+                    </div>
+                </rt-case>
+                <rt-case is='_'>
+                    <div class='right' rt-mapo='right := props.Right'>
+                        <rt-match what='right'>
+                            <rt-case is='Right.Badge (PositiveInteger count)'>
+                                <div class='badge {sharedClassSet}'>
+                                    <uitext class='badge-text {sharedClassSet}'>{if count &lt;= 99 then count.ToString() else "99+"}</uitext>
+                                </div>
+                            </rt-case>
+                            <rt-case is='Right.Icon icon'>
+                                <LC.Icon class='icon-right {sharedClassSet}' Icon='icon'/>
+                            </rt-case>
+                            <rt-case is='_'>
+                                {=noElement}
+                            </rt-case>
+                        </rt-match>
+                    </div>
+                </rt-case>
+            </rt-match>
+
+            <LC.TapCapture rt-fs='true'
+             rt-mapo='onPress := match props.State with | State.Actionable onPress -> Some onPress | _ -> None'
+             OnPress='onPress'
+             PointerState='pointerState'/>
+        </div>
+    </rt-block>
+</LC.Pointer.State>

@@ -1,0 +1,11 @@
+module <%= appName %>.Components.Dialog.<%= dialogName %>Styles
+
+open ReactXP.Styles
+
+let styles = lazy (compile [
+    "dialog-contents" => [
+        minWidth  200
+        minHeight 200
+        Overflow.Visible
+    ]
+])

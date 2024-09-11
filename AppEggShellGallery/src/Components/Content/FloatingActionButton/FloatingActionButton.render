@@ -1,0 +1,94 @@
+<ComponentContent DisplayName='"FloatingActionButton"' Props='~ForFullyQualifiedName "LibClient.Components.FloatingActionButton"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^LowLevel(~Actionable Actions.greet)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^LowLevel(~Actionable Actions.greet)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 Icon='Icon.Plus'
+                 Label='"Add Items"'
+                 State='^LowLevel(~Actionable ignore)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.FloatingActionButton
+                 Icon='Icon.Plus'
+                 Label='"Add Items"'
+                 State='^LowLevel(~Actionable ignore)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^LowLevel(~InProgress)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^LowLevel(~InProgress)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 Icon='Icon.Plus'
+                 Label='"Add Items"'
+                 State='^LowLevel(~InProgress)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.FloatingActionButton
+                 Icon='Icon.Plus'
+                 Label='"Add Items"'
+                 State='^LowLevel(~InProgress)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^Disabled'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.FloatingActionButton
+                 Icon='Icon.Home'
+                 State='^Disabled'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.FloatingActionButton
+                 class='special'
+                 Icon='Icon.Report'
+                 State='^LowLevel(~Actionable Actions.greet)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.FloatingActionButton
+                     class='special'
+                     Icon='Icon.Report'
+                     State='^LowLevel(~Actionable Actions.greet)'/>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "special" ==> LibClient.Components.FloatingActionButtonStyles.Theme.One (LibClient.Input.ButtonLikeState.Actionable ignore, theBackgroundColor = Color.White, iconColor = Color.DevBlue,  iconSize = 32)
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

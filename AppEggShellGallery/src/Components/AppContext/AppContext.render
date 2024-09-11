@@ -1,0 +1,3 @@
+<LR.NavigationRouter rt-fs='true' rt-prop-children='child' Spec='routesSpec()' navigationState='navigationState' queue='navigationQueue'>
+    <LC.AppShell.Context children='children'/>
+</LR.NavigationRouter>

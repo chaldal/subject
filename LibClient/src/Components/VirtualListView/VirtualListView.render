@@ -1,0 +1,10 @@
+<rt-root rt-type-parameters="'Item">
+	<RX.VirtualListView
+	class='{TopLevelBlockClass}'
+	rt-new-styles='props.styles'
+	ref='actions.Bound.RefVirtualListView'
+	onScrollOption='match props.RestoreScroll with No -> None | _ -> Some actions.OnScroll'
+	itemList='props.Items |> Seq.map VirtualListItem.toRX |> Array.ofSeq'
+	scrollEventThrottle='10'
+	renderItem="actions.Bound.Render"/>
+</rt-root>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Egg.T__EC__T.Fabric" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Egg.T__EC__T.Api_InstanceCount" Value="3" />
+    <Parameter Name="Egg.T__EC__T.SubjectHost_InstanceCount" Value="3" />
+    <Parameter Name="Storage.SqlServer:ConnectionString" Value="Server=tcp:yourserver.example.net,1433;Database=egg1;Integrated Security=true;Encrypt=True;Connection Timeout=30;MultipleActiveResultSets=True;Persist Security Info=False;App=Egg.T__EC__T;MultiSubnetFailover=True;" />
+    <Parameter Name="Endpoints:Egg.T__EC__T.Api" Value="https://T__EC__T-api.subject.app" />
+    <Parameter Name="AppInsights:InstrumentationKey" Value="YOUR_APP_INSIGHTS_KEY_GUID" />
+  </Parameters>
+</Application>

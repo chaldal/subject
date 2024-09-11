@@ -1,0 +1,64 @@
+{
+	"name": "AppEggShellGallery",
+	"alias": "Ui",
+	"type": "app",
+	"render": {
+		"dependenciesToRtCompile": [
+			"../LibClient",
+			"../LibUiAdmin",
+			"../LibRouter",
+			"../ThirdParty/Recharts",
+			"../ThirdParty/SyntaxHighlighter",
+			"../ThirdParty/Showdown",
+			"../ThirdParty/Map"
+		],
+		"additionalModulesToOpen": [
+			"LibLang",
+			"LibClient",
+			"LibClient.Services.Subscription",
+			"LibClient.RenderHelpers",
+			"LibClient.Chars",
+			"LibClient.ColorModule",
+			"LibClient.Responsive",
+			"AppEggShellGallery.RenderHelpers",
+			"AppEggShellGallery.Navigation",
+			"AppEggShellGallery.LocalImages",
+			"AppEggShellGallery.Icons",
+			"AppEggShellGallery.AppServices",
+			"AppEggShellGallery"
+		],
+		"componentLibraryAliases": [
+			["default",           "AppEggShellGallery.Components"],
+			["RX",                "ReactXP.Components"],
+			["LC",                "LibClient.Components"],
+			["LR",                "LibRouter.Components"],
+			["UiAdmin",           "LibUiAdmin.Components"],
+			["SyntaxHighlighter", "ThirdParty.SyntaxHighlighter.Components"],
+			["Showdown",          "ThirdParty.Showdown.Components"],
+			["Map",               "ThirdParty.Map.Components"],
+			["Recharts",          "ThirdParty.Recharts.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",       "RX.View"],
+			["anidiv",    "RX.AnimatableView"],
+			["text",      "LC.LegacyText"],
+			["anitext",   "RX.AnimatableText"],
+			["uitext",    "LC.LegacyUiText"]
+		]
+	},
+	"build": {
+		"copyStaticFiles": [
+			["public-dev/app.css",               "public/[resources]/app.css"],
+			["public-dev/docco.css",             "public/[resources]/docco.css"],
+			["public-dev/hljs-overrides.css",    "public/[resources]/hljs-overrides.css"],
+			["public-dev/Montserrat-Light.ttf",  "public/[resources]/Montserrat-Light.ttf"],
+			["public-dev/Montserrat-Medium.ttf", "public/[resources]/Montserrat-Medium.ttf"],
+			["images/**/*",                      "public/[resources]/images/"],
+			["../Meta/Docs/**/*",                "public/[resources]/docs/"]
+		]
+	}
+}

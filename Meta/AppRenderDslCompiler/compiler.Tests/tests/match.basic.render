@@ -1,0 +1,5 @@
+<rt-match what='maybeUser'>
+	<rt-case is='None'>no user</rt-case>
+	<rt-case is='Some Anonymous'>anonymous user</rt-case>
+	<rt-case is='Some (LoggedIn username)'>Logged in user {username}</rt-case>
+</rt-match>

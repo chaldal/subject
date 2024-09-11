@@ -1,0 +1,4 @@
+for filename in `ls -1 tests | grep .render | sed -e "s/.render//"`; do
+    echo "generating $filename";
+    cat "tests/$filename.render" | ../compiler/render-dsl-compiler Render Test &> "tests/$filename.xfs"
+done

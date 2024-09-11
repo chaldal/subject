@@ -1,0 +1,6 @@
+{
+  //    "AppInsights": { // uncomment this section if you want App Insights telemetry in your test runs
+  //      // Tip: if telemetry for your test case is missing or appears incomplete then try to run only this one test case
+  //      "InstrumentationKey": "00000000-0000-0000-0000-000000000000"
+  //    }
+}

@@ -1,0 +1,42 @@
+<ComponentContent DisplayName='"Card"' Props='~ForFullyQualifiedName "LibClient.Components.Legacy.Card"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Legacy.Card Style='~Shadowed'>
+                    This is a shadowed card with some text
+                </LC.Legacy.Card>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Legacy.Card Style='~Shadowed'>
+                    This is a shadowed card with some text
+                </LC.Legacy.Card>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Legacy.Card Style='~Flat'>
+                    This is a flat card with some text
+                </LC.Legacy.Card>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Legacy.Card Style='~Flat'>
+                    This is a flat card with some text
+                </LC.Legacy.Card>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Legacy.Card OnPress='fun _ -> Action.alert "hello"'>
+                    This is a card that you can press
+                </LC.Legacy.Card>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Legacy.Card OnPress='fun _ -> Action.alert "hello"'>
+                    This is a card that you can press
+                </LC.Legacy.Card>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

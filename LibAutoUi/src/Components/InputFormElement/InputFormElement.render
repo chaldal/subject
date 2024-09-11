@@ -1,0 +1,182 @@
+<rt-root
+ rt-type-parameters="'T"
+ rt-open='LibAutoUi.Types; LibAutoUi.TypeExtensions; LibClient.Components.Input.Picker;'>
+    <rt-block rt-let='path := props.Form.Path; acc := props.Accumulator; displayName := props.Form.DisplayName'>
+        <div class='view' rt-if='acc.HiddenPaths.DoesNotContain path'>
+            <rt-match what='acc.ValueRanges.TryFind path'>
+                <rt-case is='Some range'>
+                    <div class='range-value-selection'>
+                        <div class='inline-label'>{displayName}</div>
+                        <div class='inline-value'>
+                            <LC.Legacy.Input.Picker
+                             class='picker'
+                             Items='range.ToList |> List.map (fun obj -> { Label = obj.ToString(); Item = obj })'
+                             Value='acc.GetCurrentDerivedValue path |> Option.map ~ByItem'
+                             Validity='Valid'
+                             OnChange='~CannotUnselect (fun (index, _) -> props.OnChangeFromRange path (range.Item index |> Option.get (* okay because index is from the same list *)) props.Form.Type)'/>
+                        </div>
+                    </div>
+                </rt-case>
+
+                <rt-case is='None'>
+                    <rt-match what='props.Form.FormType'>
+                        <rt-case is='InputFormType.Primitive (inputType)'>
+                            <div class='primitive'>
+
+                                <rt-match what='inputType'>
+                                    <rt-case is='UnitInput'>
+                                        <!-- auto-filled, don't need to show anything -->
+                                    </rt-case>
+                                    <rt-case is='_'>
+                                        <div class='inline-label'><text>{displayName}</text></div>
+                                    </rt-case>
+                                </rt-match>
+                                <div class='inline-value'>
+                                     <rt-match what='props.PrimitiveInputComponents.TryFind inputType'>
+                                        <rt-case is='Some primitiveComponent'>
+                                            <rt-block rt-let='primitiveProps := { OnChange = props.OnChange path; MaybeValue = acc.GetCurrentValue path }'>
+                                                {=primitiveComponent primitiveProps []}
+                                            </rt-block>
+                                        </rt-case>
+                                        <rt-case is='None'>
+                                            No input component found for primitive type {inputType}
+                                        </rt-case>
+                                    </rt-match>
+
+                                    <!--
+                                    <rt-match what='inputType'>
+                                        <rt-case is='StringInput'>
+                                            <!- can't get valueOption to work correctly with undefined for some reason ->
+                                            <rt-match what='acc.GetCurrentValue path'>
+                                                <rt-case is='Some (StringValue value)'>
+                                                    <RX.TextInput
+                                                     class='text-input'
+                                                     onChangeText='fun value -> props.OnChange path (StringValue value)'
+                                                     value='value'/>
+                                                </rt-case>
+                                                <rt-case is='None'>
+                                                    <RX.TextInput
+                                                     class='text-input'
+                                                     onChangeText='fun value -> props.OnChange path (StringValue value)'/>
+                                                </rt-case>
+                                                <rt-case is='other'>
+                                                    <text>XXX not a string value! {other}</text>
+                                                </rt-case>
+                                            </rt-match>
+                                        </rt-case>
+                                        <rt-case is='NumericInput (allowDecimals, minValue, maxValue)'>
+                                            NumericInput
+                                        </rt-case>
+                                        <rt-case is='GuidInput'>
+                                            GuidInput
+                                        </rt-case>
+                                        <rt-case is='BooleanInput'>
+                                            BooleanInput
+                                        </rt-case>
+                                        <rt-case is='DateTimeInput'>
+                                            <LC.DateField
+                                             MaybeSelected='match acc.GetCurrentValue path with | Some (DateTimeValue dto) -> Some dto | _ -> None'
+                                             OnChange='fun value -> props.OnChange path (DateTimeValue value)'/>
+                                        </rt-case>
+                                        <rt-case is='TimeSpanInput'>
+                                            TimeSpanInput
+                                        </rt-case>
+                                        <rt-case is='UnitInput'>
+                                            <!- auto-filled, don't need to show anything ->
+                                        </rt-case>
+                                        <rt-case is='UnsupportedInput'>
+                                            UnsupportedInput
+                                        </rt-case>
+                                        <rt-case is='FileInput maxFileSizeInBytes'>
+                                            FileInput
+                                        </rt-case>
+                                    </rt-match>
+                                    -->
+                                </div>
+                            </div>
+                        </rt-case>
+
+                        <rt-case is='InputFormType.Option innerForm'>
+                            <rt-block rt-let='optionPath := path.Append PathSegment.Option'>
+                                <div class='option'>
+                                    <div class='inline-label'>{displayName}</div>
+                                    <div class='inline-value'>
+                                        <LC.Input.Checkbox
+                                         rt-let='maybeIsChecked := match acc.GetCurrentValue optionPath with | Some (BooleanValue v) -> Some v | _ -> None'
+                                         Value='maybeIsChecked'
+                                         OnChange='fun _ -> props.OnChange optionPath (BooleanValue (maybeIsChecked |> Option.getOrElse false |> not))'/>
+                                    </div>
+                                </div>
+                                <div class='option-some' rt-if='match acc.GetCurrentValue optionPath with | Some (BooleanValue true) -> true | _ -> false'>
+                                    <InputFormElement
+                                     Form='innerForm'
+                                     Accumulator='acc'
+                                     PrimitiveInputComponents='props.PrimitiveInputComponents'
+                                     OnChangeFromRange='props.OnChangeFromRange'
+                                     OnChange='props.OnChange'/>
+                                </div>
+                            </rt-block>
+                        </rt-case>
+
+                        <rt-case is='InputFormType.List innerForm'>
+                            <div class='heading'>List {displayName}</div>
+                            <div class='list-item-field'>
+                                <InputFormElement
+                                 Form='innerForm'
+                                 Accumulator='acc'
+                                 PrimitiveInputComponents='props.PrimitiveInputComponents'
+                                 OnChangeFromRange='props.OnChangeFromRange'
+                                 OnChange='props.OnChange'/>
+                            </div>
+                        </rt-case>
+
+                        <rt-case is='InputFormType.Record fieldForms'>
+                            <div class='record'>
+                                <div class='record-label'><text>{displayName}</text></div>
+                                <div class='indented-fields'>
+                                    <div rt-map='fieldForm := fieldForms'>
+                                        <InputFormElement
+                                         Form='fieldForm'
+                                         Accumulator='acc'
+                                         PrimitiveInputComponents='props.PrimitiveInputComponents'
+                                         OnChangeFromRange='props.OnChangeFromRange'
+                                         OnChange='props.OnChange'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </rt-case>
+
+                        <rt-case is='InputFormType.Union caseInputForms'>
+                            <div class='union'
+                             rt-let='maybeSelectedCaseIndex := match acc.GetCurrentValue path with | Some (NumericValue n) -> Some (int n) | _ -> None'>
+                                <div class='union-case-selection'>
+                                    <div class='inline-label'>{displayName}</div>
+                                    <div class='inline-value'>
+                                        <LC.Legacy.Input.Picker
+                                         class='picker'
+                                         Items='caseInputForms |> List.map (fun cif -> { Label = cif.DisplayName; Item = cif })'
+                                         Value='maybeSelectedCaseIndex |> Option.map ~ByIndex'
+                                         Validity='Valid'
+                                         OnChange='~CannotUnselect (fun (index, _) -> props.OnChange path (NumericValue (decimal index)))'/>
+                                    </div>
+                                </div>
+                                <div class='indented-fields'
+                                 rt-mapo='selectedCaseIndex := maybeSelectedCaseIndex'
+                                 rt-let='caseInputForm := caseInputForms |> List.item selectedCaseIndex'>
+                                    <div rt-map='fieldForm := caseInputForm.FieldForms'>
+                                        <InputFormElement
+                                         Form='fieldForm'
+                                         Accumulator='acc'
+                                         PrimitiveInputComponents='props.PrimitiveInputComponents'
+                                         OnChangeFromRange='props.OnChangeFromRange'
+                                         OnChange='props.OnChange'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </rt-case>
+                    </rt-match>
+                </rt-case>
+            </rt-match>
+        </div>
+    </rt-block>
+</rt-root>

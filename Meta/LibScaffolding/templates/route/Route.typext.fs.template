@@ -1,0 +1,32 @@
+module <%= appName %>.Components.Route.<%= componentName %>
+
+open LibLang
+open LibClient
+
+type Props = (* GenerateMakeFunction *) {
+    PstoreKey: string
+ZAP<% if (hasParameters) { %>
+    SomeParam: int
+ZAP<% } %>
+}
+
+type Estate = EmptyRecordType
+
+type Pstate = <% if (hasParameters) { %> {
+    SomeValue: int
+}<% } else { %>EmptyRecordType<% } %>
+
+
+type <%= componentNameLeaf %>(initialProps) =
+    inherit PstatefulComponent<Props, Estate, Pstate, Actions, <%= componentNameLeaf %>>("<%= appName %>.Components.Route.<%= componentName %>", initialProps.PstoreKey, initialProps, Actions, hasStyles = true)
+
+    override _.GetDefaultPstate(_initialProps: Props) = <% if (hasParameters) { %>{
+        SomeValue = 42
+    }<% } else { %>EmptyRecord<% } %>
+
+    override _.GetInitialEstate(_initialProps: Props) = EmptyRecord
+
+and Actions(_this: <%= componentNameLeaf %>) =
+    class end
+
+let Make = makeConstructor<<%= componentNameLeaf %>,_,_>

@@ -1,0 +1,14 @@
+<ComponentContent DisplayName='"Pre"' Props='~ForFullyQualifiedName "LibClient.Components.Pre"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Pre rt-fs='true' styles='[| PreStyles.Styles.pre |]' text='text'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Pre rt-fs='true' styles='[| PreStyles.Styles.pre |]' text='text'/>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

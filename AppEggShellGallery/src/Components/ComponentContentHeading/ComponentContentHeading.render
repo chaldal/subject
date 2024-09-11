@@ -1,0 +1,6 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <div class='view'>
+        <text class='text {screenSize.Class}'>{props.DisplayName}</text>
+        <LC.Tag rt-fs='true' Text='"Responsive"' rt-if='props.IsResponsive'/>
+    </div>
+</LC.With.ScreenSize>

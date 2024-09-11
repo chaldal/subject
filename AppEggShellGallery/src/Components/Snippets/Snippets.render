@@ -1,0 +1,38 @@
+<div>
+    <rt-match what='AppEggShellGallery.ScrapedData.RenderDslSnippets.renderDslSnippetDataResult'>
+        <rt-case is='Ok renderDslSnippetData'>
+            <rt-match what='renderDslSnippetData'>
+                <rt-case is='Ok snippets'>
+                    <dom.table
+                     class='aesg-Snippets-table dom-user-select-text'
+                     rt-let='filteredSnippets := snippets |> List.filter props.Scope.Filter'>
+                        <dom.tbody>
+                            <dom.tr>
+                                <dom.th>Name</dom.th>
+                                <dom.th>Prefix</dom.th>
+                                <dom.th>Description</dom.th>
+                                <dom.th rt-if='props.Scope = All'>Scope</dom.th>
+                            </dom.tr>
+                            <dom.tr rt-map='snippet := filteredSnippets'>
+                                <dom.td class='nowrap'>{snippet.Key}</dom.td>
+                                <dom.td class='nowrap'>{snippet.Prefix}</dom.td>
+                                <dom.td class='description'>
+                                    <Showdown.MarkdownViewer
+                                     Source='~Code snippet.Description'
+                                     GlobalLinkHandler='"globalMarkdownLinkHandler"'/>
+                                </dom.td>
+                                <dom.td rt-if='props.Scope = All'>{snippet.Scope}</dom.td>
+                            </dom.tr>
+                        </dom.tbody>
+                    </dom.table>
+                </rt-case>
+                <rt-case is='Error error'>
+                    <div class='error'><text class='error-text'>{error}</text></div>
+                </rt-case>
+            </rt-match>
+        </rt-case>
+        <rt-case is='Error error'>
+            <div class='error'><text class='error-text'>{error}</text></div>
+        </rt-case>
+    </rt-match>
+</div>

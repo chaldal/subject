@@ -1,0 +1,61 @@
+<ComponentContent DisplayName='"ErrorBoundary"' Props='~ForFullyQualifiedName "LibClient.Components.ErrorBoundary"'>
+    <rt-prop name='Samples'>
+        <ComponentSample Heading='"Without an error boundary (there is one at the top of the AppShell.Content)"'>
+            <rt-prop name='Visuals'>
+                <text>Press the button below to cause an error to be throw in the render method.</text>
+                <LC.Button
+                 Label='"The Bomb"'
+                 State='^LowLevel (~Actionable (actions.SetTheBomb "A" true))'/>
+                <LC.TheBomb rt-fs='true' rt-if='estate.ShowTheBomb.Contains "A"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <text>Press the button below to cause an error to be throw in the render method.</text>
+                <LC.Button
+                 Label='"The Bomb"'
+                 State='^LowLevel (~Actionable (actions.SetTheBomb "A" true))'/>
+                <LC.TheBomb rt-fs='true' rt-if='estate.ShowTheBomb.Contains "A"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample Heading='"With an error boundary"'>
+            <rt-prop name='Visuals'>
+                <LC.ErrorBoundary rt-fs='true' rt-prop-children='Try'>
+                    <text>This is the try content.</text>
+                    <text>Press the button below to cause an error to be throw in the render method.</text>
+                    <LC.Button
+                     Label='"The Bomb"'
+                     State='^LowLevel (~Actionable (actions.SetTheBomb "B" true))'/>
+                    <LC.TheBomb rt-fs='true' rt-if='estate.ShowTheBomb.Contains "B"'/>
+
+                    <rt-prop name='Catch(error: System.Exception, retry)'>
+                        <text>We caught an error!</text>
+                        <text>{error}</text>
+                        <LC.Button
+                         Label='"Reset"'
+                         Level='~Secondary'
+                         State='^LowLevel (~Actionable (fun e -> actions.SetTheBomb "B" false e; retry ()))'/>
+                    </rt-prop>
+                </LC.ErrorBoundary>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.ErrorBoundary rt-fs='true' rt-prop-children='Try'>
+                    <text>This is the try content.</text>
+                    <text>Press the button below to cause an error to be throw in the render method.</text>
+                    <LC.Button
+                     Label='"The Bomb"'
+                     State='^LowLevel (~Actionable (actions.SetTheBomb "B" true))'/>
+                    <LC.TheBomb rt-fs='true' rt-if='estate.ShowTheBomb.Contains "B"'/>
+
+                    <rt-prop name='Catch(error, retry)'>
+                        <text>We caught an error!</text>
+                        <text>{error}</text>
+                        <LC.Button
+                         Label='"Reset"'
+                         Level='~Secondary'
+                         State='^LowLevel (~Actionable (fun e -> actions.SetTheBomb "B" false e; retry ()))'/>
+                    </rt-prop>
+                </LC.ErrorBoundary>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

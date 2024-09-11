@@ -1,0 +1,13 @@
+ZAP<% if (typeParameters) { %>
+<rt-root rt-type-parameters="<%= typeParameters.WithoutConstraints %>">
+ZAP<% } %>
+ZAP<% if (hasStyles) { %>
+<% if (typeParameters) { %>    <% } %><div class='view'>
+ZAP<% } else { %>
+<% if (typeParameters) { %>    <% } %><div>
+ZAP<% } %>
+<% if (typeParameters) { %>    <% } %>    Take a deep breath.
+<% if (typeParameters) { %>    <% } %></div>
+ZAP<% if (typeParameters) { %>
+</rt-root>
+ZAP<% } %>

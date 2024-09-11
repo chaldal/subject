@@ -1,0 +1,17 @@
+<rt-root>
+    <LC.SetPageMetadata rt-fs='true' Title='"How To"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded>
+            <rt-match what='props.Item'>
+                <rt-case is='HowToItem.Markdown url'>
+                    <Showdown.MarkdownViewer
+                     Source='~Url ("/docs/" + url |> services().Http.PrepareInBundleResourceUrl)'
+                     GlobalLinkHandler='"globalMarkdownLinkHandler"'
+                     ImageUrlTransformer='markdownImageUrlTransformer'
+                     ShowdownConverter='showdownConverterWithSyntaxHighlighting'/>
+                </rt-case>
+            </rt-match>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

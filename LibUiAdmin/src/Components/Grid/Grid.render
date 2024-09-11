@@ -1,0 +1,238 @@
+<rt-root rt-type-parameters="'T">
+    <rt-let name="gridView(isHandheldMode: bool)">
+        <div class='view' rt-class='full-height := props.HandleVerticalScrolling'>
+            {=if isHandheldMode then noElement else navRow}
+            <RX.ScrollView scrollEnabled='props.HandleVerticalScrolling' class='scroll-view-vertical'>
+                <RX.ScrollView horizontal='true' class='scroll-view-horizontal'>
+                    <rt-let name='maybeHeaders'>
+                        <rt-match what='(props.Headers, props.HeadersRaw)'>
+                            <rt-case is='(_, Some headersRaw)'>
+                                <dom.thead class='headers'>
+                                    {=headersRaw}
+                                </dom.thead>
+                            </rt-case>
+                            <rt-case is='(Some headers, None)'>
+                                <dom.thead class='headers'>
+                                    <dom.tr>{=headers}</dom.tr>
+                                </dom.thead>
+                            </rt-case>
+                            <rt-case is='(None, None)'/>
+                        </rt-match>
+                    </rt-let>
+
+                    <rt-match what='props.Input'>
+                        <rt-case is='Static (rows, maybeHandheldRows)'>
+                            <rt-match what='isHandheldMode, maybeHandheldRows'>
+                                <rt-case is='true, Some handheldRows'>
+                                    {=handheldRows}
+                                </rt-case>
+                                <rt-case is='_'>
+                                    <dom.table class='la-table'>
+                                        {=maybeHeaders}
+                                        <dom.tbody class='rows'>
+                                            {=rows}
+                                        </dom.tbody>
+                                    </dom.table>
+                                </rt-case>
+                            </rt-match>
+                        </rt-case>
+                        <rt-case is='Everything (asyncItems, makeDesktopRow, maybeMakeHandheldRow) | Paginated ({ Items = asyncItems }, makeDesktopRow, maybeMakeHandheldRow)'>
+                            <LC.AsyncData rt-fs='true' Data='asyncItems' rt-prop-children="WhenAvailable(items: seq&lt;'T&gt;)">
+                                <rt-match what='items |> Seq.isEmpty'>
+                                    <rt-case is='true'>
+                                        <div class='empty-message'>
+                                            <uitext class='empty-message-text'>No Rows</uitext>
+                                        </div>
+                                    </rt-case>
+                                    <rt-case is='false'>
+                                        <rt-match what='isHandheldMode, maybeMakeHandheldRow'>
+                                            <rt-case is='true, Some makeHandheldRows'>
+                                                <LC.ItemList Items='items' Style='~Raw' rt-prop-children='WhenNonempty(items)'>
+                                                    <div
+                                                     rt-mapi='index item := items'
+                                                     key='props.ItemKey |> Option.map (fun f -> f item) |> Option.getOrElse $"{index}"'>
+                                                        {=makeHandheldRows item}
+                                                    </div>
+                                                </LC.ItemList>
+                                            </rt-case>
+                                            <rt-case is='_'>
+                                                <dom.table class='la-table'>
+                                                    {=maybeHeaders}
+                                                    <dom.tbody class='rows'>
+                                                        <!--
+                                                        Rows are explicitly positioned as relative to allow for absolute positioning within that row.
+                                                        Without this, absolute positioning will search up the tree for the first element with explicit
+                                                        positioning and position relative to that rather than relative to the row.
+                                                        -->
+                                                        <dom.tr
+                                                         class='row'
+                                                         rt-class='row-alt := index % 2 = 0'
+                                                         rt-mapi='index item := items'
+                                                         key='props.ItemKey |> Option.map (fun f -> f item) |> Option.getOrElse $"{index}"'>
+                                                            {=makeDesktopRow item}
+                                                        </dom.tr>
+                                                    </dom.tbody>
+                                                </dom.table>
+                                            </rt-case>
+                                        </rt-match>
+                                    </rt-case>
+                                </rt-match>
+
+                                <rt-prop name='WhenFailed(error)'>
+                                    <LC.InfoMessage Message='error.ToString()' Level='~Caution'/>
+                                </rt-prop>
+                            </LC.AsyncData>
+                        </rt-case>
+                    </rt-match>
+                </RX.ScrollView>
+            </RX.ScrollView>
+
+            <rt-let name='navRow'>
+                <rt-match what='props.Input'>
+                    <rt-case is='Paginated (data, _, _)'>
+                        <rt-let name='quadState'>
+                            <LC.QuadStateful rt-fs='true'
+                                 InitialInputAcc='LC.QuadStateful.Sync (Some data.PageNumber)'
+                                 Validate='match data.MaybePageCount with | None -> id | Some pageCount -> Option.flatMap (fun v -> if v.Value > pageCount.Value then None else Some v)'
+                                 Act='goToPageAdapter data.GoToPage data.PageSize'>
+                                    <rt-prop name='Initial(_edit)'>
+                                        <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.First' State='^LowLevel(if data.PageNumber = PositiveInteger.One then LC.IconButton.Disabled else LC.IconButton.Actionable (Some >> data.GoToPage data.PageSize PositiveInteger.One))'/>
+                                        <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Previous' State='^LowLevel(match PositiveInteger.ofInt (data.PageNumber.Value - 1) with | None -> LC.IconButton.Disabled | Some newPageNumber -> LC.IconButton.Actionable (Some >> data.GoToPage data.PageSize newPageNumber))'/>
+
+                                        <rt-match what='data.MaybePageCount'>
+                                            <rt-case is='None'>
+                                                <rt-match what='data.Items'>
+                                                    <rt-case is='Available items when items |> Seq.length = 0'>
+                                                        <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Next' State='^LowLevel(LC.IconButton.Disabled)'/>
+                                                        <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Last' State='^LowLevel(LC.IconButton.Disabled)'/>
+                                                    </rt-case>
+                                                    <rt-case is='_'>
+                                                        <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Next' State='^LowLevel(LC.IconButton.Actionable (Some >> data.GoToPage data.PageSize (data.PageNumber + PositiveInteger.One)))'/>
+                                                        <rt-match what='isHandheldMode'>
+                                                            <rt-case is='true'>
+                                                                <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Last' State='^LowLevel(LC.IconButton.Disabled)'/>
+                                                            </rt-case>
+                                                            <rt-case is='_'>
+                                                                <uitext>Unknown Pages</uitext>
+                                                            </rt-case>
+                                                        </rt-match>
+                                                    </rt-case>
+                                                </rt-match>
+                                            </rt-case>
+
+                                            <rt-case is='Some pageCount'>
+                                                <rt-block rt-let='pagesToShow := actions.GeneratePagesToShow data.PageNumber.Value pageCount.Value; pagesToShowCount := pagesToShow |> List.length'>
+                                                    <rt-block rt-mapi='index pageNumber := pagesToShow' rt-let='isCurrentPage := pageNumber = data.PageNumber.Value'>
+                                                        <div styles='[| GridStyles.Styles.navPageNumber; if isCurrentPage then GridStyles.Styles.navCurrentPage |]'>
+                                                            <LC.TextButton rt-fs='true'
+                                                             State='^LowLevel(match isCurrentPage with false -> LC.TextButton.Actionable (Some >> data.GoToPage data.PageSize (PositiveInteger.ofLiteral pageNumber)) | true -> LC.TextButton.Disabled)'
+                                                             Label='`{pageNumber}`'/>
+                                                        </div>
+
+                                                        <uitext
+                                                         rt-if='pagesToShowCount &gt; 1 &amp;&amp; ((index = 0 &amp;&amp; pagesToShow.[0] + 1 &lt;&gt; pagesToShow.[1]) || (index = pagesToShowCount - 2 &amp;&amp; (pagesToShow.[pagesToShowCount - 2] + 1 &lt;&gt; pagesToShow.[pagesToShowCount - 1])))'
+                                                         class='nav-page-internal-dot'>
+                                                            •••
+                                                        </uitext>
+                                                    </rt-block>
+
+                                                    <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Next' State='^LowLevel(if data.PageNumber.Value >= pageCount.Value then LC.IconButton.Disabled else LC.IconButton.Actionable (Some >> data.GoToPage data.PageSize (data.PageNumber + PositiveInteger.One)))'/>
+                                                    <rt-match what='PositiveInteger.ofUnsignedInteger pageCount'>
+                                                        <rt-case is='None'><!-- no last page to go to --></rt-case>
+                                                        <rt-case is='Some lastPage'>
+                                                            <LC.IconButton rt-fs='true' theme='GridStyles.Styles.navButtonTheme' styles='[| GridStyles.Styles.navButton |]' Icon='LibClient.Icons.Icon.Last' State='^LowLevel(if data.PageNumber.Value >= pageCount.Value then LC.IconButton.Disabled else LC.IconButton.Actionable (Some >> data.GoToPage data.PageSize lastPage))'/>
+                                                        </rt-case>
+                                                    </rt-match>
+                                                </rt-block>
+                                            </rt-case>
+                                        </rt-match>
+
+                                        <rt-match what='data.MaybeTotalItemCount, isHandheldMode'>
+                                            <rt-case is='Some totalItemCount, false'>
+                                                <uitext class='result-count'>Total {pluralize (uint32 totalItemCount.Value) "result" "results"}</uitext>
+                                            </rt-case>
+                                            <rt-case is='_'>{=noElement}</rt-case>
+                                        </rt-match>
+                                    </rt-prop>
+
+                                    <rt-prop name='Input(_, setInput, maybeSave, cancel)'>
+                                        <LC.With.Ref rt-fs='true'
+                                         rt-with='bindJumpToPageRef, _'
+                                         OnInitialize='actions.OnJumpToPageInitialize'>
+                                            <LC.Legacy.Input.PositiveInteger
+                                             ref='bindJumpToPageRef'
+                                             InitialValue='data.PageNumber'
+                                             OnChange='Result.toOption >> setInput'
+                                             OnKeyPress='actions.OnJumpToPageNumberKeyPress maybeSave cancel'/>
+                                        </LC.With.Ref>
+                                    </rt-prop>
+                            </LC.QuadStateful>
+                        </rt-let>
+
+                        <rt-match what='isHandheldMode'>
+                            <rt-case is='true'>
+                                <div class='paginationHandheld'>
+                                    <div class='navigation'>
+                                        {=quadState}
+                                    </div>
+                                </div>
+                            </rt-case>
+                            <rt-case is='false'>
+                                <div class='pagination'>
+                                    <div class='navigation'>
+                                        {=quadState}
+                                    </div>
+                                    <div class='page-info-container'>
+                                        <rt-match what='props.Input'>
+                                            <rt-case is='Paginated (data, _, _)'>
+                                                <div class='page-size'>
+                                                    <uitext class='page-size-text'>Page Size</uitext>
+                                                    <LC.Legacy.Input.Picker
+                                                     class='picker'
+                                                     Items='props.PageSizeChoices |> List.map (fun size -> { Label = size.Value.ToString(); Item = size })'
+                                                     Value='~ByItem data.PageSize |> Some'
+                                                     OnChange='~CannotUnselect (fun (index, _) -> actions.ResizePage data (props.PageSizeChoices.Item index))'
+                                                     Validity='Valid'/>
+                                                </div>
+                                            </rt-case>
+                                            <rt-case is='_'>{=noElement}</rt-case>
+                                        </rt-match>
+                                        <uitext class='curr-page-info'>
+                                            <rt-match what='data.Items'>
+                                                <rt-case is='Available items when items |> Seq.length = 0'/>
+                                                <rt-case is='_'>
+                                                    Showing {data.PageNumber.Value} of {data.MaybePageCount |> Option.mapOrElse "unknown" (fun p -> string(p.Value))} pages
+                                                </rt-case>
+                                            </rt-match>
+                                        </uitext>
+
+                                        <LC.Input.PositiveInteger
+                                         Placeholder='"Page no"'
+                                         class='goto-page-input'
+                                         Value='estate.JumpToPage'
+                                         OnChange='fun v -> actions.UpdateJumpToPage v'
+                                         Validity='Valid'/>
+
+                                        <LC.Button
+                                         class='goto-page-btn'
+                                         Label='"Go"'
+                                         State='^LowLevel (match estate.JumpToPage.Result with | Ok (Some page) -> ~Actionable (Some >> data.GoToPage data.PageSize page) | _ -> ~Disabled)'/>
+                                    </div>
+                                </div>
+                            </rt-case>
+                        </rt-match>
+                    </rt-case>
+                    <rt-case is='_'>{=noElement}</rt-case>
+                </rt-match>
+            </rt-let>
+
+            {=navRow}
+        </div>
+    </rt-let>
+
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+    {=gridView(false)}
+    <rt-sharp value='else'/>
+    {=gridView(true)}
+    <rt-sharp value='endif'/>
+</rt-root>

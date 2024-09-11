@@ -1,0 +1,35 @@
+<!--
+    TODO
+    - dynamic date with left-right arrows
+-->
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <div class='view {TopLevelBlockClass}'>
+        <div class='weekly-calendar-container'>
+            <rt-match what='props.Label'>
+                <rt-case is='Some label'>
+                    <div class='label'><text class='label-text' rt-class='invalid := props.Validity.IsInvalid'>{label}</text></div>
+                </rt-case>
+                <rt-case is='None'>
+                    <div rt-if='props.Validity = Missing' class='label invalid'><text class='label-text invalid'>Required</text></div>
+                </rt-case>
+            </rt-match>
+
+            <RX.ScrollView horizontal='true'>
+                <div class='weekly-calendar {screenSize.Class}' rt-let='days := (generateWeek estate.StartDate)'>
+                    <div class='day {screenSize.Class}' rt-map='day := days'>
+                        <text class='day-of-week'>{(unionCaseName day.DayOfTheWeek).Substring(0, 3)}</text>
+                        <div
+                         class='date'
+                         rt-let='isSelected := Set.contains day props.Value'>
+                            <div class='circle {screenSize.Class}' rt-if='isSelected'/>
+                            <uitext class='date-text' rt-class='selected := isSelected'>{day.Day}</uitext>
+                        </div>
+                        <LC.TapCapture rt-fs='true'
+                         OnPress='fun _ -> props.OnChange (props.Value.Toggle day)'/>
+                    </div>
+                </div>
+            </RX.ScrollView>
+            <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+        </div>
+    </div>
+</LC.With.ScreenSize>

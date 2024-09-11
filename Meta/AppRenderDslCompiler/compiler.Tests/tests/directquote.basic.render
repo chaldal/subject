@@ -1,0 +1,3 @@
+<Notification>
+    {=props.children}
+</Notification>

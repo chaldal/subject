@@ -1,0 +1,48 @@
+module Components.TestRender
+
+module FRH = Fable.React.Helpers
+module FRP = Fable.React.Props
+module FRS = Fable.React.Standard
+
+open LibClient.RenderResultModule
+
+open Components
+
+
+
+open Components.Test
+
+
+
+let render(props: Components.Test.Props, estate: Components.Test.Estate, pstate: Components.Test.Pstate, actions: Components.Test.Actions, __componentStyles: ReactXP.Styles.RuntimeStyles) : Fable.React.ReactElement =
+    let __class = (ReactXP.Helpers.extractProp "ClassName" props) |> Option.defaultValue ""
+    let __mergedStyles = ReactXP.Styles.Runtime.mergeComponentAndPropsStyles __componentStyles props
+    let __parentFQN = None
+    (
+        match (maybeUser) with
+        | None ->
+            (
+                let __list = [
+                    ((makeTextNode "no user") |> RenderResult.Make)
+                ]
+                __list |> RenderResult.ToRawElements __parentFQN
+            )
+            |> RenderResult.Make
+        | Some Anonymous ->
+            (
+                let __list = [
+                    ((makeTextNode "anonymous user") |> RenderResult.Make)
+                ]
+                __list |> RenderResult.ToRawElements __parentFQN
+            )
+            |> RenderResult.Make
+        | Some (LoggedIn username) ->
+            (
+                let __list = [
+                    ((makeTextNode (System.String.Format("{0}{1}{2}", "Logged in user ", (username), ""))) |> RenderResult.Make)
+                ]
+                __list |> RenderResult.ToRawElements __parentFQN
+            )
+            |> RenderResult.Make
+    )
+    |> RenderResult.ToRawElementsSingle __parentFQN |> RenderResult.ToSingleElement

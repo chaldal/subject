@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.LibLifeCycleCoreBuild</PackageId>
+    <Version>1.6.0</Version>
+    <Description>Subject stack generated native Orleans client</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibLifeCycleCore\src\LibLifeCycleCore.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Connections.Security" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.7.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

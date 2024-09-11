@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Section Name="Storage.SqlServer">
+        <Parameter Name="ConnectionString" Value="(Will be overriden)"/>
+  </Section>
+  <Section Name="AppInsights">
+        <Parameter Name="InstrumentationKey" Value="(Will be overriden)"/>
+  </Section>
+  <Section Name="Orleans.Clustering">
+        <Parameter Name="MembershipConnectionString" Value="(Will be overriden)"/>
+        <Parameter Name="ShouldInitializeForLocal1NodeEnvironment" Value="(Will be overriden)"/>
+  </Section>
+  <Section Name="Certificate">
+        <Parameter Name="UseDevelopmentCertificate" Value="(Will be overriden)"/>
+  </Section>
+  <Section Name="Http">
+        <Parameter Name="DefaultAppCookieDomain" Value="(Will be overriden)"/>
+        <Parameter Name="HostNameSuffixToAppCookieDomainQueryString" Value="(Will be overriden)"/>
+  </Section>
+  <Section Name="Application">
+        <Parameter Name="CorsHostNamesCsv" Value="(Will be overriden)"/>
+  </Section>
+</Settings>

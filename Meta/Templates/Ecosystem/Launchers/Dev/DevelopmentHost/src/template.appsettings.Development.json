@@ -1,0 +1,25 @@
+﻿{
+  // Welcome, Developers! Glad you found this file.
+  //
+  // Address ALL QQQs, and then copy this to appsettings.Development.json
+  //
+  "Storage.SqlServer": {
+    // Configure your SQL Server ConnectionString below. Below are some examples:
+    // For Windows Auth (generally on Windows Machine), simply uncomment below, and enter the DB Name
+    // "ConnectionString": "Server=localhost;Database=T__ECL__T;Integrated Security=true;Encrypt=False;Connection Timeout=30;MultipleActiveResultSets=True;"
+    // For SQL Auth
+    "ConnectionString": "Server=localhost;Database=T__ECL__T;User ID=sa;Password=YOURPWD;Trusted_Connection=False;Encrypt=False;MultipleActiveResultSets=True;"
+  },
+  "Orleans.Clustering": {
+    // Connection string to membership database. Multiple ecosystems that work with each other aka "biosphere" must use same membership database to discover each other
+    "MembershipConnectionString": "Server=localhost;Database=T__ECL__T;User ID=sa;Password=YOURPWD;Trusted_Connection=False;Encrypt=False;MultipleActiveResultSets=True;", //Can use the same as ConnectionString
+    // specify two unused ports to run dev host Silo and Gateway
+    "DevHostSiloPort": 200XX, //Use Unique Number
+    "DevHostGatewayPort": 200XX //Use Unique Number
+  },
+  "AppInsights": { // delete this section if you don't want telemetry in your env
+    "InstrumentationKey": "YOUR_APP_INSIGHTS_KEY_GUID"
+  },
+  // set to true to allow unauthenticated REST Api access to all LifeCycles in Development Host
+  "DevHost.UnrestrictedApiAccess": false
+}

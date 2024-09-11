@@ -1,0 +1,44 @@
+<LR.With.CurrentRoute rt-fs='true' spec='routesSpec()' rt-prop-children='fn(maybeCurrentRoute)'>
+    <LC.Nav.Top.Base rt-let='maybeCurrentActualRoute := nav.CurrentActualRoute maybeCurrentRoute'>
+        <rt-prop name='Desktop(_)'>
+            <div class='logo'>
+                <LC.Icon Icon='Icon.EggShell' class='logo-icon'/>
+                <LC.TapCapture rt-fs='true' OnPress='nav.Go (maybeCurrentRoute, Home)'/>
+            </div>
+
+            <rt-match what='maybeCurrentActualRoute'>
+                <rt-case is='Some (Docs       _)'><LC.Nav.Top.Heading Text='"EggShell — Docs"'      /></rt-case>
+                <rt-case is='Some (Tools      _)'><LC.Nav.Top.Heading Text='"EggShell — Tools"'     /></rt-case>
+                <rt-case is='Some (HowTo      _)'><LC.Nav.Top.Heading Text='"EggShell — How To"'    /></rt-case>
+                <rt-case is='Some (Subject    _)'><LC.Nav.Top.Heading Text='"EggShell — Subject"'   /></rt-case>
+                <rt-case is='Some (Design     _)'><LC.Nav.Top.Heading Text='"EggShell — Design"'    /></rt-case>
+                <rt-case is='Some (Components _)'><LC.Nav.Top.Heading Text='"EggShell — Components"'/></rt-case>
+                <rt-case is='_                  '><LC.Nav.Top.Heading Text='"EggShell"'             /></rt-case>
+            </rt-match>
+
+            <div class='sample-visuals-screen-size' rt-let='sampleVisualsScreenSize := nav.CurrentSampleVisualsScreenSizeOrDefault maybeCurrentRoute'>
+                <uitext class='label'>Visuals</uitext>
+                <LC.ToggleButtons rt-fs='true'
+                 Value='LC.ToggleButtons.ExactlyOne (Some sampleVisualsScreenSize, (fun value -> nav.SetSampleVisualsScreenSize maybeCurrentRoute value; Telemetry.TrackEvent "TopNavScreenSizeToggleButtonPressed" ([("Value", value.ToString() |> box)] |> Map.ofList)))'
+                 rt-prop-children='Buttons(group)'>
+                    <LC.ToggleButton rt-fs='true' Position='LC.ToggleButton.Position.First' Group='group' Style='LC.ToggleButton.Label "Desktop"'  Value='ScreenSize.Desktop' />
+                    <LC.ToggleButton rt-fs='true' Position='LC.ToggleButton.Position.Last'  Group='group' Style='LC.ToggleButton.Label "Handheld"' Value='ScreenSize.Handheld'/>
+                </LC.ToggleButtons>
+            </div>
+
+            <LC.Nav.Top.Item Style='~labelOnly "Docs"'       State='match maybeCurrentActualRoute with Some (Docs _)       -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Docs "index.md")        '/>
+            <LC.Nav.Top.Item Style='~labelOnly "Tools"'      State='match maybeCurrentActualRoute with Some (Tools _)      -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Tools "tools/index.md") '/>
+            <LC.Nav.Top.Item Style='~labelOnly "Components"' State='match maybeCurrentActualRoute with Some (Components _) -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Components Index)       '/>
+            <LC.Nav.Top.Item Style='~labelOnly "How To"'     State='match maybeCurrentActualRoute with Some (HowTo _)      -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, HowTo (HowToItem.Markdown "how-to/index.md"))'/>
+            <LC.Nav.Top.Item Style='~labelOnly "Subject"'    State='match maybeCurrentActualRoute with Some (Subject _)    -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Subject "subject/index.md")'/>
+            <LC.Nav.Top.Item Style='~labelOnly "Design"'     State='match maybeCurrentActualRoute with Some (Design _)     -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Design (DesignItem.Markdown "design/index.md"))'/>
+            <LC.Nav.Top.Item Style='~labelOnly "Legacy"'     State='match maybeCurrentActualRoute with Some (Legacy _)     -> ~SelectedActionable go | _ -> ~Actionable go' rt-let='go := nav.Go (maybeCurrentRoute, Legacy (LegacyItem.Markdown "legacy/index.md"))'/>
+        </rt-prop>
+
+        <rt-prop name='Handheld(_)'>
+            <LR.Nav.Top.BackButton rt-fs='true' />
+            <LC.Nav.Top.Heading Text='"EggShell"'/>
+            <LC.Nav.Top.ShowSidebarButton/>
+        </rt-prop>
+    </LC.Nav.Top.Base>
+</LR.With.CurrentRoute>

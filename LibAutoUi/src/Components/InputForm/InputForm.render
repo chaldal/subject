@@ -1,0 +1,11 @@
+<rt-root rt-type-parameters="'T">
+    <div class='view'>
+        <InputFormElement
+         rt-if='estate.ReadyToRender'
+         PrimitiveInputComponents='defaultPrimitiveInputComponents'
+         Form='props.FormWrapper.Form'
+         Accumulator='estate.Accumulator'
+         OnChange='actions.OnChange'
+         OnChangeFromRange='actions.OnChangeFromRange'/>
+    </div>
+</rt-root>

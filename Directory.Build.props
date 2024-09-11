@@ -1,0 +1,28 @@
+<Project ToolsVersion="15.0">
+  <PropertyGroup Condition="'$(Configuration)'!='Release'">
+    <!-- Suppress QQQs during development -->
+    <OtherFlags>--warnon:3390 --warnon:1182 --warnaserror+ --nowarn:3186;3511;3535;3536;3548;3560;10666;10667 --warnaserror-:44;1182 $(OtherFlags)</OtherFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <!-- In Release mode, QQQ becomes an error, QQQ_In_Longterm_Development becomes a warning -->
+    <OtherFlags>--warnon:1182 --warnaserror+ --nowarn:3186;3511;3535;3536;3548;3560 --warnaserror-:44;1182;10667 $(OtherFlags)</OtherFlags>
+  </PropertyGroup>
+</Project>
+
+<!--
+
+Relevant error codes are:
+=========================
+
+ 0044 -> Obsolete / deprecated
+ 1182 -> Unused variable / binding
+ 3186 -> warning FS3186: An error occurred while reading the F# metadata node at position .. in table 'itypars' of assembly ..
+ 3511 -> This state machine is not statically compilable. An alternative dynamic implementation will be used, which may be slower.
+ 3535 -> Declaring "interfaces with static abstract methods" is an advanced feature.
+ 3536 -> 'ICodecInterface<_>' is normally used as a type constraint in generic code, e.g. "'T when ISomeInterface<'T>" or "let f (x: #ISomeInterface<_>)
+ 3548 -> Pattern discard is not allowed for union case that takes no data.
+ 3560 -> This copy-and-update record expression changes all fields of record type 'Records.R'. Consider using the record construction syntax instead.
+10666 -> QQQ Not implemented yet
+10667 -> QQQ (in longterm development) Not implemented yet
+
+-->

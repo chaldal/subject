@@ -1,0 +1,18 @@
+<ComponentContent DisplayName='"Input.Image"' Props='~ForFullyQualifiedName "LibClient.Components.Input.Image"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Input.Image
+                 OnChange='actions.OnChange'
+                 Value='estate.MaybeFiles |> Result.recover (fun _ -> [])'
+                 Validity='estate.MaybeFiles |> Result.map (fun _ -> Valid) |> Result.recover (fun m -> Invalid m)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Input.Image
+                 OnChange='actions.OnChange'
+                 Value='estate.MaybeFiles |> Result.recover (fun _ -> [])'
+                 Validity='estate.MaybeFiles |> Result.map (fun _ -> Valid) |> Result.recover (fun m -> Invalid m)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

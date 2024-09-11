@@ -1,0 +1,2 @@
+<!-- Directly using React's render function. So this file is just here to make renderDSL compiler happy -->
+<div></div>

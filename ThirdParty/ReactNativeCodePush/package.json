@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-native-code-push": "8.2.1",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

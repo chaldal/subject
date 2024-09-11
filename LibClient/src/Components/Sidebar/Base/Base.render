@@ -1,0 +1,7 @@
+<LC.VerticallyScrollable
+ rt-new-styles='props.styles'
+ stylesOption='props.styles'
+ class='view'
+ FixedTop='props.FixedTop'
+ FixedBottom='props.FixedBottom'
+ ScrollableMiddle='props.ScrollableMiddle'/>

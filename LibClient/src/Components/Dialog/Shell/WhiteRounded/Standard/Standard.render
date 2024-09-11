@@ -1,0 +1,22 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <LC.Dialog.Shell.WhiteRounded.Raw
+     CanClose='props.CanClose'>
+        <div onPress='fun e -> e.stopPropagation()' class='dialog-contents'>
+            <div class='heading {screenSize.Class}' rt-mapo='heading := props.Heading'>
+                <uitext>{heading}</uitext>
+            </div>
+            <RX.ScrollView class='scroll-view' vertical='true'>
+                <div class='body'>
+                    {=props.Body}
+                </div>
+                <div class='error' rt-mapo='message := match props.Mode with | Error message -> Some message | _ -> None'>
+                    <uitext>{message}</uitext>
+                </div>
+                <div rt-if-not='props.Buttons = noElement' class='buttons'>
+                    {=props.Buttons}
+                </div>
+            </RX.ScrollView>
+            <div class='in-progress' rt-if='props.Mode = InProgress'/>
+        </div>
+    </LC.Dialog.Shell.WhiteRounded.Raw>
+</LC.With.ScreenSize>

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <OutputType>Library</OutputType>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <IsPackable>false</IsPackable>
+    <PlatformTarget>x64</PlatformTarget>
+    <NoWarn>FS0988</NoWarn>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)\.runsettings</RunSettingsFilePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../LifeCycles/LifeCycles.fsproj" />
+    <ProjectReference Include="../../../LibLifeCycleTest/LibLifeCycleTest.fsproj" />
+  </ItemGroup>
+  <ItemGroup Label="Subject">
+    <Content Include="appsettings.Tests.json">
+      <CopyToOutputDirectory Condition="Exists('appsettings.Tests.json')">PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="template.appsettings.Tests.json" />
+    <Compile Include="Simulation.fs" />
+    <Compile Include="Gen/JobGen.fs" />
+    <Compile Include="Gen/BatchGen.fs" />
+    <Compile Include="JobTests.fs" />
+    <Compile Include="BatchTests.fs" />
+    <Compile Include="RecurringJobTests.fs" />
+    <Compile Include="DispatcherTests.fs" />
+  </ItemGroup>
+</Project>

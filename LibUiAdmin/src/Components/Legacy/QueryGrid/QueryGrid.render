@@ -1,0 +1,24 @@
+<rt-root rt-type-parameters="'Item, 'QueryFormField, 'QueryAcc, 'Query">
+    <div class='view {TopLevelBlockClass}'>
+        <LC.Form.Base
+         Accumulator='~ManageInternallyInitializingWith props.InitialQueryAcc'
+         Submit='actions.Submit'
+         rt-prop-children="Content(form: ~FormHandle&lt;'QueryFormField, 'QueryAcc, 'Query&gt;)">
+            <div class='query-block'>
+                {=props.QueryForm form}
+            </div>
+            <LC.Buttons rt-fs='true' styles='[| QueryGridStyles.Styles.buttonsBlock |]' Align='~Left'>
+                <LC.Button
+                 class='anitest'
+                 Label='"Submit"'
+                 State='^ form.TrySubmit'/>
+            </LC.Buttons>
+        </LC.Form.Base>
+
+        <div class='grid-block'>
+            <Grid
+             Input='~Paginated (estate.GridData, (fun item -> props.MakeRow (item, estate.LastRequestQuery, actions.Refresh)), None)'
+             Headers='props.Headers'/>
+        </div>
+    </div>
+</rt-root>

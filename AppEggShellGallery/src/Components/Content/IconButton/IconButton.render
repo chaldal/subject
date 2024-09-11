@@ -1,0 +1,62 @@
+<ComponentContent DisplayName='"IconButton"' Props='~ForFullyQualifiedName "LibClient.Components.IconButton"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconButton
+                 rt-fs='true' Icon='Icon.Megaphone'
+                 State='^LowLevel(LC.IconButton.Actionable Actions.greet)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.IconButton
+                 Icon='Icon.Megaphone'
+                 State='^LowLevel(~Actionable Actions.greet)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconButton
+                 rt-fs='true' Icon='Icon.Megaphone'
+                 State='^LowLevel(LC.IconButton.InProgress)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.IconButton
+                 Icon='Icon.Megaphone'
+                 State='^LowLevel(~InProgress)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconButton
+                 rt-fs='true' Icon='Icon.Home'
+                 State='^Disabled'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.IconButton
+                 Icon='Icon.Home'
+                 State='^Disabled'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.IconButton
+                 rt-fs='true'
+                 Icon='Icon.Send'
+                 State='^LowLevel(LC.IconButton.Actionable Actions.greet)'
+                 theme='IconButtonStyles.Styles.specialTheme'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.IconButton
+                     Icon='Icon.Send'
+                     State='^LowLevel(~Actionable Actions.greet)'
+                     theme='IconButtonStyles.Styles.specialTheme'/>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+	<NoWarn>ORL1001</NoWarn>
+	<Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibLifeCycleHost\src\LibLifeCycleHost.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Connections.Security" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.7.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

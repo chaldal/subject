@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Thoth.Json.Net" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibClient/src/LibClient.fsproj" />
+    <ProjectReference Include="../../Meta/LibRenderDSL/src/LibRenderDSL.fsproj" />
+    <ProjectReference Include="../../SuiteDsl/LibDsl/src/LibDsl.fsproj"/>
+    <ProjectReference Include="Types/Types.fsproj" />
+    <Compile Include="Props.fs" />
+    <Compile Include="Icons.fs" />
+    <Compile Include="ColorVariants.fs" />
+    <Compile Include="RenderDslCodeSnippets.fs" />
+    <Compile Include="XmlDocs.fs" />
+    <Compile Include="Scrape.fs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../LibClient"
+		},
+		{
+			"path": "../../LibLangFsharp"
+		},
+		{
+			"path": "../../LibRouter"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/obj/": true,
+			"**/bin/": true,
+			".idea": true,
+			".ionide": true,
+			".npm-packages": true,
+			".build": true
+		}
+	}
+}

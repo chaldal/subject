@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Web Debug;Web Release;Native Debug;Native Release</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Native Debug'">$(DefineConstants);DEBUG</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Web Release'">$(DefineConstants);EGGSHELL_PLATFORM_IS_WEB</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="**/*.fsproj" />
+    <Content Include="**/*.render" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.0" />
+
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibClient/src/LibClient.fsproj" />
+
+    <Compile Include="ComponentsHierarchy.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Components/ReactNativeContacts/ReactNativeContacts.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentRegistration.fs" />
+  </ItemGroup>
+</Project>

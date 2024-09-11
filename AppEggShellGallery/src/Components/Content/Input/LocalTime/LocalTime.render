@@ -1,0 +1,58 @@
+<ComponentContent DisplayName='"Input.LocalTime"' Props='~ForFullyQualifiedName "LibClient.Components.Input.LocalTime"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Modes"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation (hardcoded, not dynamic)"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='LibClient.Components.Input.LocalTime.empty'
+                     OnChange='ignore'
+                     Validity='Missing'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='LibClient.Components.Input.LocalTime.empty'
+                     OnChange='ignore'
+                     Validity='Missing'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='LibClient.Components.Input.LocalTime.empty'
+                     OnChange='ignore'
+                     Validity='Invalid "That is just a bad time"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.LocalTime
+                     Label='"Start Time"'
+                     Value='LibClient.Components.Input.LocalTime.empty'
+                     OnChange='ignore'
+                     Validity='Invalid "That is just a bad time"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

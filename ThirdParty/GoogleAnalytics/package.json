@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@react-native-firebase/analytics": "^14.11.0",
+    "@react-native-firebase/app": "^14.11.0",
+    "firebase": "^9.8.2",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

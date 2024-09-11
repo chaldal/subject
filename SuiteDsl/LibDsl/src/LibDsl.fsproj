@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+
+    <Compile Include="Parsing/XmlParsing.fs" />
+    <Compile Include="CodeGeneration/FsharpCode.fs" />
+    <Compile Include="Compilers.fs" />
+  </ItemGroup>
+</Project>

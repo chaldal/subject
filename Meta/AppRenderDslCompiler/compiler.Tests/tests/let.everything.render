@@ -1,0 +1,1 @@
+<dom.div rt-let='a := 42; (x, _) := someTuple; { Field = f; OtherField = g } := someRecord; n := 13'>Hello, {g}</dom.div>

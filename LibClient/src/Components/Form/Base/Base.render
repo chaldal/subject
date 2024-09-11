@@ -1,0 +1,10 @@
+<rt-root rt-type-parameters="'Fields, 'Accumulator, 'Accumulated">
+    <rt-match what='props.Executor'>
+        <rt-case is='Some executor'>
+            {=props.Content (makeFormHandle executor estate actions)}
+        </rt-case>
+        <rt-case is='None'>
+            <LC.Executor.AlertErrors rt-fs='true' With='fun executor -> props.Content (makeFormHandle executor estate actions)'/>
+        </rt-case>
+    </rt-match>
+</rt-root>

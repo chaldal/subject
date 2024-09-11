@@ -1,0 +1,27 @@
+<div>
+	<LC.Thumbs
+     rt-if='props.ShowPreview'
+     styles='[| ImagePickerStyles.Styles.imageThumbs |]'
+     For='^(props.Value |> List.map (fun file -> file.ToDataUri |> LibClient.Services.ImageService.ImageSource.ofUrl))'/>
+
+	<div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+		<Native.ReactNativeImagePicker OnImageSelect='actions.SelectImage'/>
+		<div class='constrain-message'>
+			<text class='text-center'>
+				<rt-match what='(props.MaxFileCount, props.MaxFileSize)'>
+					<rt-case is='(Some maxFileCount, Some maxFileSize) when maxFileCount.Value > 1'>Maximum {maxFileCount.Value} files each below {LibLifeCycleTypes.File.kBToMB maxFileSize} MB</rt-case>
+					<rt-case is='(Some maxFileCount, None            ) when maxFileCount.Value > 1'>Maximum {maxFileCount.Value} files                                                          </rt-case>
+					<rt-case is='(_,                 Some maxFileSize)                            '>Size below {LibLifeCycleTypes.File.kBToMB maxFileSize} MB                                   </rt-case>
+					<rt-case is='_'>{=LibClient.EggShellReact.noElement}</rt-case>
+				</rt-match>
+			</text>
+		</div>
+		<div>
+			<text class='text-center' rt-if='props.Value.Length = 1'>{props.Value.Length} file selected</text>
+			<text class='text-center' rt-if='props.Value.Length > 1'>{props.Value.Length} files selected</text>
+		</div>
+		<div rt-mapo='reason := Option.getOrElse props.Validity.InvalidReason (Some estate.InternalValidity.InvalidReason)'>
+			<text class='invalid-reason'>{reason}</text>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-native-vision-camera": "4.5.0",
+    "rn-fetch-blob": "^0.12.0",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

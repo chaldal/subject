@@ -1,0 +1,16 @@
+<div class='view'>
+    <div class='left'>
+        <rt-block rt-if-not='props.Left = noElement'>{=props.Left}</rt-block>
+        <LC.Legacy.TopNav.Filler rt-if='props.Left = noElement'/>
+    </div>
+    <div class='center'>
+        <rt-match what='props.Center'>
+            <rt-case is='Children'>{=castAsElement children}</rt-case>
+            <rt-case is='Heading text'><text class='heading'>{text}</text></rt-case>
+        </rt-match>
+    </div>
+    <div class='right'>
+        <rt-block rt-if-not='props.Right = noElement'>{=props.Right}</rt-block>
+        <LC.Legacy.TopNav.Filler rt-if='props.Right = noElement'/>
+    </div>
+</div>

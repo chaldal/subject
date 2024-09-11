@@ -1,0 +1,94 @@
+<ComponentContent DisplayName='"ToggleButtons"'>
+    <rt-prop name='Props |> ~Manual'>
+        <ScrapedComponentProps Heading='"ToggleButtons"' FullyQualifiedName='"LibClient.Components.ToggleButtons"'/>
+        <ScrapedComponentProps Heading='"ToggleButton"'  FullyQualifiedName='"LibClient.Components.ToggleButton"'/>
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Mango"'  Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Peach"'  Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Banana"' Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.AtMostOne (estate.MaybeAtMostOneSelectedFruit, actions.SetAtMostOneSelectedFruit)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Mango"'  Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Peach"'  Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Banana"' Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Home'     Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Calendar' Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Menu'     Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.ExactlyOne (estate.MaybeExactlyOneSelectedFruit, actions.SetExactlyOneSelectedFruit)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Home'     Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Calendar' Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Icon Icon.Menu'     Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Mango", Icon.Home)'     Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Peach", Icon.Calendar)' Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Banana", Icon.Menu)'    Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.AtLeastOne (estate.MaybeAtLeastOneSelectedFruits, actions.SetAtLeastOneSelectedFruits)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Mango", Icon.Home)'     Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Peach", Icon.Calendar)' Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.LabelAndIcon ("Banana", Icon.Menu)'    Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Mango"'  Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Peach"'  Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Banana"' Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ToggleButtons rt-fs='true'
+                     Value='LC.ToggleButtons.Any (estate.MaybeAnySelectedFruits, actions.SetAnySelectedFruits)'
+                     rt-prop-children='Buttons(group)'>
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Mango"'  Value='Fruit.Mango' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Peach"'  Value='Fruit.Peach' />
+                        <LC.ToggleButton rt-fs='true' Group='group' Style='LC.ToggleButton.Label "Banana"' Value='Fruit.Banana'/>
+                    </LC.ToggleButtons>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

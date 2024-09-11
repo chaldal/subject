@@ -1,0 +1,75 @@
+[<AutoOpen>]
+module <%= appName %>.Components.App
+
+open Fable.React
+open LibRouter.RoutesSpec
+open LibClient
+open LibClient.Json
+open LibClient.Components
+open LibRouter.Components
+open LibUiAuth.Components
+open <%= appName %>.Navigation
+open <%= appName %>.Components
+open <%= appName %>.AppServices
+open LibLang
+
+type Ui.App with
+    [<Component>]
+    static member Root () : ReactElement = element {
+        LR.LogRouteTransitions()
+        UiAuth.Root (
+            sessionService  = services().Session,
+            sessionId       = services().Session.CurrentSessionId,
+            // TODO this needs confirmation with Arun
+            isAuthenticated = (fun session ->
+                match session.RealOrPlaceholder.State with
+                | PublicSessionState.Authenticated _who -> true
+                | _ -> false
+            ),
+            whenAuthenticated = (fun _session ->
+                Ui.App.Authenticated "app"
+            ),
+            whenUnauthenticated = (fun session ->
+                noElement
+            )
+        )
+    }
+
+    [<Component>]
+    static member Authenticated (_pstoreKey: string) : ReactElement =
+        let maybeNavigationFrame = LR.UseRoute (routesSpec())
+        let maybeRoute = maybeNavigationFrame |> Option.map NavigationFrame.route
+
+        LC.AppShell.Content (
+            desktopSidebarStyle = AppShell.Content.DesktopSidebarStyle.Fixed,
+            sidebar             = Ui.Sidebar maybeRoute,
+            topNav              = Ui.Nav.Top maybeRoute,
+            onError             = LC.AppShell.TopLevelErrorMessage,
+            dialogs = (
+                LR.Dialogs (
+                    nav          = nav,
+                    dialogsState = navigationState.DialogsState,
+                    dialogs =
+                        (maybeNavigationFrame
+                         |> Option.map NavigationFrame.dialogs
+                         |> Option.getOrElse []),
+                    makeResultless = (fun (resultlessDialog, close) ->
+                        match resultlessDialog with
+                        | DoSomething param -> <%= appName %>.Components.Dialog.DoSomething.Open param close
+                    ),
+                    makeResultful = (fun (resultfulDialog, close) ->
+                        match resultfulDialog with
+                        | Sentinel -> noElement
+                    )
+                )
+            ),
+            content = (
+                 match maybeRoute with
+                 | None -> LC.InfoMessage(level = InfoMessage.Level.Attention, message = "Route Not Found")
+                 | Some route ->
+                     match route with
+                     | Landing -> Ui.Route.Landing ()
+                     | Bananas -> Ui.Route.Bananas ()
+                     | Mangoes -> Ui.Route.Mangoes ()
+            )
+        )

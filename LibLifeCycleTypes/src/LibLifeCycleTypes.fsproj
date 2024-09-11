@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Debug;Release;Fable Debug;Fable Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Fable Debug' Or '$(Configuration)'=='Fable Release'">
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- IMPORTANT: projects with Subject types must keep AssemblyName stable and AssemblyVersion at 1.0.0.0
+      while we use Orleans 3.7, changing those can break biosphere communication and affect reminders -->
+    <AssemblyName>LibLifeCycleTypes</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <!-- nuget package version & metadata (can change) -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.LibLifeCycleTypes</PackageId>
+    <Version>1.6.0</Version>
+    <Description>Subject stack most important types for ecosystem definitions</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="File.fs" />
+    <Compile Include="GeographyIndexValue.fs" />
+    <Compile Include="SubjectTypes.fs" />
+    <Compile Include="AccessControl.fs" />
+    <Compile Include="LegacyHttp.fs" />
+    <Compile Include="LegacyRealTime.fs" />
+    <Compile Include="Api\V1\Shared.fs" />
+    <Compile Include="Api\V1\Http.fs" />
+    <Compile Include="Api\V1\RealTime.fs" />
+    <Compile Include="Meta.Types.fs" />
+    <Compile Include="EcosystemTypes.fs" />
+    <Compile Include="Transaction.Types.fs" />
+    <Compile Include="Healthcheck.Types.fs" />
+    <Compile Include="Exceptions.fs" />
+  </ItemGroup>
+
+</Project>

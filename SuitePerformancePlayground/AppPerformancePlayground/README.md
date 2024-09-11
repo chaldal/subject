@@ -1,0 +1,76 @@
+# Subject Stack App Template
+
+This is a sample app that runs on the new Subject stack that combines Fable, React, react-templates-fable, and a custom framework for managing state.
+
+## Requirements
+
+* [dotnet SDK](https://www.microsoft.com/net/download/core) 2.1 or higher
+* [node.js](https://nodejs.org) with [npm](https://www.npmjs.com/)
+* An F# editor like Visual Studio, Visual Studio Code with [Ionide](http://ionide.io/) or [JetBrains Rider](https://www.jetbrains.com/rider/).
+
+## Building and running the app
+
+* If you scaffolding the app using `eggshell create-app` then running `eggshell dev-web` should
+  get you going, you should be able to see the app running at http://localhost:8080/
+* If something fails to compile, the first thing to try is to re-run `./initialize`, and then
+  try `eggshell dev-web` again.
+
+Any modification you do to the F# code will be reflected in the web page after saving.
+Any modifications to the `.render` files will also be reflected.
+
+# Codepush
+
+Codepush is done through Appcenter. 
+
+[https://appcenter.ms/orgs/SubjectCompany-Inc/apps/AppPerformancePlayground/](https://appcenter.ms/orgs/SubjectCompany-Inc/apps/AppPerformancePlayground/)
+
+Currently there are two deployment types/deploymentName -
+| Name       | Key                                   |
+|------------|---------------------------------------|
+| Production | xxx                                   |
+| Staging    | xxx                                   |
+
+
+Codepush command boilerplate
+
+```
+appcenter codepush release-react -a SubjectCompany-Inc/AppPerformancePlayground -d <deploymentName> -t <version> —description <Description>
+```
+
+**deploymentName**
+
+Deployment type name we have. In our case we have following two.
+
+1. Production
+2. Staging
+
+**version**
+
+Target version of the app binary.
+
+**Description**
+
+Put a description of the update - so we can understand what changes this codepush add.
+
+Sample command -
+
+  ```appcenter codepush release-react -a SubjectCompany-Inc/AppPerformancePlayground -d Production -t 1.0.0 --description "New feature and bug fixes" -m```
+
+More available options
+
+```
+appcenter codepush release -a <ownerName>/<appName> -c <updateContentsPath> -t <targetBinaryVersion> -d <deploymentName>
+
+[-t|--target-binary-version <version>]
+[-с|--update-contents-path <updateContentsPath>]
+[-r|--rollout <rolloutPercentage>]
+[--disable-duplicate-release-error]
+[-k|--private-key-path <privateKeyPath>]
+[-m|--mandatory]
+[-x|--disabled]
+[--description <description>]
+[-d|--deployment-name <deploymentName>]
+[-a|--app <ownerName>/<appName>]
+[--disable-telemetry]
+[-v|--version]
+```

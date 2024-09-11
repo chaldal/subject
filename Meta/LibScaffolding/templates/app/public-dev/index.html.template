@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title><%= appName %></title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  <link rel="shortcut icon" href="/images/favicon.ico"/>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body class="page page--basic">
+    <div id="app-pre-bootstrap-loader">
+      <img id="loader-img" src="/images/loader.gif" alt="Loading..." />
+    </div>
+    <div class="app-container"></div>
+    <script>
+      eggshell = window.eggshell || {};
+      eggshell.<%= appName %> = {}
+      eggshell.<%= appName %>.configSourceOverrides = {}
+    </script>
+    <script src="/configSourceOverrides.dev.js"></script>
+    <script src="/bundle.js"></script>
+</body>
+</html>

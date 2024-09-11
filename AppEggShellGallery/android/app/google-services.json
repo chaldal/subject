@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "643499314608",
+    "project_id": "eggshellgallery",
+    "storage_bucket": "eggshellgallery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643499314608:android:8846e6b1e893c126dd5a75",
+        "android_client_info": {
+          "package_name": "com.eggshell.appgallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643499314608-5pom3t5vuohk7jdsld9vs4h67epj1fbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1rO7yBZaI8Q8_th0Q5PPAb5uNjc_AkeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643499314608-5pom3t5vuohk7jdsld9vs4h67epj1fbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

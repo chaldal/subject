@@ -1,0 +1,37 @@
+<div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+        <Web.Map
+            ApiKey='props.ApiKey'
+            Position='props.Position'
+            OnPositionChanged='props.OnPositionChanged'
+            Zoom='props.Zoom'
+            Markers='props.Markers'
+            Shapes='props.Shapes'
+            Directions='props.Directions'
+            BackgroundColor='props.BackgroundColor'
+            ClickableIcons='props.ClickableIcons'
+            DisableDefaultUI='props.DisableDefaultUI'
+            MinZoom='props.MinZoom'
+            MaxZoom='props.MaxZoom'
+            FullScreen='props.FullScreen'
+            MapStyles='props.MapStyles'
+			MapTypeId='props.MapTypeId'
+            Ref='actions.WebRef'/>
+    <rt-sharp value='else'/>
+        <Native.Map
+            rt-let='isFullScreen := props.FullScreen |> Option.defaultValue false'
+            ApiKey='props.ApiKey'
+            Zoom='props.Zoom'
+            Value='match props.Position with | MapPosition.LatLng latLng -> Some latLng | MapPosition.Auto -> failwith "MapPosition.Auto not supported on native"'
+            Markers='props.Markers'
+            FullScreen='isFullScreen'
+            Shapes='props.Shapes'
+            Ref='actions.NativeRef'
+            OnChange='fun maybeLatLng -> match props.OnPositionChanged, maybeLatLng with | Some onPositionChanged, Some latLng -> latLng |> MapPosition.LatLng |> onPositionChanged | _ -> ()'/>
+    <rt-sharp value='endif'/>
+    <rt-block rt-if='props.OnLocatePress.IsSome'>
+        <Locate.LocateButtonWrapper>
+            <Locate.LocateButton onPress='actions.OnLocatePress' />
+        </Locate.LocateButtonWrapper>
+    </rt-block>
+</div>

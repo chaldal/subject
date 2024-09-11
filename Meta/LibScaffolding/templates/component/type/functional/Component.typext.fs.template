@@ -1,0 +1,15 @@
+module <%= projectName %>.Components.<%= componentName %>
+
+open LibClient
+
+type Props<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = (* GenerateMakeFunction *) {
+    key: string option // defaultWithAutoWrap JsUndefined
+}
+
+let private makeTypeless = makeFnComponentTypeless "<%= projectName %>.Components.<%= componentName %>" (* hasStyles *) <%= hasStyles %> NoFnComponentActions // do not try to merge with line below, see comment on makeFnConstructorTypeless
+let Make<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = makeTypeless :?> MakeFnComponent<Props<% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>>
+
+// Unfortunately necessary boilerplate
+type Actions<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = NoActions
+type Estate<% if (typeParameters) { %><<%= typeParameters.WithConstraints %>><% } %> = NoEstate<%= numberOfParameters %><% if (typeParameters) { %><<%= typeParameters.WithoutConstraints %>><% } %>
+type Pstate = NoPstate

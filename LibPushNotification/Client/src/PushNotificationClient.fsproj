@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Fable Debug;Fable Release;Native Debug</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Browser.Navigator" Version="2.5.0" />
+
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibClient/src/LibClient.fsproj" />
+    <ProjectReference Include="../../../LibPushNotification/Types/src/PushNotificationTypes.fsproj" />
+    <ProjectReference Include="../../../LibRouter/src/LibRouter.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Services/PushNotificationService.fs" />
+    <Compile Include="ComponentsHierarchy.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentRegistration.fs" />
+    <Compile Include="Services\WebPushNotificationService.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+</Project>

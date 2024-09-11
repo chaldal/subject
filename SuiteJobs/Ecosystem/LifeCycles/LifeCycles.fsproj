@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NCrontab" Version="3.3.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Jobs.Types/Jobs.Types.fsproj" />
+    <ProjectReference Include="../../../LibLifeCycle/src/LibLifeCycle.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connectors/JobRunnerConnector.fs" />
+    <Compile Include="Services\StatsService.fs" />
+    <Compile Include="Services\PollService.fs" />
+    <Compile Include="JobsLifeCycleBuilder.fs" />
+  </ItemGroup>
+  <ItemGroup Label="Subject">
+    <Compile Include="JobLifeCycle.fs" />
+    <Compile Include="DispatcherLifeCycle.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BatchLifeCycle.fs" />
+    <Compile Include="RecurringJobLifeCycle.fs" />
+    <Compile Include="RecurringJobsManifestLifeCycle.fs" />
+    <Compile Include="AllLifeCycles.fs" />
+  </ItemGroup>
+</Project>

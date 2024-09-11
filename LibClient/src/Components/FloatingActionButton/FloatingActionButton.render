@@ -1,0 +1,26 @@
+<LC.Pointer.State rt-fs='true'
+ rt-prop-children='Content(pointerState: LC.Pointer.State.PointerState)'
+ rt-let='lowLevelState := props.State.ToLowLevel'>
+	<div
+	 rt-new-styles='props.styles'
+     class='view {TopLevelBlockClass} state-{lowLevelState.GetName}'
+     rt-let='isInProgress := match lowLevelState with InProgress -> true | _ -> false'
+     rt-class='
+        is-hovered   := pointerState.IsHovered &amp;&amp; (not pointerState.IsDepressed);
+        is-depressed := pointerState.IsDepressed;
+        with-label   := props.Label.IsSome;
+     '>
+        <Icon class='icon state-{lowLevelState.GetName}' Icon='props.Icon'/>
+        <div rt-mapo='label := props.Label' class='label'>
+            <text class='label-text state-{lowLevelState.GetName}'>{label}</text>
+        </div>
+        <div class='spinner-block' rt-if='isInProgress'>
+            <RX.ActivityIndicator color='"#ffffff"' size='~Tiny'/>
+        </div>
+        <LC.TapCapture rt-fs='true'
+         rt-mapo='onPress := match lowLevelState with Actionable onPress -> Some onPress | _ -> None'
+         OnPress='onPress'
+         PointerState='pointerState'
+         styles='[| FloatingActionButtonStyles.Styles.tapCapture |]'/>
+    </div>
+</LC.Pointer.State>

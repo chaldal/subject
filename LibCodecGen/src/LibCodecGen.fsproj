@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="CodecGen.Common.fs" />
+    <Content Include="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fleece.SystemTextJson" Version="0.10.0" />
+    <PackageReference Include="FSharpPlus" Version="1.6.1" />
+    <PackageReference Include="FSharp.Data" Version="4.1.1" />
+    <PackageReference Include="FSharp.Compiler.Service" Version="43.7.403" />
+  </ItemGroup>
+
+</Project>

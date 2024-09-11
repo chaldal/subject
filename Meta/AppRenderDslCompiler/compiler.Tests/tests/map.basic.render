@@ -1,0 +1,3 @@
+<dom.div rt-map='fruit := ["banana"; "apple"; "mango"]'>
+	The fruit is {fruit}
+</dom.div>

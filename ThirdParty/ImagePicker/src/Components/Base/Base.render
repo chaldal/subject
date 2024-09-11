@@ -1,0 +1,25 @@
+<div class='view'>
+	<rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+	<LC.Input.Image
+	 class='{TopLevelBlockClass}'
+	 stylesOption='props.styles'
+	 Value='props.Value'
+	 Validity='props.Validity'
+	 MaxFileCountOption='props.MaxFileCount'
+	 MaxFileSizeOption='props.MaxFileSize'
+	 ShowPreview='props.ShowPreview'
+	 SelectionMode='props.SelectionMode'
+	 OnChange='props.OnChange'/>
+	<rt-sharp value='else'/>
+	<Native.ImagePicker
+	 class='{TopLevelBlockClass}'
+	 stylesOption='props.styles'
+	 Value='props.Value'
+	 Validity='props.Validity'
+	 MaxFileCountOption='props.MaxFileCount'
+	 MaxFileSizeOption='props.MaxFileSize'
+	 ShowPreview='props.ShowPreview'
+	 SelectionMode='props.SelectionMode'
+	 OnChange='props.OnChange'/>
+	<rt-sharp value='endif'/>
+</div>

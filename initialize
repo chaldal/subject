@@ -1,0 +1,22 @@
+dotnet tool restore                                                                    && \
+pushd Meta/AppRenderDslCompiler && ./initialize && popd                                && \
+pushd LibLangTypeScript && ./initialize && ./build && popd                             && \
+pushd LibNode && ./initialize && ./build && popd                                       && \
+pushd LibClient && ./initialize && popd                                                && \
+pushd LibRouter && ./initialize && popd                                                && \
+pushd LibUiAdmin && ./initialize && popd                                               && \
+pushd LibUiSubject && ./initialize && popd                                             && \
+pushd LibUiSubjectAdmin && ./initialize && popd                                        && \
+pushd Meta/LibEggshell && ./initialize && ./build && popd                              && \
+pushd Meta/LibScaffolding && ./initialize && ./build && popd                           && \
+pushd Meta/LibFablePlus && ./initialize && popd                                        && \
+pushd Meta/LibRtCompilerFileSystemBindings && ./initialize && ./build && popd          && \
+pushd Meta/AppEggshellCli && ./initialize && ./build && popd                           && \
+pushd Meta/AppRenderDslCompiler/compiler && ./build && popd                            && \
+pushd LibClient && ../eggshell build-lib && popd                                       && \
+pushd LibRouter && ../eggshell build-lib && popd                                       && \
+pushd LibUiAdmin && ../eggshell build-lib && popd                                      && \
+pushd LibUiSubject && ../eggshell build-lib && popd                                    && \
+pushd LibUiSubjectAdmin && ../eggshell build-lib && popd                               && \
+pushd ThirdParty && ./initialize && popd                                               && \
+pushd LibPushNotification/Client && ./initialize && popd

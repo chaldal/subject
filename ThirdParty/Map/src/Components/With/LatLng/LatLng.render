@@ -1,0 +1,7 @@
+<div class='view'>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+    <Web.LatLngFromAddress Address='props.Address' ApiKey='props.ApiKey' With='props.With'/>
+    <rt-sharp value='else'/>
+    <Native.LatLngFromAddress Address='props.Address' ApiKey='props.ApiKey' With='props.With'/>
+    <rt-sharp value='endif'/>
+</div>

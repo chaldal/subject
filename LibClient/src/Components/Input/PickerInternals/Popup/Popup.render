@@ -1,0 +1,60 @@
+<rt-root rt-type-parameters="'Item" rt-open='LibClient.Components.Input.PickerModel; ReactXP.LegacyStyles'>
+    <RX.ScrollView vertical='true' class='scroll-view' rt-style='estate.ModelState.MaybeFieldWidth |> Option.map (fun value -> [width (value - 4)]) |> Option.getOrElse []'>
+        <div class='view'>
+            <rt-let name="whenAvailable(items: List&lt;'Item&gt;)">
+                <rt-match what='items'>
+                    <rt-case is='[]'>
+                        <div class='no-items-message'>
+                            <uitext class='no-items-message-text'>No items</uitext>
+                        </div>
+                    </rt-case>
+                    <rt-case is='nonemptyItems'>
+                        <rt-block
+                         rt-mapi='index item := nonemptyItems'
+                         rt-let='isHighlighted := Some index = estate.ModelState.MaybeHighlightedItemIndex'>
+                            <div
+                             class='item'
+                             rt-class='first := index = 0; highlighted := isHighlighted'
+                             onPress='actions.Select index item'>
+                                <div class='item-selectedness'>
+                                    <LC.Icon Icon='Icon.CheckMark' class='item-selected-icon' rt-if='estate.ModelState.Value.IsSelected item'/>
+                                </div>
+                                <div class='item-body'>
+                                    <rt-match what='props.ItemView'>
+                                        <rt-case is='PickerItemView.Default toItemInfo'>
+                                            <uitext class='item-label' rt-class='highlighted := isHighlighted'>
+                                                {(toItemInfo item).Label}
+                                            </uitext>
+                                        </rt-case>
+                                        <rt-case is='PickerItemView.Custom render'>
+                                            {=render item}
+                                        </rt-case>
+                                    </rt-match>
+                                </div>
+                            </div>
+                        </rt-block>
+                    </rt-case>
+                </rt-match>
+            </rt-let>
+            <LC.AsyncData rt-fs='true' Data='estate.ModelState.SelectableItems' rt-prop-children='WhenAvailable(items)'>
+                {=whenAvailable items}
+
+                <rt-prop name='WhenFetching(maybeOldData)'>
+                    <rt-match what='maybeOldData'>
+                        <rt-case is='None'>
+                            <div class='activity-indicator-block'>
+                                <RX.ActivityIndicator size='~Medium' color='"#aaaaaa"'/>
+                            </div>
+                        </rt-case>
+                        <rt-case is='Some oldData'>
+                            {=whenAvailable oldData}
+                            <div class='activity-indicator-overlay'>
+                                <RX.ActivityIndicator size='~Medium' color='"#aaaaaa"'/>
+                            </div>
+                        </rt-case>
+                    </rt-match>
+                </rt-prop>
+            </LC.AsyncData>
+        </div>
+    </RX.ScrollView>
+</rt-root>

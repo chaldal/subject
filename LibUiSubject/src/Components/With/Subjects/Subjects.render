@@ -1,0 +1,7 @@
+<rt-root rt-type-parameters="'Subject, 'Projection, 'Id, 'Index, 'Constructor, 'Action, 'Event, 'OpError" rt-open='LibUiSubject'>
+    <LC.Subscribe
+     SubscriptionKey='props.By.ToString()'
+     Subscription='props.Subscription'
+     OnSubscriptionKeyChange='props.OnByChange'
+     With='match props.With with WithSubjects.Raw f -> ~Raw f | WithSubjects.WhenAvailable f -> ~WhenAvailable f'/>
+</rt-root>

@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Control.AsyncSeq" Version="3.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibLifeCycleTypes/src/LibLifeCycleTypes.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Config.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="AccessControl.fs" />
+    <Compile Include="RateLimits.fs" />
+    <Compile Include="PromotedIndicesBuilder.fs" />
+    <Compile Include="LifeCycle.fs" />
+    <Compile Include="LifeCycleBuilder.fs" />
+    <Compile Include="LifeCycleAccessBuilder.fs" />
+    <Compile Include="ReferencedLifeCycle.fs" />
+    <Compile Include="ReferencedLifeCycleBuilder.fs" />
+    <Compile Include="View.fs" />
+    <Compile Include="ViewBuilder.fs" />
+    <Compile Include="ViewAccessBuilder.fs" />
+    <Compile Include="ReferencedView.fs" />
+    <Compile Include="ReferencedViewBuilder.fs" />
+    <Compile Include="TimeSeries.fs" />
+    <Compile Include="TimeSeriesBuilder.fs" />
+    <Compile Include="TimeSeriesAccessBuilder.fs" />
+    <Compile Include="InMemoryCache.fs" />
+    <Compile Include="Services.fs" />
+    <Compile Include="DefaultServices.fs" />
+    <Compile Include="LifeCycleReflection.fs" />
+    <Compile Include="ViewCE.fs" />
+    <Compile Include="InfallibleOperationBuilder.fs" />
+    <Compile Include="OperationBuilder.fs" />
+    <Compile Include="TransitionBuilder.fs" />
+    <Compile Include="IdGenerationBuilder.fs" />
+    <Compile Include="ConstructionBuilder.fs" />
+    <Compile Include="IndiciesBuilder.fs" />
+    <Compile Include="ConnectorBuilder.fs" />
+    <Compile Include="MetaServices.fs" />
+    <Compile Include="LifeCycles\Meta.fs" />
+    <Compile Include="LifeCycles\Transaction.fs" />
+    <Compile Include="LifeCycles\Startup.Types.fs" />
+    <Compile Include="LifeCycles\Startup.fs" />
+    <Compile Include="LifeCycles\RequestRateCounter.Types.fs" />
+    <Compile Include="LifeCycles\RequestRateCounter.fs" />
+    <Compile Include="Views\EcosystemHealthcheckView.fs" />
+    <Compile Include="Connectors\ViewConnector.fs" />
+    <Compile Include="LifeCycleTransactionExtensions.fs" />
+    <Compile Include="ReferencedEcosystem.fs" />
+    <Compile Include="ReferencedEcosystemBuilder.fs" />
+    <Compile Include="Ecosystem.fs" />
+    <Compile Include="EcosystemBuilder.fs" />
+  </ItemGroup>
+
+</Project>

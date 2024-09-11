@@ -1,0 +1,18 @@
+npm install
+npm link react-templates-fable
+npm link ../../LibClient/node_modules/react
+
+# deleting for idempotency
+rm -rf ./fsharplint.json
+rm -rf .vscode/renderdsl.code-snippets
+rm -rf ./public-dev/images
+rm -rf ./public-dev/configSourceOverrides.dev.js
+
+export MSYS=winsymlinks:nativestrict
+ln -s ../../Meta/fsharplint.json ./
+mkdir -p ./.vscode
+ln -s ../../../Meta/renderdsl.code-snippets ./.vscode/renderdsl.code-snippets
+ln -s ../images ./public-dev/
+ln -s ../configSourceOverrides.dev.js public-dev/configSourceOverrides.dev.js
+
+dotnet restore src/App.fsproj

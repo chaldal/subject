@@ -1,0 +1,44 @@
+<ComponentContent DisplayName='"Draggable"' Props='~ForFullyQualifiedName "LibClient.Components.Draggable"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.With.Ref rt-fs='true' rt-with='bindRef, maybeRef: Option&lt;Draggable.IDraggableRef&gt;'>
+                    <LC.Draggable
+                     Left='{| ForwardThreshold = 50; Offset = 100; BackwardThreshold = 20 |}'
+                     Right='{| ForwardThreshold = 100; Offset = 200; BackwardThreshold = 20 |}'
+                     Up='{| ForwardThreshold = 20; Offset = 100; BackwardThreshold = 20 |}'
+                     Down='{| ForwardThreshold = 20; Offset = 200; BackwardThreshold = 20 |}'
+                     BaseOffset='(50, 20)'
+                     ref='bindRef'>
+                        <LC.ImageCard Source='localImage "/images/wlop4.jpg"'/>
+                    </LC.Draggable>
+
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button Label='"Move Left"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Left |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                        <LC.Button Label='"Reset"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Base |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                        <LC.Button Label='"Move Right"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Right |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                    </LC.Buttons>
+                </LC.With.Ref>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.With.Ref rt-fs='true' rt-with='bindRef, maybeRef: Option&lt;Draggable.IDraggableRef&gt;'>
+                    <LC.Draggable
+                     Left='{| ForwardThreshold = 50; Offset = 100; BackwardThreshold = 20 |}'
+                     Right='{| ForwardThreshold = 100; Offset = 200; BackwardThreshold = 20 |}'
+                     Up='{| ForwardThreshold = 20; Offset = 100; BackwardThreshold = 20 |}'
+                     Down='{| ForwardThreshold = 20; Offset = 200; BackwardThreshold = 20 |}'
+                     BaseOffset='(50, 20)'
+                     ref='bindRef'>
+                        <LC.ImageCard Source='localImage "/images/wlop4.jpg"'/>
+                    </LC.Draggable>
+
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button Label='"Move Left"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Left |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                        <LC.Button Label='"Reset"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Base |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                        <LC.Button Label='"Move Right"' State='^LowLevel (maybeRef |> Option.map (fun ref -> ~Actionable (fun _ -> ref.SetPosition LibClient.Components.Draggable.Position.Right |> ignore)) |> Option.getOrElse ~Disabled)'/>
+                    </LC.Buttons>
+                </LC.With.Ref>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

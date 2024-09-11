@@ -1,0 +1,7 @@
+<Foo rt-prop-children='Blah'>
+    <rt-let name='something'>
+        <div>this is something</div>
+    </rt-let>
+
+    <div>{=something}</div>
+</Foo>

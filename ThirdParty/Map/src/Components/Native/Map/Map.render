@@ -1,0 +1,63 @@
+<LC.With.Layout rt-fs='true' rt-with='onLayoutOption, maybeLayout' rt-open='ThirdParty.Map.Types'>
+    <div onLayoutOption='onLayoutOption' rt-class='full-screen := props.FullScreen; view := not props.FullScreen' class='{TopLevelBlockClass}'>
+        <Native.ReactNativeMaps
+            Size='maybeLayout |> Option.map (fun l -> l.Width, l.Height)'
+            Zoom='props.Zoom'
+            Value='match props.Value with Some latlng -> latlng | _ -> defaultLatLng'
+            OnChange='props.OnChange'
+            Ref='props.Ref'
+        >
+            <rt-block rt-mapo='markers := props.Markers'>
+                <rt-block rt-map='marker := markers'>
+                    <rt-match what='marker.Position'>
+                        <rt-case is='MarkerPosition.LatLng _'>
+                            <Native.Marker
+                             rt-map='marker := markers'
+                             Coordinate='getCoordinate marker'
+                             Draggable='false'
+                             Image='getMarkerImage marker'/>
+                        </rt-case>
+                        <rt-case is='_'>
+                            <!-- NOOP `-->
+                        </rt-case>
+                    </rt-match>
+                </rt-block>
+            </rt-block>
+            <rt-block rt-mapo='shapes := props.Shapes'>
+                <rt-block rt-map='shape := shapes'>
+                    <rt-match what='shape'>
+                        <rt-case is='Shape.Polyline polyline'>
+                            <Native.Polyline Value='polyline'/>
+                        </rt-case>
+                        <rt-case is='Shape.Circle circle'>
+                            <Native.Circle Circle ='circle'/>
+                        </rt-case>
+                        <rt-case is='Shape.Polygon _polygon'>
+                            <!-- TODO Implement this -->
+                        </rt-case>
+                    </rt-match>
+                </rt-block>
+            </rt-block>
+        </Native.ReactNativeMaps>
+        <!--
+        This was an hack implemented by previous developers
+        Added a image marker and manually center this with styling.
+        This is already in production and apps use this
+        If I change this now, they need to change the Implementation from their side as well.
+
+        So keeping this for now
+        -->
+        <rt-block rt-mapo='markers := props.Markers'>
+            <rt-block rt-map='marker := markers'>
+                <rt-match what='marker.Position'>
+                    <rt-case is='MarkerPosition.Centered'>
+                        <RX.Image class='image' Source='localImage "/libs/ThirdParty/Map/images/marker.png"' Size='~FromStyles'/>
+                    </rt-case>
+                    <rt-case is='_'>
+                        <!-- NOOP `-->
+                    </rt-case>
+                </rt-match>
+            </rt-block>
+        </rt-block>
+    </div>
+</LC.With.Layout>

@@ -1,0 +1,17 @@
+<div class='view'>
+    <div class='heading' rt-mapo='heading := props.Heading'>{heading}</div>
+    <rt-match what='estate.ProcessedSource'>
+        <rt-case is='Ok code'>
+            <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                <dom.div class='dom-user-select-text'>
+                    <SyntaxHighlighter.SyntaxHighlighter Language='props.Language' Source='code'/>
+                </dom.div>
+            <rt-sharp value='else' />
+                <div>{code}</div>
+            <rt-sharp value='endif'/>
+        </rt-case>
+        <rt-case is='Error message'>
+            <div class='error'>{message}</div>
+        </rt-case>
+    </rt-match>
+</div>

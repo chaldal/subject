@@ -1,0 +1,23 @@
+<ComponentContent DisplayName='"Scrim"' Props='~ForFullyQualifiedName "LibClient.Components.Scrim"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <div class='sample-block'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Greet"'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                    <LC.Scrim rt-fs='true' styles='[| ScrimStyles.Styles.scrim |]' IsVisible='estate.IsScrimVisible'/>
+                </div>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     Label='"Toggle"'
+                     State='^LowLevel (~Actionable actions.Toggle)' />
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

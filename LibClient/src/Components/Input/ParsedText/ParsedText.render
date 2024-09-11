@@ -1,0 +1,18 @@
+<rt-root rt-type-parameters="'T">
+    <LC.Input.Text
+     class='theme {TopLevelBlockClass}'
+     stylesOption='props.styles'
+     Editable='props.Editable'
+     LabelOption='props.Label'
+     Value='getRawInputValueForFieldInternalProcessing props.Value'
+     OnChange='Value.OfRaw props.Parse >> props.OnChange'
+     OnKeyPressOption='props.OnKeyPress'
+     OnEnterKeyPressOption='props.OnEnterKeyPress'
+     Multiline='false'
+     RequestFocusOnMount='props.RequestFocusOnMount'
+     PlaceholderOption='props.Placeholder'
+     PrefixOption='props.Prefix'
+     SuffixOption='props.Suffix'
+     TabIndexOption='props.TabIndex'
+     Validity='if props.ShouldShowValidationErrors then match props.Value.Result with Ok _ -> props.Validity | Error message -> InputValidity.Invalid message else InputValidity.Valid'/>
+</rt-root>

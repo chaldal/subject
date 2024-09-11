@@ -1,0 +1,23 @@
+<rt-root rt-type-parameters="'T" rt-open='LibClient.ContextMenus'>
+    <LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+        <div
+         class='view {TopLevelBlockClass}'
+		 rt-new-styles='props.styles'
+         rt-class='withLabel := props.Label.IsSome'
+         rt-let='menuItems := estate.ContextMenuItems'>
+            <div
+             rt-class='is-invalid := props.Validity.IsInvalid; focused := estate.IsFocused'
+             class='border'>
+                <uitext class='selected-item'>{estate.SelectedItemLabel}</uitext>
+                <LC.Icon Icon='Icon.ChevronDown' class='icon'/>
+                <LC.TapCapture rt-fs='true' OnPressIn="actions.OnPressIn" OnPressOut="actions.OnPressOut" OnPress='fun e -> ContextMenu.Open menuItems screenSize e.MaybeSource NoopFn e'/>
+            </div>
+            <div rt-mapo='reason := props.Validity.InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+            <div
+             class='label'
+             rt-mapo='label := props.Label'>
+                <uitext class='label-text' rt-class='is-invalid := props.Validity.IsInvalid'>{label}</uitext>
+            </div>
+        </div>
+    </LC.With.ScreenSize>
+</rt-root>

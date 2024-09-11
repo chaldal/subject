@@ -1,0 +1,71 @@
+﻿module <%= appName %>.Services.Session.SessionService
+
+open System
+open LibClient.EventBus
+open LibUiSubject.Services.RealTimeService
+open LibClient.Services.HttpService.ThothEncodedHttpService
+open LibClient.Services.LocalStorageService
+open LibClient
+open LibUiSubject.Services.SubjectService
+
+type ConstructionThrottledSession = LibUiAuth.Services.SessionService.ConstructionThrottledSession<SamplePublicSession, SessionId>
+
+let lifeCycleKey = (LifeCycleKey.LifeCycleKey ("MetaLifeCycleName", "ecosystemName"))
+
+let samplePublicSession (currentSessionId): SamplePublicSession = {
+    Id = currentSessionId
+    CreatedOn = DateTimeOffset.Now
+    State     = PublicSessionState.Unauthenticated
+}
+
+type SessionService(backendUrl: string, maybeCookieDomain: Option<NonemptyString>, realTimeService: RealTimeService, thothEncodedHttpService: ThothEncodedHttpService, localStorageService: LocalStorageService, eventBus: EventBus) =
+    inherit LibUiAuth.Services.SessionService.SessionService<SampleSession, SamplePublicSession, SessionId, SampleSessionIndex, SampleSessionNumericIndex, SampleSessionStringIndex, SampleSessionSearchIndex, SampleSessionGeographyIndex, SampleSessionConstructor, SampleSessionAction, SampleSessionLifeEvent, SampleSessionOpError>(
+        lifeCycleKey,
+        None,
+        SubjectEndpoints.Make<SampleSession, SamplePublicSession, SessionId, SampleSessionIndex, SampleSessionConstructor, SampleSessionAction, SampleSessionLifeEvent, SampleSessionOpError>("Session", None, backendUrl + "/api/v1/subject"),
+        maybeCookieDomain,
+        realTimeService,
+        thothEncodedHttpService,
+        localStorageService,
+        eventBus,
+        SessionId.SessionId,
+        {|
+            Encoder = Json.ToString
+            Decoder = Json.FromString
+        |},
+        SampleSessionConstructor.NewFromId,
+        samplePublicSession,
+        (fun session ->
+            match session.State with
+            | PublicSessionState.Authenticated authenticated ->
+                TelemetryUser.Identified (authenticated.Who.UserIdStringForTelemetry, Map.empty)
+            | _ -> TelemetryUser.Anonymous
+        )
+    )
+
+    // Delete this hardcoded session, and the service will start hitting
+    // the subject backend, and you'll get standard authentication
+    override this.GetOne (_useCache: LibUiSubject.Types.UseCache) (id: SampleSessionId) =
+        let who = {
+            Name                     = NonemptyString.ofLiteral "Kudo Chika"
+            PrefersBananas           = false
+            UserIdStringForTelemetry = "Kudo Chika"
+        }
+
+        let authenticated = {
+            EnteredOn = DateTimeOffset.Now
+            Name = who.Name.Value
+            Who = who
+            State = PublicAuthenticatedState.Validated
+        }
+
+        let publicSession: PublicSession<SampleWho> = {
+            Id        = id
+            CreatedOn = DateTimeOffset.Now
+            State     = PublicSessionState.Authenticated authenticated
+        }
+
+        publicSession
+        |> ConstructionThrottledSession.Initialized
+        |> AsyncData.Available
+        |> Async.Of

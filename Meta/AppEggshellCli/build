@@ -1,0 +1,23 @@
+pushd ../LibEggshell && \
+echo "Building LibEggshell"
+./build && \
+popd && \
+\
+pushd ../LibScaffolding && \
+echo "Building LibScaffolding"
+./build && \
+popd && \
+\
+pushd ../LibFablePlus && \
+echo "Building LibFablePlus"
+npm run build && \
+popd && \
+\
+pushd ../LibRtCompilerFileSystemBindings && \
+echo "Building LibRtCompilerFileSystemBindings"
+./build && \
+popd && \
+\
+rm -rf dist && \
+echo "Building AppEggshellCli"
+./node_modules/.bin/tsc --build src/tsconfig.json

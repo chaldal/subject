@@ -1,0 +1,20 @@
+{
+  "name": "eggshell-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.19.4",
+    "eggshell-lib-eggshell": "file:../LibEggshell",
+    "eggshell-lib-lang-typescript": "file:../../LibLangTypeScript",
+    "eggshell-lib-rt-compiler-file-system-bindings": "file:../LibRtCompilerFileSystemBindings",
+    "eggshell-lib-scaffolding": "file:../LibScaffolding",
+    "typescript": "^4.8.4",
+    "yargs": "^13.2.4"
+  }
+}

@@ -1,0 +1,51 @@
+[<AutoOpen>]
+module <%= appName %>.Components.Route_Landing
+
+open LibClient
+open LibClient.Components
+open LibRouter.Components
+open Fable.React
+open LibUiSubject
+open ReactXP.Styles
+open <%= appName %>.Navigation
+open <%= appName %>.Colors
+open <%= appName %>.AppServices
+
+type Ui.Route with
+    [<Component>]
+    static member Landing () : ReactElement = element {
+        Hooks.useEffect (
+            (fun () ->
+                async {
+                    let! sessionAD = services().Session.GetOne UseCache.IfAvailable (services().Session.CurrentSessionId)
+                    match sessionAD with
+                    | Available session ->
+                        match session.RealOrPlaceholder.State with
+                        | PublicSessionState.Authenticated authenticated ->
+                            match authenticated.Who.PrefersBananas with
+                            | true  -> nav.Go Bananas ReactEvent.Action.NonUserOriginatingAction
+                            | false -> nav.Go Mangoes ReactEvent.Action.NonUserOriginatingAction
+                        | _ -> Noop
+                    | _ -> Noop
+                }
+                |> startSafely
+            ),
+            [||]
+        )
+
+        LR.Route (scroll = ScrollView.Vertical, children = [|
+            LC.Section.Padded (elements {
+                LC.Text "Loading..."
+            })
+        |])
+    }
+
+and private Styles() =
+    static member val Card = makeViewStyles {
+        FlexDirection.Row
+        JustifyContent.SpaceBetween
+    }
+
+    static member val ShipmentCount = makeTextStyles {
+        color colors.Neutral.Main
+    }

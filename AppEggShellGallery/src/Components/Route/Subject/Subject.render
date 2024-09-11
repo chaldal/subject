@@ -1,0 +1,13 @@
+<rt-root>
+    <LC.SetPageMetadata rt-fs='true' Title='"Subject"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded>
+            <Showdown.MarkdownViewer
+             Source='~Url ("/docs/" + props.MarkdownUrl |> services().Http.PrepareInBundleResourceUrl)'
+             GlobalLinkHandler='"globalMarkdownLinkHandler"'
+             ImageUrlTransformer='markdownImageUrlTransformer'
+             ShowdownConverter='showdownConverterWithSyntaxHighlighting'/>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

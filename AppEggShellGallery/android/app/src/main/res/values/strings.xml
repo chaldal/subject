@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Egg Shell Gallery</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string name="filter_view_http">Open in Egg Shell Gallery app</string>
+
+    <!-- Facebook SDK -->
+    <string name="facebook_app_id">HIDDEN</string>
+    <string name="facebook_client_token">HIDDEN</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">YOUR_KEY</string>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "nexe": "^3.3.7"
+  }
+}

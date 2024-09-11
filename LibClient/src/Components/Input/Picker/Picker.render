@@ -1,0 +1,16 @@
+<rt-root rt-type-parameters="'T">
+    <LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+        <LC.Input.PickerInternals.Base
+         class='{TopLevelBlockClass}'
+         stylesOption='props.styles'
+         PickerId='estate.PickerId.ToString()'
+         LabelOption='props.Label'
+         PlaceholderOption='props.Placeholder'
+         Items='props.Items'
+         ItemView='props.ItemView'
+         Value='props.Value'
+         Validity='props.Validity'
+         ScreenSize='screenSize'
+		 ShowSearchBar='props.ShowSearchBar'/>
+    </LC.With.ScreenSize>
+</rt-root>

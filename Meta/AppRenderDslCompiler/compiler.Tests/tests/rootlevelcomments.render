@@ -1,0 +1,7 @@
+<!-- you can have root level comments -->
+<!-- they don't count towards the "must have exactly one root node in an XML document" rule -->
+
+<div>hello, world</div>
+
+<!-- and a comment at the bottom for good measure -->
+<!-- we don't bother outputting these root level comments into the generated render function -->

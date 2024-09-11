@@ -1,0 +1,10 @@
+module <%= appName %>.Components.Route.<%= componentName %>Styles
+
+open ReactXP.Styles
+
+let styles = lazy (compile [
+    "message" => [
+        TextAlign.Center
+        padding   10
+    ]
+])

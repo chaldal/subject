@@ -1,0 +1,68 @@
+<rt-root>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+        <dom.tr rt-mapo='heading := props.Heading' class='cs-heading'>
+            <dom.td ColSpan='2'>
+                <LC.Heading class='heading' Level='~Tertiary'>{heading}</LC.Heading>
+            </dom.td>
+        </dom.tr>
+    
+        <dom.tr>
+            <dom.td
+             rt-class='
+                vertical-align-middle     := props.VerticalAlignment = VerticalAlignment.Middle;
+                vertical-align-top        := props.VerticalAlignment = VerticalAlignment.Top;
+                layout-code-below-samples := props.Layout            = Layout.CodeBelowSamples;
+            '>
+                <div class='visuals'>
+                    <LC.With.Context Context='AppEggShellGallery.SampleVisualsScreenSize.sampleVisualsScreenSizeContext' rt-with='sampleVisualsScreenSize: ScreenSize'>
+                        <LC.ForceContext rt-fs='true' Context='screenSizeContext' Value='sampleVisualsScreenSize'>
+                            {=props.Visuals}
+                        </LC.ForceContext>
+                    </LC.With.Context>
+                </div>
+            </dom.td>
+            <dom.td
+             rt-class='
+                layout-code-below-samples := props.Layout = Layout.CodeBelowSamples;
+            '>
+                <div class='code-and-notes'>
+                    <div class='code'>
+                        <rt-match what='props.Code'>
+                            <rt-case is='SingleBlock (language, code)'>
+                                <Code Language='language'>
+                                    {=code}
+                                </Code>
+                            </rt-case>
+                            <rt-case is='Children children'>
+                                {=children}
+                            </rt-case>
+                        </rt-match>
+                    </div>
+                    <div rt-if-not='props.Notes = noElement'>
+                        {=props.Notes}
+                    </div>
+                </div>
+            </dom.td>
+        </dom.tr>
+    <rt-sharp value='else' />
+        <LC.Heading class='heading' Level='~Tertiary' rt-mapo='heading := props.Heading'>{heading}</LC.Heading>
+        {=props.Visuals}
+        <div class='code-and-notes'>
+            <div class='code'>
+                <rt-match what='props.Code'>
+                    <rt-case is='SingleBlock (language, code)'>
+                        <Code Language='language'>
+                            {=code}
+                        </Code>
+                    </rt-case>
+                    <rt-case is='Children children'>
+                        {=children}
+                    </rt-case>
+                </rt-match>
+            </div>
+            <div rt-if-not='props.Notes = noElement'>
+                {=props.Notes}
+            </div>
+        </div>
+    <rt-sharp value='endif'/>
+</rt-root>

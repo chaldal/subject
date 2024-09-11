@@ -1,0 +1,11 @@
+{
+  "name": "react-templates-fable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compiler/render-dsl-compiler",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

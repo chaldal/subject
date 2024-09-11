@@ -1,0 +1,18 @@
+<ComponentContent DisplayName='"Section.Padded"' IsResponsive='true' Props='~ForFullyQualifiedName "LibClient.Components.Section.Padded"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Section.Padded>
+                    <uitext>Sample uitext block wrapped by Section.Padded to get extra padding.</uitext>
+                </LC.Section.Padded>
+                <uitext>Sample uitext outside Section.Padded</uitext>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Section.Padded>
+                    <uitext>Sample uitext block wrapped by Section.Padded to get extra padding.</uitext>
+                </LC.Section.Padded>
+                <uitext>Sample uitext outside Section.Padded</uitext>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

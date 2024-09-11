@@ -1,0 +1,57 @@
+<div
+ class='view'
+ rt-let='
+     externalValidityForFields := match props.Validity with Valid -> Valid | _ -> Missing;
+     (rawDays, rawHours, rawMinutes) := props.Value.Raw;
+ '>
+    <div onPress='actions.Focus' rt-mapo='label := props.Label'>
+        <text
+         class='label'
+         rt-class='
+            invalid := (props.Value.InternalValidity.Or props.Validity).IsInvalid;
+            focused := estate.IsFocused;
+         '>
+             {label}
+        </text>
+    </div>
+    <div class='fields'>
+        <LC.Input.Text
+         rt-if='props.ShouldDisplayDays'
+         class='field'
+         Value='rawDays'
+         MaxLength='3'
+         Validity='(props.Value.InternalFieldValidity Days).Or externalValidityForFields'
+         Placeholder='"00"'
+         OnChange='props.Value.SetDays >> props.OnChange'
+         OnFocus='actions.OnFocus'
+         OnBlur='actions.OnBlur'
+         OnEnterKeyPressOption='props.OnEnterKeyPress'
+         ref='actions.RefDaysInput'/>
+        <text rt-if='props.ShouldDisplayDays'>days</text>
+        <LC.Input.Text
+         class='field'
+         Value='rawHours'
+         MaxLength='2'
+         Validity='(props.Value.InternalFieldValidity Hours).Or externalValidityForFields'
+         Placeholder='"00"'
+         RequestFocusOnMount='props.RequestFocusOnMount'
+         OnChange='props.Value.SetHours >> props.OnChange'
+         OnFocus='actions.OnFocus'
+         OnBlur='actions.OnBlur'
+         OnEnterKeyPressOption='props.OnEnterKeyPress'
+         ref='actions.RefHoursInput'/>
+        <text>hrs</text>
+        <LC.Input.Text
+         class='field'
+         Value='rawMinutes'
+         MaxLength='2'
+         Validity='(props.Value.InternalFieldValidity Minutes).Or externalValidityForFields'
+         Placeholder='"00"'
+         OnChange='props.Value.SetMinutes >> props.OnChange'
+         OnFocus='actions.OnFocus'
+         OnBlur='actions.OnBlur'
+         OnEnterKeyPressOption='props.OnEnterKeyPress'/>
+        <text class='colon'>mins</text>
+    </div>
+    <div rt-mapo='reason := (props.Value.InternalValidity.Or props.Validity).InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+</div>

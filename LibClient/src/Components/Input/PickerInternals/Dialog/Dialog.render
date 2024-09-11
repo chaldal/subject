@@ -1,0 +1,73 @@
+<rt-root rt-type-parameters="'Item" rt-open='LibClient.Components.Input.PickerModel'>
+    <LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+        <LC.Dialog.Shell.WhiteRounded.Raw
+         Position='~Top'
+         CanClose='~When ([~OnEscape; ~OnBackground; ~OnCloseButton], actions.TryCancel)'>
+            <LC.With.Ref rt-fs='true'
+             rt-with='bindInput, _: Option&lt;TextInput.ITextInputRef&gt;'
+             OnInitialize='fun (input: TextInput.ITextInputRef) -> input.requestFocus()'>
+                <div onPress='fun e -> e.stopPropagation()' >
+                    <RX.TextInput
+					 rt-if='props.Parameters.ShowSearchBar'
+                     ref='bindInput'
+                     class='text-input {screenSize.Class}'
+                     value='estate.ModelState.MaybeQuery |> NonemptyString.optionToString'
+                     onChangeText='NonemptyString.ofString >> actions.OnQueryChange'
+                     PlaceholderOption='props.Parameters.Placeholder'/>
+				</div>
+            </LC.With.Ref>
+            <RX.ScrollView class='scroll-view' vertical='true'>
+                <rt-let name="whenAvailable(items: List&lt;'Item&gt;)">
+                    <LC.ItemList
+                     rt-fs='true'
+                     styles='[| DialogStyles.Styles.itemList |]'
+                     Items='items'
+                     Style='~Raw'
+                     rt-prop-children='WhenNonempty(items)'>
+                        <div class='item' rt-mapi='index item := items'>
+                            <div class='item-selectedness'>
+                                <LC.Icon Icon='Icon.CheckMark' class='item-selected-icon' rt-if='estate.ModelState.Value.IsSelected item'/>
+                            </div>
+                            <div class='item-body'>
+                                <rt-match what='props.Parameters.ItemView'>
+                                    <rt-case is='PickerItemView.Default toItemInfo'>
+                                        <text>{(toItemInfo item).Label}</text>
+                                    </rt-case>
+                                    <rt-case is='PickerItemView.Custom render'>
+                                        {=render item}
+                                    </rt-case>
+                                </rt-match>
+                            </div>
+                            <LC.TapCapture rt-fs='true' OnPress='actions.Toggle index item'/>
+                        </div>
+                    </LC.ItemList>
+                </rt-let>
+
+                <LC.AsyncData rt-fs='true' Data='estate.ModelState.SelectableItems' rt-prop-children='WhenAvailable(items)'>
+                    {=whenAvailable items}
+
+                    <rt-prop name='WhenFetching(maybeOldData)'>
+                        <rt-match what='maybeOldData'>
+                            <rt-case is='None'>
+                                <div class='activity-indicator-block'>
+                                    <RX.ActivityIndicator size='~Medium' color='"#aaaaaa"'/>
+                                </div>
+                            </rt-case>
+                            <rt-case is='Some oldData'>
+                                {=whenAvailable oldData}
+                                <div class='activity-indicator-overlay'>
+                                    <RX.ActivityIndicator size='~Medium' color='"#aaaaaa"'/>
+                                </div>
+                            </rt-case>
+                        </rt-match>
+                    </rt-prop>
+                </LC.AsyncData>
+            </RX.ScrollView>
+            <LC.Buttons rt-fs='true' rt-if='estate.ModelState.Value.CanSelectMultiple'>
+                <LC.Button
+                 Label='"Done"'
+                 State='^LowLevel (~Actionable actions.TryCancel)'/>
+            </LC.Buttons>
+        </LC.Dialog.Shell.WhiteRounded.Raw>
+    </LC.With.ScreenSize>
+</rt-root>

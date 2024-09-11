@@ -1,0 +1,7 @@
+EGGSHELL_HttpPort=8082 \
+EGGSHELL_AppUrlBase=http://localhost:8082 \
+EGGSHELL_BackendUrl=http://localhost:5000 \
+EGGSHELL_CurrFabricVersionUrlPart=asset/Egg.Shell.Fabric/Egg.Shell.Test/this-is-a-test/HttpEndpoint \
+EGGSHELL_IsUrlFabricVersionedRegex=asset/Egg.Shell.Fabric/Egg.Shell.Test/[^/]+/HttpEndpoint \
+EGGSHELL_MaybeInBundleStaticResourceUrlPattern="http://localhost:8082/asset/Egg.Shell.Fabric/Egg.Shell.Test/this-is-a-test/HttpEndpoint###-URL-RAW-###" \
+./run.sh

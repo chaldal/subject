@@ -1,0 +1,103 @@
+{
+    "name": "fsharp-language-server",
+    "displayName": "RenderDSL Server",
+    "description": "RenderDSL Support for VS Code",
+    "author": "Anton Zolotkov, based on work by George Fraser",
+    "license": "MIT",
+    "icon": "Icon512.png",
+    "version": "0.2.0",
+    "preview": false,
+    "publisher": "azolotkov",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fsprojects/fsharp-language-server"
+    },
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Linters"
+    ],
+    "activationEvents": [
+        "onLanguage:renderdsl"
+    ],
+    "main": "./out/client/extension",
+    "files": [
+        "./src/RenderDSLServer/bin/Release/netcoreapp2.0/osx.10.11-x64/publish",
+        "./src/RenderDSLServer/bin/Release/netcoreapp2.0/linux-x64/publish",
+        "./src/RenderDSLServer/bin/Release/netcoreapp2.0/win10-x64/publish"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "renderdsl",
+                "aliases": [
+                    "RenderDSL",
+                    "renderdsl"
+                ],
+                "extensions": [
+                    ".render"
+                ],
+                "configuration": "./syntaxes/renderdsl.configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "renderdsl",
+                "scopeName": "source.renderdsl",
+                "path": "./syntaxes/renderdsl.tmLanguage.json"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "ReactDSL configuration",
+            "properties": {
+                "reactdsl.trace.server": {
+                    "scope": "window",
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "verbose",
+                    "description": "Traces the communication between VSCode and the language server."
+                }
+            }
+        },
+        "taskDefinitions": [
+            {
+                "type": "fsharp.task.test",
+                "required": [
+                    "projectPath",
+                    "fullyQualifiedName"
+                ],
+                "properties": {
+                    "projectPath": {
+                        "type": "string"
+                    },
+                    "fullyQualifiedName": {
+                        "type": "string"
+                    }
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "extensionDependencies": [],
+    "dependencies": {
+        "vscode-languageclient": "^4.2.1"
+    },
+    "devDependencies": {
+        "@types/node": "^18.19.4",
+        "typescript": "^4.8.4",
+        "vscode": "^1.1.18"
+    }
+}

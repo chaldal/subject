@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>7.0</LangVersion>
+        <Configurations>Debug;Release</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="dotAPNS" Version="4.0.0" />
+        <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.4" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.34.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.34.0" />
+        <PackageReference Include="WebPush" Version="1.0.12" />
+        <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+        <ProjectReference Include="../../../LibLifeCycle/src/LibLifeCycle.fsproj" />
+        <ProjectReference Include="../../../LibLifeCycleTypes/src/LibLifeCycleTypes.fsproj" />
+        <ProjectReference Include="../../Types/src/PushNotificationTypes.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="Configs.fs" />
+        <Compile Include="AndroidFcmConnector.fs" />
+        <Compile Include="IosApnsConnector.fs" />
+        <Compile Include="WebPushConnector.fs" />
+        <Compile Include="PushNotificationConnector.fs" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<LC.With.RefDom rt-fs='true' OnInitialize='actions.OnMapAnchorLoaded' rt-with='bindDivRef, _'>
+    <dom.div Ref='bindDivRef'> </dom.div>
+    <LC.Subscribe
+     Subscription='subscriptionImplementationValue.Subscribe'
+     With='~Raw props.With'/>
+</LC.With.RefDom>

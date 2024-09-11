@@ -1,0 +1,47 @@
+<ComponentContent DisplayName='"Input.Checkbox"' Props='~ForFullyQualifiedName "LibClient.Components.Input.Checkbox"'>
+    <rt-prop name='Notes'>
+        Label defaulting to ~Children is for backwards compatibility.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Checkbox
+                     Value='estate.B'
+                     OnChange='actions.OnChangeB'
+                     Validity='Valid'>
+                        <uitext>Children-based Label</uitext>
+                    </LC.Input.Checkbox>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Checkbox
+                     Value='estate.B'
+                     OnChange='actions.OnChangeB'
+                     Validity='Valid'/>
+                        <uitext>Children-based Label</uitext>
+                    </LC.Input.Checkbox>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Validation"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Checkbox
+                     Label='~String "I want fries with that"'
+                     Value='estate.A'
+                     OnChange='actions.OnChangeA'
+                     Validity='Invalid "Required"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Checkbox
+                     Label='~String "I want fries with that"'
+                     Value='estate.A'
+                     OnChange='actions.OnChangeA'
+                     Validity='Invalid "Required"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

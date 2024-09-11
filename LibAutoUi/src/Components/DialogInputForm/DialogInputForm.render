@@ -1,0 +1,20 @@
+<rt-root rt-type-parameters="'T">
+    <LC.Dialog.Shell.WhiteRounded.Base OnBackgroundPress='actions.TryCancel'>
+        <div onPress='fun e -> e.stopPropagation()' class='dialog-contents'>
+            <InputForm
+             FormWrapper='props.Parameters.FormWrapper'
+             Settings='props.Parameters.Settings'
+             OnChange='actions.OnChange'/>
+             <div class='buttons'>
+                <LC.Button
+                 Level='~Secondary'
+                 Label='"Cancel"'
+                 State='^LowLevel (~Actionable actions.TryCancel)'/>
+                <LC.Button
+                 Level='~Primary'
+                 Label='"Execute"'
+                 State='^LowLevel (match estate.MaybeValue with | None -> ~Disabled | Some value -> ~Actionable (actions.SubmitResult value))'/>
+             </div>
+        </div>
+    </LC.Dialog.Shell.WhiteRounded.Base>
+</rt-root>

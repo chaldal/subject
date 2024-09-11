@@ -1,0 +1,18 @@
+<rt-root>
+    <LC.SetPageMetadata rt-fs='true' Title='"Design"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded>
+            <rt-match what='props.Item'>
+                <rt-case is='DesignItem.Markdown url'>
+                    <Showdown.MarkdownViewer
+                     Source='~Url ("/docs/" + url |> services().Http.PrepareInBundleResourceUrl)'
+                     GlobalLinkHandler='"globalMarkdownLinkHandler"'
+                     ShowdownConverter='showdownConverterWithSyntaxHighlighting'/>
+                </rt-case>
+                <rt-case is='ColorVariants'><Content.ColorVariants/></rt-case>
+                <rt-case is='Icons'        ><Content.Icons        /></rt-case>
+            </rt-match>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

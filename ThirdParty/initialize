@@ -1,0 +1,13 @@
+pushd SyntaxHighlighter        && ./initialize && ../../eggshell build-lib && popd &&
+pushd Showdown                 && ./initialize && ../../eggshell build-lib && popd &&
+pushd Map                      && ./initialize && ../../eggshell build-lib && popd &&
+pushd ImagePicker              && ./initialize && ../../eggshell build-lib && popd &&
+pushd ReactNativeCodePush      && ./initialize && ../../eggshell build-lib && popd &&
+pushd ReactNativeDeviceInfo    && ./initialize && ../../eggshell build-lib && popd &&
+pushd ReactNativeContacts      && ./initialize && ../../eggshell build-lib && popd &&
+pushd Recharts                 && ./initialize && ../../eggshell build-lib && popd &&
+pushd FacebookPixel            && ./initialize && ../../eggshell build-lib && popd &&
+pushd BackgroundGeolocation    && ./initialize && ../../eggshell build-lib && popd &&
+pushd GoogleAnalytics          && ./initialize && ../../eggshell build-lib && popd &&
+pushd ReCaptcha                && ./initialize && ../../eggshell build-lib && popd &&
+pushd SunmiPrint               && ./initialize && ../../eggshell build-lib && popd

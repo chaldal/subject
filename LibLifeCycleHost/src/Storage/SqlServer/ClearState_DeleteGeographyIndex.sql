@@ -1,0 +1,1 @@
+﻿				DELETE FROM [___SCHEMA_NAME___].[___LIFECYCLE_NAME____GeographyIndex] WHERE [SubjectId] = @id;

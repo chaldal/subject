@@ -1,0 +1,22 @@
+<Project>
+  <ItemGroup>
+    <!--
+    By default, pin all projects to use a specific version of these packages.
+    -->
+
+    <PackageReference Update="FSharp.Core" Version="7.0.403" />
+
+    <!--
+    But for exceptions, allow projects to override the version.
+
+    This is a bit advanced, but we find all PackageReferences with a VersionOverride and extract them to an internal collection.
+    Then we remove said references and re-add them having modified the metadata from "VersionOverride" to "Version". This will supersede
+    the above PackageReference.
+    -->
+    <_PackageReferenceWithVersionOverride
+      Include="@(PackageReference->HasMetadata('VersionOverride'))"
+      Version="%(VersionOverride)"/>
+    <PackageReference Remove="@(_PackageReferenceWithVersionOverride)"/>
+    <PackageReference Include="@(_PackageReferenceWithVersionOverride)"/>
+  </ItemGroup>
+</Project>

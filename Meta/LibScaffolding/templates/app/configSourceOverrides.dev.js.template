@@ -1,0 +1,6 @@
+eggshell.<%= appName %>.configSourceOverrides.AppUrlBase                    = "http://localhost:8100";
+eggshell.<%= appName %>.configSourceOverrides.BackendUrl                    = "http://localhost:5000";
+eggshell.<%= appName %>.configSourceOverrides.LogLevel                      = "debug";
+eggshell.<%= appName %>.configSourceOverrides.InitializeReactXPInDevMode    = "true";
+eggshell.<%= appName %>.configSourceOverrides.SessionIdCookieDomain         = "localhost"
+eggshell.<%= appName %>.configSourceOverrides.ShouldShowDangerousDevButtons = "true"

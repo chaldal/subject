@@ -1,0 +1,5 @@
+<Foo
+ class='button button-size-{props.size}'
+ rt-class='disabled := props.disabled; `button-{someValue}` := someCondition'>
+	foo
+</Foo>

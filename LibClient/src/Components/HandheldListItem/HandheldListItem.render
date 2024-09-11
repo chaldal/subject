@@ -1,0 +1,27 @@
+<div
+ class='view'
+ onPressOption='match props.State with | Actionable onPress -> Some (fun e -> e.stopPropagation(); onPress e) | _ -> None'>
+    <div class='left-icon' rt-mapo='leftIcon := props.LeftIcon'>{=leftIcon 20}</div>
+    <div class='label'>
+        <rt-match what='props.Label'>
+            <rt-case is='Children'>{=castAsElement children}</rt-case>
+            <rt-case is='Text text'>
+                <text class='label-text'>{text}</text>
+            </rt-case>
+        </rt-match>
+    </div>
+    <div class='right' rt-mapo='right := props.Right'>
+        <rt-match what='right'>
+            <rt-case is='Number number'>
+                <div class='number'>{number}</div>
+            </rt-case>
+            <rt-case is='Icon icon'>
+                <div class='right-icon'>{=icon 32}</div>
+            </rt-case>
+            <rt-case is='NumberAndIcon (number, icon)'>
+                <div class='number'>{number}</div>
+                <div class='right-icon'>{=icon 32}</div>
+            </rt-case>
+        </rt-match>
+    </div>
+</div>

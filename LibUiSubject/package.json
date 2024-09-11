@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@microsoft/signalr": "^7.0.5",
+    "react-templates-fable": "file:../Meta/AppRenderDslCompiler"
+  },
+  "devDependencies": {
+    "glob": "^7.1.3",
+    "gulp": "^4.0.0"
+  }
+}

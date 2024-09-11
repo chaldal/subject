@@ -1,0 +1,30 @@
+{
+	"name": "LibUiSubjectAdmin",
+	"alias": "UiSubjectAdmin",
+	"type": "library",
+	"render": {
+		"dependenciesToRtCompile": [
+			"../LibUiSubject",
+			"../LibUiAdmin"
+		],
+		"additionalModulesToOpen": [
+			"LibClient",
+			"LibClient.RenderHelpers"
+		],
+		"componentLibraryAliases": [
+			["default",         "LibUiSubjectAdmin.Components"],
+			["UiSubjectAdmin",  "LibUiSubjectAdmin.Components"],
+			["UiAdmin",         "LibUiAdmin.Components"],
+			["UiSubject",       "LibUiSubject.Components"],
+			["LC",              "LibClient.Components"],
+            ["RX",              "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div", "RX.View"]
+		]
+	}
+}

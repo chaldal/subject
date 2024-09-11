@@ -1,0 +1,106 @@
+<ComponentContent DisplayName='"Tag"' IsResponsive='true' rt-open='LibClient' Props='~ForFullyQualifiedName "LibClient.Components.Tag"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tag rt-fs='true'
+                 Text='"Sweets"'
+                 State='LC.Tag.ViewOnly'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Tag rt-fs='true'
+                 Text='"Sweets"'
+                 State='LC.Tag.ViewOnly'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tag rt-fs='true'
+                 rt-map='tag := ["Apple"; "Orange"; "Banana"]'
+                 Text='tag'
+                 State='LC.Tag.ViewOnly'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Tag rt-fs='true'
+                 rt-map='tag := ["Apple"; "Orange"; "Banana"]'
+                 Text='tag'
+                 State='LC.Tag.ViewOnly'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tags>
+                    <LC.Tag rt-fs='true'
+                     rt-map='tag := ["Apple"; "Orange"; "Banana"]'
+                     Text='tag'
+                     State='LC.Tag.ViewOnly'/>
+                </LC.Tags>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Tags>
+                    <LC.Tag rt-fs='true'
+                     rt-map='tag := ["Apple"; "Orange"; "Banana"]'
+                     Text='tag'
+                     State='LC.Tag.ViewOnly'/>
+                </LC.Tags>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tags>
+                    <LC.Tag rt-fs='true' Text='"View Only"'  State='LC.Tag.ViewOnly'/>
+                    <LC.Tag rt-fs='true' Text='"Selected"'   State='LC.Tag.ViewOnly'   IsSelected='true'/>
+                    <LC.Tag rt-fs='true' Text='"Actionable"' State='LC.Tag.Actionable (fun _ -> Action.alert "You pressed a tag")'/>
+                    <LC.Tag rt-fs='true' Text='"InProgress"' State='LC.Tag.InProgress'/>
+                    <LC.Tag rt-fs='true' Text='"Disabled"'   State='LC.Tag.Disabled'/>
+                </LC.Tags>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Tags>
+                    <LC.Tag rt-fs='true' Text='"View Only"'  State='LC.Tag.ViewOnly'/>
+                    <LC.Tag rt-fs='true' Text='"Selected"'   State='LC.Tag.ViewOnly'   IsSelected='true'/>
+                    <LC.Tag rt-fs='true' Text='"Actionable"' State='LC.Tag.Actionable (fun _ -> Action.alert "You pressed a tag")'/>
+                    <LC.Tag rt-fs='true' Text='"InProgress"' State='LC.Tag.InProgress'/>
+                    <LC.Tag rt-fs='true' Text='"Disabled"'   State='LC.Tag.Disabled'/>
+                </LC.Tags>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Tags>
+                    <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"View Only"'  State='LC.Tag.ViewOnly'/>
+                    <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Selected"'   State='LC.Tag.ViewOnly'   IsSelected='true'/>
+                    <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Actionable"' State='LC.Tag.Actionable (fun _ -> Action.alert "You pressed a themed tag")'/>
+                    <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"InProgress"' State='LC.Tag.InProgress'/>
+                    <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Disabled"'   State='LC.Tag.Disabled'/>
+                </LC.Tags>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Tags>
+                        <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"View Only"'  State='LC.Tag.ViewOnly'/>
+                        <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Selected"'   State='LC.Tag.ViewOnly'   IsSelected='true'/>
+                        <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Actionable"' State='LC.Tag.Actionable (fun _ -> Action.alert "You pressed a themed tag")'/>
+                        <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"InProgress"' State='LC.Tag.InProgress'/>
+                        <LC.Tag rt-fs='true' theme='TagStyles.cautionTheme' Text='"Disabled"'   State='LC.Tag.Disabled'/>
+                    </LC.Tags>
+                ]]></Code>
+
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "caution" ==>
+                        LibClient.Components.TagStyles.Theme.One (
+                            theBackgroundColor         = Color.DevOrange,
+                            theTextColor               = Color.White,
+                            theSelectedBackgroundColor = Color.DevRed,
+                            theSelectedTextColor       = Color.White
+                        )
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

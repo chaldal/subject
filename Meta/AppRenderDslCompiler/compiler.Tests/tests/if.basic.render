@@ -1,0 +1,1 @@
+<dom.div rt-if='expression'>foo</dom.div>

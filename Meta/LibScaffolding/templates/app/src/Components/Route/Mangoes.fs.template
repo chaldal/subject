@@ -1,0 +1,20 @@
+[<AutoOpen>]
+module <%= appName %>.Components.Route_Mangoes
+
+open LibClient
+open LibClient.Components
+open LibRouter.Components
+open Fable.React
+
+type Ui.Route with
+    [<Component>]
+    static member Mangoes () : ReactElement = element {
+        LR.Route (scroll = ScrollView.Vertical, children = [|
+            LC.Section.Padded (elements {
+                LC.Text "Mangoes!"
+            })
+        |])
+    }
+
+and private Styles() =
+    class end

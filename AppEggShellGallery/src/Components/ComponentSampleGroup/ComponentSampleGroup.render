@@ -1,0 +1,31 @@
+<rt-root>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+        <dom.tr
+         rt-if='(props.Heading = None) &amp;&amp; (props.Notes = noElement)'
+         class='csg-vertical-padding'>
+            <dom.td ColSpan='2'/>
+        </dom.tr>
+    
+        <dom.tr rt-mapo='heading := props.Heading' class='csg-heading'>
+            <dom.td ColSpan='2'>
+                <LC.Heading class='heading' Level='~Tertiary'>{heading}</LC.Heading>
+            </dom.td>
+        </dom.tr>
+    
+        <dom.tr rt-if-not='props.Notes = noElement' class='csg-notes'>
+            <dom.td ColSpan='2'>
+                {=props.Notes}
+            </dom.td>
+        </dom.tr>
+    
+        {=props.Samples}
+    
+        <dom.tr class='csg-vertical-padding'>
+            <dom.td ColSpan='2'/>
+        </dom.tr>
+    <rt-sharp value='else' />
+        <LC.Heading class='heading' rt-mapo='heading := props.Heading' Level='~Tertiary'>{heading}</LC.Heading>
+        {=props.Notes}
+        {=props.Samples}
+    <rt-sharp value='endif'/>
+</rt-root>

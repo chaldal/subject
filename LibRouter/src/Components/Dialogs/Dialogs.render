@@ -1,0 +1,42 @@
+<rt-root rt-type-parameters="'Route, 'ResultlessDialog, 'ResultfulDialog" rt-open='LibRouter.RoutesSpec; LibClient.SystemDialogs'>
+    <div class='view' rt-if='props.Dialogs.IsNonempty'>
+        <!-- switching between 1 dialog and 2 or more dialogs
+             is a fundamental switch that breaks continuity,
+             i.e. the first dialog is reconstructed, instead of
+             being kept around and just re-rendered when required,
+             and thus loses state if it had any. Having this div
+             as a sentinel keeps React thinking that multiple children
+             are present regardless of the dialog count. -->
+        <div class='sentinel'/>
+        <div class='frame' rt-map='dialog := List.rev props.Dialogs'>
+            <rt-match what='dialog'>
+                <rt-case is='NavigationDialog.Resultless (token, resultlessDialog)'>
+                    {=props.MakeResultless (resultlessDialog, props.Nav.Close token)}
+                </rt-case>
+                <rt-case is='NavigationDialog.Resultful token'>
+                    <rt-block rt-mapo='resultfulDialog := props.DialogsState.TryGetResultful token'>
+                        {=props.MakeResultful (resultfulDialog, props.Nav.Close token)}
+                    </rt-block>
+                </rt-case>
+                <rt-case is='NavigationDialog.AdHoc token'>
+                    <rt-block rt-mapo='adHocCloseToDialog := props.DialogsState.TryGetAdHoc token'>
+                        {=adHocCloseToDialog (props.Nav.Close token)}
+                    </rt-block>
+                </rt-case>
+                <rt-case is='NavigationDialog.System token'>
+                    <rt-block rt-let='close := props.Nav.Close token' rt-mapo='systemDialog := props.DialogsState.TryGetSystem token'>
+                        <rt-match what='systemDialog'>
+                            <rt-case is='Alert (maybeHeading, details)                                         '>{=LibClient.Components.Dialog.Confirm.OpenAsAlert maybeHeading details                                   close }</rt-case>
+                            <rt-case is='ImageViewer (sources, initialIndex)                                   '>{=LC.Dialog.OpenImageViewer(sources, close, initialIndex) }                                                     </rt-case>
+                            <rt-case is='ImageViewerCustom (sources, initialIndex, resizeMode)                 '>{=LC.Dialog.OpenImageViewer(sources, close, initialIndex, resizeMode)}                                          </rt-case>
+                            <rt-case is='ConfirmCustom (maybeHeading, details, buttons)                        '>{=LibClient.Components.Dialog.Confirm.Open maybeHeading details buttons                                  close }</rt-case>
+                            <rt-case is='Confirm       (maybeHeading, details, cancelLabel, okLabel, onResult) '>{=LibClient.Components.Dialog.Confirm.OpenSimple maybeHeading details cancelLabel okLabel onResult       close }</rt-case>
+                            <rt-case is='ConfirmAsync  (maybeHeading, details, cancelLabel, okLabel, onConfirm)'>{=LibClient.Components.Dialog.Confirm.OpenSimpleAsync maybeHeading details cancelLabel okLabel onConfirm close }</rt-case>
+                            <rt-case is='Prompt        (maybeHeading, details, onResult)                       '>{=LibClient.Components.Dialog.Prompt.Open maybeHeading details onResult                                  close }</rt-case>
+                        </rt-match>
+                    </rt-block>
+                </rt-case>
+            </rt-match>
+        </div>
+    </div>
+</rt-root>

@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- IMPORTANT: projects with grain interfaces must keep AssemblyName stable and AssemblyVersion at 1.0.0.0
+      while we use Orleans 3.7, changing those can break biosphere communication and affect reminders -->
+    <AssemblyName>LibLifeCycleCore</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <!-- nuget package version & metadata (can change) -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.LibLifeCycleCore</PackageId>
+    <Version>1.6.0</Version>
+    <Description>Subject stack Orleans client types</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Connections.Security" Version="3.7.2" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+<!--    <EmbeddedResource Include="Security\STAR_dev_subject_app.pfx" />-->
+    <Compile Include="Security\Certificates.fs" />
+    <Compile Include="Anchor.fs" />
+    <Compile Include="StjCodecs.Extensions.fs" />
+    <Compile Include="ClientTypes.fs" />
+    <Compile Include="GrainClientInterface.fs" />
+    <Compile Include="GrainConnector.fs" />
+    <Compile Include="Transaction.Distributed.fs" />
+    <Compile Include="ValueSummaryCodecs.fs" />
+    <Compile Include="OrleansEx\Serializer.fs" />
+    <Compile Include="OrleansEx\Serialization.fs" />
+    <Compile Include="OrleansEx\TraceContextGrainCallFilter.fs" />
+    <Compile Include="SummaryEncoders.fs" />
+    <Compile Include="GrainConnectorProvider.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../LibLifeCycleTypes/src/LibLifeCycleTypes.fsproj" />
+  </ItemGroup>
+
+</Project>

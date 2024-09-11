@@ -1,0 +1,423 @@
+<ComponentContent DisplayName='"Button"' IsResponsive='true' Props='~ForFullyQualifiedName "LibClient.Components.Button"'>
+    <rt-prop name='Notes'>
+        Every LC.Button component below is wrapped with LC.Buttons to prevent it from expanding to full width.
+        This is not shown in code samples for simplicity.
+    </rt-prop>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Icons"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Icon='~Icon.Left Icon.Home'
+                         Label='"Submit"'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Icon='~Icon.Left Icon.Home'
+                         Label='"Submit"'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Badge"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         class='button-with-badge'
+                         Icon='~Icon.Left Icon.ShoppingCart'
+                         Label='"Cart"'
+                         Badge='~Count 3'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Icon='~Icon.Left Icon.Cart'
+                         Label='"Cart"'
+                         Badge='~Count 3'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Primary"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Primary'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Secondary"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Secondary'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Tertiary"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Tertiary'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"PrimaryB"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~PrimaryB'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"SecondaryB"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~SecondaryB'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Cautionary"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^LowLevel (~Actionable Actions.greet)' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^LowLevel ~InProgress' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^LowLevel ~InProgress' />
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Buttons rt-fs='true'>
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^Disabled' />
+                    </LC.Buttons>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                        <LC.Button
+                         Label='"Submit"'
+                         Level='~Cautionary'
+                         State='^Disabled' />
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     class='caution'
+                     Label='"Submit"'
+                     Level='~Cautionary'
+                     State='^LowLevel (~Actionable Actions.greet)'/>
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Button
+                     class='caution'
+                     Label='"Submit"'
+                     Level='~Cautionary'
+                     State='^LowLevel (~Actionable Actions.greet)'/>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "caution" ==>
+                    LibClient.Components.ButtonStyles.Theme.One (
+                        level              = LibClient.Components.Button.Cautionary,
+                        state              = LibClient.Components.Button.State.Actionable ignore,
+                        theTextColor       = Color.Black,
+                        theBorderColor     = Color.White,
+                        theBackgroundColor = Color.DevOrange
+                    )
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Buttons rt-fs='true'>
+                    <LC.Button
+                     class='btn-small'
+                     Icon='~Icon.Right Icon.Home'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)'/>
+                </LC.Buttons>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Button
+                     class='btn-small'
+                     Icon='~Icon.Right Icon.Home'
+                     Label='"Submit"'
+                     State='^LowLevel (~Actionable Actions.greet)'/>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "btn-small" ==> LibClient.Components.ButtonStyles.Theme.IconSize 15
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

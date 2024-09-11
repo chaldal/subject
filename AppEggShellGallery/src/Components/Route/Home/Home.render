@@ -1,0 +1,20 @@
+<rt-root rt-open='LibClient.ContextMenus;'>
+    <LC.SetPageMetadata rt-fs='true' Title='"Home"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded class='content'>
+            <RX.Image class='logo-image' Source='localImage "/images/logo-sketch.jpg"' Size='~FromStyles'/>
+            <div class='subtitle'>
+                <text class='content-text'>EggShell is a tech stack for front end apps.</text>
+                <text class='content-text'>It combines a number of technologies:</text>
+            </div>
+
+            <div class='table'>
+                <div class='row'><div class='cell-left'><text class='label'>F#     </text></div><div class='cell-right'>a functional programming language with a powerful type system</div></div>
+                <div class='row'><div class='cell-left'><text class='label'>React  </text></div><div class='cell-right'>a JS library for building UIs declaratively</div></div>
+                <div class='row'><div class='cell-left'><text class='label'>Fable  </text></div><div class='cell-right'>an F# to JS compiler</div></div>
+                <div class='row'><div class='cell-left'><text class='label'>ReactXP</text></div><div class='cell-right'>a layer on top of React that allows targeting ReactDOM and ReactNative from the same code base</div></div>
+            </div>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

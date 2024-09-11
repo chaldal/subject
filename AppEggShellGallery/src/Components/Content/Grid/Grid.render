@@ -1,0 +1,179 @@
+<ComponentContent DisplayName='"Grid"' Props='~ForFullyQualifiedName "LibUiAdmin.Components.Grid"'>
+    <rt-prop name='Notes'>
+        The grid is currently fairly basic, we're building it out as we go. If you have needs that
+        are currently not supported, tell Anton and we'll make it happen. Also see QueryGrid and
+        WithSortAndFilter for additional options.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample Heading='"Dynamic asynchronous rows, paginated"' VerticalAlignment='~VerticalAlignment.Top'>
+            <rt-prop name='Visuals'>
+                <UiAdmin.Grid Input='~Paginated (estate.CurrentPage, makeRow, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Word"'                  /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Character Count"'       /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Unique Character Count"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='makeRow(word: string)'>
+                        <dom.td>{word}</dom.td>
+                        <dom.td>{word.Length}</dom.td>
+                        <dom.td>{uniqueCharacterCount word}</dom.td>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp'><![CDATA[
+                    // the props listed above don't include the actual definition of the helper types
+                    type PaginatedGridData<'T> = {
+                        PageNumber:     PositiveInteger
+                        PageSize:       PositiveInteger
+                        MaybePageCount: Option<UnsignedInteger>
+                        Items:          AsyncData<seq<'T>>
+                        GoToPage:       (* pageSize *) PositiveInteger -> (* pageNumber *) PositiveInteger -> Option<ReactEvent.Pointer> -> unit
+                    }
+                ]]></Code>
+                <Code Language='~Render'><![CDATA[
+                <UiAdmin.Grid Input='~Paginated (estate.CurrentPage, makeRow, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell Label='"Word"'                  /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Character Count"'       /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Unique Character Count"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='makeRow(word: string)'>
+                        <dom.td>{word}</dom.td>
+                        <dom.td>{word.Length}</dom.td>
+                        <dom.td>{uniqueCharacterCount word}</dom.td>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample Heading='"Dynamic asynchronous rows, displayed in full"' VerticalAlignment='~VerticalAlignment.Top'>
+            <rt-prop name='Visuals'>
+                <UiAdmin.Grid Input='~Everything (Available fruit, makeRow, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Name"' /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Color"'/></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Taste"'/></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Price"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='makeRow((name, color, taste, price): string * string * string * int)'>
+                        <dom.td>{name}</dom.td>
+                        <dom.td>{color}</dom.td>
+                        <dom.td>{taste}</dom.td>
+                        <dom.td>{price}</dom.td>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp'><![CDATA[
+                    type RowData = string * string * string * int
+                    let fruit: seq<RowData> = Seq.ofList [
+                        ("Mango", "Orange", "Sweet",          15)
+                        ("Kiwi",  "Green",  "Sweet and sour", 12)
+                        ("Lemon", "Yellow", "Sour",           8)
+                        ("Apple", "Green",  "Sweet",          11)
+                    ]
+                ]]></Code>
+                <Code Language='~Render'><![CDATA[
+                <UiAdmin.Grid Input='~Everything (Available fruit, makeRow, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell Label='"Name"' /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Color"'/></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Taste"'/></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Price"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='makeRow((name, color, taste, price): RowData)'>
+                        <dom.td>{name}</dom.td>
+                        <dom.td>{color}</dom.td>
+                        <dom.td>{taste}</dom.td>
+                        <dom.td>{price}</dom.td>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample Heading='"Static, hardcoded rows"' VerticalAlignment='~VerticalAlignment.Top'>
+            <rt-prop name='Visuals'>
+                <UiAdmin.Grid Input='~Static (rows, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Name"' /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Color"'/></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Taste"'/></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Price"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='rows'>
+                        <dom.tr>
+                            <dom.td>Mango</dom.td>
+                            <dom.td>Orange</dom.td>
+                            <dom.td>Sweet</dom.td>
+                            <dom.td>15</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Kiwi</dom.td>
+                            <dom.td>Green</dom.td>
+                            <dom.td>Sweet and sour</dom.td>
+                            <dom.td>12</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Lemon</dom.td>
+                            <dom.td>Yellow</dom.td>
+                            <dom.td>Sour</dom.td>
+                            <dom.td>8</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Apple</dom.td>
+                            <dom.td>Green</dom.td>
+                            <dom.td>Sweet</dom.td>
+                            <dom.td>11</dom.td>
+                        </dom.tr>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <UiAdmin.Grid Input='~Static (rows, None)'>
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell Label='"Name"' /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Color"'/></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Taste"'/></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Price"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-outer-let name='rows'>
+                        <dom.tr>
+                            <dom.td>Mango</dom.td>
+                            <dom.td>Orange</dom.td>
+                            <dom.td>Sweet</dom.td>
+                            <dom.td>15</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Kiwi</dom.td>
+                            <dom.td>Green</dom.td>
+                            <dom.td>Sweet and sour</dom.td>
+                            <dom.td>12</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Lemon</dom.td>
+                            <dom.td>Yellow</dom.td>
+                            <dom.td>Sour</dom.td>
+                            <dom.td>8</dom.td>
+                        </dom.tr>
+                        <dom.tr>
+                            <dom.td>Apple</dom.td>
+                            <dom.td>Green</dom.td>
+                            <dom.td>Sweet</dom.td>
+                            <dom.td>11</dom.td>
+                        </dom.tr>
+                    </rt-outer-let>
+                </UiAdmin.Grid>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

@@ -1,0 +1,71 @@
+<ComponentContent DisplayName='"Heading"' IsResponsive='true' Props='~ForFullyQualifiedName "LibClient.Components.Heading"'>
+    <rt-prop name='Notes'>
+        Heading is a very common component and you should not arbitrarily apply style to it.
+        Use themed styles.
+    </rt-prop>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Heading class='margin'>I am default heading</LC.Heading>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Heading class='margin'>I am default heading</LC.Heading>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "margin" => [
+                        margin 10
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Heading Level='~Primary' class='margin'>I am Primary heading</LC.Heading>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Heading Level='~Primary' class='margin'>I am Primary heading</LC.Heading>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "margin" => [
+                        margin 10
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Heading Level='~Secondary' class='margin'>I am Secondary heading</LC.Heading>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Heading Level='~Secondary' class='margin'>I am Secondary heading</LC.Heading>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "margin" => [
+                        margin 10
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Heading Level='~Tertiary' class='margin'>I am Tertiary heading</LC.Heading>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Heading Level='~Tertiary' class='margin'>I am Tertiary heading</LC.Heading>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "margin" => [
+                        margin 10
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

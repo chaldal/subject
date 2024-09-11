@@ -1,0 +1,34 @@
+<LC.Dialog.Shell.WhiteRounded.Standard
+ HeadingOption='props.Parameters.MaybeHeading'
+ Mode='match estate.Mode with | Mode.InProgress -> ~InProgress | Mode.Error m -> ~Error m | _ -> ~Default'
+ CanClose='~Never'>
+    <rt-prop name='Body'>
+        <div class='details'>
+            <text class='details-text'>{props.Parameters.Details}</text>
+        </div>
+    </rt-prop>
+    <rt-prop name='Buttons'>
+        <rt-block rt-map='button := props.Parameters.Buttons'>
+            <rt-match what='button'>
+                <rt-case is='Cancel (label, level, callback)'>
+                    <LC.Button
+                     Label='label'
+                     Level='level'
+                     State='^LowLevel (match estate.Mode with | Mode.InProgress -> ~Disabled | _ -> ~Actionable (fun e -> callback(); actions.TryCancel e))'/>
+                </rt-case>
+                <rt-case is='Confirm (label, level, callback)'>
+                    <LC.Button
+                     Label='label'
+                     Level='level'
+                     State='^LowLevel (match estate.Mode with | Mode.InProgress -> ~Disabled | _ -> ~Actionable (fun e -> callback(); actions.Hide e))'/>
+                </rt-case>
+                <rt-case is='AsyncConfirm (label, level, work)'>
+                    <LC.Button
+                     Label='label'
+                     Level='level'
+                     State='^LowLevel (match estate.Mode with | Mode.InProgress -> ~InProgress | _ -> ~Actionable (actions.AsyncConfirm work))'/>
+                </rt-case>
+            </rt-match>
+        </rt-block>
+    </rt-prop>
+</LC.Dialog.Shell.WhiteRounded.Standard>

@@ -1,0 +1,12 @@
+<rt-root rt-type-parameters="'Input, 'Output, 'OpError">
+    <rt-match what='props.With'>
+        <rt-case is='WithView.WhenAvailable render'>
+            <LC.AsyncData rt-fs='true'
+             Data='estate.Value'
+             WhenAvailable='render'/>
+        </rt-case>
+        <rt-case is='WithView.Raw render'>
+            {=render estate.Value}
+        </rt-case>
+    </rt-match>
+</rt-root>

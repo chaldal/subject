@@ -1,0 +1,16 @@
+<LC.Input.ParsedText
+ class='{TopLevelBlockClass}'
+ stylesOption='props.styles'
+ Parse='parseProp'
+ LabelOption='props.Label'
+ Value='props.Value'
+ PlaceholderOption='props.Placeholder'
+ PrefixOption='props.Prefix'
+ SuffixOption='props.Suffix'
+ Validity='props.Validity'
+ RequestFocusOnMount='props.RequestFocusOnMount'
+ TabIndexOption='props.TabIndex'
+ OnChange='props.OnChange'
+ OnKeyPressOption='props.OnKeyPress'
+ OnEnterKeyPressOption='props.OnEnterKeyPress'
+ KeyboardType='~KeyboardType.Numeric'/>

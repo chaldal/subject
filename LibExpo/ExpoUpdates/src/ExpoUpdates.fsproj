@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Fable Debug;Fable Release;Native Debug</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Core" Version="4.3.0" />
+    <PackageReference Include="Fable.React" Version="9.4.0" />
+    <PackageReference Include="Fable.Promise" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibClient/src/LibClient.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentsHierarchy.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ExpoUpdatesBindings.fs" />
+    <Compile Include="Components/Wrapper.fs" />
+    
+    <Compile Include="ComponentRegistration.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+</Project>

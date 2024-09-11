@@ -1,0 +1,4 @@
+<rt-match what='maybeValue' rt-if='expression'>
+    <rt-case is='None'>no value</rt-case>
+    <rt-case is='Some value'>has value</rt-case>
+</rt-match>

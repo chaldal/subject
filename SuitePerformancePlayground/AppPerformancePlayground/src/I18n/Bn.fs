@@ -1,0 +1,7 @@
+module AppPerformancePlayground.I18n.Languages.Bn
+
+let strings = {|
+    Bananas        = "バナナ"
+    Mangoes        = "マンゴー"
+    ToggleLanguage = "言語変更"
+|}

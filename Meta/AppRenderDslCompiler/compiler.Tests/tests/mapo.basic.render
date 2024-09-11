@@ -1,0 +1,3 @@
+<dom.div rt-mapo='fruit := Some "banana"'>
+	The fruit was some {fruit}!
+</dom.div>

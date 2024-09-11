@@ -1,0 +1,3 @@
+pushd compiler && ./build && popd
+npm link
+

@@ -1,0 +1,2 @@
+rm -rf dist
+./node_modules/.bin/tsc --build src/tsconfig.json

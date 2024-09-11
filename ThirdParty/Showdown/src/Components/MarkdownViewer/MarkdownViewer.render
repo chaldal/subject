@@ -1,0 +1,6 @@
+
+<LC.AsyncData rt-fs='true' Data='estate.SourceCode' rt-prop-children='WhenAvailable(sourceCode: string)'>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+    {= makeHtml props.ShowdownConverter props.GlobalLinkHandler (props.ImageUrlTransformer |> Option.map (fun f -> f props.Source)) sourceCode}
+    <rt-sharp value='endif'/>
+</LC.AsyncData>

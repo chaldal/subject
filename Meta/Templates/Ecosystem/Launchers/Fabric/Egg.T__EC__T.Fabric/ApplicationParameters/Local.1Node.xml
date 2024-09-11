@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Egg.T__EC__T.Fabric" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Egg.T__EC__T.SubjectHost_InstanceCount" Value="1" />
+    <Parameter Name="Storage.SqlServer:ConnectionString" Value="Server=localhost;Database=subjectExample;Integrated Security=true;Encrypt=False;Connection Timeout=30;MultipleActiveResultSets=True;" />
+    <Parameter Name="Orleans.Clustering:MembershipConnectionString" Value="Server=localhost;Database=subjectOrleansMembership;Integrated Security=true;Encrypt=False;Connection Timeout=30;MultipleActiveResultSets=True;" />
+    <Parameter Name="Orleans.Clustering:ShouldInitializeForLocal1NodeEnvironment" Value="True" />
+    <Parameter Name="Certificate:UseDevelopmentCertificate" Value="True" />
+  </Parameters>
+</Application>

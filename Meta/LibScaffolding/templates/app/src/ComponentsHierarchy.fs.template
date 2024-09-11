@@ -1,0 +1,14 @@
+[<AutoOpen>]
+module <%= appName %>.Components.Constructors
+
+type Ui = class end
+
+module Ui =
+    type Route = class end
+    type Dialog = class end
+    type App = class end
+    type Nav = class end
+    type With = class end
+
+    module With =
+        type Session = class end

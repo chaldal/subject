@@ -1,0 +1,19 @@
+<rt-root>
+    <LC.SetPageMetadata rt-fs='true' Title='"Tools"'/>
+
+    <LR.Route Scroll='~Vertical'>
+        <LC.Section.Padded>
+            <Showdown.MarkdownViewer
+             Source='~Url ("/docs/" + props.MarkdownUrl |> services().Http.PrepareInBundleResourceUrl)'
+             GlobalLinkHandler='"globalMarkdownLinkHandler"'
+             ShowdownConverter='showdownConverterWithSyntaxHighlighting'/>
+
+            <rt-block rt-if='props.MarkdownUrl = "tools/snippets.md"'>
+                <Showdown.MarkdownViewer Source='~Code "## RenderDSL scope snippets"'/>
+                <Snippets Scope='~One "renderdsl"'/>
+                <Showdown.MarkdownViewer Source='~Code "## F# scope snippets"'/>
+                <Snippets Scope='~One "fsharp"'/>
+            </rt-block>
+        </LC.Section.Padded>
+    </LR.Route>
+</rt-root>

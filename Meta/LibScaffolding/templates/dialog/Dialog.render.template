@@ -1,0 +1,13 @@
+<LC.Dialog.Shell.WhiteRounded.Standard
+ Heading='"Test Dialog"'
+ CanClose='~When ([~OnCloseButton; ~OnBackground], actions.TryCancel)'>
+    <rt-prop name='Body'>
+        Dialog contents goes here. Some param was {props.Parameters.SomeParam}
+    </rt-prop>
+    <rt-prop name='Buttons'>
+        <LC.Button
+         Level='~Secondary'
+         Label='"Cancel"'
+         State='^LowLevel (~Actionable actions.TryCancel)'/>
+    </rt-prop>
+</LC.Dialog.Shell.WhiteRounded.Standard>

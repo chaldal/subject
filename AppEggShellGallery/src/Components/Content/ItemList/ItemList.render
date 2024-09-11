@@ -1,0 +1,210 @@
+<ComponentContent DisplayName='"ItemList"' IsResponsive='true' Props='~ForFullyQualifiedName "LibClient.Components.ItemList"'>
+    <rt-prop name='Notes'>
+        <text>Never forget to have a proper message for empty lists by using this component.</text>
+
+        <text>Base types and values used in the examples:</text>
+        <Code Language='~Fsharp'><![CDATA[
+            type Fruit = {
+                Name:  string
+                Color: Color
+            }
+
+            let fruits = [
+                { Name = "Mango";    Color = Color.Hex "#ff9000" }
+                { Name = "Kiwi";     Color = Color.Hex "#1d6308" }
+                { Name = "Raspbery"; Color = Color.Hex "#b90041" }
+                { Name = "Apple";    Color = Color.Hex "#76b902" }
+            ]
+        ]]></Code>
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Center' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Center' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Right' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Right' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Left' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Responsive HorizontalAlignment.Left' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='[]' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='[]' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='[]' WhenEmpty='~Message "Fruitless"' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='[]' WhenEmpty='~Message "Fruitless"' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='[]' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                        <rt-prop name='WhenEmpty |> ~Children'>
+                            <div class='empty-message'><text class='empty-message-text'>No Fruit!</text></div>
+                        </rt-prop>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Render'><![CDATA[
+                        <LC.ItemList rt-fs='true' Items='[]' Style='~Raw' rt-prop-children='WhenNonempty(fruits)'>
+                            <LC.Legacy.Card rt-map='fruit := fruits'>
+                                {fruit.Name}
+                            </LC.Legacy.Card>
+                            <rt-prop name='WhenEmpty |> ~Children'>
+                                <div class='empty-message'><text class='empty-message-text'>No Fruit!</text></div>
+                            </rt-prop>
+                        </LC.ItemList>
+                    ]]></Code>
+                    <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                        "empty-message" => [
+                            paddingVertical 20
+                        ]
+
+                        "empty-message-text" => [
+                            TextAlign.Center
+                            color    colors.Caution.Main
+                            fontSize 18
+                        ]
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"SeeAll"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Horizontal' SeeAll='~SeeAll.Default Actions.greet' rt-prop-children='WhenNonempty(fruits)' theme='fun theme -> { theme with SeeAll = { Height = 70; MarginVertical = 0} }'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~Children'>
+                    <Code Language='~Render'><![CDATA[
+                        <LC.ItemList rt-fs='true' Items='fruits' Style='~Horizontal' SeeAll='~SeeAll.Default Actions.greet' rt-prop-children='WhenNonempty(fruits)' theme='fun theme -> { theme with SeeAll = { Height = 70; MarginVertical = 0} }'>
+                            <LC.Legacy.Card rt-map='fruit := fruits'>
+                                {fruit.Name}
+                            </LC.Legacy.Card>
+                        </LC.ItemList>
+                    ]]></Code>
+                </rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Horizontal' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                        <rt-prop name='SeeAll |> ~SeeAll.Children'>
+                            <div class='custom-see-all'>
+                                <LC.TextButton rt-fs='true' Label='"See More"' State='^LowLevel(LC.TextButton.Actionable Actions.greet)'/>
+                            </div>
+                        </rt-prop>
+                    </LC.ItemList>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.ItemList rt-fs='true' Items='fruits' Style='~Horizontal' rt-prop-children='WhenNonempty(fruits)'>
+                        <LC.Legacy.Card rt-map='fruit := fruits'>
+                            {fruit.Name}
+                        </LC.Legacy.Card>
+                        <rt-prop name='SeeAll |> ~SeeAll.Children'>
+                            <div class='custom-see-all'>
+                                <LC.TextButton rt-fs='true' Label='"See More"' State='^LowLevel(LC.TextButton.Actionable Actions.greet)'/>
+                            </div>
+                        </rt-prop>
+                    </LC.ItemList>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

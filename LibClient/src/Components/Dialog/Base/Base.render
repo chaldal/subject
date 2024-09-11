@@ -1,0 +1,10 @@
+<div class='background' rt-let='onPress := if ReactXP.Runtime.isNative() then Undefined else (actions.OnBackgroundPress)'>
+    <div class='dialog' onPress='onPress' onKeyPress='actions.OnKeyPress'>
+        <rt-match what='props.ContentPosition'>
+            <rt-case is='Free'>{=castAsElement children}</rt-case>
+            <rt-case is='_'>
+                <div class='position-wrapper position-{props.ContentPosition}' children='children'/>
+            </rt-case>
+        </rt-match>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+	"name": "LibAutoUi",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+			"LibClient",
+			"LibClient.RenderHelpers"
+		],
+		"componentLibraryAliases": [
+			["default", "LibAutoUi.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",    "RX.View"],
+			["text",   "LC.LegacyText"],
+			["uitext", "LC.LegacyUiText"]
+		]
+	}
+}

@@ -1,0 +1,58 @@
+<!--
+TODO: add more examples and clean this all up
+-->
+
+<ComponentContent rt-open='System' DisplayName='"Input.Date"' Props='~ForFullyQualifiedName "LC.Input.Date"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Date
+                     rt-fs='true' Label='"Date"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'
+                     RequestFocusOnMount='true'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <![CDATA[
+                    TODO
+                ]]>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Date Restrictions"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Date
+                     rt-fs='true' Value='estate.Values.Item "B"'
+                     OnChange='actions.OnChange "B"'
+                     MinDate='DateOnly.FromDateTime(DateTime.Now).AddMonths(-3)'
+                     MaxDate='DateOnly.FromDateTime(DateTime.Now).AddMonths(1)'
+                     CanSelectDate='canSelectDate'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                    <![CDATA[
+                    TODO
+                ]]>
+                </rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <!--<ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Input.Date
+                 Value='estate.Values.Item "B"'
+                 OnChange='actions.OnChange "B"'
+                 Validity='Valid'>
+                </LC.Input.Date>
+
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    TODO
+            ]]></rt-prop>
+        </ComponentSample>-->
+    </rt-prop>
+</ComponentContent>

@@ -1,0 +1,109 @@
+<ComponentContent DisplayName='"Input.Decimal"' rt-open='LibClient' Props='~ForFullyQualifiedName "LibClient.Components.Input.Decimal"'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "A"'
+                     OnChange='actions.OnChange "A"'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Internal Validation"' rt-prop-children='Samples'>
+            <rt-prop name='Notes'>
+                This component performs internal validation of the input, which has higher precedence
+                for display that externally supplied validation, e.g. if the input is non-numeric, and
+                the caller is also (for some reason) passing a InputValidity.Missing, then it's the
+                non-numeric error message that'll be displayed, and only once that's fixed will the
+                externally provided Validity be shown.
+            </rt-prop>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "B"'
+                     OnChange='actions.OnChange "B"'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "B"'
+                     OnChange='actions.OnChange "B"'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Notes'>
+                    Note that an empty field is not considered internally invalid. Doing so would
+                    result in a tonne of red fields when the form is empty, which would a horrible
+                    user experience. So instead, the component returns an `Ok None`
+                    in this case, and exernally providing `InputValidity.Missing` when
+                    a form submission was attempted is the right way to deal with missing values.
+                </rt-prop>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "D"'
+                     OnChange='actions.OnChange "D"'
+                     Validity='Valid'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "D"'
+                     OnChange='actions.OnChange "D"'
+                     Validity='Valid'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"External Validation"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "E"'
+                     Validity='Missing'
+                     OnChange='actions.OnChange "E"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "E"'
+                     Validity='Missing'
+                     OnChange='actions.OnChange "E"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "F"'
+                     Validity='Invalid "This input is just bad"'
+                     OnChange='actions.OnChange "F"'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.Input.Decimal
+                     Label='"Price"'
+                     Value='estate.Values.Item "F"'
+                     Validity='Invalid "This input is just bad"'
+                     OnChange='actions.OnChange "F"'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

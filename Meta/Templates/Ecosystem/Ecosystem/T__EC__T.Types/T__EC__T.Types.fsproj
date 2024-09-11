@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>7.0</LangVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <Configurations>Debug;Release;Fable Debug;Fable Release</Configurations>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Fable Debug' Or '$(Configuration)'=='Fable Release'">
+        <DefineConstants>FABLE_COMPILER</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\LibLangFsharp\src\LibLangFsharp.fsproj" />
+        <ProjectReference Include="..\..\..\LibLifeCycleTypes\src\LibLifeCycleTypes.fsproj" />
+    </ItemGroup>
+
+	<ItemGroup Label="Subject">
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="EcosystemDef.fs" />
+    </ItemGroup>
+
+</Project>

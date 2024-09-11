@@ -1,0 +1,48 @@
+<div class='view'>
+    <ComponentContentHeading DisplayName='props.DisplayName' IsResponsive='props.IsResponsive'/>
+
+    <rt-block rt-if-not='props.Notes = noElement'>
+        <LC.Heading class='heading-secondary' Level='~Secondary'><text class='heading-secondary-text'>Notes</text></LC.Heading>
+        <div class='notes'>{=props.Notes}</div>
+    </rt-block>
+
+    <rt-block rt-mapo='propsConfig := props.Props'>
+        <LC.Heading class='heading-secondary' Level='~Secondary'><text class='heading-secondary-text'>Props</text></LC.Heading>
+        <rt-match what='propsConfig'>
+            <rt-case is='Manual children'>{=children}</rt-case>
+            <rt-case is='ForFullyQualifiedName fullyQualifiedName'>
+                <ScrapedComponentProps FullyQualifiedName='fullyQualifiedName'/>
+            </rt-case>
+        </rt-match>
+    </rt-block>
+
+    <LC.Heading class='heading-secondary' Level='~Secondary'><text class='heading-secondary-text'>Samples</text></LC.Heading>
+    <RX.ScrollView horizontal='true'>
+        <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+            <dom.table class='aesg-ContentComponent-table'>
+                <dom.tbody>
+                    {=props.Samples}
+                </dom.tbody>
+            </dom.table>
+        <rt-sharp value="else" />
+            <div>
+                {=props.Samples}
+            </div>
+        <rt-sharp value='endif'/>
+
+        <rt-block rt-if-not='props.ThemeSamples = noElement'>
+            <LC.Heading class='heading-secondary' Level='~Secondary'><text class='heading-secondary-text'>Theme</text></LC.Heading>
+            <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+                <dom.table class='aesg-ContentComponent-table'>
+                    <dom.tbody>
+                        {=props.ThemeSamples}
+                    </dom.tbody>
+                </dom.table>
+            <rt-sharp value="else" />
+                <div>
+                    {=props.ThemeSamples}
+                </div>
+            <rt-sharp value='endif'/>
+        </rt-block>
+    </RX.ScrollView>
+</div>

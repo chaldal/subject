@@ -1,0 +1,6 @@
+<RX.ScrollView
+ horizontal='true'
+ rt-new-styles='props.styles'
+ class='scroll-view {TopLevelBlockClass}'>
+	<div class='view' children='children'/>
+</RX.ScrollView>

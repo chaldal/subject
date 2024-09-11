@@ -1,0 +1,49 @@
+<div
+ class='view'
+ rt-let='
+     externalValidityForFields := match props.Validity with Valid -> Valid | _ -> Missing;
+     (rawHours, rawMinutes, rawPeriodOffset) := props.Value.Raw;
+ '>
+    <div onPress='actions.Focus' rt-mapo='label := props.Label'>
+        <text
+         class='label'
+         rt-class='
+            invalid := (props.Value.InternalValidity.Or props.Validity).IsInvalid;
+            focused := estate.IsFocused;
+         '>
+             {label}
+        </text>
+    </div>
+    <div class='fields'>
+        <LC.Input.Text
+         class='field'
+         Value='rawHours'
+         MaxLength='2'
+         Validity='(props.Value.InternalFieldValidity Hours).Or externalValidityForFields'
+         Placeholder='"00"'
+         RequestFocusOnMount='props.RequestFocusOnMount'
+         OnChange='props.Value.SetHours >> props.OnChange'
+         OnFocus='actions.OnFocus'
+         OnBlur='actions.OnBlur'
+         OnEnterKeyPressOption='props.OnEnterKeyPress'
+         ref='actions.RefHoursInput'/>
+        <text class='colon'>:</text>
+        <LC.Input.Text
+         class='field'
+         Value='rawMinutes'
+         MaxLength='2'
+         Validity='(props.Value.InternalFieldValidity Minutes).Or externalValidityForFields'
+         Placeholder='"00"'
+         OnChange='props.Value.SetMinutes >> props.OnChange'
+         OnFocus='actions.OnFocus'
+         OnBlur='actions.OnBlur'
+         OnEnterKeyPressOption='props.OnEnterKeyPress'/>
+        <LC.Legacy.Input.Picker
+         class='picker'
+         Items='periodPickerItems'
+         Value='~ByItem rawPeriodOffset |> Some'
+         OnChange='~CannotUnselect (snd >> props.Value.SetPeriod >> props.OnChange)'
+         Validity='externalValidityForFields'/>
+    </div>
+    <div rt-mapo='reason := (props.Value.InternalValidity.Or props.Validity).InvalidReason'><text class='invalid-reason'>{reason}</text></div>
+</div>

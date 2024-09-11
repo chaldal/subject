@@ -1,0 +1,11 @@
+<rt-block>
+    <LC.Heading>Color Variants</LC.Heading>
+    <RX.ScrollView horizontal='true'>
+        <div class='color-variant-container' rt-map='(colorName, colorVariantFn) := AppEggShellGallery.ScrapedData.Colors.colorVariantsData'>
+            <div>
+                <LC.Heading Level='~Secondary'>{colorName}</LC.Heading>
+                <ColorVariants Value='colorVariantFn' class="variant"/>
+            </div>
+        </div>
+    </RX.ScrollView>
+</rt-block>

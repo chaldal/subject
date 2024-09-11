@@ -1,0 +1,5 @@
+module ThirdParty.<%= name %>.Components.TypeExtensions
+
+// This type gets implicitly extended externally
+type TEs =
+    class end

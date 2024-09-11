@@ -1,0 +1,6 @@
+<div class='view'>
+    <div class='icon-container' rt-map='(iconName, icon) := AppEggShellGallery.ScrapedData.Icons.iconsList'>
+        <LC.Icon class='icon' Icon='icon' />
+        <text class='icon-label'>{iconName}</text>
+    </div>
+</div>

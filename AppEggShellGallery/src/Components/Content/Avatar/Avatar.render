@@ -1,0 +1,25 @@
+<ComponentContent DisplayName='"Avatar"' Props='~ForFullyQualifiedName "LibClient.Components.Avatar"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Avatar rt-fs='true' Source='localImage "/images/avatar.png"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Avatar rt-fs='true' Source='localImage "/images/avatar.png"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Avatar rt-fs='true' theme='fun theme -> { theme with Size = 120 }' Source='localImage "/images/avatar2.png"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Avatar rt-fs='true' theme='fun theme -> { theme with Size = 120 }' Source='localImage "/images/avatar2.png"'/>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

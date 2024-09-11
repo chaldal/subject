@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>7.0</LangVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <Configurations>Debug;Release</Configurations>
+        <GenerateProgramFile> false </GenerateProgramFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Egg.LibCodecValidation</PackageId>
+    <Version>1.0.0</Version>
+    <Description>General purpose codec evolution checker</Description>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="CodecLib.fs" />
+        <Compile Include="EvolutionCheckerLib.fs" />
+        <Compile Include="Tests.fs" />
+        <Compile Include="Program.fs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FSharpPlus" Version="1.6.1" />
+        <PackageReference Include="FsPickler" Version="5.3.2" />
+        <PackageReference Include="FsUnit.xUnit" Version="6.0.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    </ItemGroup>
+
+</Project>

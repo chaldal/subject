@@ -1,0 +1,9 @@
+<rt-match what='maybeNumber'>
+    <rt-case is='None'>no number</rt-case>
+    <rt-case is='Some 13'>thirteen</rt-case>
+    <rt-case is='Some 42' rt-let='double := 84'>
+        <foo>number was 42</foo>
+        <foo>double that is {double}</foo>
+    </rt-case>
+    <rt-case is='Some number' rt-let='double := number * 2'>The number that's half of {double}</rt-case>
+</rt-match>

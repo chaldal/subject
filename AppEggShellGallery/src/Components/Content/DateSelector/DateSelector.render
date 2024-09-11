@@ -1,0 +1,39 @@
+<ComponentContent DisplayName='"DateSelector"' Props='~ForFullyQualifiedName "LibClient.Components.DateSelector"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.DateSelector
+                 OnChange='actions.OnChange "A"'
+                 MinDate='DateOnly.FromDateTime System.DateTime.Now'
+                 MaybeSelected='estate.MaybeSelectedDate.Item "A"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <LC.DateSelector
+                     OnChange='actions.OnChange'
+                     MinDate='DateTimeOffset.Now'
+                     MaybeSelected='estate.MaybeSelectedDate.Item "A"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.DateSelector
+                 class='special'
+                 OnChange='actions.OnChange "B"'
+                 MaybeSelected='estate.MaybeSelectedDate.Item "B"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.DateSelector
+                     class='special'
+                     OnChange='actions.OnChange "B"'
+                     MaybeSelected='estate.MaybeSelectedDate.Item "B"'/>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "special" ==> LibClient.Components.DateSelectorStyles.Theme.One (colors.Primary.Main, colors.Primary.B100)
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

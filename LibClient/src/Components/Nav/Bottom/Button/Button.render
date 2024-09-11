@@ -1,0 +1,25 @@
+<rt-match what='props.Badge'>
+    <rt-case is='Some badge'>
+        <LC.Button
+         class='button {TopLevelBlockClass}'
+         stylesOption='props.styles'
+         contentContainerStylesOption='props.contentContainerStyles'
+         Label='props.Label'
+         Level='props.Level'
+         Icon='props.Icon'
+         Badge='badge'
+         State='props.State'
+        />
+    </rt-case>
+    <rt-case is='None'>
+        <LC.Button
+         class='button {TopLevelBlockClass}'
+         stylesOption='props.styles'
+         contentContainerStylesOption='props.contentContainerStyles'
+         Label='props.Label'
+         Level='props.Level'
+         Icon='props.Icon'
+         State='props.State'
+        />
+    </rt-case>
+</rt-match>

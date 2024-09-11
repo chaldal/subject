@@ -1,0 +1,14 @@
+module <%= appName %>.ComponentsTheme
+
+open LibClient.Components
+open LibClient.ColorModule
+open <%= appName %>.Colors
+
+let applyTheme () : unit =
+    LibClient.DefaultComponentsTheme.ApplyTheme.primarySecondary(colors)
+
+    LibUiAuth.Components.AuthenticateStyles.Theme.All {|
+        MessagePrimary   = colors.Neutral.Main
+        MessageSecondary = colors.Neutral.Main
+        MessageError     = colors.Caution.Main
+    |}

@@ -1,0 +1,18 @@
+<LC.Responsive>
+    <rt-prop name='Desktop(screenSize: ScreenSize)'>
+        <rt-match what='props.Desktop()'>
+            <rt-case is='value when isNoElementOrEmptyFragmentOrEmptyArray value'>{=noElement}</rt-case>
+            <rt-case is='value'>
+                <div class='view {TopLevelBlockClass} {screenSize.Class}' rt-new-styles='props.styles'>{=value}</div>
+            </rt-case>
+        </rt-match>
+    </rt-prop>
+    <rt-prop name='Handheld(screenSize: ScreenSize)'>
+        <rt-match what='props.Handheld()'>
+            <rt-case is='value when isNoElementOrEmptyFragmentOrEmptyArray value'>{=noElement}</rt-case>
+            <rt-case is='value'>
+                <div class='view {TopLevelBlockClass} {screenSize.Class}'>{=value}</div>
+            </rt-case>
+        </rt-match>
+    </rt-prop>
+</LC.Responsive>

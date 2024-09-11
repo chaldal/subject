@@ -1,0 +1,5 @@
+<div
+ class='view {TopLevelBlockClass} style-{props.Style}'
+ rt-new-styles='props.styles'
+ onPressOption='props.OnPress |> Option.map (fun f -> ReactEvent.Action.OfBrowserEvent >> f)'
+ children='children'/>

@@ -1,0 +1,5 @@
+<div>
+    <Something Value='^ 15'/>
+    <Something Value='^("abc")'/>
+    <Something Value='^Special("abc")'/>
+</div>

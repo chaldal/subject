@@ -1,0 +1,117 @@
+<ComponentContent DisplayName='"Carousel"' Props='~ForFullyQualifiedName "LibClient.Components.Carousel"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Carousel
+                 rt-fs='true'
+                 styles='[| CarouselStyles.Styles.carousel |]'
+                 Count='4 |> PositiveInteger.ofLiteral'
+                 RequestFocusOnMount='true'
+                 rt-prop-children='Slide(index: int)'>
+                    <LC.With.Layout rt-fs='true' InitialOnly='true' rt-with='onLayoutOption, maybeLayout'>
+                        <div onLayoutOption='onLayoutOption'>
+                            <RX.Image
+                             class='image'
+                             Source='localImage (sprintf "/images/wlop%i.jpg" (index + 1))'
+                             ResizeMode='~Cover'
+                             Size='~FromParentLayout maybeLayout'/>
+                        </div>
+                    </LC.With.Layout>
+                </LC.Carousel>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'>
+                    <![CDATA[
+                    <LC.Carousel
+                     styles='[| CarouselStyles.Styles.carousel |]'
+                     Count='4 |> PositiveInteger.ofLiteral'
+                     RequestFocusOnMount='true'
+                     rt-prop-children='Slide(index: int)'>
+                        <LC.With.Layout rt-fs='true' InitialOnly='true' rt-with='onLayoutOption, maybeLayout'>
+                            <div onLayoutOption='onLayoutOption'>
+                                <RX.Image
+                                 class='image'
+                                 Source='localImage (sprintf "/images/wlop%i.jpg" (index + 1))'
+                                 ResizeMode='~Cover'
+                                 Size='~FromParentLayout maybeLayout'/>
+                            </div>
+                        </LC.With.Layout>
+                    </LC.Carousel>
+                ]]>
+                </Code>
+                <Code Language='~Fsharp' Heading='"Styles"'>
+                    <![CDATA[
+                    "carousel" => [
+                        height 200
+                    ]
+                    "image" => [
+                        height 200
+                    ]
+                ]]>
+                </Code>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Carousel
+                 rt-fs='true'
+                 styles='[| CarouselStyles.Styles.carousel |]'
+                 rt-let='urls := [
+                    "https://example.com/Picture?pictureId=64292"
+                    "https://example.com/Picture?pictureId=23157"
+                    "https://example.com/Picture?pictureId=31723"
+                    "https://example.com/Picture?pictureId=28589"
+                    "https://example.com/Picture?pictureId=26171"
+                 ]'
+                 Count='urls.Length |> PositiveInteger.ofIntUnsafe (* ok because hardcoded list *)'
+                 RequestFocusOnMount='true'
+                 rt-prop-children='Slide(index: int)'>
+                    <LC.With.Layout rt-fs='true' InitialOnly='true' rt-with='onLayoutOption, maybeLayout'>
+                        <div onLayoutOption='onLayoutOption'>
+                            <RX.Image
+                             class='image'
+                             Source='~ofUrl (urls.[index])'
+                             ResizeMode='~Cover'
+                             Size='~FromParentLayout maybeLayout'/>
+                        </div>
+                    </LC.With.Layout>
+                </LC.Carousel>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                <LC.Carousel
+                 styles='[| CarouselStyles.Styles.carousel |]'
+                 rt-let='urls := [
+                    "https://example.com/Picture?pictureId=64292"
+                    "https://example.com/Picture?pictureId=23157"
+                    "https://example.com/Picture?pictureId=31723"
+                    "https://example.com/Picture?pictureId=28589"
+                    "https://example.com/Picture?pictureId=26171"
+                 ]'
+                 Count='urls.Length |> PositiveInteger.ofIntUnsafe (* ok because hardcoded list *)'
+                 RequestFocusOnMount='true'
+                 rt-prop-children='Slide(index: int)'>
+                    <LC.With.Layout rt-fs='true' InitialOnly='true' rt-with='onLayoutOption, maybeLayout'>
+                        <div onLayoutOption='onLayoutOption'>
+                            <RX.Image
+                             class='image'
+                             Source='~ofUrl (urls.[index])'
+                             ResizeMode='~Cover'
+                             Size='~FromParentLayout maybeLayout'/>
+                        </div>
+                    </LC.With.Layout>
+                </LC.Carousel>
+                ]]></Code>
+                <Code Language='~Fsharp' Heading='"Styles"'><![CDATA[
+                    "carousel" => [
+                        height 200
+                    ]
+                    "image" => [
+                        height 200
+                    ]
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

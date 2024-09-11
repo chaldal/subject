@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "react-native-safe-area-context": "4.8.2",
+    "react-templates-fable": "file:../../Meta/AppRenderDslCompiler"
+  }
+}

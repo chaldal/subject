@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <Configurations>Web Debug;Web Release;Native Debug;Native Release</Configurations>
+    <DefineConstants>FABLE_COMPILER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Native Debug'">$(DefineConstants);DEBUG</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Web Debug' Or '$(Configuration)' == 'Web Release'">$(DefineConstants);EGGSHELL_PLATFORM_IS_WEB</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="**/*.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../../LibClient/src/LibClient.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentsHierarchy.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TextService.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ComponentRegistration.fs" />
+    <Compile Include="Components\RenderFormatfulText.fs" />
+  </ItemGroup>
+</Project>

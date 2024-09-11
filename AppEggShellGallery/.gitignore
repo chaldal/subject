@@ -1,0 +1,35 @@
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+
+android/app/my-upload-key
+android/app/my-upload-key.keystore
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+
+# contains secrets like API keys and the like, only template included in the repo
+configSourceOverrides.native.js
+
+# iOS libraries and dependencies
+ios/Pods/
+
+# Ignore copied assets
+public-dev/images/
+public-dev/libs/

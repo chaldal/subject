@@ -1,0 +1,12 @@
+<ComponentContent DisplayName='"WithSortAndFilter"' Props='~ForFullyQualifiedName "LibClient.Components.WithSortAndFilter"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                TODO
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                TODO
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

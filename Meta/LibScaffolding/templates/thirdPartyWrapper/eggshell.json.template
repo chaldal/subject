@@ -1,0 +1,24 @@
+{
+	"name": "ThirdParty.<%= name %>",
+	"type": "library",
+	"render": {
+		"additionalModulesToOpen": [
+		],
+		"componentLibraryAliases": [
+			["default", "ThirdParty.<%= name %>.Components"],
+			["LC",      "LibClient.Components"],
+			["RX",      "ReactXP.Components"]
+		],
+		"componentLibraryPaths": [
+			["LibClient.Components", "../LibClient/src/Components"],
+			["ReactXP.Components",   "../LibClient/src/ReactXP/Components"]
+		],
+		"componentAliases": [
+			["div",       "RX.View"],
+			["anidiv",    "RX.AnimatableView"],
+			["text",      "LC.Text"],
+			["anitext",   "RX.AnimatableText"],
+			["uitext",    "LC.UiText"]
+		]
+	}
+}

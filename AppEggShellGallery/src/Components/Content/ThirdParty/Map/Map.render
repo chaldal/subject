@@ -1,0 +1,184 @@
+<ComponentContent DisplayName='"Map"' Props='~ForFullyQualifiedName "ThirdParty.Map.Components.Base"' rt-open='ThirdParty.Map'>
+    <rt-prop name='Samples'>
+        <ComponentSampleGroup Heading='"Basics"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='estate.Values.TryFind "a" |> Option.defaultValue (MapPosition.LatLng (0, 0))'
+                        OnPositionChanged='actions.OnPositionChanged "a"'/>
+
+                    <div>
+                        Position: {estate.Values.TryFind "a"}
+                    </div>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='estate.Values.TryFind "a" |> Option.defaultValue (MapPosition.LatLng (0, 0))'
+                        OnPositionChanged='actions.OnPositionChanged "a"'/>
+
+                    <div>
+                        Position: {estate.Values.TryFind "a"}
+                    </div>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Markers"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Markers='[ Marker.init MarkerPosition.Centered |> Marker.withTooltip "Centered Marker" ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Markers='[ Marker.init MarkerPosition.Centered |> Marker.withTooltip "Centered Marker" ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Markers='[ MarkerPosition.LatLng (-27.1687243,152.9308381) |> Marker.init |> Marker.withLabel (MarkerLabel.init "A"); MarkerPosition.LatLng (-27.2,153.0) |> Marker.init |> Marker.withLabel (MarkerLabel.init "B") ]'/>
+                    </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Markers='[ MarkerPosition.LatLng (-27.1687243,152.9308381) |> Marker.init |> Marker.withLabel (MarkerLabel.init "A"); MarkerPosition.LatLng (-27.2,153.0) |> Marker.init |> Marker.withLabel (MarkerLabel.init "B") ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Markers='[ MarkerPosition.LatLng (-27.1687243,152.9308381) |> Marker.init |> Marker.withLabel (MarkerLabel.init "A") |> Marker.withImage (Icon.init "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" |> Icon.withAnchor (0, 32) |> ~Icon); MarkerPosition.LatLng (-27.2,153.0) |> Marker.init |> Marker.withLabel (MarkerLabel.init "B") |> Marker.withImage (Symbol.init "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z" |> Symbol.withAnchor (15, 30) |> Symbol.withFillColor "blue" |> Symbol.withFillOpacity 0.8 |> Symbol.withStrokeColor "red" |> Symbol.withStrokeOpacity 0.5 |> ~Symbol) ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Markers='[ MarkerPosition.LatLng (-27.1687243,152.9308381) |> Marker.init |> Marker.withLabel (MarkerLabel.init "A") |> Marker.withImage (Icon.init "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" |> Icon.withAnchor (0, 32) |> ~Icon); MarkerPosition.LatLng (-27.2,153.0) |> Marker.init |> Marker.withLabel (MarkerLabel.init "B") |> Marker.withImage (Symbol.init "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z" |> Symbol.withAnchor (15, 30) |> Symbol.withFillColor "blue" |> Symbol.withFillOpacity 0.8 |> Symbol.withStrokeColor "red" |> Symbol.withStrokeOpacity 0.5 |> ~Symbol) ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Shapes"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ [ (-27.1687243,152.9308381); (-27.1,153.1); (-27.1,152.8) ] |> Polyline.init |> Polyline.withStrokeColor "#1000CF" |> Polyline.withStrokeWeight 2 |> Polyline.withStrokeOpacity 0.75 |> ~Polyline ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'>
+                            <![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ [ (-27.1687243,152.9308381); (-27.1,153.1); (-27.1,152.8) ] |> Polyline.init |> Polyline.withStrokeColor "#1000CF" |> Polyline.withStrokeWeight 2 |> Polyline.withStrokeOpacity 0.75 |> ~Polyline ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ [ seq { (-27.1687243,152.9308381); (-27.1,153.1); (-27.1,152.8) } ] |> Polygon.init |> Polygon.withStrokeColor "#1000CF" |> Polygon.withStrokeWeight 2 |> Polygon.withStrokeOpacity 0.75 |> ~Polygon ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ [ seq { (-27.1687243,152.9308381); (-27.1,153.1); (-27.1,152.8) } ] |> Polygon.init |> Polygon.withStrokeColor "#1000CF" |> Polygon.withStrokeWeight 2 |> Polygon.withStrokeOpacity 0.75 |> ~Polygon ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ Circle.init (~LatLng (-27.1687243,152.9308381)) 500 |> Circle.withFillColor "#401020" |> Circle.withFillOpacity 0.3 |> Circle.withStrokeColor "#1000CF" |> Circle.withStrokeWeight 2 |> Circle.withStrokeOpacity 0.75 |> Circle.withEditable true |> ~Circle ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Shapes='[ Circle.init (~LatLng (-27.1687243,152.9308381)) 500 |> Circle.withFillColor "#401020" |> Circle.withFillOpacity 0.3 |> Circle.withStrokeColor "#1000CF" |> Circle.withStrokeWeight 2 |> Circle.withStrokeOpacity 0.75 |> Circle.withEditable true |> ~Circle ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Info Windows"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Markers='[ getMarkerWithInfoWindow () ]'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        Markers='[ getMarkerWithInfoWindow () ]'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+
+        <ComponentSampleGroup Heading='"Custom Styles"' rt-prop-children='Samples'>
+            <ComponentSample>
+                <rt-prop name='Visuals'>
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        MapStyles='customStyles'/>
+                </rt-prop>
+                <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                    <Map.Base
+                        class='map'
+                        ApiKey='AppEggShellGallery.Config.current().GoogleMapsApiKey'
+                        Position='(-27.1687243,152.9308381) |> MapPosition.LatLng'
+                        MapStyles='customStyles'/>
+                ]]></rt-prop>
+            </ComponentSample>
+        </ComponentSampleGroup>
+    </rt-prop>
+</ComponentContent>

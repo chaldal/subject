@@ -1,0 +1,40 @@
+<LC.With.ScreenSize rt-fs='true'
+ rt-with='screenSize'
+ rt-let='
+     state := props.State.ToLowLevel;
+     levelAndStateClass := "level-" + props.Level.ToString() + " state-" + state.GetName
+ '>
+    <LC.Pointer.State rt-fs='true' rt-prop-children='Content(pointerState: LC.Pointer.State.PointerState)'>
+        <div
+         class='view {TopLevelBlockClass} {levelAndStateClass} {screenSize.Class}'
+         rt-new-styles='props.styles'
+         rt-class='
+            non-tertiary := props.Level &lt;&gt; Tertiary;
+            is-hovered   := pointerState.IsHovered &amp;&amp; (not pointerState.IsDepressed);
+            is-depressed := pointerState.IsDepressed
+         '>
+            <div class='label-block' rt-new-styles='props.contentContainerStyles'>
+                <div class='left-icon' rt-mapo='(leftIcon) := props.Icon.LeftOption'>
+                    <LC.Icon
+                     class='icon {levelAndStateClass}'
+                     Icon='leftIcon'/>
+                </div>
+                <uitext class='label-text {levelAndStateClass} {screenSize.Class}' EllipsizeMode='EllipsizeMode.Tail' NumberOfLines='1'>{props.Label}</uitext>
+                <div class='right-icon' rt-mapo='(rightIcon) := props.Icon.RightOption'>
+                    <LC.Icon
+                     class='icon {levelAndStateClass}'
+                     Icon='rightIcon'/>
+                </div>
+                <LC.Badge rt-mapo='badge := props.Badge' Badge='badge' class='badge {screenSize.Class}' />
+            </div>
+            <div class='spinner-block' rt-if='match state with | InProgress -> true | _ -> false'>
+                <RX.ActivityIndicator color='"#aaaaaa"' size='~Tiny'/>
+            </div>
+
+            <LC.TapCapture rt-fs='true'
+             rt-mapo='onPress := match state with | Actionable onPress -> Some onPress | _ -> None'
+             OnPress='onPress'
+             PointerState='pointerState'/>
+        </div>
+    </LC.Pointer.State>
+</LC.With.ScreenSize>

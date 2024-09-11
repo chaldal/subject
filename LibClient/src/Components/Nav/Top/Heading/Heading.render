@@ -1,0 +1,5 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <LC.Heading
+     class='view {TopLevelBlockClass} {screenSize.Class}'
+     stylesOption='props.styles'>{props.Text}</LC.Heading>
+</LC.With.ScreenSize>

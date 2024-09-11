@@ -1,0 +1,42 @@
+<ComponentContent DisplayName='"Stars"' Props='~ForFullyQualifiedName "LibClient.Components.Stars"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Stars rt-fs='true' Count='4'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Stars rt-fs='true' Count='4'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Stars rt-fs='true'
+                 Count='1'
+                 Total='3'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.Stars rt-fs='true'
+                 Count='1'
+                 Total='3'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Stars rt-fs='true'
+                theme='fun theme -> { theme with OnColor = Color.DevGreen; OffColor = Color.Grey "77"; IconSize = 32 }'
+                Count='4'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'><![CDATA[
+                    <LC.Stars rt-fs='true'
+                    theme='fun theme -> { theme with OnColor = Color.DevGreen; OffColor = Color.Grey "77"; IconSize = 32 }'
+                    Count='4'/>
+                ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

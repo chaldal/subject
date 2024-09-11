@@ -1,0 +1,17 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <rt-sharp value='if EGGSHELL_PLATFORM_IS_WEB'/>
+    <div class='view {TopLevelBlockClass}'>
+        <LC.With.RefDom rt-fs='true' OnInitialize='actions.OnMapAnchorLoaded' rt-with='bindDivRef, _'>
+            <dom.div
+                Ref='bindDivRef'
+                rt-let='isFullScreen := match props.FullScreen with | Some f -> f | None -> false'
+                rt-class='cookups-hack-fixed-size := not isFullScreen'
+                class='map-anchor {screenSize.Class}'>
+            </dom.div>
+            <!-- TODO handle error cases: error while loading map, delay in map loading etc -->
+        </LC.With.RefDom>
+    </div>
+    <rt-sharp value='else'/>
+    <div/>
+    <rt-sharp value='endif'/>
+</LC.With.ScreenSize>

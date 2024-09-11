@@ -1,0 +1,3 @@
+<dom.div rt-mapi='index fruit := ["banana"; "apple"; "mango"]'>
+	The fruit at index {index} is {fruit}
+</dom.div>

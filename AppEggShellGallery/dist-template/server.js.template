@@ -1,0 +1,245 @@
+const path = require('path');
+// This seems necessary for nexe, possibly as discussed in here: https://github.com/nexe/nexe/issues/405
+__dirname = path.dirname(module.filename || process.execPath);
+
+const express  = require('express');
+const compress = require('compression');
+const http     = require('http');
+const https    = require('https');
+const tls      = require('tls');
+const fs       = require('fs');
+const gaikan   = require('gaikan');
+
+const envPrefix = "EGGSHELL_";
+
+function getPrefixedEnvVariableName(key) {
+    return envPrefix + key;
+}
+
+function getPrefixedEnvVariable(key) {
+    return process.env[getPrefixedEnvVariableName(key)]
+}
+
+function getAllPrefixedEnvVariables() {
+    const result = {};
+    for (key in process.env) {
+        if (key.substring(0, envPrefix.length) === envPrefix) {
+            result[key.substring(envPrefix.length)] = process.env[key];
+        }
+    }
+    return result;
+}
+
+const maybeHttpsPort = getPrefixedEnvVariable("HttpsPort");
+const maybeHttpPort  = process.env.Fabric_Endpoint_HttpEndpoint || getPrefixedEnvVariable("HttpPort");
+
+const sslDir       = __dirname + "/ssl";
+const keyFilename  = sslDir + "/server.key";
+const certFilename = sslDir + "/server.crt";
+
+
+function initialize() {
+    gaikan.alterant.encode = function (text) {
+        // We'll only use gaikan to inject views, so no need to encode anything
+        return text;
+    };
+
+    gaikan.options.enableCache = true;
+
+    const maybeIsUrlFabricVersionedRegexSource = getPrefixedEnvVariable("IsUrlFabricVersionedRegex");
+    const maybeCurrFabricVersionUrlPart        = getPrefixedEnvVariable("CurrFabricVersionUrlPart");
+    const maybeIsUrlFabricVersionedRegex =
+        maybeIsUrlFabricVersionedRegexSource && maybeCurrFabricVersionUrlPart
+        ? new RegExp(maybeIsUrlFabricVersionedRegexSource)
+        : undefined;
+
+    const app = express();
+
+    app.use(function(req, res, next) {
+        res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+        next();
+    });
+
+    const fontExtensions = {
+        "ttf":   true,
+        "woff":  true,
+        "woff2": true,
+        "otf":   true,
+    };
+    app.use(function(req, res, next) {
+        const appUrlBase = getPrefixedEnvVariable("AppUrlBase");
+        const appUrlBaseBase = appUrlBase.replace(/(http[s]?:\/\/[^/]+)(\/.*)?/, "$1");
+        const maybeExtension = req.url.replace(/^.*\.([a-zA-Z]+)$/, "$1")
+        if (fontExtensions[maybeExtension]) {
+            res.setHeader('Access-Control-Allow-Origin', appUrlBaseBase);
+        }
+
+        next();
+    })
+
+    const cacheControlFarFutureMaxAge = "public, max-age=" + (15 * 365 * 24 * 60 * 60);
+
+    app.use(function(req, res, next) {
+        if (maybeIsUrlFabricVersionedRegex) {
+            if (maybeIsUrlFabricVersionedRegex.test(req.url)) {
+                let updatedUrl = req.url.replace(maybeCurrFabricVersionUrlPart, "")
+                if (req.url === updatedUrl) {
+                    res.status(409).end();
+                }
+                else {
+                    res.setHeader('X-Egg-StaticProxyResponse', 1);
+                    res.setHeader("Cache-Control", cacheControlFarFutureMaxAge);
+                    req.url = updatedUrl;
+                    next();
+                }
+            }
+            else {
+                next();
+            }
+        }
+        else {
+            next();
+        }
+    });
+
+    app.set("view engine", ".html");
+    app.set("views", __dirname + "/gaikan/");
+    app.engine("html", gaikan);
+
+    const publicPath = __dirname + "/public/";
+    app.use(compress());
+    app.use(express.static(publicPath));
+
+    // TODO, remove this eventually after apps go live
+    // Helps us debug fabric/config environment variables
+    app.get("/_____env", function(req, res) {
+      var envStr = "";
+      for (var i in process.env) {
+        envStr += i + " = " + process.env[i] + "<br />";
+      }
+      res.send(envStr);
+    });
+
+    const eggshellConfigOverrides = getAllPrefixedEnvVariables()
+    const eggshellConfigOverridesStringified = JSON.stringify(eggshellConfigOverrides);
+
+    const maybeCdn = function (relativeUrl) {
+        if (eggshellConfigOverrides.MaybeInBundleStaticResourceUrlPattern) {
+            return eggshellConfigOverrides.MaybeInBundleStaticResourceUrlPattern
+                .replace('###-URL-RAW-###', relativeUrl)
+                .replace('###-URL-ENCODED-###', encodeURIComponent(relativeUrl));
+        }
+        else {
+            return relativeUrl;
+        }
+    };
+
+    const gaikanTemplateValues = {
+        urlFavicon:              maybeCdn("/<%= resourcesPath %>/images/favicon.ico"),
+        urlStylesheetApp:        maybeCdn("/<%= resourcesPath %>/app.css"),
+        urlStylesheetDocco:      maybeCdn("/<%= resourcesPath %>/docco.css"),
+        urlStylesheetHljs:       maybeCdn("/<%= resourcesPath %>/hljs-overrides.css"),
+        urlBundle:               maybeCdn("/<%= bundleFilename %>"),
+        eggshellConfigOverrides: eggshellConfigOverridesStringified,
+    }
+
+    app.use("*", function(req, res) {
+        res.render("index", gaikanTemplateValues);
+    });
+
+    // In-app routes will result in 404s, so we have to send them to index.html
+    app.use(function(req, res, next) {
+        res.status(404).sendFile("index.html", {root: publicPath});
+    });
+
+    var host = process.env.IP || undefined;
+
+    if (maybeHttpPort) {
+        const httpPort = maybeHttpPort
+
+        http.createServer(app).listen(httpPort, host, () => {  });
+        console.log("HTTP Server listening on " + (host || "") + ":" + httpPort);
+    }
+
+    if (maybeHttpsPort) {
+        const httpsPort = maybeHttpsPort
+
+        if (fs.existsSync(keyFilename) && fs.existsSync(certFilename)) {
+            app.use(redirectToSecure);
+            const httpsOptions = {
+                SNICallback: sniCallback,
+                key:         fs.readFileSync(keyFilename,  "utf8"),
+                cert:        fs.readFileSync(certFilename, "utf8"),
+                ca:          readCertFiles(sslDir)
+            };
+
+            https.createServer(httpsOptions, app).listen(httpsPort, host, () => { });
+            console.log("HTTPS Server listening on " + (host || "") + ":" + httpsPort);
+        }
+        else {
+            console.error("Key or cert file required for HTTPS server startup not found");
+        }
+    }
+
+    if (!maybeHttpPort && !maybeHttpsPort) {
+        console.error("Neither " + getPrefixedEnvVariableName("HttpsPort") + " nor " + getPrefixedEnvVariableName("HttpPort") + " port was specified");
+    }
+}
+
+
+// this stripping www came from the copying source
+function redirectToSecure(req, res, next) {
+    if ((req.method === "GET" || req.method === "OPTIONS" || req.method === "HEAD") && req.headers.host) {
+        // Redirect to HTTPS
+        if (!req.secure) {
+            var port = '';
+            return res.redirect(301, "https://" + req.headers.host.replace(/^www\./, "").replace(/:\d+$/, "") + port + req.originalUrl);
+        }
+
+        if (req.headers.host.match(/^www\./) !== null) {
+            return res.redirect(301, "https://" + req.headers.host.replace(/^www\./, "") + req.url);
+        }
+    }
+
+    next();
+}
+
+function sniCallback(hostname, cb) {
+    if (cb) {
+        cb(null, createSecureContext(hostname));
+    }
+    else {
+        return createSecureContext(hostname);
+    }
+}
+
+function readCertFiles(path) /* string[] */ {
+    const ca = [];
+
+    const caPath = path + "/ca/";
+
+    if (fs.existsSync(caPath)) {
+        const caDirFilenames = fs.readdirSync(caPath);
+        for (const index in caDirFilenames) {
+            const filename = caDirFilenames[i];
+
+            if (/\.crt$/.test(filename)) {
+                ca.push(fs.readFileSync(caPath + filename, "utf8"));
+            }
+        }
+    }
+
+    return ca;
+}
+
+function createSecureContext(hostname) {
+    if (fs.existsSync(keyFilename) && fs.existsSync(certFilename)) {
+        return tls.createSecureContext({
+            key:  fs.readFileSync(keyFilename,  "utf8"),
+            cert: fs.readFileSync(certFilename, "utf8"),
+            ca:   readCertFiles(sslDir)
+        });
+    }
+}
+
+initialize();

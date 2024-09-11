@@ -1,0 +1,8 @@
+<LC.With.ScreenSize rt-fs='true' rt-with='screenSize'>
+    <div class='view {screenSize.Class}'>
+        <div class='label {screenSize.Class}'>
+            <uitext>{props.Label}</uitext>
+        </div>
+        <div class='field {screenSize.Class}' children='children'/>
+    </div>
+</LC.With.ScreenSize>

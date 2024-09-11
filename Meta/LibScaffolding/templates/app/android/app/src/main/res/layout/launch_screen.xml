@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!-- The android:opacity=”opaque” line — this is critical in preventing a flash of black as your theme transitions. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">    <!-- The background color, preferably the same as your normal theme -->
+        <item android:drawable="@android:color/white"/>
+    <!-- Your splash image -->
+    <item>
+        <bitmap
+            android:src="@drawable/splash_screen_background"
+            android:tileMode="repeat"
+            android:alpha="70" />
+    </item>
+    <item
+        android:height="225dp"
+        android:width="200dp"
+        android:drawable="@drawable/app_logo"
+        android:gravity="center" />
+</layer-list>

@@ -1,0 +1,11 @@
+<rt-root>
+    <rt-let name='gestureView'>
+        <RX.GestureView
+         class='gesture-view {TopLevelBlockClass}'
+         onPanHorizontalOption='if props.Left.IsSome || props.Right.IsSome then Some actions.OnPanHorizontal else None'
+         onPanVerticalOption='if props.Up.IsSome || props.Down.IsSome then Some actions.OnPanVertical else None'>
+            {=castAsElement children}
+        </RX.GestureView>
+    </rt-let>
+    {=contentsView gestureView props estate}
+</rt-root>

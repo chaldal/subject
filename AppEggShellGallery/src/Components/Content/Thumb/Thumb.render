@@ -1,0 +1,67 @@
+<ComponentContent DisplayName='"Thumb"' Props='~ForFullyQualifiedName "LibClient.Components.Thumb"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumb For='^(localImage "/images/yuumei1.jpg")'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumb For='^(localImage "/images/yuumei1.jpg")'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumb For='^(localImage "/images/yuumei1.jpg")' IsSelected='true'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumb For='^(localImage "/images/yuumei1.jpg")' IsSelected='true'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumb For='^(banana, fun fruit -> localImage fruit.ImageUrl)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp' Heading='"Styles"'>
+                    <![CDATA[
+                    type Fruit = {
+                        Name:     string
+                        ImageUrl: string
+                    }
+
+                    let banana = {
+                        Name     = "banana"
+                        ImageUrl = "/images/yuumei1.jpg"
+                    }
+                ]]>
+                </Code>
+                <Code Language='~Render'>
+                    <![CDATA[
+                    <LC.Thumb For='^(banana, fun fruit -> localImage fruit.ImageUrl)'/>
+                ]]>
+                </Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+
+
+    <rt-prop name='ThemeSamples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumb For='^(localImage "/images/yuumei2.jpg")' theme='fun theme -> { theme with Size = 120 }'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Render'>
+                    <![CDATA[
+                    <LC.Thumb For='^(localImage "/images/yuumei2.jpg")' theme='fun theme -> { theme with Size = 120 }'/>
+                ]]>
+                </Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

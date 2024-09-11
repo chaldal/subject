@@ -1,0 +1,74 @@
+<ComponentContent DisplayName='"Thumbs"' Props='~ForFullyQualifiedName "LibClient.Components.Thumbs"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumbs For='^[]'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumbs For='^[]'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumbs For='^(["/images/yuumei1.jpg"; "/images/yuumei2.jpg"; "/images/yuumei3.jpg"; "/images/yuumei4.jpg"] |> List.map localImage)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumbs For='^(["/images/yuumei1.jpg"; "/images/yuumei2.jpg"; "/images/yuumei3.jpg"; "/images/yuumei4.jpg"] |> List.map localImage)'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumbs For='^([4; 3; 2; 1], fun i -> localImage (sprintf "/images/yuumei%i.jpg" i))'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumbs For='^([4; 3; 2; 1], fun i -> localImage (sprintf "/images/yuumei%i.jpg" i))'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.Thumbs
+                 For='^([4; 3; 2; 1], fun i -> localImage (sprintf "/images/yuumei%i.jpg" i))'
+                 Selected='estate.Selected'
+                 OnPress='actions.OnPress'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <LC.Thumbs
+                 For='^([4; 3; 2; 1], fun i -> localImage (sprintf "/images/yuumei%i.jpg" i))'
+                 Selected='estate.Selected'
+                 OnPress='actions.OnPress'/>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <With.Navigation rt-with='nav'>
+                    <LC.Thumbs
+                     rt-let='items := [4; 3; 2; 1]; itemToImage := fun i -> localImage (sprintf "/images/yuumei%i.jpg" i)'
+                     For='^(items, itemToImage)'
+                     OnPress='fun _ index -> nav.Go (ImageViewer (items |> List.map itemToImage, index))'/>
+                </With.Navigation>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'>
+                <![CDATA[
+                <With.Navigation rt-with='nav'>
+                    <LC.Thumbs
+                     rt-let='items := [4; 3; 2; 1]; itemToImage := fun i -> localImage (sprintf "/images/yuumei%i.jpg" i)'
+                     For='^(items, itemToImage)'
+                     OnPress='fun _ index -> nav.Go (ImageViewer (items |> List.map itemToImage, index))'/>
+                </With.Navigation>
+            ]]>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

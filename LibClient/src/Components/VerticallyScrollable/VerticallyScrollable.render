@@ -1,0 +1,11 @@
+<div class='view {TopLevelBlockClass}' rt-new-styles='props.styles'>
+    <div class='top' rt-mapo='fixedTop := props.FixedTop'>
+        {=fixedTop}
+    </div>
+    <RX.ScrollView vertical='true' class='middle' rt-mapo='scrollableMiddle := props.ScrollableMiddle'>
+        {=scrollableMiddle}
+    </RX.ScrollView>
+    <div class='bottom' rt-mapo='fixedBottom := props.FixedBottom'>
+        {=fixedBottom}
+    </div>
+</div>

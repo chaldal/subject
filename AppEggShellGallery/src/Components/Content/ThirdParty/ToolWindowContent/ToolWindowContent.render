@@ -1,0 +1,5 @@
+<div class="content">
+    <LC.Heading Level='~Secondary'>Info Window</LC.Heading>
+    <text>This is an example of an info window.</text>
+    <LC.Button Label='"Close"' State='^LowLevel (~Actionable (fun _ -> props.Handle.Close()))'/>
+</div>

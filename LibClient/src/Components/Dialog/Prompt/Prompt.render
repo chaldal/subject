@@ -1,0 +1,28 @@
+<LC.Form.Base
+ Accumulator='~ManageInternallyInitializingWith Acc.Initial'
+ Submit='actions.Submit'
+ rt-prop-children='Content(form)'>
+    <LC.Dialog.Shell.WhiteRounded.Standard
+     HeadingOption='props.Parameters.MaybeHeading'
+     CanClose='~Never'>
+        <rt-prop name='Body'>
+            <div class='details'>
+                <text class='details-text'>{props.Parameters.Details}</text>
+            </div>
+            <LC.Input.Text
+             Label='"Value"'
+             Validity='form.FieldValidity Field.Value'
+             Value='form.Acc.Value'
+             OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Value = value })'/>
+        </rt-prop>
+        <rt-prop name='Buttons'>
+            <LC.Button
+             Level='~Secondary'
+             Label='"Cancel"'
+             State='^LowLevel (~Actionable actions.TryCancel)'/>
+            <LC.Button
+             Label='"Submit"'
+             State='^LowLevel (if form.IsSubmitInProgress then ~InProgress else ~Actionable form.TrySubmitLowLevel)'/>
+        </rt-prop>
+    </LC.Dialog.Shell.WhiteRounded.Standard>
+</LC.Form.Base>

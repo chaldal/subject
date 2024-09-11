@@ -1,0 +1,11 @@
+module <%= appName %>.Actions
+
+open LibClient
+open <%= appName %>.AppServices
+open <%= appName %>.ErrorMessages
+
+let logOut () : UDActionResult =
+    services().Session.Act (services().Session.CurrentSessionId) SampleSessionAction.Logout
+    |> OpErrors.MapToDisplayString
+
+// Actions (often subject actions) that are used from multiple locations can be groupd here

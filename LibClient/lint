@@ -1,0 +1,2 @@
+# To install, run `dotnet tool install -g dotnet-fsharplint`
+dotnet-fsharplint -f "`pwd`/src/LibClient.fsproj"

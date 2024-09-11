@@ -1,0 +1,9 @@
+<rt-root>
+    <LC.Responsive>
+        <rt-outer-let name='button'>
+            <LC.Legacy.TopNav.IconButton rt-fs='true' Icon='Icon.Menu' State='LC.Legacy.TopNav.IconButtonTypes.Actionable (LibClient.Components.AppShell.Content.setSidebarVisibility true)'/>
+        </rt-outer-let>
+        <rt-prop name='Desktop(_)'>{=if props.OnlyOnHandheld then noElement else button}</rt-prop>
+        <rt-prop name='Handheld(_)'>{=button}</rt-prop>
+    </LC.Responsive>
+</rt-root>

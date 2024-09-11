@@ -1,0 +1,72 @@
+<rt-root rt-open='ReactXP.LegacyStyles'>
+    <LC.ErrorBoundary rt-fs='true' Catch='actions.OnError' rt-prop-children='Try'>
+        <LC.Responsive>
+            <rt-prop name='Desktop(_)'>
+                <div useSafeInsets='true' class='safe-insets-view'>
+                    <div class='view'>
+                        <div class='top-status-block' rt-if-not='props.TopStatus = noElement'>{=props.TopStatus}</div>
+                        <div class='top-nav-block' rt-if-not='props.TopNav = noElement'>{=props.TopNav}</div>
+                        <rt-match what='props.DesktopSidebarStyle'>
+                            <rt-case is='DesktopSidebarStyle.Fixed'>
+                                <div class='sidebar-and-content-block'>
+                                    <div class='sidebar-block desktop'>{=props.Sidebar}</div>
+                                    <div class='content-block'>{=props.Content}</div>
+                                    <div class="top-nav-shadow"/>
+                                </div>
+                            </rt-case>
+
+                            <rt-case is='DesktopSidebarStyle.Popup'>
+                                <div class='sidebar-and-content-block'>
+                                    <div class='content-block'>{=props.Content}</div>
+                                    <div class="top-nav-shadow"/>
+                                </div>
+                                <LC.Popup rt-prop-children='Render(_)' Connector='estate.SidebarPopupConnector'>
+                                    <div class='sidebar-popup-wrapper'>
+                                        {=props.Sidebar}
+                                    </div>
+                                </LC.Popup>
+                            </rt-case>
+                        </rt-match>
+                        <div class='bottom-nav-block' rt-if-not='props.BottomNav = noElement'>{=props.BottomNav}</div>
+                    </div>
+                    {=props.Dialogs}
+                </div>
+            </rt-prop>
+
+            <rt-prop name='Handheld(_)'>
+                <div useSafeInsets='true' class='safe-insets-view'>
+                    <div class='view'>
+                        <div class='top-status-block' rt-if-not='props.TopStatus = noElement'>{=props.TopStatus}</div>
+                        <div class='top-nav-block' rt-if-not='props.TopNav = noElement'>{=props.TopNav}</div>
+                        <div class='content-block'>
+                            {=props.Content}
+                            <div class="top-nav-shadow"/>
+                        </div>
+                        <div class='bottom-nav-block' rt-if-not='props.BottomNav = noElement'>{=props.BottomNav}</div>
+                        <LC.With.Layout rt-fs='true' rt-if-not='props.Sidebar = noElement' rt-with='onLayoutOption, maybeLayout'>
+                            <LC.Scrim
+                             rt-fs='true'
+                             styles='[| ContentStyles.Styles.scrim |]'
+                             IsVisible='estate.IsSidebarScrimVisible'
+                             OnPress='setSidebarVisibility false'
+                             OnPanHorizontalOption='estate.MaybeSidebarDraggable |> Option.map (fun draggable -> draggable.OnPanHorizontal)'/>
+                            <LC.Draggable
+                             rt-let='width := maybeLayout |> Option.map (fun l -> l.Width) |> Option.getOrElse 300'
+                             class='sidebar-draggable'
+                             rt-style='[ReactXP.LegacyStyles.RulesBasic.width width]'
+                             Right='{| ForwardThreshold = 30; Offset = width - 10; BackwardThreshold = 50 |}'
+                             BaseOffset='(-width + 10, 0)'
+                             OnChange='actions.OnSidebarDraggableChange'
+                             ref='actions.Bound.RefSidebarDraggable'>
+                                <div class='sidebar-wrapper' onLayoutOption='onLayoutOption'>
+                                    {=props.Sidebar}
+                                </div>
+                            </LC.Draggable>
+                        </LC.With.Layout>
+                        {=props.Dialogs}
+                    </div>
+                </div>
+            </rt-prop>
+        </LC.Responsive>
+    </LC.ErrorBoundary>
+</rt-root>

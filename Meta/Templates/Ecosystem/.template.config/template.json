@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Engineering",
+  "classifications": [ "Ecosystem", "F#" ],
+  "identity": "Ecosystem",
+  "name": "An Ecosystem of Subjects",
+  "shortName": "ecosystem",
+  "tags": {
+    "language": "F#",
+    "type": "project"
+  },
+  "sourceName": "T__SUITE__T",
+  "preferNameDirectory": true,
+  "symbols": {
+    "ecosystemName": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "ValueWithoutSuitePrefix",
+      "replaces": "T__EC__T",
+      "fileRename": "T__EC__T",
+      "dataType": "string"
+    },
+    "ecosystemInstanceName": {
+      "type": "derived",
+      "valueSource": "ecosystemName",
+      "valueTransform": "FirstLowerCase",
+      "replaces": "T__ECI__T",
+      "fileRename": "T__ECI__T",
+      "dataType": "string"
+    },
+    "ecosystemLowerCaseName": {
+      "type": "derived",
+      "valueSource": "ecosystemName",
+      "valueTransform": "LowerCase",
+      "replaces": "T__ECL__T",
+      "fileRename": "T__ECL__T",
+      "dataType": "string"
+    },
+    "firstLifeCycle": {
+      "type": "parameter",
+      "defaultValue": "SampleValueCounter",
+      "replaces": "T__LC__T",
+      "fileRename": "T__LC__T"
+    },
+    "firstLifeCycleInstanceName": {
+      "type": "derived",
+      "valueSource": "firstLifeCycle",
+      "valueTransform": "FirstLowerCase",
+      "replaces": "T__LCI__T",
+      "fileRename": "T__LCI__T",
+      "dataType": "string"
+    }
+  },
+  "primaryOutputs": [
+    { "path": "T__SUITE__T.sln" }
+  ],
+  "forms": {
+    "ValueWithoutSuitePrefix": {
+      "identifier": "replace",
+      "pattern": "^Suite",
+      "replacement": ""
+    },
+    "LowerCase": {
+      "identifier": "lowerCase"
+    },
+    "FirstLowerCase": {
+      "identifier": "firstLowerCaseInvariant"
+    }
+  }
+}

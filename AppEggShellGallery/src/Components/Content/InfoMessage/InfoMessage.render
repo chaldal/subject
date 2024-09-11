@@ -1,0 +1,38 @@
+<ComponentContent DisplayName='"InfoMessage"' Props='~ForFullyQualifiedName "LibClient.Components.InfoMessage"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.InfoMessage Message='"No items"'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.InfoMessage Message='"No items"'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.InfoMessage
+                 Message='"We tried to place the order, but got no response from the server.\n\nPlease try again later."'
+                 Level='~Attention'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.InfoMessage
+                 Message='"We tried to place the order, but got no response from the server.\n\nPlease try again later."'
+                 Level='~Attention'/>
+            ]]></rt-prop>
+        </ComponentSample>
+
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.InfoMessage
+                 Message='"A horrible error occurred"'
+                 Level='~Caution'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.InfoMessage
+                 Message='"A horrible error occurred"'
+                 Level='~Caution'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

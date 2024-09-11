@@ -1,0 +1,127 @@
+<ComponentContent DisplayName='"QueryGrid"' Props='~ForFullyQualifiedName "LibUiAdmin.Components.QueryGrid"'>
+    <rt-prop name='Notes'>
+        QueryGrid is a paginated Grid that is type parametrized by 'Query, taking as props a chunk of
+        UI through which the user inputs the query, and a query execution function.
+    </rt-prop>
+
+    <rt-prop name='Samples'>
+        <ComponentSample VerticalAlignment='~VerticalAlignment.Top'>
+            <rt-prop name='Visuals'>
+                <UiAdmin.Legacy.QueryGrid Mode='~OneTime actions.ExecuteQuery' InitialQueryAcc='Acc.Empty'>
+                    <rt-prop name='QueryForm(form: ~FormHandle&lt;Field, Acc, Query&gt;)'>
+                        <LC.Input.Text
+                         Label='"Substring"'
+                         Validity='form.FieldValidity Field.Substring'
+                         Value='form.Acc.Substring'
+                         OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Substring = value })'/>
+                        <LC.Input.PositiveInteger
+                         Label='"MinLength"'
+                         Validity='form.FieldValidity Field.MinLength'
+                         Value='form.Acc.MinLength'
+                         OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with MinLength = value })'/>
+                    </rt-prop>
+
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Word"'                  /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Character Count"'       /></dom.td>
+                        <dom.td><LC.HeaderCell rt-fs='true' Label='"Unique Character Count"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-prop name='MakeRow(word, _, _refresh)'>
+                        <dom.td>{word}</dom.td>
+                        <dom.td>{word.Length}</dom.td>
+                        <dom.td>{uniqueCharacterCount word}</dom.td>
+                    </rt-prop>
+                </UiAdmin.Legacy.QueryGrid>
+            </rt-prop>
+            <rt-prop name='Code |> ~Children'>
+                <Code Language='~Fsharp'><![CDATA[
+// This is run-of-the-mill form defition: a DU of fields, the result type that
+// a successfully validated form produces (Query), and an accumulator (Acc) that
+// implements AbstractAcc (from LibClient.Components.Form.Base.Types).
+// (you can stub this out in VSCode using the `formacc` snippet)
+[<RequireQualifiedAccess>]
+type Field =
+| Substring
+| MinLength
+
+type Query = {
+    Substring: string
+    MinLength: Option<PositiveInteger>
+} with
+    // this predicate is the only non-standard thing here, it's a helper
+    // method that we use inside the ExecuteQuery method below
+    member this.Predicate (candidate: string) : bool =
+        if candidate.Contains this.Substring then
+            match this.MinLength with
+            | Some minLength -> candidate.Length >= minLength.Value
+            | None           -> true
+        else
+            false
+
+type Acc = {
+    Substring: string
+    MinLength: LibClient.Components.Input.PositiveInteger.Value
+} with
+    static member Empty : Acc = {
+        Substring  = ""
+        MinLength  = LibClient.Components.Input.PositiveInteger.empty
+    }
+
+    interface AbstractAcc<Field, Query> with
+        member this.Validate () : Result<Query, ValidationErrors<Field>> = resultful {
+            let! minLength = Forms.GetOptionalFieldValue (Field.MinLength, this.MinLength.Result)
+
+            return {
+                Substring = this.Substring
+                MinLength = minLength
+            }
+        }
+                ]]></Code>
+                <Code Language='~Fsharp'><![CDATA[
+                // This code is essentially emulating a backend server that processes the query
+                member _.ExecuteQuery (query: Query) (pageSize: PositiveInteger) (pageNumber: PositiveInteger) (order: LibUiAdmin.Components.QueryGrid.Order) : Async<AsyncData<seq<string>>> =
+                    async {
+                        do! Async.Sleep 1000
+
+                        return
+                            AppEggShellGallery.Components.Content.Grid.words
+                            |> List.filter query.Predicate
+                            |> AppEggShellGallery.Components.Content.Grid.skipAtMost ((pageNumber.Value - 1) * pageSize.Value)
+                            |> AppEggShellGallery.Components.Content.Grid.takeAtMost pageSize.Value
+                            |> Seq.ofList
+                            |> Available
+                    }
+                ]]></Code>
+                <Code Language='~Render'><![CDATA[
+                <UiAdmin.Legacy.QueryGrid Mode='~OneTime actions.ExecuteQuery' InitialQueryAcc='Acc.Empty'>
+                    <rt-prop name='QueryForm(form: ~FormHandle&lt;Field, Acc, Query&gt;)'>
+                        <LC.Input.Text
+                         Label='"Substring"'
+                         Validity='form.FieldValidity Field.Substring'
+                         Value='form.Acc.Substring'
+                         OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with Substring = value })'/>
+                        <LC.Input.PositiveInteger
+                         Label='"MinLength"'
+                         Validity='form.FieldValidity Field.MinLength'
+                         Value='form.Acc.MinLength'
+                         OnChange='fun value -> form.UpdateAcc (fun acc -> { acc with MinLength = value })'/>
+                    </rt-prop>
+
+                    <rt-prop name='Headers'>
+                        <dom.td><LC.HeaderCell Label='"Word"'                  /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Character Count"'       /></dom.td>
+                        <dom.td><LC.HeaderCell Label='"Unique Character Count"'/></dom.td>
+                    </rt-prop>
+
+                    <rt-prop name='MakeRow(word, _, _refresh)'>
+                        <dom.td>{word}</dom.td>
+                        <dom.td>{word.Length}</dom.td>
+                        <dom.td>{uniqueCharacterCount word}</dom.td>
+                    </rt-prop>
+                </UiAdmin.Legacy.QueryGrid>
+            ]]></Code>
+            </rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>

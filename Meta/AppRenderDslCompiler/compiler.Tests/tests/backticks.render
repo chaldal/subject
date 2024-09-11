@@ -1,0 +1,1 @@
+<dom.div foo="`hello {person}!`">foo</dom.div>

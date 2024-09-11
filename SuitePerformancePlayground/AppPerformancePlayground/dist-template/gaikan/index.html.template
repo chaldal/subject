@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <title>#{root.title}</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  <link rel="shortcut icon" href="#{root.urlFavicon}" />
+  <link rel="stylesheet" href="#{root.urlStylesheet}" />
+</head>
+<body class="page page--basic">
+    <div id="app-pre-bootstrap-loader">
+      <img id="loader-img" src="#{root.urlLoader}"/>
+    </div>
+    <div class="app-container"></div>
+    <!-- Using JavaScript template engine "Gaikan" to replace config values with env var values -->
+    <script>
+      eggshell = window.eggshell || {};
+      eggshell.<%= appName %> = {};
+      eggshell.<%= appName %>.configSourceOverrides = {};
+    </script>
+    <script data-if="root.eggshellConfigOverrides">
+        eggshell.<%= appName %>.configSourceOverrides = #{root.eggshellConfigOverrides};
+        eggshell.<%= appName %>.configSourceOverrides.MaybeInBundleResourceUrlHashedDirectoryPrefix = "/<%= resourcesPath %>";
+    </script>
+    <script src="#{root.urlBundle}"></script>
+</body>
+</html>

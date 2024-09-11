@@ -1,0 +1,201 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>7.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- IMPORTANT: projects with grain interfaces must keep AssemblyName stable and AssemblyVersion at 1.0.0.0
+      while we use Orleans 3.7, changing those can break biosphere communication and affect reminders -->
+    <AssemblyName>LibLifeCycleHost</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <!-- TODO: currently using an internally hosted custom build. -->
+    <PackageReference Include="Fable.SignalR.AspNetCore" Version="0.14.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.10.8" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.AI" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Orleans.Connections.Security" Version="3.7.2" />
+    <PackageReference Include="Giraffe" Version="6.2.0" />
+    <PackageReference Include="Giraffe.TokenRouter" Version="3.0.0-alpha-1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.3" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="9.1.1390" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="6.1.1390" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="6.1.1390" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="6.1.1390" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Configuration" Version="6.1.1390" />
+    <PackageReference Include="OrleansDashboard" Version="3.1.0" />
+    <PackageReference Include="FSharp.SystemTextJson" Version="0.17.4" />
+    <PackageReference Include="Seq.Extensions.Logging" Version="6.1.0" />
+    <PackageReference Include="murmurhash" Version="1.0.3" />
+    <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Security\Certificates.fs" />
+    <Compile Include="Security\OrleansRequestContext.fs" />
+    <Compile Include="Config.fs" />
+    <Compile Include="ObservableExtensions.fs" />
+    <Compile Include="SubjectGrainModel.fs" />
+    <Compile Include="ValueSummarizer.fs" />
+    <Compile Include="Logging.fs" />
+    <Compile Include="Telemetry\TelemetryModel.fs" />
+    <Compile Include="GrainHostInterface.fs" />
+    <Compile Include="GrainStorageModel.fs" />
+    <Compile Include="TransferBlobHandler.fs" />
+    <Compile Include="GrainStorageHandler.fs" />
+    <Compile Include="TimeSeriesStorageHandler.fs" />
+    <Compile Include="LifeCycleFunctions.fs" />
+    <Compile Include="OrleansTransientErrorDetection.fs" />
+    <Compile Include="HostedOrReferencedLifeCycleAdapter.fs" />
+    <Compile Include="HostedLifeCycleAdapter.fs" />
+    <Compile Include="ViewAdapter.fs" />
+    <Compile Include="TimeSeriesAdapter.fs" />
+    <Compile Include="Security\AccessControl.fs" />
+    <Compile Include="ConnectorAdapter.fs" />
+    <Compile Include="Storage\Test\TestGrainStorageHandler.fs" />
+    <Compile Include="Storage\Test\TestSubjectRepo.fs" />
+    <Compile Include="Storage\Test\TestTimeSeriesStorageHandler.fs" />
+    <Compile Include="Storage\Test\TestTimeSeriesRepo.fs" />
+    <Compile Include="Storage\Volatile\VolatileSubjectRepo.fs" />
+    <Compile Include="Storage\Volatile\VolatileGrainStorageHandler.fs" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateFullTextCatalog.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SetupOrleans.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateSchema.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateSchemaUpgradeTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateScriptHashTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ApplyScriptIfNewOrChanged.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateTypes.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateTransferBlobTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateDataProtectionStore.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SequenceNextValue.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SequenceCurrentValue.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateTables.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateTimeSeriesTables.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateSearchIndexTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreateGeographyIndexTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\CreatePromotedIndexTable.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RebuildIndices.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RebuildIndices_SearchIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RebuildIndices_GeographyIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RebuildIndices_PromotedIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\UpsertStateShared.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\UpsertStateShared_UpsertSearchIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\UpsertStateShared_UpsertGeographyIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\UpsertStateShared_UpsertPromotedIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\InitializeState.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\UpdateState.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\EnqueueAction.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SetTickState.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\PrepareStateShared.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RollbackStateShared.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\PrepareInitialize.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RollbackPreparedInitialize.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\PrepareUpdate.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RollbackPreparedUpdate.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SetTickStateAndSubscriptions.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RetryPermanentFailures.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ClearState.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ClearState_DeleteSearchIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ClearState_DeleteGeographyIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SaveSubscriptions.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ReEncode.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ReEncodeHistory.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\ClearExpiredHistoryBatch.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\RepairGrainIdHash.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\SaveTimeSeries.sql" />
+    <Compile Include="Storage\SqlServer\SqlServerConfiguration.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerSetup.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerUtils.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerTransientErrorDetection.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerTransferBlobHandler.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerGrainStorageHandler.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerTimeSeriesStorageHandler.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerIndexQueryOptimizer.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerSubjectRepo.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerTimeSeriesRepo.fs" />
+    <Compile Include="Storage\SqlServer\SqlServerDataProtectionXmlRepository.fs" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\decode.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\encode.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\FailedSideEffects.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\StalledSideEffects.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\StalledPrepared.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Diagnostics\StalledTimers.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Upgrades_Auto\20220921_00_IncreaseLifeCycleNameSize.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Upgrades_Auto\20230914_00_AddSideEffectTargetColumn.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Upgrades_Auto\20231116_00_AddHistoryVersionIndex.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Upgrades_Auto\20241021_00_AddHistoryTombstoneFlag.sql" />
+    <EmbeddedResource Include="Storage\SqlServer\Upgrades_Auto\20241021_01_AlterHistoryVersionIndexIncludeSysStart.sql" />
+    <None Include="Storage\SqlServer\Upgrades_Auto\UpgradesAuto_Readme.txt" />
+    <Compile Include="Services\MetaServices.fs" />
+    <Compile Include="HostExtensions.fs" />
+    <Compile Include="SideEffectsHandler.fs" />
+    <Compile Include="GrainFunctions.fs" />
+    <Compile Include="SideEffectProcessor.fs" />
+    <Compile Include="SubjectReminder.fs" />
+    <Compile Include="ObserverManager.fs" />
+    <Compile Include="SubjectGrain.fs" />
+    <Compile Include="SubjectReminderTable.fs" />
+    <Compile Include="ViewGrain.fs" />
+    <Compile Include="SubjectIdGenerationGrain.fs" />
+    <Compile Include="SubjectRepoGrain.fs" />
+    <Compile Include="SubjectBlobRepoGrain.fs" />
+    <Compile Include="DynamicSubscriptionDispatcherGrain.fs" />
+    <Compile Include="SubjectReflectionGrain.fs" />
+    <Compile Include="ConnectorGrain.fs" />
+    <Compile Include="TraceContextGrainCallFilter.fs" />
+    <Compile Include="ApplicationInsights.fs" />
+    <Compile Include="OrleansEx\SiloBuilder.fs" />
+    <Compile Include="OrleansEx\BiosphereGrainFactory.fs" />
+    <Compile Include="Web\Config.fs" />
+    <Compile Include="Web\WebApiJsonEncoding.fs" />
+    <Compile Include="Web\RealTimeSubjectData.fs" />
+    <Compile Include="Web\ApiSessionCryptographer.fs" />
+    <Compile Include="Web\Session.fs" />
+    <Compile Include="Web\Http.fs" />
+    <Compile Include="Web\RealTime.fs" />
+    <Compile Include="Web\LegacyJsonEncoding.fs" />
+    <Compile Include="Web\LegacyGenericHttpHandler.fs" />
+    <Compile Include="Web\LegacyGenericRealTimeHandler.fs" />
+    <Compile Include="Web\Api\V1\JsonEncoding.fs" />
+    <Compile Include="Web\Api\V1\GenericHttpHandler.fs" />
+    <Compile Include="Web\Api\V1\GenericRealTimeHandler.fs" />
+    <Compile Include="Web\HttpHandler.fs" />
+    <Compile Include="Web\RealTimeHandler.fs" />
+    <Compile Include="Host\HostConfiguration.fs" />
+    <Content Include="Host\Fabric\Config\Settings.xml" />
+    <Compile Include="Host\Fabric\Api\Health.fs" />
+    <Compile Include="Host\Fabric\Api\Startup.fs" />
+    <Compile Include="Host\Fabric\Api\Api.fs" />
+    <Compile Include="Host\Fabric\SubjectHost\OrleansCommunicationListener.fs" />
+    <Compile Include="Host\Fabric\SubjectHost\SubjectHost.fs" />
+    <Compile Include="Host\K8S\DevEnv.fs" />
+    <Compile Include="Host\K8S\SubjectHost\SubjectHost.fs" />
+    <Compile Include="Host\K8S\Api\Startup.fs" />
+    <Compile Include="Host\K8S\Api\Api.fs" />
+    <None Include="Host\K8S\appsettings.json" />
+    <Content Include="Host\Development\appsettings.json" />
+    <Compile Include="Host\Development\DevelopmentHost.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../LibLangFsharp/src/LibLangFsharp.fsproj" />
+    <ProjectReference Include="../../LibLifeCycleCore\src\LibLifeCycleCore.fsproj" />
+    <ProjectReference Include="..\..\LibLifeCycle\src\LibLifeCycle.fsproj" />
+  </ItemGroup>
+
+</Project>

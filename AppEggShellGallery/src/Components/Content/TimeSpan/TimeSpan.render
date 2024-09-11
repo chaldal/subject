@@ -1,0 +1,20 @@
+<ComponentContent DisplayName='"TimeSpan"' Props='~ForFullyQualifiedName "LibClient.Components.TimeSpan"'>
+    <rt-prop name='Samples'>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TimeSpan rt-fs='true' Value='System.TimeSpan.FromMilliseconds(123581321.)'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.TimeSpan rt-fs='true' Value='System.TimeSpan.FromMilliseconds(123581321.)'/>
+            ]]></rt-prop>
+        </ComponentSample>
+        <ComponentSample>
+            <rt-prop name='Visuals'>
+                <LC.TimeSpan rt-fs='true' Value='System.TimeSpan.FromMilliseconds(123581321.)' ShouldTruncateMillis='false'/>
+            </rt-prop>
+            <rt-prop name='Code |> ~singleBlock ~Render'><![CDATA[
+                <LC.TimeSpan rt-fs='true' Value='System.TimeSpan.FromMilliseconds(123581321.)' ShouldTruncateMillis='false'/>
+            ]]></rt-prop>
+        </ComponentSample>
+    </rt-prop>
+</ComponentContent>
